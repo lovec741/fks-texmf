@@ -1,0 +1,80 @@
+% fkssugar.sty
+%
+%    Copyright 2011 Michal Koutny
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fkssugar}[2011/09/11 FYKOS comfort macros]
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+
+\let\underscore\_					% underscore sign
+\renewcommand\_[1]{_\mathrm{#1}}			% roman index
+\def\({\left(} \def\){\right)}				% parentheses
+\newcommand\ztoho{\quad\Rightarrow\quad}		% implication
+\newcommand\frc[2]{\dfrac#1#2}				% non-reduced fractions [obsolete]
+\newcommand\tsum{\mathop{\textstyle\sum}\limits}	% inline sum
+\newcommand\tprod{\mathop{\textstyle\prod}\limits}	% inline product
+\newcommand\tint{\mathop{\textstyle\int}\nolimits}	% inline integral
+\newcommand\const{\mathrm{konst}}			% konstanta
+\newcommand\dg{^\circ}					% stupen
+\newcommand\C{^\circ\mskip-2mu\mathrm{C}}		% Celsiuv stupen
+\renewcommand\Re{\mathop\mathrm{Re}\nolimits}		% realna cast
+\renewcommand\Im{\mathop\mathrm{Im}\nolimits}		% imaginarni cast
+\newcommand\eu{\mathrm{e}}				% Eulerovo cislo
+\newcommand\im{\mathrm{i}}				% imaginarni jednotka
+\renewcommand\d{\mathop{\mathrm{d}\!}}			% differential sign
+\newcommand\der[2]{\frac{\d #1}{\d #2}}	% prvni derivace
+\newcommand\dder[2]{\frac{\d{ }^2 #1}{\d #2^2}}	% druha derivace
+\newcommand\pder[2]{\frac%			% prvni parcialni derivace
+    {\partial#1}{\partial#2}}	
+\newcommand\ppder[2]{\frac%			% prvni parcialni derivace
+    {\partial^2#1}{\partial#2^2}}	
+\newcommand\tg{\mathop\mathrm{tg}\nolimits}	% cesky tangens
+  \renewcommand\tan{\mathop\mathrm{tg}\nolimits}
+\newcommand\cotg{\mathop\mathrm{cotg}\nolimits}	% cesky cotangens
+  \renewcommand\cot{\mathop\mathrm{cotg}\nolimits}
+\newcommand\arctg{\mathop\mathrm{arctg}\nolimits}	% cesky arcustangens
+  \renewcommand\arctan{\mathop\mathrm{arctg}\nolimits}
+\newcommand\arccotg{\mathop\mathrm{arccotg}\nolimits}	% cesky arcuscotangens
+  \newcommand\arccot{\mathop\mathrm{arccotg}\nolimits}
+\newcommand\tgh{\mathop\mathrm{tgh}\nolimits}		% cesky hyp. tangens
+  \renewcommand\tanh{\mathop\mathrm{tgh}\nolimits}
+\newcommand\argtgh{\mathop\mathrm{argtgh}\nolimits}	% cesky inverzni hyp. tangens
+  \newcommand\argtanh{\mathop\mathrm{argtgh}\nolimits}
+\newcommand\tr{\mathop\mathrm{Tr}\nolimits}		% stopa
+\newcommand\sgn{\mathop\mathrm{sgn}\nolimits}		% funkce signum
+\newcommand\Laplace{\Delta}				% trojuhelnickovity operator
+\newcommand\rot{\mathop\mathrm{rot}\nolimits}		% rotace
+\newcommand\Div{\mathop\mathrm{div}\nolimits}		% divergence
+\newcommand\grad{\mathop\mathrm{grad}\nolimits}		% gradient
+\newcommand\Dalembert{\Box}			% operátor D'Alembert
+\newcommand\prumer{\varnothing}   % [obsolete]
+\newcommand\eqdef{\stackrel{\mathrm{def}}{=}} 	% definition equality
+\newcommand\qed{\hfill\square}			% konec dukazu
+
+\newcommand\E[1]{\cdot 10^{#1}}                       % mocnina desitky
+\newcommand\my@jd[1]{\begingroup\begingroup\!\jed@B#1@@}
+\newcommand\jd[1]{\ensuremath{\my@jd{#1}}} % pro psani samostatnych jednotek (napr. $\jd{m.s^{-1}}$)
+\newcommand\popi[2]{{$\dfrac{#1}{\jd{#2}}$}} % labels for graphs/tables
+
+
+% following definition must be loaded after begining of the document
+\AtBeginDocument{
+% breaking equations according Czech typography rules
+\begingroup\lccode`~=`\=\lowercase{\endgroup\newcommand~}{\math@eq\discretionary{}{=}{}}
+\mathchardef\math@eq=\mathcode`\=
+\mathcode`\=="8000      % = je v matematice aktivni znak
+\binoppenalty=10000     % nikde jinde se relace lamat nesmeji
+\relpenalty=10000     % nikde jinde se relace lamat nesmeji
+% jednodussi psani \cdot
+\bgroup\uccode`~=`*\uppercase{\egroup\let~}\cdot
+\mathcode`\*="8000
+
+% pohodlne psani cisel a jednotek (napr. $ G = "6,672e-11 N.m^2.kg^{-2}" $)
+\begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
+\begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
+\mathcode`\"="8000      % " je v matematice aktivni a expanduje na \jed@A
+\def\jed@A #1 {\begingroup\mathcode`\.="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers always written with dot
+\def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
+}
