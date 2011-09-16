@@ -1,4 +1,4 @@
-\documentclass[twoside]{fksserie}
+\documentclass[twoside,fykos]{fksserie}
     
 \setcounter{year}{25}
 \setcounter{batch}{2}
@@ -20,7 +20,7 @@
 
 \solutionheading %section
 
-Tady je ano\,ne vs. ano ne. Rovnice na více řádku
+Tady je ano\,ne vs. ano ne. Rovnice {na více} řádku
 $
 \sqrt{\frac{a+b+c}{\eu}} + \sqrt{\frac{a+b+c}{\eu}} =
 \sqrt{\frac{a+b+c}{\eu}} + 1 =
@@ -65,40 +65,37 @@ trajektorie Země
 	\root 3 \of{ \frac{T_1^2}{T_0^2} } \, a_0 \, ,
 }
 kde indexy 0 budeme značit počáteční situaci, kdy Země obíhá Slunce
-po kružnici s~polo\-měrem~$a_0 = "1 AU" = "1,50e11 m"$ s~oběžnou dobou~$T_0 =
-"365,2 dne"$,
+po kružnici s~poloměrem~$a_0 = "1 AU" = "1.50e11 m"$ s~oběžnou dobou~$T_0 =
+"365.2 dne"$,
 a indexy 1 budou značené veličiny odpovídající 
-situaci po změně zemské dráhy (doba oběhu~$T_1 = "372,2 dne"$).
-% \begin{wrapfigure}{r}{0.35\textwidth}
-%   \begin{center}
-%     \includegraphics[width=0.33\textwidth]{obrazek.eps}
-%   \end{center}
-%   %\caption{Nakloněná rovina}
-% \end{wrapfigure}
-\illfig{obrazek.eps}{}{}
+situaci po změně zemské dráhy (doba oběhu~$T_1 = "372.2 dne"$).
 
 Vzhledem k~tomu, že přechod na eliptickou%
 \footnote{Případně více eliptickou, pokud bychom se rovnou
 rozhodli uvažovat i to, že původní dráha Země je ve skutečnosti
-eliptická s~excentricitou~$e = 0,0167$.}
+eliptická s~excentricitou~$e ="0.0167"$.}
 dráhu se uskutečnil rychle a ve směru pohybu Země, což znamená, že
 přísluní (perihelium) nové dráhy bude ve vzdálenosti $a\_p = a_0$ od 
-Slunce a~odsluní (afelium) bude ve vzdálenosti~$ a\_a = 2 a_1 - a_0 = \( 2 \root 3\of{ {T_1^2}/{T_0^2} } - 1 \) a_0 \approx  "1,025 AU"$.
+Slunce a~odsluní (afelium) bude ve vzdálenosti~$ a\_a = 2 a_1 - a_0 = \( 2 \root 3\of{ {T_1^2}/{T_0^2} } - 1 \) a_0 \approx  "1.025 AU"$.
 Už z~tohoto výsledku je vidět, že dramatické změny teplot
 v~průběhu roku nebudou nastávat, protože excentricita této dráhy je
 pouze~$e_1 = {(a\_a - a\_p)}/{(a\_a + a\_p)} = 1 - 
-\root 3\of{{T_0^2}/{T_1^2}} = 0,0126$, což je menší excentricita, 
+\root 3\of{{T_0^2}/{T_1^2}} ="0.0126"$, což je menší excentricita, 
 než má Země ve~skutečnosti. Pokud bychom ale uvažovali eliptickou 
 dráhu, záleželo by na tom, kdy v~průběhu roku dojde ke změně 
 dráhy. Excentricita by se pak mohla i zmenšit, střední vzdálenost
 Země-Slunce by vzrostla v~každém případě tak, aby se velká poloosa
 zvětšila z~$a_0$ na~$a_1$.
 
+\illfig{obrazek.eps}{}{}
+
 Hustota toku sluneční energie ve vzdálenosti~$"1 AU"$ od Slunce se
 nazývá {\it sluneční konstanta} a její hodnota je~$S_0 = "1370 W/m^2"$. Ve 
 skutečnosti se nejedná o~konstantu, protože v~průběhu roku kolísá
-o~cca~$"1,7 \%"$%
+o~cca~$"1.7 \%"$%
 \footnote{Nemluvě o~tom, že se i její střední hodnota 
+periodicky mění v~průběhu 11letého slunečního cyklu.Nemluvě o~tom, že se i její střední hodnota 
+periodicky mění v~průběhu 11letého slunečního cyklu.Nemluvě o~tom, že se i její střední hodnota 
 periodicky mění v~průběhu 11letého slunečního cyklu.},
 ale v~rámci řešení úlohy
 ji budeme považovat za konstantní. Hustota toku sluneční energie je 
@@ -114,6 +111,20 @@ S\_a = \frac{a\_p^2}{a\_a^2} S_0 = \frac{1}{\( 2
 "1300 W.m^{-2}" \, .
 }
 
+\begin{center}
+\begin{tabular}{llD{.}{,}{-1}}
+\toprule
+\multicolumn{1}{c}{\popi{l}{mm}} & \multicolumn{1}{c}{\popi{t}{s}} & \multicolumn{1}{c}{\popi{f}{Hz}}\\
+\midrule
+1 & 2 & 3.0\\
+23 & 23 & 9.5\\
+4 & 1 & 11.0\\
+54 & -7 & -0.012\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
 Pro odhad teploty budeme předpokládat, že Země je dokonale černé 
 těleso a že v~každý okamžik je vyrovnaná bilance zářivého výkonu 
 dopadajícího na Zemi a výkonem, která je Zemí vyzařovaná jako 
@@ -127,19 +138,30 @@ na Zemi, která je dokonalá koule o~poloměru~$R\_Z$, ve vzdálenosti~$r$,
 je úměrný průřezu Země a hustotě toku sluneční energie, $
 P_r = \pi R\_Z^2 S_r \,.  
 $
-Výkon, který Země vyzáří na svém celém povrchu (obrázek \ref{fig:rel}), je dle 
+Výkon, který Země vyzáří na svém celém povrchu, je dle 
 Stefanova-Boltzmannova zákona 
 \eq{
 P = 4 \pi R\_Z^2 M = 4 \pi R\_Z^2 \sigma \tau^4 \, ,
 }
 kde~$M$ je intenzita vyzařování z~povrchu černého tělesa, $\sigma
-= "5,67e-8 W.m^{-2}.K^{-4}"$ Stefanova-Boltzmannova konstanta 
+= "5.67e-8 W.m^{-2}.K^{-4}"$ Stefanova-Boltzmannova konstanta 
 a~$\tau$ je teplota černého tělesa. Vzhledem k~tomu, že se mají 
 oba výkony rovnat, dostáváme vzorec pro teplotu Země v~našem přiblížení
 \eq{
 \tau_r = \root 4\of{\frac{S_r}{4 \sigma}} = \sqrt{\frac{a_0}{2 r}} 
 \root 4\of{\frac{S_0}{\sigma}} \,.
 }
+
+% \DTLsetseparator{;}
+% \DTLloaddb[noheader,keys={poradi,jmeno,skola,a,b,c,d,e,f,g,m,suma,perc,sumasum}]{vysl}{vysledky.csv}
+% %\DTLloaddb{vysl}{vysledky.csv}
+% 
+% \begin{table}[htbp]
+%   \caption{}
+%   \centering
+%   \DTLdisplaydb{vysl}
+% \end{table}
+
 Teplota v~perihelu pak vyjde $\tau\_p \approx "6 \C"$ a v~afelu $\tau\_a \approx
 "2 \C"$. Teplota v~perihelu by teoreticky podle našich předpokladů
 měla odpovídat střední teplotě na Zemi v~průběhu roku, která se udává
@@ -159,9 +181,10 @@ prvků, což také zvyšuje teplotu Země.
 Další věcí je přítomnost atmosféry, která díky skleníkovým
 plynům zvyšuje teplotu zemského povrchu.
 
-\fullfig{obrazek.jpg}{Reliktní záření}{fig:rel}
+\plotfig[p]{graf.tex}{Graf abc}{}
+\plotfig[p]{graf.tex}{Graf abc $x = \pi$}{}
 
-\section{Něco navíc}
+\subsection{Něco navíc}
 
 Pokud bychom tedy chtěli vyřešit globální oteplování jako ve Futuramě,
 kde roboti ovlivnili dráhu Země tak, že rok byl o~týden (robotí pařby)
@@ -230,8 +253,9 @@ takže pokud by bylo potřeba Zemi ochladit v~situaci, kdy by bylo všem
 nechutné vedro, ani o~týden delší rok by nestačil.
 
 
+
 \seriesheading{Aplikace teorie konformních zobrazení} %section
-\subsection{Od elektrostatiky k dynamice}
+\subsection[Od elektrostatiky k 2 km/h dynamice]{Od elektrostatiky k $"2 km.h^{-1}"$ dynamice}
 text seriálu.
 
 \subsection{Od magentoelektrostatiky ke statice}

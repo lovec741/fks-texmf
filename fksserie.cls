@@ -6,7 +6,7 @@
 \ProvidesClass{fksserie}[2011/09/11 Solution brojure]
 
 % inherit from article class
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \ProcessOptions
 \LoadClass[9pt]{extarticle}
 
@@ -17,13 +17,17 @@
 \RequirePackage{xltxtra} % includes xunicode
 \RequirePackage[xetex,
   setpagesize=false]{hyperref}  
+\RequirePackage{polyglossia}
+\setdefaultlanguage{czech}
+
 
 % FYKOS packages
+\RequirePackage{fksmeta}
 \RequirePackage{fkssugar}
 %\RequirePackage{fkslegacy}
 \RequirePackage{fksfigures}
+\RequirePackage{fkstables}
 
-%\RequirePackage{rmathbr}
 
 % layout settings
 \RequirePackage[includeheadfoot,
@@ -34,8 +38,8 @@
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[L]{\bfseries\small Fyzikální korespondenční seminář UK MFF}%\quad ročník \Roman{year}}
-\fancyhead[R]{\bfseries\small ročník \Roman{year}\qquad číslo \arabic{batch}/7}
+\fancyhead[L]{\bfseries\small \met@headername}
+\fancyhead[R]{\bfseries\small \met@volumeid}
 \fancyfoot{}
 \if@twoside
   \fancyfoot[EL]{\bfseries \thepage}
@@ -150,7 +154,7 @@
 
 % other
 \renewcommand\maketitle{}
-\newcommand\makefooter{Nějaká adresa}
+\newcommand\makefooter{\met@address}
 
 \newcommand\@deadline{NENÍ ZADÁNO}
 \newcommand\deadline[1]{\renewcommand\@deadline{#1}}
@@ -174,7 +178,7 @@
   \fi%
 }
 
-\frenchspacing
+\frenchspacing % TODO
 
 % TODO
 \newcommand\signature[1]{Karel Kolář (\href{mailto:karel@fykos.cz}{karel@fykos.cz})}
