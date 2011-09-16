@@ -20,7 +20,7 @@
 
 % FYKOS packages
 \RequirePackage{fkssugar}
-%\RequirePackage{fkslegacy}
+\RequirePackage{fkslegacy}
 
 %\RequirePackage{rmathbr}
 
