@@ -1,0 +1,31 @@
+% fkssugar.sty
+%
+%    Copyright 2011 Michal Koutny
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fksfigures}[2011/09/11 FYKOS figures manipulation]
+
+\RequirePackage{graphicx}
+\RequirePackage{wrapfig}
+\RequirePackage{ifthen}
+\RequirePackage[all]{hypcap} % links jump to an image, not the caption
+
+% commands for inserting figures syntax is command{filename}{caption}{label}
+\newcommand\fullfig[3]{%
+\begin{figure}[h]
+\centering
+\includegraphics{#1}
+\ifthenelse{\equal{#2}{}}{}{\caption{#2}}
+\ifthenelse{\equal{#3}{}}{}{\label{#3}}
+\end{figure}\ignorespaces}
+
+\newcommand\plotfig\fullfig % so far the same
+
+%specialized for third illustration figures
+\newcommand\illfig[4][o]{%
+\begin{wrapfigure}{#1}{0.35\textwidth}
+  \centering
+    \includegraphics[width=0.33\textwidth]{#2}
+  \ifthenelse{\equal{#3}{}}{}{\caption{#2}}
+  \ifthenelse{\equal{#4}{}}{}{\label{#3}}
+\end{wrapfigure}\ignorespaces}
