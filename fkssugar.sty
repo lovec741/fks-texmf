@@ -9,6 +9,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{ifthen}
 \RequirePackage{dcolumn}
+\RequirePackage{upgreek}
 
 \newcommand\uv[1]{„#1“}					% czech quotation
 \let\underscore\_					% underscore sign
@@ -55,6 +56,20 @@
 \newcommand\prumer{\varnothing}   % [obsolete]
 \newcommand\eqdef{\stackrel{\mathrm{def}}{=}} 	% definition equality
 \newcommand\qed{\hfill\square}			% konec dukazu
+\newcommand\vect[1]{\mbox{\bfseries\sffamily\slshape#1}}	% vector
+\newcommand\bb[1]{\mathbb{#1}}			% blackboard bold
+\newcommand\bod[1]{\mbox{\sffamily\slshape#1}}	% vector
+\newcommand\op[1]{\mathrm{#1}}			% operators
+\let\oldpi\pi
+\renewcommand\pi{\uppi}
+\let\oldrho=\rho
+\renewcommand\rho{\varrho}
+\let\oldepsilon=\epsilon
+\renewcommand\epsilon{\varepsilon}
+\let\oldtheta=\theta
+\renewcommand\theta{\vartheta}
+\let\oldphi=\phi
+\renewcommand\phi{\varphi}
 
 % block equations
 \newcommand\eq[2][s]{%
