@@ -1,0 +1,37 @@
+% fkssugar.sty
+%
+%    Copyright 2011 Michal Koutny
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fkstables}[2011/09/11 FYKOS tables]
+
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{dcolumn}
+
+% used to style whole rows or rows and columns combined
+% example header: \begin{tabular}{x{\bfseries}rA{\itshape}l^l^r^r^r^r^r^r^r^rA{\bfseries}rA{\itshape}rA{\bfseries}r}
+%                 to highlight row use \rowstyle{<style>}
+\newcolumntype{+}{>{\global\let\currentrowstyle\relax}}
+\newcolumntype{x}[1]{>{\global\let\currentrowstyle\relax#1}}
+\newcolumntype{^}{>{\currentrowstyle}}
+\newcolumntype{A}[1]{>{\currentrowstyle#1}}
+\newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
+  #1\ignorespaces
+}
+
+\newcommand\resultstab[1]{%
+\begingroup
+\small
+\setlength{\tabcolsep}{2pt}
+\begin{tabularx}{\textwidth}{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
+^r^r^r^r^r^r^r% problems
+@{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\itshape}r@{\hspace{8pt}}A{\bfseries}r} % batch, percent, sum
+\rowstyle{\bfseries}
+& {\normalfont\bfseries jméno} & škola & %
+1 & 2 & 3 & 4 & P & E & S & %
+\Roman{solvedbatch} & \textnormal{\%} & $\Sigma$ \\
+\input{#1.ctex}
+\end{tabularx}
+\endgroup
+}

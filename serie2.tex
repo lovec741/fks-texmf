@@ -19,7 +19,7 @@
 %\problemtask
 
 \solutionheading %section
-
+\resultstab{vysledky}
 Tady je ano\,ne vs. ano ne. Rovnice {na více} řádku
 $
 \sqrt{\frac{a+b+c}{\eu}} + \sqrt{\frac{a+b+c}{\eu}} =
@@ -70,23 +70,6 @@ po kružnici s~poloměrem~$a_0 = "1 AU" = "1.50e11 m"$ s~oběžnou dobou~$T_0 =
 a indexy 1 budou značené veličiny odpovídající 
 situaci po změně zemské dráhy (doba oběhu~$T_1 = "372.2 dne"$).
 
-Vzhledem k~tomu, že přechod na eliptickou%
-\footnote{Případně více eliptickou, pokud bychom se rovnou
-rozhodli uvažovat i to, že původní dráha Země je ve skutečnosti
-eliptická s~excentricitou~$e ="0.0167"$.}
-dráhu se uskutečnil rychle a ve směru pohybu Země, což znamená, že
-přísluní (perihelium) nové dráhy bude ve vzdálenosti $a\_p = a_0$ od 
-Slunce a~odsluní (afelium) bude ve vzdálenosti~$ a\_a = 2 a_1 - a_0 = \( 2 \root 3\of{ {T_1^2}/{T_0^2} } - 1 \) a_0 \approx  "1.025 AU"$.
-Už z~tohoto výsledku je vidět, že dramatické změny teplot
-v~průběhu roku nebudou nastávat, protože excentricita této dráhy je
-pouze~$e_1 = {(a\_a - a\_p)}/{(a\_a + a\_p)} = 1 - 
-\root 3\of{{T_0^2}/{T_1^2}} ="0.0126"$, což je menší excentricita, 
-než má Země ve~skutečnosti. Pokud bychom ale uvažovali eliptickou 
-dráhu, záleželo by na tom, kdy v~průběhu roku dojde ke změně 
-dráhy. Excentricita by se pak mohla i zmenšit, střední vzdálenost
-Země-Slunce by vzrostla v~každém případě tak, aby se velká poloosa
-zvětšila z~$a_0$ na~$a_1$.
-
 \illfig{obrazek.eps}{}{}
 
 Hustota toku sluneční energie ve vzdálenosti~$"1 AU"$ od Slunce se
@@ -94,9 +77,7 @@ nazývá {\it sluneční konstanta} a její hodnota je~$S_0 = "1370 W/m^2"$. Ve
 skutečnosti se nejedná o~konstantu, protože v~průběhu roku kolísá
 o~cca~$"1.7 \%"$%
 \footnote{Nemluvě o~tom, že se i její střední hodnota 
-periodicky mění v~průběhu 11letého slunečního cyklu.Nemluvě o~tom, že se i její střední hodnota 
-periodicky mění v~průběhu 11letého slunečního cyklu.Nemluvě o~tom, že se i její střední hodnota 
-periodicky mění v~průběhu 11letého slunečního cyklu.},
+periodicky mění v~průběhu 11letého slunečního cyklu},
 ale v~rámci řešení úlohy
 ji budeme považovat za konstantní. Hustota toku sluneční energie je 
 nepřímo úměrná druhé mocnině vzdálenosti a~ve vzdálenosti~$r$ od 
@@ -111,7 +92,8 @@ S\_a = \frac{a\_p^2}{a\_a^2} S_0 = \frac{1}{\( 2
 "1300 W.m^{-2}" \, .
 }
 
-\begin{center}
+\begin{table}
+\centering
 \begin{tabular}{llD{.}{,}{-1}}
 \toprule
 \multicolumn{1}{c}{\popi{l}{mm}} & \multicolumn{1}{c}{\popi{t}{s}} & \multicolumn{1}{c}{\popi{f}{Hz}}\\
@@ -122,7 +104,8 @@ S\_a = \frac{a\_p^2}{a\_a^2} S_0 = \frac{1}{\( 2
 54 & -7 & -0.012\\
 \bottomrule
 \end{tabular}
-\end{center}
+\caption{Nameřené hodnoty}
+\end{table}
 
 
 Pro odhad teploty budeme předpokládat, že Země je dokonale černé 
@@ -162,24 +145,6 @@ oba výkony rovnat, dostáváme vzorec pro teplotu Země v~našem přiblížení
 %   \DTLdisplaydb{vysl}
 % \end{table}
 
-Teplota v~perihelu pak vyjde $\tau\_p \approx "6 \C"$ a v~afelu $\tau\_a \approx
-"2 \C"$. Teplota v~perihelu by teoreticky podle našich předpokladů
-měla odpovídat střední teplotě na Zemi v~průběhu roku, která se udává
-jako~$"14 \C"$. Což na první pohled úplně nesedí, ale vzhledem k~počtu
-zanedbání, kterých jsme se dopustili, je to poměrně dobrá shoda. Další 
-vlivy, které by se pro správné určení teploty měly započítat, jsou 
-například to, že ve skutečnosti spektrum Země při vyzařování nebude 
-ideálně odpovídat vyzařování černého tělesu, ale mělo by určitou 
-specifickou vyzařovací charakteristiku, navíc i tato celková 
-charakteristika by byla jenom přiblížením, protože Země není jenom 
-z~jedné chemické látky, ale jinak bude vyzařovat pevnina a jinak 
-oceány. Toto by vedlo spíš ke snížení očekávané teploty Země. Vliv na
-teplotu Země má také to, že má horké jádro -- částečně obsahující 
-tepelnou energii od doby vzniku Země pocházející z~gravitační
-potenciální energie a dále v~jádru dochází k~rozpadu radioaktivních 
-prvků, což také zvyšuje teplotu Země.
-Další věcí je přítomnost atmosféry, která díky skleníkovým
-plynům zvyšuje teplotu zemského povrchu.
 
 \plotfig[p]{graf.tex}{Graf abc}{}
 \plotfig[p]{graf.tex}{Graf abc $x = \pi$}{}
@@ -223,23 +188,6 @@ kde $a_0$ je velikost hlavní poloosy a $\epsilon$ je excentricita. Pro
 $\epsilon=0$ jde o kružnici, pro $0<\epsilon<1$ jde o elipsu, pro 
 $\epsilon=1$ jde o parabolu a pro $\epsilon>1$ to je jedna větev hyperboly.
 
-Pokud jste se ještě s~polárními souřadnicemi nesetkali,
-tak místo souřadnice~$x$ a~$y$ máme souřadnice~$r = \sqrt{x^2 + y^2}$ 
-určující vzdálenost od počátku a~$\phi$, což je právě zmíněný úhel, pro
-který platí $\phi = \tg {y}/{x}$.
-
-Poslední úvaha se týká toho, že  teplotu bychom chtěli \uv{vystředovat} tak, že
-bychom si rozdělili dráhu 
-Země v~průběhu roku na malé kousíčky, kdy má skoro stejnou teplotu
-určenou naším modelem, a~teplotu vynásobili časem, za který Země příslušný
-kousíček dráhy urazila. Všechny tyto vynásobené kousky bychom pak sečetli
-a~vydělili dobou oběhu. Vlastně bychom spočítali vážený průměr teploty. 
-Čas, který Zemi potrvá, než urazí nějakou dráhu, je 
-nepřímo úměrný její rychlosti. Rychlost je zase v~našem případě nepřímo
-úměrná vzdálenosti od Slunce, takže čas je úměrný vzdálenosti. Takže
-můžeme jako váhovou funkci použít vzdálenost a ne přímo čas. Také
-bude lepší, když kousíčky, ve kterých považujeme rychlost Země za konstantní,
-půjdou k~nekonečně krátkým dobám -- tzn. přejdeme k~integrování. 
 Průměrná teplota bude 
 \eq{
 \bar{\tau} =

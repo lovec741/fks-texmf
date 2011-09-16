@@ -102,7 +102,7 @@
 \newcommand\problemtask{%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-   \problem[\arabic{problem}: \@probname]{Úloha \Roman{batch}.\arabic{problem} \ldots{} \@probname{} \hfill {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}}%
+   \problem[\\metaprobletter{problem}: \@probname]{Úloha \Roman{batch}.\\metaprobletter{problem} \ldots{} \@probname{} \hfill {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}}%
    \@probtask%
   }
 }
@@ -110,8 +110,8 @@
 \newcommand\problemsolution{%
   \stepcounter{problem}%
   \@LoadProblem{\thesolvedbatch}{\theproblem}{%{\theproblem}{%
-   \problem[\arabic{problem}: \@probname]%
-    {Úloha \Roman{solvedbatch}.\arabic{problem} \ldots{} \@probname{} \hfill
+   \problem[\\metaprobletter{problem}: \@probname]%
+    {Úloha \Roman{solvedbatch}.\\metaprobletter{problem} \ldots{} \@probname{} \hfill
       {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů},
        průměr \@probavg,
        \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}%
