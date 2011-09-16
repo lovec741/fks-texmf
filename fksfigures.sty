@@ -7,10 +7,11 @@
 
 \RequirePackage{graphicx}
 \RequirePackage{wrapfig}
+%\RequirePackage{color}
 \RequirePackage{ifthen}
 \RequirePackage[all]{hypcap} % links jump to an image, not the caption
 
-% commands for inserting figures syntax is command{filename}{caption}{label}
+% commands for inserting figures syntax is command[position]{filename}{caption}{label}
 \newcommand\fullfig[3]{%
 \begin{figure}[h]
 \centering
@@ -19,7 +20,16 @@
 \ifthenelse{\equal{#3}{}}{}{\label{#3}}
 \end{figure}\ignorespaces}
 
-\newcommand\plotfig\fullfig % so far the same
+\newcommand\plotfig[4][h]{% filename is full, TODO (path)
+\ifthenelse{\equal{#3}{}}{\capstartfalse}{}
+\begin{figure}[#1]
+\centering
+\input{#2}
+\ifthenelse{\equal{#3}{}}{}{\caption{#3}}
+\ifthenelse{\equal{#4}{}}{}{\label{#4}}
+\end{figure}%
+\ifthenelse{\equal{#3}{}}{\capstarttrue}{}%
+\ignorespaces}
 
 %specialized for third illustration figures
 \newcommand\illfig[4][o]{%

@@ -8,6 +8,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{ifthen}
+\RequirePackage{dcolumn}
 
 \newcommand\uv[1]{„#1“}					% czech quotation
 \let\underscore\_					% underscore sign
@@ -55,6 +56,19 @@
 \newcommand\eqdef{\stackrel{\mathrm{def}}{=}} 	% definition equality
 \newcommand\qed{\hfill\square}			% konec dukazu
 
+% block equations
+\newcommand\eq[2][s]{%
+\ifthenelse{\equal{#1}{s}}{%
+\begin{equation*}#2\end{equation*}%
+}{}%
+\ifthenelse{\equal{#1}{m}}{%
+\begin{align*}#2\end{align*}%
+}{}%
+\ignorespaces}
+
+\newcommand\lbl[1]{\stepcounter{equation}\tag{\theequation}\label{#1}}
+
+
 \def\E #1 {\cdot 10^{#1}}                       % mocnina desitky, to take whole numeric token
 \newcommand\my@jd[1]{\begingroup\begingroup\!\jed@B#1@@}
 \newcommand\jd[1]{\ensuremath{\my@jd{#1}}} % pro psani samostatnych jednotek (napr. $\jd{m.s^{-1}}$)
@@ -77,18 +91,7 @@
 \begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
 \begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
 \mathcode`\"="8000      % " je v matematice aktivni a expanduje na \jed@A
-\def\jed@A #1 {\begingroup\mathcode`\,="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers always written with dot
+\def\jed@A #1 {\begingroup\mathcode`\.="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers always written with dot
 \def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
 }
 
-% block equations
-\newcommand\eq[2][s]{%
-\ifthenelse{\equal{#1}{s}}{%
-\begin{equation*}#2\end{equation*}%
-}{}%
-\ifthenelse{\equal{#1}{m}}{%
-\begin{align*}#2\end{align*}%
-}{}%
-\ignorespaces}
-
-\newcommand\lbl[1]{\stepcounter{equation}\tag{\theequation}\label{#1}}
