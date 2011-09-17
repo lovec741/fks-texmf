@@ -1,0 +1,63 @@
+% fkssugar.sty
+%
+%    Copyright 2011 Michal Koutny
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fksmeta}[2011/09/11 Metainformation about seminars]
+
+\newcommand\FYKOS{{FYKOS}}
+\newcommand\met@headername{Name displayed in the header}
+\newcommand\met@volumeid{Identification of the volume}
+\newcommand\met@address{Contact address}
+\newcommand\met@licence{Licence}
+\newcommand\metaprobletter[1]{\expandafter \@metaprobletter \csname c@#1\endcsname}
+\newcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or P\or E\or S\else \@ctrerr\fi}
+
+% results table parameter
+\newcommand\met@probcols{^r^r^r^r^r^r} % tabular columns defs
+\newcommand\met@probheader{1 & 2 & 3 & 4 & P & E & S} % results table problems header
+\newcommand\mat@resultscols{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
+\met@probcols%
+@{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\itshape}r@{\hspace{8pt}}A{\bfseries}r} % batch, percent, sum
+
+\newcommand\mat@resultsheader{& {\normalfont\bfseries jméno} & škola & %
+\met@probheader & %
+\Roman{solvedbatch} & \textnormal{\%} & $\Sigma$ \\}
+
+% FYKOS
+\DeclareOption{fykos}{%  
+  \renewcommand\met@headername{Fyzikální korespondenční seminář UK MFF}
+  \renewcommand\met@volumeid{ročník \Roman{year}\qquad číslo \arabic{batch}/7}
+  \renewcommand\met@address{%
+\begin{tabular}{r>{\slshape\bfseries}l}
+  \multirow{5}{*}{\includegraphics{logo5.eps}} & \FYKOS \\
+  & UK v Praze, Matematicko-fyzikální fakulta\\
+  & Ústav teoretické fyziky\\
+  & V Holešovičkách 2\\
+  & 180\,00 Praha 8\\
+\noalign{\smallskip}
+  www: & \normalfont\url{http://fykos.cz}\\
+  e-mail pro řešení: & \normalfont\mail{fykos-solutions@fykos.cz}\\
+  e-mail: & \normalfont\mail{fykos@fykos.cz}\\
+\end{tabular}
+\smallskip
+
+{\sffamily\FYKOS{} je také na Facebooku \raisebox{-0.2\baselineskip}{\includegraphics[height=\baselineskip]{fb_logo.eps}}\\
+\href{http://www.facebook.com/Fykos}{\bfseries\slshape http://www.facebook.com/Fykos}}
+}
+\renewcommand\met@licence{
+Fyzikální korespondenční seminář je organizován studenty UK~MFF.
+Je zastřešen Oddělením pro vnější vztahy a~propagaci UK~MFF 
+a~podporován Ústavem teoretické fyziky\\ UK~MFF, jeho zaměstnanci 
+a~Jednotou českých matematiků a~fyziků.
+
+{\footnotesize Toto dílo je šířeno pod licencí Creative Commons 
+Attribution-Share Alike 3.0 Unported.\\ Pro zobrazení 
+kopie této licence, navštivte 
+\url{http://creativecommons.org/licenses/by-sa/3.0/}.}}
+}
+
+
+% VÝFUK
+
+\ProcessOptions\relax

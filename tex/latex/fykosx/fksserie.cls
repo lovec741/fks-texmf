@@ -16,7 +16,14 @@
 \RequirePackage{amssymb} 
 \RequirePackage{xltxtra} % includes xunicode
 \RequirePackage[xetex,
-  setpagesize=false]{hyperref}  
+  setpagesize=false,
+  colorlinks=true,
+  colorlinks = true,
+  linkcolor = blue,
+  anchorcolor = blue,
+  citecolor = blue,
+  filecolor = blue,
+  urlcolor = blue]{hyperref}  
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
 
@@ -27,6 +34,8 @@
 \RequirePackage{fksfigures}
 \RequirePackage{fkstables}
 
+% logos and other layouts path
+\graphicspath{{./graphics/}}
 
 % layout settings
 \RequirePackage[includeheadfoot,
@@ -75,17 +84,24 @@
 \setcounter{secnumdepth}{-1} % do not number headings
 
 \newcommand\problemsheading{%
-\section{Zadání úloh \Roman{batch}. série}%TODO termín odeslání
+\section[Zadání \Roman{batch}. série]{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\hspace{10pt}\includegraphics{logo8.eps}}
+\vspace{-4pt}
+\centerline{\Large\slshape\sffamily Termín doručení: \@deadline}
+\vspace{1.5ex}
 \setcounter{problem}{0}}
 
 \newcommand\solutionheading{%
 \setcounter{solvedbatch}{\value{batch}}%
 \addtocounter{solvedbatch}{-1}%
 \setcounter{problem}{0}%
-\section{Řešení úloh \Roman{solvedbatch}. série}}
+\section[Řešení \Roman{solvedbatch}. série]{\centering \includegraphics{logo2.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení \Roman{solvedbatch}. série}}}
 
 \newcommand\seriesheading[1]{%
-\section{Seriál: #1}}
+\section[Seriál: #1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Seriál: #1}}}
+
+\newcommand\resultsheading{%
+\section[Pořadí řeštielů po \Roman{solvedbatch}. sérii]{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}\hspace{10pt}\includegraphics{logo8.eps}}
+}
 
 % problems
 \newcommand\@tmpfilename{}
@@ -101,7 +117,7 @@
 \newcommand\problemtask{%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-   \problem[\\metaprobletter{problem}: \@probname]{Úloha \Roman{batch}.\\metaprobletter{problem} \ldots{} \@probname{} \hfill {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}}%
+   \problem[\metaprobletter{problem}: \@probname]{Úloha \Roman{batch}.\metaprobletter{problem} \ldots{} \@probname{} \hfill {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}}%
    \@probtask%
   }
 }
@@ -109,8 +125,8 @@
 \newcommand\problemsolution{%
   \stepcounter{problem}%
   \@LoadProblem{\thesolvedbatch}{\theproblem}{%{\theproblem}{%
-   \problem[\\metaprobletter{problem}: \@probname]%
-    {Úloha \Roman{solvedbatch}.\\metaprobletter{problem} \ldots{} \@probname{} \hfill
+   \problem[\metaprobletter{problem}: \@probname]%
+    {Úloha \Roman{solvedbatch}.\metaprobletter{problem} \ldots{} \@probname{} \hfill
       {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů},
        průměr \@probavg,
        \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}%
@@ -153,7 +169,16 @@
 
 % other
 \renewcommand\maketitle{}
-\newcommand\makefooter{\met@address}
+\newcommand\makefooter{%
+\begin{center}
+\vfill
+\met@address
+\bigskip
+
+\hrulefill
+
+\met@licence 
+\end{center}}
 
 \newcommand\@deadline{NENÍ ZADÁNO}
 \newcommand\deadline[1]{\renewcommand\@deadline{#1}}
@@ -201,7 +226,6 @@
       \endlist%
       \end{small}}%
 
-\frenchspacing % TODO
-
+\newcommand\mail[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 % TODO
-\newcommand\signature[1]{Karel Kolář (\href{mailto:karel@fykos.cz}{karel@fykos.cz})}
+\newcommand\signature[1]{Karel Kolář (\mail{karel@fykos.cz})}
