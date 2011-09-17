@@ -20,7 +20,6 @@
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
 
-
 % FYKOS packages
 \RequirePackage{fksmeta}
 \RequirePackage{fkssugar}
@@ -177,6 +176,30 @@
   #4%
   \fi%
 }
+
+% bibliography is small and we can choose the level of heading
+\renewenvironment{thebibliography}[2]
+     {\expandafter#2{\refname}%\section*{\refname}%
+      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+      \begin{small}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+	    \itemindent\z@%
+            \leftmargin\labelwidth%
+            \advance\leftmargin\labelsep%
+            \@openbib@code%
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty%
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy%
+      \clubpenalty4000%
+      \@clubpenalty \clubpenalty%
+      \widowpenalty4000%
+      \sfcode`\.\@m}%
+     {\def\@noitemerr%
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist%
+      \end{small}}%
 
 \frenchspacing % TODO
 
