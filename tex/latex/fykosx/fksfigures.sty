@@ -14,10 +14,13 @@
 \RequirePackage{wrapfig}
 %\RequirePackage{color}
 \RequirePackage{ifthen}
+\RequirePackage{caption}
 \RequirePackage[all]{hypcap} % links jump to an image, not the caption
 \RequirePackage{optional}
 
 \renewcommand\figurename{Obr.}
+\newcommand\centercaption{%
+  \captionsetup{format=plain,labelsep=newline,justification=centering}}
 % paths to graphics
 \newcommand{\@myinputpath}[1]{
 \ifx\input@path\@undefined
@@ -65,10 +68,10 @@
 \ignorespaces}
 
 %specialized for third illustration figures
-\newcommand\illfig[4][o]{%
-\begin{wrapfigure}{#1}{0.35\textwidth}
-  \centering
-    \includegraphics[width=0.33\textwidth]{#2}
+\newcommand\illfig[5][o]{%
+\begin{wrapfigure}[#5]{#1}{0.30\textwidth}  
+\vspace{-\baselineskip}
+    \includegraphics[width=0.28\textwidth]{#2}
   \ifthenelse{\equal{#3}{}}{}{\caption{#3}}
   \ifthenelse{\equal{#4}{}}{}{\label{#4}}
 \end{wrapfigure}\ignorespaces}

@@ -112,7 +112,7 @@
 
 \renewcommand\maketitle{}
 \newcommand\makefooter{%
-\vfill
+\vspace*{\fill}%
 \begin{samepage}
 \begin{center}
 \met@address
