@@ -108,6 +108,7 @@
 
 % other
 \input{problems}
+\problemsdir{../problems}
 
 \renewcommand\maketitle{}
 \newcommand\makefooter{%

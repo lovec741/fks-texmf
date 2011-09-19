@@ -109,6 +109,7 @@
 % pohodlne psani cisel a jednotek (napr. $ G = "6.672e-11 N.m^2.kg^{-2}" $)
 \begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
 \begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
+\mathchardef\mathquote=\mathcode`\"
 \mathcode`\"="8000      % " je v matematice aktivni a expanduje na \jed@A
 \def\jed@A #1 {\begingroup\mathcode`\.="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers always written with dot
 \def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
