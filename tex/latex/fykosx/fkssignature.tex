@@ -1,0 +1,26 @@
+\newcommand\newsignature[3]{%
+  \expandafter\def\csname sign@me#1\endcsname{%
+    #2%
+  }%
+  \expandafter\def\csname sigm@il#1\endcsname{%
+    #3%
+  }%
+}
+
+\newcommand\signame[1]{%
+  \expandafter\csname sign@me#1\endcsname
+}
+\newcommand\sigmail[1]{%
+  \expandafter\csname sigm@il#1\endcsname
+}
+\newcommand\signature[1]{%
+\begin{flushright}%
+\setlength\tabcolsep{0pt}
+\begin{tabular}{c}
+{\bfseries\itshape\signame{#1}}\\
+\mail{\sigmail{#1}}
+\end{tabular}
+\end{flushright}\ignorespaces
+}
+
+\input{fksemails}

@@ -18,11 +18,11 @@
 \RequirePackage{xltxtra} % includes xunicode
 \RequirePackage[xetex,
   setpagesize=false,
-  linkcolor=blue,
-  anchorcolor=blue,
-  citecolor=blue,
-  filecolor=blue,
-  urlcolor=blue,
+  linkcolor=black,
+  anchorcolor=black,
+  citecolor=black,
+  filecolor=black,
+  urlcolor=black,
   bookmarks=true,
 ]{hyperref} 
 \opt{web}{\hypersetup{colorlinks=true}}
@@ -169,15 +169,17 @@
 % other
 \renewcommand\maketitle{}
 \newcommand\makefooter{%
-\begin{center}
 \vfill
+\begin{samepage}
+\begin{center}
 \met@address
 \bigskip
 
 \hrulefill
 
 \met@licence 
-\end{center}}
+\end{center}
+\end{samepage}}
 
 \newcommand\@deadline{NENÍ ZADÁNO}
 \newcommand\deadline[1]{\renewcommand\@deadline{#1}}
@@ -226,5 +228,8 @@
       \end{small}}%
 
 \newcommand\mail[1]{\href{mailto:#1}{\nolinkurl{#1}}}
-% TODO
-\newcommand\signature[1]{Karel Kolář (\mail{karel@fykos.cz})}
+
+
+\input{fkssignature}
+
+
