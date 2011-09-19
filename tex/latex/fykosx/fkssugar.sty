@@ -11,7 +11,6 @@
 \RequirePackage{dcolumn}
 \RequirePackage{upgreek}
 
-\newcommand\uv[1]{„#1“}					% czech quotation
 \let\underscore\_					% underscore sign
 \renewcommand\_[1]{_\mathrm{#1}}			% roman index
 \def\({\left(} \def\){\right)}				% parentheses
@@ -60,6 +59,7 @@
 \newcommand\bb[1]{\mathbb{#1}}			% blackboard bold
 \newcommand\bod[1]{\mbox{\sffamily\slshape#1}}	% vector
 \newcommand\op[1]{\mathrm{#1}}			% operators
+% greek letters
 \let\oldpi\pi
 \renewcommand\pi{\uppi}
 \let\oldrho=\rho
@@ -92,7 +92,7 @@
 
 % following definition must be loaded after begining of the document
 \AtBeginDocument{
-% breaking equations according Czech/Russian typography rules
+% breaking equations according Czech/Russian typography rules (repeat =)
 \begingroup\lccode`~=`\=\lowercase{\endgroup\newcommand~}{\math@eq\discretionary{}{=}{}}
 \mathchardef\math@eq=\mathcode`\=
 \mathcode`\=="8000      % = je v matematice aktivni znak
@@ -102,7 +102,7 @@
 \bgroup\uccode`~=`*\uppercase{\egroup\let~}\cdot
 \mathcode`\*="8000
 
-% pohodlne psani cisel a jednotek (napr. $ G = "6,672e-11 N.m^2.kg^{-2}" $)
+% pohodlne psani cisel a jednotek (napr. $ G = "6.672e-11 N.m^2.kg^{-2}" $)
 \begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
 \begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
 \mathcode`\"="8000      % " je v matematice aktivni a expanduje na \jed@A

@@ -50,7 +50,7 @@
 \fi
 
 % FYKOS packages
-\RequirePackage{fksmeta} %TODO config
+\RequirePackage{fksmeta}
 \RequirePackage{fkssugar}
 %\RequirePackage{fkslegacy}
 \RequirePackage{fksfigures}
@@ -102,69 +102,7 @@
 \section[Pořadí řeštielů po \Roman{solvedbatch}. sérii]{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}\hspace{10pt}\includegraphics{logo8.eps}}
 }
 
-% problems
-\newcommand\@tmpfilename{}
-\newcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
-  \renewcommand\@tmpfilename{\@problemsdir/problem#1-#2.tex}
-  \IfFileExists{\@tmpfilename}{
-  \input{\@tmpfilename}%
-  \ClassInfo{fksserie}{Loaded \@tmpfilename}
-  #3
-  }{\ClassWarning{fksserie}{Problem file \@tmpfilename not found.}}
-}
-
-\newcommand\problemtask{%
-  \stepcounter{problem}%
-  \@LoadProblem{\thebatch}{\theproblem}{%
-   \problem[\metaprobletter{problem}: \@probname]{Úloha \Roman{batch}.\metaprobletter{problem} \ldots{} \@probname{} \hfill {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}}%
-   \@probtask%
-  }
-}
-
-\newcommand\problemsolution{%
-  \stepcounter{problem}%
-  \@LoadProblem{\thesolvedbatch}{\theproblem}{%{\theproblem}{%
-   \problem[\metaprobletter{problem}: \@probname]%
-    {Úloha \Roman{solvedbatch}.\metaprobletter{problem} \ldots{} \@probname{} \hfill
-      {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů},
-       průměr \@probavg,
-       \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}%
-   \begin{textsl}
-      \@probtask
-   \end{textsl}
-   
-   \hfill \textit{\@proborigin}
-
-   \medskip
-   
-   \noindent \@probsolution
-  }
-}
-
-
-
-% problem attributes
-\newcommand\@probbatch{N/A}
-\newcommand\@probno{N/A}
-\newcommand\@probname{N/A}
-\newcommand\@proborigin{N/A}
-\newcommand\@probpoints{N/A}
-\newcommand\@probsolauthors{N/A}
-\newcommand\@probsolvers{N/A}
-\newcommand\@probavg{N/A}
-\newcommand\@probtask{N/A}
-\newcommand\@probsolution{N/A}
-
-\newcommand\probbatch[1]{\renewcommand\@probbatch{#1}}
-\newcommand\probno[1]{\renewcommand\@probno{#1}}
-\newcommand\probname[1]{\renewcommand\@probname{#1}}
-\newcommand\proborigin[1]{\renewcommand\@proborigin{#1}}
-\newcommand\probpoints[1]{\renewcommand\@probpoints{#1}}
-\newcommand\probsolauthors[1]{\renewcommand\@probsolauthors{#1}}
-\newcommand\probsolvers[1]{\renewcommand\@probsolvers{#1}}
-\newcommand\probavg[1]{\renewcommand\@probavg{#1}}
-\newcommand\probtask[1]{\renewcommand\@probtask{#1}}
-\newcommand\probsolution[1]{\renewcommand\@probsolution{#1}}
+\input{problems}
 
 % other
 \renewcommand\maketitle{}
@@ -184,9 +122,6 @@
 \newcommand\@deadline{NENÍ ZADÁNO}
 \newcommand\deadline[1]{\renewcommand\@deadline{#1}}
 
-\newcommand\@problemsdir{.}
-\newcommand\problemsdir[1]{\renewcommand\@problemsdir{#1}}
-
 \newcommand\plural[4]{%
   \ifcase#1 % 0
   #4%
@@ -203,31 +138,6 @@
   \fi%
 }
 
-% bibliography is small and we can choose the level of heading
-\renewenvironment{thebibliography}[2]
-     {\expandafter#2{\refname}%\section*{\refname}%
-      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
-      \begin{small}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-	    \itemindent\z@%
-            \leftmargin\labelwidth%
-            \advance\leftmargin\labelsep%
-            \@openbib@code%
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty%
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy%
-      \clubpenalty4000%
-      \@clubpenalty \clubpenalty%
-      \widowpenalty4000%
-      \sfcode`\.\@m}%
-     {\def\@noitemerr%
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist%
-      \end{small}}%
-
-\newcommand\mail[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
 
 \input{fkssignature}
