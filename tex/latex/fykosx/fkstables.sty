@@ -1,6 +1,8 @@
-% fkssugar.sty
 %
-%    Copyright 2011 Michal Koutny
+% @author Michal Koutný <michal@fykos.cz>
+%
+% @description Table macros, especially for typesetting results table.
+%              To preprocess CSV data use makefile target results/*.tex.
 %
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fkstables}[2011/09/11 FYKOS tables]
@@ -32,7 +34,7 @@
 & {\normalfont\bfseries jméno} & škola & %
 1 & 2 & 3 & 4 & P & E & S & %
 \Roman{solvedbatch} & \textnormal{\%} & $\Sigma$ \\
-\input{#1.ctex}
+\input{results/#1.tex} %TODO path
 \end{tabularx}
 \endgroup
 }

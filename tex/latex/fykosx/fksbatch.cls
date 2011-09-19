@@ -1,9 +1,10 @@
-% fksserie.cls
 %
-%    Copyright 2011 Michal Koutny
+% @author Michal Koutný <michal@fykos.cz>
+%
+% @description Provides class for batch brojure. Based on fks.sty by Jan Houštěk.
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fksserie}[2011/09/11 Solution brojure]
+\ProvidesClass{fksbatch}[2011/09/11 Batch brojure]
 
 % inherit from article class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
