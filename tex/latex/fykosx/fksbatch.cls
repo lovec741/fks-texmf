@@ -31,6 +31,7 @@
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
 
+
 % layout settings
 \RequirePackage[includeheadfoot,
   a5paper,
@@ -104,9 +105,10 @@
 \section[Pořadí řeštielů po \Roman{solvedbatch}. sérii]{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}\hspace{10pt}\includegraphics{logo8.eps}}
 }
 
-\input{problems}
 
 % other
+\input{problems}
+
 \renewcommand\maketitle{}
 \newcommand\makefooter{%
 \vfill
@@ -123,22 +125,6 @@
 
 \newcommand\@deadline{NENÍ ZADÁNO}
 \newcommand\deadline[1]{\renewcommand\@deadline{#1}}
-
-\newcommand\plural[4]{%
-  \ifcase#1 % 0
-  #4%
-  \or% 1
-  #2%
-  \or% 2
-  #3%
-  \or% 3
-  #3%
-  \or% 4
-  #3%
-  \else% >4
-  #4%
-  \fi%
-}
 
 \input{fkssignature}
 

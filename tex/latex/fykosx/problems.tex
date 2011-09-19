@@ -4,7 +4,12 @@
 % @description Auxiliary macros for reading problems database
 %              and formatting its output.
 %
-\newcommand\@problemsdir{.}
+
+% cooperation with fksfigures input@path change
+\ifx\@problemsdir\@undefined
+\def\@problemsdir{.}
+\fi
+\renewcommand\@problemsdir{.}
 \newcommand\problemsdir[1]{\renewcommand\@problemsdir{#1}}
 
 % problems

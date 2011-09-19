@@ -18,7 +18,7 @@
 \RequirePackage{optional}
 
 % paths to graphics
-\newcommand{\@inputpath}[1]{
+\newcommand{\@myinputpath}[1]{
 \ifx\input@path\@undefined
 \def\input@path{#1}
 \else
@@ -26,10 +26,15 @@
 \fi
 \graphicspath{#1}}
 
+% @problemsdir must be somehow defined also here not to damage input@path functionality
+\ifx\@problemsdir\@undefined
+\def\@problemsdir{.}
+\fi
+
 \opt{web}{%
- \@inputpath{{./graphics/color}{\@problemsdir/graphics/color}{./graphics/}{\@problemsdir/graphics/}}
+ \@myinputpath{{./graphics/color}{\@problemsdir/graphics/color}{./graphics/}{\@problemsdir/graphics/}} 
 }\opt{print}{%
- \@inputpath{{./graphics/}{\@problemsdir/graphics/}}
+ \@myinputpath{{./graphics/}{\@problemsdir/graphics/}}
 }
 
 % commands for inserting figures syntax is command[position]{filename}{caption}{label}

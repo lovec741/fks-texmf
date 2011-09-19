@@ -6,6 +6,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fksmisc}[2011/09/11 FYKOS miscellaneous]
 
+\RequirePackage{paralist}
+
 % local bibliography, we can choose the level of heading
 \renewenvironment{thebibliography}[2]
      {\expandafter#2{\refname}%\section*{\refname}%
@@ -30,5 +32,23 @@
       \endlist%
       \end{small}}%
 
+% lists
+
+% handy macros
 \newcommand\mail[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 \newcommand\uv[1]{„#1“}					% czech quotation
+\newcommand\plural[4]{%
+  \ifcase#1 % 0
+  #4%
+  \or% 1
+  #2%
+  \or% 2
+  #3%
+  \or% 3
+  #3%
+  \or% 4
+  #3%
+  \else% >4
+  #4%
+  \fi%
+}
