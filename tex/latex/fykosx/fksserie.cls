@@ -12,30 +12,21 @@
 
 
 % packages
+\RequirePackage{optional} % ought be first
 \RequirePackage{fontspec}
 \RequirePackage{amssymb} 
 \RequirePackage{xltxtra} % includes xunicode
 \RequirePackage[xetex,
   setpagesize=false,
-  colorlinks=true,
-  colorlinks = true,
-  linkcolor = blue,
-  anchorcolor = blue,
-  citecolor = blue,
-  filecolor = blue,
-  urlcolor = blue]{hyperref}  
+  linkcolor=blue,
+  anchorcolor=blue,
+  citecolor=blue,
+  filecolor=blue,
+  urlcolor=blue]{hyperref} 
+\opt{web}{\hypersetup{colorlinks=true}}
+\opt{print}{\hypersetup{colorlinks=false}}  
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
-
-% FYKOS packages
-\RequirePackage{fksmeta}
-\RequirePackage{fkssugar}
-%\RequirePackage{fkslegacy}
-\RequirePackage{fksfigures}
-\RequirePackage{fkstables}
-
-% logos and other layouts path
-\graphicspath{{./graphics/}}
 
 % layout settings
 \RequirePackage[includeheadfoot,
@@ -56,6 +47,12 @@
   \fancyfoot[C]{\bfseries \thepage}
 \fi
 
+% FYKOS packages
+\RequirePackage{fksmeta}
+\RequirePackage{fkssugar}
+%\RequirePackage{fkslegacy}
+\RequirePackage{fksfigures}
+\RequirePackage{fkstables}
 
 % counters
 \newcounter{year}

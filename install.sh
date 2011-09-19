@@ -5,6 +5,7 @@ LATEX="tex/latex/fykosx"
 
 if [ -d "$TEXMF$LATEX" -a "$1" != "-f" ] ; then
 	echo "Macros 'fykosx' already installed. Use -f to reinstall."
+	exit 1
 fi
 
 # preapre directories

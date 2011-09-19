@@ -42,7 +42,10 @@
 \end{tabular}
 \smallskip
 
-{\sffamily\FYKOS{} je také na Facebooku \raisebox{-0.2\baselineskip}{\includegraphics[height=\baselineskip]{fb_logo.eps}}\\
+{\sffamily\FYKOS{} je také na Facebooku \raisebox{-0.2\baselineskip}{%
+\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
+\opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
+}\\
 \href{http://www.facebook.com/Fykos}{\bfseries\slshape http://www.facebook.com/Fykos}}
 }
 \renewcommand\met@licence{

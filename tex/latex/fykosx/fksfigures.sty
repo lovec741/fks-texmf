@@ -9,7 +9,22 @@
 \RequirePackage{wrapfig}
 %\RequirePackage{color}
 \RequirePackage{ifthen}
-%\RequirePackage[all]{hypcap} % links jump to an image, not the caption
+\RequirePackage[all]{hypcap} % links jump to an image, not the caption
+
+% paths to graphics
+\newcommand{\@inputpath}[1]{
+\ifx\input@path\@undefined
+\def\input@path{#1}
+\else
+\g@addto@macro{\input@path}{#1}
+\fi
+\graphicspath{#1}}
+
+\opt{web}{%
+ \@inputpath{{./graphics/color}{\@problemsdir/graphics/color}{./graphics/}{\@problemsdir/graphics/}}
+}\opt{print}{%
+ \@inputpath{{./graphics/}{\@problemsdir/graphics/}}
+}
 
 % commands for inserting figures syntax is command[position]{filename}{caption}{label}
 \newcommand\fullfig[3]{%
@@ -27,7 +42,10 @@
 \ifthenelse{\equal{#3}{}}{\capstartfalse}{}
 \begin{figure}[#1]
 \centering
-\input{#2}
+  \opt{web}{%
+  \input{color/#2}
+  }\opt{print}{%
+  \input{#2}}
 \ifthenelse{\equal{#3}{}}{}{\caption{#3}}
 \ifthenelse{\equal{#4}{}}{}{\label{#4}}
 \end{figure}%
