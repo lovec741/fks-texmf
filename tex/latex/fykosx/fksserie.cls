@@ -22,7 +22,9 @@
   anchorcolor=blue,
   citecolor=blue,
   filecolor=blue,
-  urlcolor=blue]{hyperref} 
+  urlcolor=blue,
+  bookmarks=true,
+]{hyperref} 
 \opt{web}{\hypersetup{colorlinks=true}}
 \opt{print}{\hypersetup{colorlinks=false}}  
 \RequirePackage{polyglossia}
@@ -48,7 +50,7 @@
 \fi
 
 % FYKOS packages
-\RequirePackage{fksmeta}
+\RequirePackage{fksmeta} %TODO config
 \RequirePackage{fkssugar}
 %\RequirePackage{fkslegacy}
 \RequirePackage{fksfigures}
