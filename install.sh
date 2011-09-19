@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TEXMF="$HOME/texmf/" # change this to your user texmf dir
-LATEX="tex/latex/fykosx"
+LATEX="tex/latex/fykosx" # path to store fykosx macros
 
 if [ -d "$TEXMF$LATEX" -a "$1" != "-f" ] ; then
 	echo "Macros 'fykosx' already installed. Use -f to reinstall."

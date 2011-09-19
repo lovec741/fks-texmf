@@ -56,6 +56,7 @@
 %\RequirePackage{fkslegacy}
 \RequirePackage{fksfigures}
 \RequirePackage{fkstables}
+\RequirePackage{fksmisc}
 
 % counters
 \newcounter{year}
@@ -138,8 +139,6 @@
   #4%
   \fi%
 }
-
-
 
 \input{fkssignature}
 
