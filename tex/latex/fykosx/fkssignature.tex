@@ -3,6 +3,8 @@
 %
 % @description Manipulation with signrature "database".
 %
+\RequirePackage{etoolbox}
+
 \newcommand\newsignature[3]{%
   \expandafter\def\csname sign@me#1\endcsname{%
     #2%
@@ -13,19 +15,39 @@
 }
 
 \newcommand\signame[1]{%
-  \expandafter\csname sign@me#1\endcsname
+  \expandafter\ifx\csname sign@me#1\endcsname\relax
+  \PackageWarning{fkssignature}{Undefined name #1}
+  \else
+  \expandafter\csname sign@me#1\endcsname\fi
 }
 \newcommand\sigmail[1]{%
   \expandafter\csname sigm@il#1\endcsname
 }
-\newcommand\signature[1]{%
-\begin{flushright}%
-\setlength\tabcolsep{0pt}
+
+\newcommand\sign@tureraw[1]{%
+\signame{#1} <\sigmail{#1}>, %
+}
+
+
+\newcommand*{\sign@ture}[1]{%
+\hspace{10pt}
 \begin{tabular}{c}
 {\bfseries\itshape\signame{#1}}\\
 \mail{\sigmail{#1}}
-\end{tabular}
-\end{flushright}\ignorespaces
+\end{tabular}}
+
+\newcommand*{\signature}[1]{%
+  \let\do\sign@ture
+\begin{flushright}
+  \expandafter\docsvlist\expandafter{#1}
+\end{flushright}
 }
+
+\newcommand*{\signatureraw}[1]{%
+  \let\do\sign@tureraw
+  {\expandafter\docsvlist\expandafter{#1}}
+}
+
+
 
 \input{fksemails}

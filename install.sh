@@ -15,7 +15,7 @@ rm -rf "$TEXMF$MPOST"
 
 # copy files
 cp -r "./$LATEX" "$TEXMF$LATEX"
-cp -r "./$MPOST" "$TEXMF$LATEX"
+cp -r "./$MPOST" "$TEXMF$MPOST"
 
 # update kpathsearch
 mktexlsr

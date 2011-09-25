@@ -5,6 +5,7 @@
 %              and formatting its output.
 %
 
+\RequirePackage{ifthen}
 % cooperation with fksfigures input@path change
 \ifx\@problemsdir\@undefined
 \def\@problemsdir{.}
@@ -33,24 +34,46 @@
 
 \newcommand\problemsolution{%
   \stepcounter{problem}%
-  \@LoadProblem{\thesolvedbatch}{\theproblem}{%{\theproblem}{%
+  \@LoadProblem{\thesolvedbatch}{\theproblem}{%
+  \pr@blemsolution
+}}
+
+\newcommand\myprint[1]{pdfauthor=#1}
+\def\expandargument#1#2{%
+    \edef\temp{#2}%
+    \expandafter#1\expandafter{\temp}%
+}
+
+\newcommand\problemsolutionsingle{%
+  \setcounter{solvedbatch}{\@probbatch}
+  \setcounter{problem}{\@probno}
+  \hypersetup{
+    pdftitle={\met@shortname, \Roman{year}.\Roman{solvedbatch}.\arabic{problem} \@probname},
+    pdfauthor={\@probsolauthors},
+  }
+
+  \pr@blemsolution
+}
+
+\newcommand\pr@blemsolution{%  
    \problem[\metaprobletter{problem}: \@probname]%
     {Úloha \Roman{solvedbatch}.\metaprobletter{problem} \ldots{} \@probname{} \hfill
       {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů},
+       \ifthenelse{\equal\@probavg{N/A}}{(chybí statistiky)\PackageWarning{fks problems}{Missing stats for problem \Roman{solvedbatch}.\theproblem.}}{%
        průměr \@probavg,
-       \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}%
+       \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}}%
    \begin{textsl}
       \@probtask
    \end{textsl}
    
-   \hfill \textit{\@proborigin}
+   \hfill \textit{\@proborigin} %TODO zarovnat doprava jako u citace
 
    \medskip
    
    \noindent \@probsolution
-  }
-}
 
+  \expandafter\signature\@probsolauthors
+}
 
 
 % problem attributes
@@ -70,7 +93,7 @@
 \newcommand\probname[1]{\renewcommand\@probname{#1}}
 \newcommand\proborigin[1]{\renewcommand\@proborigin{#1}}
 \newcommand\probpoints[1]{\renewcommand\@probpoints{#1}}
-\newcommand\probsolauthors[1]{\renewcommand\@probsolauthors{#1}}
+\newcommand\probsolauthors[1]{\renewcommand\@probsolauthors{{#1}}} % due to foreach expansion
 \newcommand\probsolvers[1]{\renewcommand\@probsolvers{#1}}
 \newcommand\probavg[1]{\renewcommand\@probavg{#1}}
 \newcommand\probtask[1]{\renewcommand\@probtask{#1}}

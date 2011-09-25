@@ -9,6 +9,7 @@
 
 \newcommand\FYKOS{{FYKOS}}
 \newcommand\met@headername{Name displayed in the header}
+\newcommand\met@shortname{Short name of the contest}
 \newcommand\met@volumeid{Identification of the volume}
 \newcommand\met@address{Contact address}
 \newcommand\met@licence{Licence}
@@ -29,6 +30,7 @@
 % FYKOS
 \DeclareOption{fykos}{%  
   \renewcommand\met@headername{Fyzikální korespondenční seminář UK MFF}
+  \renewcommand\met@shortname{FYKOS}
   \renewcommand\met@volumeid{ročník \Roman{year}\qquad číslo \arabic{batch}/7}
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
