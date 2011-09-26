@@ -17,6 +17,7 @@
 \newcommand\@tmpfilename{}
 \newcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
   \renewcommand\@tmpfilename{\@problemsdir/problem#1-#2.tex}
+  \probfig{N/A}\probsolvers{N/A}\probavg{N/A}
   \IfFileExists{\@tmpfilename}{
   \input{\@tmpfilename}%
   \ClassInfo{fksserie}{Loaded \@tmpfilename}
@@ -28,6 +29,7 @@
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
    \problem[\metaprobletter{problem}: \@probname]{Úloha \Roman{batch}.\metaprobletter{problem} \ldots{} \@probname{} \hfill {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}}%
+   \ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}
    \@probtask%
   }
 }
@@ -62,9 +64,9 @@
        \ifthenelse{\equal\@probavg{N/A}}{(chybí statistiky)\PackageWarning{fks problems}{Missing stats for problem \Roman{solvedbatch}.\theproblem.}}{%
        průměr \@probavg,
        \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}}%
-   \begin{textsl}
-      \@probtask
-   \end{textsl}
+   \ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}   
+   \textsl{\@probtask}
+   
    
    \hfill \textit{\@proborigin} %TODO zarovnat doprava jako u citace
 
@@ -87,6 +89,7 @@
 \newcommand\@probavg{N/A}
 \newcommand\@probtask{N/A}
 \newcommand\@probsolution{N/A}
+\newcommand\@probfig{N/A}
 
 \newcommand\probbatch[1]{\renewcommand\@probbatch{#1}}
 \newcommand\probno[1]{\renewcommand\@probno{#1}}
@@ -98,3 +101,4 @@
 \newcommand\probavg[1]{\renewcommand\@probavg{#1}}
 \newcommand\probtask[1]{\renewcommand\@probtask{#1}}
 \newcommand\probsolution[1]{\renewcommand\@probsolution{#1}}
+\newcommand\probfig[1]{\renewcommand\@probfig{#1}}
