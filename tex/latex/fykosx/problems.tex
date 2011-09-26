@@ -29,7 +29,7 @@
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
    \problem[\metaprobletter{problem}: \@probname]{Úloha \Roman{batch}.\metaprobletter{problem} \ldots{} \@probname{} \hfill {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}}%
-   \ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}
+   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
   }
 }
@@ -64,7 +64,7 @@
        \ifthenelse{\equal\@probavg{N/A}}{(chybí statistiky)\PackageWarning{fks problems}{Missing stats for problem \Roman{solvedbatch}.\theproblem.}}{%
        průměr \@probavg,
        \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}}%
-   \ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}   
+   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
    \textsl{\@probtask}
    
    

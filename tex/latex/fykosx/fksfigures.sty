@@ -36,24 +36,24 @@
 \fi
 
 \opt{web}{%
- \@myinputpath{{./graphics/color}{\@problemsdir/graphics/color}{./graphics/}{\@problemsdir/graphics/}} 
+ \@myinputpath{{./graphics/color/}{\@problemsdir/graphics/color/}{./graphics/}{\@problemsdir/graphics/}} 
 }\opt{print}{%
  \@myinputpath{{./graphics/}{\@problemsdir/graphics/}}
 }
 
 % commands for inserting figures syntax is command[position]{filename}{caption}{label}
-\newcommand\fullfig[3]{%
+\newcommand\fullfig[4][h]{%
 \ifthenelse{\equal{#3}{}}{\capstartfalse}{}
-\begin{figure}[h]
+\begin{figure}[#1]
 \centering
-\includegraphics{#1}
-\ifthenelse{\equal{#2}{}}{}{\caption{#2}}
-\ifthenelse{\equal{#3}{}}{}{\label{#3}}
+\includegraphics{#2}
+\ifthenelse{\equal{#3}{}}{}{\caption{#3}}
+\ifthenelse{\equal{#4}{}}{}{\label{#4}}
 \end{figure}
 \ifthenelse{\equal{#3}{}}{\capstarttrue}{}
 \ignorespaces}
 
-\newcommand\plotfig[4][h]{% filename is full, TODO (path)
+\newcommand\plotfig[4][h]{%  
 \ifthenelse{\equal{#3}{}}{\capstartfalse}{}
 \begin{figure}[#1]
 \centering

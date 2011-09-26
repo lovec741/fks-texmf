@@ -11,6 +11,8 @@
 \RequirePackage{tabularx}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
+\RequirePackage{rotating}
+
 
 % used to style whole rows or rows and columns combined
 % example header: \begin{tabular}{x{\bfseries}rA{\itshape}l^l^r^r^r^r^r^r^r^rA{\bfseries}rA{\itshape}rA{\bfseries}r}
@@ -22,6 +24,9 @@
 \newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
   #1\ignorespaces
 }
+
+% for decimal numbers
+\newcolumntype{d}[1]{D{.}{,}{#1}}
 
 \newcommand\resultstab[1]{%
 \begingroup
