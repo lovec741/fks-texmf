@@ -13,7 +13,7 @@
 
 \fancyhead{}
 \fancyhead[L]{\bfseries\small \met@headername}
-\fancyhead[R]{\bfseries\small Řešení \Roman{year}.\Roman{solvedbatch}.\arabic{problem}}
+\fancyhead[R]{\bfseries\small Řešení \Roman{year}.\Roman{solvedbatch}.\metaprobletter{problem}}
 
 
 
