@@ -25,7 +25,8 @@
 \newcommand\tint{\mathop{\textstyle\int}\nolimits}	% inline integral
 \newcommand\const{\mathrm{konst}}			% konstanta
 \newcommand\dg{^\circ}					% stupen
-\newcommand\C{^\circ\mskip-2mu\mathrm{C}}		% Celsiuv stupen
+%\newcommand\C{^\circ\mskip-2mu\mathrm{C}}		% Celsiuv stupen
+\def\C{^\circ\mskip-2mu\mathrm{C}}			% Celsiuv stupen (ugly fix for Win/Linux compatibility)
 \renewcommand\Re{\mathop\mathrm{Re}\nolimits}		% realna cast
 \renewcommand\Im{\mathop\mathrm{Im}\nolimits}		% imaginarni cast
 \newcommand\eu{\mathrm{e}}				% Eulerovo cislo

@@ -30,6 +30,7 @@
 ]{hyperref} 
 \opt{web}{\hypersetup{colorlinks=true}}
 \opt{print}{\hypersetup{colorlinks=false}}
+\RequirePackage{xkeyval}
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
 
