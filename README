@@ -1,4 +1,5 @@
 Popis instalace pro MiKTeX na Windows:
+  - aktualizujte na poslední verzi MiKTeXu
   - adresář ''texmf'' uložte na dobře známé místo (''%home%\texmf'', pro budoucí aktualizace)
   - spusťte Start->MiKTeX->Maintenance (Admin)->Settings
   - jděte na záložku 'Roots' a přidejte tam cestu k ''%home%\texmf''
