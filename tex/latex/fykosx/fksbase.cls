@@ -49,6 +49,7 @@
 \fancyfoot{}
 \fancyfoot[C]{\bfseries \thepage}
 
+\RequirePackage{changepage}
 
 % FYKOS packages
 \RequirePackage{fksmeta}
@@ -88,15 +89,18 @@
 \input{problems}
 \problemsdir{../problems}
 
-\newcommand\makefooter{%
-\vspace*{\fill}%
-\begin{samepage}
-\begin{center}
-\hrulefill
+\fancypagestyle{lastpage}{
+    \renewcommand{\footrulewidth}{0.4pt}
+    \lfoot{}
+     \rfoot{}
+    \cfoot{\met@licence }
+   %\restoregeometry
+}
 
-\met@licence 
-\end{center}
-\end{samepage}}
+\newcommand\makefooter{%
+    \thispagestyle{lastpage}
+    \changepage{-2cm}{}{}{}{}{}{}{}{}
+}
 
 \input{fkssignature}
 

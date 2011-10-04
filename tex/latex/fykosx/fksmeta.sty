@@ -8,6 +8,7 @@
 \ProvidesPackage{fksmeta}[2011/09/11 Information about seminars]
 
 \newcommand\FYKOS{{FYKOS}}
+\newcommand\VYFUK{{Výfuk}}
 \newcommand\met@headername{Name displayed in the header}
 \newcommand\met@shortname{Short name of the contest}
 \newcommand\met@volumeid{Identification of the volume}
@@ -15,6 +16,13 @@
 \newcommand\met@licence{Licence}
 \newcommand\metaprobletter[1]{\expandafter \@metaprobletter \csname c@#1\endcsname}
 \newcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or P\or E\or S\else \@ctrerr\fi}
+\newcommand\metayear[1]{\Roman{#1}}
+\newcommand\met@headerproblems{Zadání \Roman{batch}. série}
+\newcommand\met@headersolutions{Řešení \Roman{solvedbatch}. série}
+\newcommand\met@headerseries[1]{Seriál: #1}
+\newcommand\met@headerresults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\renewcommand\maketitle{}
+
 
 % results table parameter
 \newcommand\met@probcols{^r^r^r^r^r^r} % tabular columns defs
@@ -31,7 +39,11 @@
 \DeclareOption{fykos}{%  
   \renewcommand\met@headername{Fyzikální korespondenční seminář UK MFF}
   \renewcommand\met@shortname{FYKOS}
-  \renewcommand\met@volumeid{ročník \Roman{year}\qquad číslo \arabic{batch}/7}
+  \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
+  \renewcommand\met@headerproblems{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\hspace{10pt}\includegraphics{logo8.eps}}
+  \renewcommand\met@headersolutions{\centering \includegraphics{logo2.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení \Roman{solvedbatch}. série}}
+  \renewcommand\met@headerseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Seriál: #1}}
+  \renewcommand\met@headerresults{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}\hspace{10pt}\includegraphics{logo8.eps}}
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
   \multirow{5}{*}{\includegraphics{logo5.eps}} & \FYKOS \\
@@ -49,7 +61,7 @@
 {\sffamily\FYKOS{} je také na Facebooku \raisebox{-0.2\baselineskip}{%
 \opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
 \opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
-}
+}\nopagebreak
 
 \href{http://www.facebook.com/Fykos}{\bfseries\slshape http://www.facebook.com/Fykos}}
 }
@@ -74,6 +86,70 @@ Pro zobrazení kopie této licence, navštivte
 }}} % end FYKOS
 
 
-% VÝFUK
+% --- VÝFUK ---
+\DeclareOption{vyfuk}{%  
+  \renewcommand\met@headername{VÝpočty Fyzikálních ÚKolů -- kores. sem. UK MFF pro ZŠ}
+  \renewcommand\met@shortname{Výfuk}
+  \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or E\or S\else \@ctrerr\fi}
+  \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
+  \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
+  \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
+  \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
+  \renewcommand\met@headerseries[1]{\centering Seriál: #1}
+  \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+
+  \fancypagestyle{titlepage}{
+    \newgeometry{head=0pt,headsep=0pt,margin=0.7cm,includeheadfoot}
+    \renewcommand{\headrulewidth}{0pt}
+    \lhead{}
+    \chead{}
+    \rhead{}
+}
+  \renewcommand\maketitle{%    
+    \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
+    \includegraphics[width=\textwidth,trim=5.1pt 0 0 0]{vyfuk_logo.eps}
+
+    {\bfseries\sffamily \met@headername{} \hfill \met@volumeid}
+
+    \rule[10pt]{\textwidth}{3pt}}
+    \vspace{-1cm}
+  }
+
+  \renewcommand\met@address{%
+\begin{tabular}{r>{\slshape\bfseries}l}
+  %\multirow{5}{*}{\includegraphics{logo5.eps}} & \FYKOS -- Výfuk\\
+  \multirow{5}{*}{} & \FYKOS{} -- Výfuk\\
+  & UK v Praze, Matematicko-fyzikální fakulta\\
+  & Ústav teoretické fyziky\\
+  & V Holešovičkách 2\\
+  & 180\,00 Praha 8\\
+\noalign{\smallskip}
+  www: & \normalfont\url{http://vyfuk.fykos.cz}\\
+  e-mail: & \normalfont\mail{vyfuk@fykos.cz}\\
+\end{tabular}
+\nopagebreak\smallskip
+}
+\renewcommand\met@licence{
+Fyzikální korespondenční seminář je organizován studenty UK~MFF.
+Je zastřešen Oddělením pro vnější vztahy a~propagaci UK~MFF 
+a~podporován Ústavem teoretické fyziky\newline
+UK~MFF, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
+\nopagebreak\smallskip
+
+{\footnotesize\setlength\baselineskip{1ex} Toto dílo je šířeno pod licencí Creative Commons 
+Attribution-Share Alike 3.0 Unported.\newline
+Pro zobrazení kopie této licence, navštivte 
+\url{http://creativecommons.org/licenses/by-sa/3.0/}.\par}}
+
+% to have initialized counters
+\AtBeginDocument{
+\hypersetup{
+    pdftitle={Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo},    % tady radši Roman
+    pdfauthor={Organizátoři Výfuku <vyfuk@fykos.cz>},     % author
+    pdfsubject={Fyzikální korespondenční seminář MFF UK pro ZŠ},   % subject of the document
+}}} % end VÝFUK
+
+
+
 
 \ProcessOptions\relax

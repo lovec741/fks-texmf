@@ -22,7 +22,7 @@
 \fi
 
 \newcommand\problemsheading{%
-\section[Zadání \Roman{batch}. série]{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\hspace{10pt}\includegraphics{logo8.eps}}
+\section[Zadání \Roman{batch}. série]{\met@headerproblems}
 \vspace{-4pt}
 \centerline{\Large\slshape\sffamily Termín doručení: \@deadline}
 \vspace{1.5ex}
@@ -32,30 +32,26 @@
 \setcounter{solvedbatch}{\value{batch}}%
 \addtocounter{solvedbatch}{-1}%
 \setcounter{problem}{0}%
-\section[Řešení \Roman{solvedbatch}. série]{\centering \includegraphics{logo2.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení \Roman{solvedbatch}. série}}}
+\section[Řešení \Roman{solvedbatch}. série]{\met@headersolutions}}
 
 \newcommand\seriesheading[1]{%
-\section[Seriál: #1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Seriál: #1}}}
+\section[Seriál: #1]{\met@headerseries{#1}}}
 
 \newcommand\resultsheading{%
-\section[Pořadí řešitelů po \Roman{solvedbatch}. sérii]{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}\hspace{10pt}\includegraphics{logo8.eps}}
+\section[Pořadí řešitelů po \Roman{solvedbatch}. sérii]{\met@headerresults}
 }
 
 
 % other
-\renewcommand\maketitle{}
+\let\oldfooter\makefooter
 \renewcommand\makefooter{%
-\vspace*{\fill}%
-\begin{samepage}
+\null
+\vfill
 \begin{center}
-\met@address
-\bigskip
-
-\hrulefill
-
-\met@licence 
+  \met@address
 \end{center}
-\end{samepage}}
+  \oldfooter
+}
 
 \newcommand\@deadline{NENÍ ZADÁNO}
 \newcommand\deadline[1]{\renewcommand\@deadline{#1}}
