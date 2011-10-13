@@ -89,12 +89,13 @@
 
 \newcommand\makefooter{%
 \vspace*{\fill}
+\begin{minipage}{\textwidth}
 \hrule
-\begin{samepage}
+\smallskip
 \begin{center}
 \met@licence
 \end{center}
-\end{samepage}
+\end{minipage}
 }
 
 \input{fkssignature}
