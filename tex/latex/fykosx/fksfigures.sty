@@ -14,6 +14,7 @@
 \RequirePackage{wrapfig}
 %\RequirePackage{color}
 \RequirePackage{ifthen}
+\RequirePackage{calc}
 \RequirePackage{caption}
 \RequirePackage[all]{hypcap} % links jump to an image, not the caption
 \RequirePackage{optional}
@@ -68,12 +69,16 @@
 \ignorespaces}
 
 %specialized for third illustration figures
+%maximal width of illustration image is 0.28\textwidth
+\newlength\img@width
 \newcommand\illfig[5][o]{%
-\begin{wrapfigure}[#5]{#1}{0.30\textwidth}  
-\vspace{-\baselineskip}
-    \includegraphics[width=0.28\textwidth]{#2}
-  \ifthenelse{\equal{#3}{}}{}{\caption{#3}}
-  \ifthenelse{\equal{#4}{}}{}{\label{#4}}
+\settowidth{\img@width}{\includegraphics{#2}}%
+\setlength{\img@width}{\minof{\img@width}{0.28\textwidth}}%
+\begin{wrapfigure}[#5]{#1}{1.05\img@width}
+\vspace{-\baselineskip}%
+\includegraphics[width=\img@width]{#2}%
+\ifthenelse{\equal{#3}{}}{}{\caption{#3}}%
+\ifthenelse{\equal{#4}{}}{}{\label{#4}}%
 \end{wrapfigure}\ignorespaces}
 
 \AtBeginDocument{

@@ -7,6 +7,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fksmeta}[2011/09/11 Information about seminars]
 
+\newcommand\metavar[1]{%
+  \expandafter\ifx\csname met@#1\endcsname\relax
+  \PackageWarning{fksmeta}{Undefined variable #1}
+  \else
+  \expandafter\csname met@#1\endcsname\fi
+}
 \newcommand\FYKOS{{FYKOS}}
 \newcommand\VYFUK{{Výfuk}}
 \newcommand\met@headername{Name displayed in the header}
