@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# Use this script for deploying this texmf structure to your local texmf
+# location.
+#
+
 TEXMF="$HOME/texmf/" # change this to your user texmf dir
 LATEX="tex/latex/fykosx" # path to store fykosx macros
 MPOST="metapost/fykos" # path to metapost macros
@@ -18,4 +23,4 @@ cp -r "./$LATEX" "$TEXMF$LATEX"
 cp -r "./$MPOST" "$TEXMF$MPOST"
 
 # update kpathsearch
-mktexlsr
+mktexlsr ${TEXMF:0:-1}
