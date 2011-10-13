@@ -49,8 +49,6 @@
 \fancyfoot{}
 \fancyfoot[C]{\bfseries \thepage}
 
-\RequirePackage{changepage}
-
 % FYKOS packages
 \RequirePackage{fksmeta}
 \RequirePackage{fkssugar}
@@ -89,19 +87,17 @@
 \input{problems}
 \problemsdir{../problems}
 
-\fancypagestyle{lastpage}{
-    \renewcommand{\footrulewidth}{0.4pt}
-    \lfoot{}
-     \rfoot{}
-    \cfoot{\met@licence }
-   %\restoregeometry
-}
-
 \newcommand\makefooter{%
-    \thispagestyle{lastpage}
-    \changepage{-2cm}{}{}{}{}{}{}{}{}
+\vspace*{\fill}
+\hrule
+\begin{samepage}
+\begin{center}
+\met@licence
+\end{center}
+\end{samepage}
 }
 
 \input{fkssignature}
+
 
 
