@@ -68,8 +68,9 @@
 \ifthenelse{\equal{#3}{}}{\capstarttrue}{}%
 \ignorespaces}
 
-%specialized for third illustration figures
-%maximal width of illustration image is 0.28\textwidth
+% specialized for third illustration figures
+% maximal width of illustration image is 0.28\textwidth
+% usage: illfig[alignment]{path}{caption}{label}{height (in rows)}
 \newlength\img@width
 \newcommand\illfig[5][o]{%
 \settowidth{\img@width}{\includegraphics{#2}}%
