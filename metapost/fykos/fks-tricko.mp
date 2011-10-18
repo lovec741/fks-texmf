@@ -12,11 +12,11 @@
 
 prologues:=1;
 
-p:=1.32mm;	% äÌ¯ka pera pro zadni logo
-q:=0.75mm;	% äÌ¯ka pera pro predni logo
+p:=1.32mm;	% ≈†√≠≈ôka pera pro zadni logo
+q:=0.75mm;	% ≈†√≠≈ôka pera pro predni logo
 
-% N·sledujÌcÌ loga by mÏly b˝t kreslena ve stejnÈ velikosti
-% stejnÏ silnou Ëarou. Zvolene je (rozmery v p):
+% N√°sleduj√≠c√≠ loga by mƒõly b√Ωt kreslena ve stejn√© velikosti
+% stejnƒõ silnou ƒçarou. Zvolene je (rozmery v p):
 
 e:=0.58;      % Velikost bodu pro zada
 b:=0.50;      % Velikost bodu pro predek
@@ -24,19 +24,19 @@ b:=0.50;      % Velikost bodu pro predek
 u:=e*p;
 beginfig(1)
   pickup pencircle scaled p;
-%%%%% Lev· noha tabule
+%%%%% Lev√° noha tabule
   draw (11u,29u)..(14u,50u)..(18.5u,80u);
   draw (11u,29u)..(17u,29u);
   draw (16.5u,80u)..(12u,50u)..(9.5u,32.5u);
   draw (9.5u,32.5u)..(11u,32u);
   draw (17u,29u)..(19.5u,50u)..(22.5u,65u)..(26u,80u);
-%%%%% Prav· noha tabule
+%%%%% Prav√° noha tabule
   draw (84u,40u)..(91u,42u);
   draw (84u,40u)..(75u,70u)..(70u,88u);
   draw (91u,42u)..(82u,70u)..(77u,89u);
   draw (79u,41u)..(71u,70u)..(67u,87u);
   draw (79u,41u)..(84u,40u);
-%%%%% ZadnÌ noha tabule
+%%%%% Zadn√≠ noha tabule
   draw (26u,56u)..(28u,55u);
   draw (31u,55u)..(28u,55u);
   draw (26u,56u)..(35u,81.5u);
@@ -142,13 +142,13 @@ beginfig(1)
      ..(210u,30u)..(205u,32u)..(200u,35u)..(195u,37u)
      ..(190u,38u)..(185u,39.5u)..(178u,39u);
   draw (178u,39u)..(172.5u,40u)..(170u,39u)..(166u,38u);
-%%%%% Prav· noha
+%%%%% Prav√° noha
   draw (133.5u,41u)..(132u,39u)..(130u,39.3u)
      ..(124u,39.5u)..(120.5u,36u)..(116u,31u);
   draw (116u,31u)..(120u,30u)..(125u,29u)
      ..(128u,29.5u)..(130u,29u)..(132u,29u);
   draw (120u,30u)..(122u,32.5u)..(125u,35u)..(127u,35u);
-%%%%% Lev· noha
+%%%%% Lev√° noha
   draw (163.5u,52u)..(168u,44u)..(166u,38u)..(162u,33u)
      ..(160.5u,25u)..(155u,24.5u)..(150u,25.5u)..(144u,29u);
   draw (144u,29u)..(141.5u,27.5u)..(140u,25.5u);
@@ -157,7 +157,7 @@ beginfig(1)
      ..(146u,35.5u)..(149u,35u);
   draw (136u,26u)..(138.5u,30u)..(140.5u,32u)..(142u,32.5u);
   draw (151.5u,31.5u)..(150u,35.5u)..(154u,44u);
-%%%%% B¯icho
+%%%%% B≈ôicho
   draw (128u,100u)..(130u,93u)..(122u,79u)..(119u,69u)
      ..(124u,50u)..(133.5u,41u)..(140u,39u)..(150u,36.8u);
 endfig;
@@ -203,18 +203,18 @@ beginfig(2)
   pickup pencircle scaled p;
 %%%%% Ocas
   draw z1..z2..z3..z4..z5..z18..z19..z30;
-%%%%% ZadnÌ pracka lev·
+%%%%% Zadn√≠ pracka lev√°
   draw z5..z6..z7;
   draw z7..z8..z9;
   draw z9..z10..z11;
   draw z11..z12..z13;
   draw z13..z14..z15;
   draw z15..z16..z17..z18;
-%%%%% ZadnÌ prav· k˝ta
+%%%%% Zadn√≠ prav√° k√Ωta
   draw z20..z21..z22;
   draw z23..z24..z20..z25;
   draw z26..z27..z28;
-%%%%% ZadnÌ pracka prav·
+%%%%% Zadn√≠ pracka prav√°
   draw z30..z28..z31..z32;
   draw z32..z33..z34;
   draw z34..z35..z36;
@@ -222,30 +222,30 @@ beginfig(2)
   draw z112..z121..z122..z74..z75..z115;
   draw z115..z117..z134..z135;
   draw z135..z136..z137;
-%%%%% H¯bet
+%%%%% H≈ôbet
   draw z1..z38..z37..z39..z40..z41..z127..z42..z43..z44..z45..z46..z47
   ..z48..z49..z50..z51;
 %%%%% Chocholka
   draw z51..z52..z53..z54;
   draw z54..z55..z56..z57..z58;
-%%%%% K¯Ìdlo levÈ
+%%%%% K≈ô√≠dlo lev√©
   draw z45..z73..z72..z71..z70..z69..z68..z67;
   draw z67..z66..z65..z64..z63..z62..z61..z60..z59..z46;
-%%%%% Zob·k s ËelistÌ a krkem
+%%%%% Zob√°k s ƒçelist√≠ a krkem
   draw z76..z77..z78..z79..z80;
   draw z80..z81..z82..z83..z84..z85..z86..z87..z88;
   draw z81..z89..z90..z91..z92..z93..z94..z95..z96;
-%%%%% K¯Ìdlo pravÈ
+%%%%% K≈ô√≠dlo prav√©
   draw z97..z96..z98..z99..z100..z101..z102..z103..z104..z105..z106;
   draw z106..z107..z108..z109..z110..z111..z112..z113..z114;
 %%%%% Oko
   draw z76..z58..z116..z76;
   draw z118..z119..z120..z118;
-%%%%% Z·hyby na ocasu
+%%%%% Z√°hyby na ocasu
   draw z43..z123..z124;
   draw z42..z125..z126;
   draw z127..z128..z129;
-%%%%% Z·hyby na krku
+%%%%% Z√°hyby na krku
   draw z49..z130..z131;
   draw z50..z132..z133;
  endfig; 
