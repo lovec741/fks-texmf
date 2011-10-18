@@ -10,24 +10,25 @@
 % Jan Houstek, 12. 2001                                       %
 %                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+input fks-label
 
-% základní jednotka
+% zÃ¡kladnÃ­ jednotka
   u=1mm;
 
-% èerchovaná èára (pou¾ití: draw ... dashed cerch [scaled ...] )
+% ÄerchovanÃ¡ ÄÃ¡ra (pouÅ¾itÃ­: draw ... dashed cerch [scaled ...] )
   picture cerch, cark;
   cerch=dashpattern(on 2bp off 1.5bp on 0.5bp off 1.5bp on 2bp);
   cark=dashpattern(on 3bp off 3bp on 3bp);
 
-% zvìt¹í x-krát aktuální pero (po pou¾ití je opìt nastavena pùvodní velikost)
-% pou¾ití: draw ... wp x
+% zvÄ›tÅ¡Ã­ x-krÃ¡t aktuÃ¡lnÃ­ pero (po pouÅ¾itÃ­ je opÄ›t nastavena pÅ¯vodnÃ­ velikost)
+% pouÅ¾itÃ­: draw ... wp x
   def wp = withpen currentpen scaled enddef;
 
-% zvìt¹í x-krát aktuální pero (nastaví novou velikost)
+% zvÄ›tÅ¡Ã­ x-krÃ¡t aktuÃ¡lnÃ­ pero (nastavÃ­ novou velikost)
   def chpen = currentpen:=currentpen scaled enddef;
 
-% nakreslí oblouk o polomìru d se støedem v bm, vıchozím smìrem bm --> bi
-% a koneènım smìrem bm --> be
+% nakreslÃ­ oblouk o polomÄ›ru d se stÅ™edem v bm, vÃ½chozÃ­m smÄ›rem bm --> bi
+% a koneÄnÃ½m smÄ›rem bm --> be
   def uhel(expr bi,bm,be,d)=
   begingroup
     save x,y;
@@ -37,14 +38,14 @@
   endgroup
   enddef;
 
-% stejné jako úhel, pouze be je dopoèítané a je pøidaná teèka pro pravı úhel
+% stejnÃ© jako Ãºhel, pouze be je dopoÄÃ­tanÃ© a je pÅ™idanÃ¡ teÄka pro pravÃ½ Ãºhel
   def uhelR(expr bi,bm,d)=
     uhel(bi,bm,(bm+(bi-bm) rotated 90),d);
     drawdot 0.6d*unitvector(bi-bm) rotated 45 shifted bm wp 3
   enddef;
 
-% nakreslí osovı køí¾ se støedem v poc a rozmìry x-left/right, y-up/down,
-% v¹e kladné
+% nakreslÃ­ osovÃ½ kÅ™Ã­Å¾ se stÅ™edem v poc a rozmÄ›ry x-left/right, y-up/down,
+% vÅ¡e kladnÃ©
   def axis(expr poc,xl,xr,yd,yu)=
   begingroup
     save xp,yp;
@@ -72,7 +73,7 @@
   endgroup
   enddef;
 
-% ¹ipka s prázdnou hlavou
+% Å¡ipka s prÃ¡zdnou hlavou
   def drawearrow expr p = _apth:=p; _finearr enddef;
   def drawdblearrow expr p = _apth:=p; _findearr enddef;
   def _finearr text t =
@@ -85,7 +86,7 @@
     unfill arrowhead reverse _apth; draw arrowhead  reverse _apth t
   enddef;
 
-% obyèejné (netroujúhelníkové) ¹ipky
+% obyÄejnÃ© (netroujÃºhelnÃ­kovÃ©) Å¡ipky
   vardef varrowhead expr p =
     save q,e; path q; pair e;
     e = point length p of p;
@@ -118,7 +119,7 @@ def odot(expr prumer, bod)=
   draw fullcircle scaled 2prumer shifted bod wp 2  
 enddef;
 
-% lesknoucí se kulièka
+% lesknoucÃ­ se kuliÄka
 def kulicka(expr prumer,bod)=
   fill fullcircle scaled prumer shifted bod withcolor .8white;
   draw fullcircle scaled prumer shifted bod;
