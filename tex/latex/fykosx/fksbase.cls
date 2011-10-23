@@ -16,7 +16,7 @@
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
 
 \RequirePackage{optional} % ought be first
-\RequirePackage{fontspec}
+\RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
 \RequirePackage{amssymb} 
 \RequirePackage{xltxtra} % includes xunicode
 \RequirePackage[xetex,
