@@ -140,7 +140,6 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 % pocatek, vektor rotace
       tD0=nP;
       tD1=nK-nP;
-%show "Zacatek";
 % vypocet uhlu: precesni, nutacni
       if (tDx1++tDy1)<>0:
         phiZ:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDy1,tDx1)/(tDx1++tDy1)));
@@ -149,7 +148,6 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
       if (tDx1++tDy1++tDz1)<>0:
         phiX:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDz1,tDx1++tDy1)/(tDx1++tDy1++tDz1)));
       else: phiX:=0; fi;
-
 % Transformace
       tD2 = pt
             shifted_tD.-tD0     % posunuti do pocatku
