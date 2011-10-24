@@ -117,7 +117,7 @@
     endgroup
   enddef;
 
-% Rotace okolo os
+% Rotace okolo os ve 3D
   primarydef pt SpRotateX_tD phi =
     begingroup.save tDx,tDy,tDz,x,y; tD0=pt;
     z0=(tDy0,tDz0).rotated(phi); tD1=(tDx0,x0,y0); 
@@ -137,16 +137,15 @@
 % pocatek, vektor rotace
       tD0=nP;
       tD1=nK-nP;
-%%%%%%%%%%%%%%%%%%%%
-% precesni uhel
+% vypocet uhlu: precesni, nutacni
       if tDx1++tDy1=0: cz := 1;   sz := 0; 
       else: cz := tDy1/(tDx1++tDy1); sz := tDx1/(tDx1++tDy1); 
       fi;
-% nutacni uhel
       if (tDx1++tDy1++tDz1)=0: cx := 1;  sx := 0;
       else: cx := tDz1/(tDx1++tDy1++tDz1); sx := (tDx1++tDy1)/(tDx1++tDy1++tDz1);
       fi;
-%%%%%%%%%%%%%%%%%%%
+      phiZ=acos(cz);
+      phiX=acos(cx);
 % posunuti do pocatku
       tD2=pt.shifted_tD.-tD0;
 % nutace
