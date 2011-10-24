@@ -31,13 +31,12 @@
 
 
 % results table parameter
-\newcommand\met@probcols{^r^r^r^r^r^r} % tabular columns defs
-\newcommand\met@probheader{1 & 2 & 3 & 4 & P & E & S} % results table problems header
-\newcommand\mat@resultscols{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
-\met@probcols%
-@{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\itshape}r@{\hspace{8pt}}A{\bfseries}r} % batch, percent, sum
+\newcommand\met@probheader{1 & 2 & 3 & 4 & 5 & P & E & S} % results table problems header
+\newcommand\met@resultscols{\newcolumntype{T}{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
+^r^r^r^r^r^r^r^r%points columns
+@{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\itshape}r@{\hspace{8pt}}A{\bfseries}r}} % batch, percent, sum
 
-\newcommand\mat@resultsheader{& {\normalfont\bfseries jméno} & škola & %
+\newcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & %
 \met@probheader & %
 \Roman{solvedbatch} & \textnormal{\%} & $\Sigma$ \\}
 
