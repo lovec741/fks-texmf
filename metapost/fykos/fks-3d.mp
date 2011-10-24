@@ -154,14 +154,15 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
       if sx<0: phiX:=arccosd(cx) + 180;
       else:    phiX:=arccosd(cx);
       fi;
-
-      tD2 = pt.shifted_tD.-tD0;     % posunuti do pocatku
-      tD3 = tD2 SpRotateZ_tD  phiZ; % nutace
-      tD4 = tD3 SpRotateX_tD  phiX; % precese
-      tD5 = tD4 SpRotateZ_tD  phi;  % rotace okolo te spr. osy
-      tD6 = tD5 SpRotateX_tD -phiX; % precese zpet
-      tD7 = tD6 SpRotateZ_tD -phiZ; % nutace zpet
-      tD8=tD7.shifted_tD.tD0;       % posun zpet
-      tD8
+% Transformace
+      tD2 = pt
+            shifted_tD.-tD0     % posunuti do pocatku
+            SpRotateZ_tD  phiZ  % nutace
+            SpRotateX_tD  phiX  % precese
+            SpRotateZ_tD  phi   % rotace okolo te spr. osy
+            SpRotateX_tD -phiX  % precese zpet
+            SpRotateZ_tD -phiZ  % nutace zpet
+            shifted_tD.tD0;     % posun zpet
+      tD2
     endgroup
   enddef;
