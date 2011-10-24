@@ -16,9 +16,11 @@
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
 
 \RequirePackage{optional} % ought be first
-\RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
 \RequirePackage{amssymb} 
-%\RequirePackage{xltxtra} % includes xunicode
+\RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
+\RequirePackage{xltxtra} % includes xunicode, fontspec
+\UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal ellipsis
+
 \RequirePackage[xetex,
   setpagesize=false,
   linkcolor=black,
