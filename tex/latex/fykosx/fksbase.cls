@@ -18,7 +18,7 @@
 \RequirePackage{optional} % ought be first
 \RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
 \RequirePackage{amssymb} 
-\RequirePackage{xltxtra} % includes xunicode
+%\RequirePackage{xltxtra} % includes xunicode
 \RequirePackage[xetex,
   setpagesize=false,
   linkcolor=black,
