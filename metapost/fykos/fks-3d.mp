@@ -32,6 +32,9 @@
 %                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO funkce
+vardef arccosd primary x = angle((x,1+-+x)) enddef;
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                         Prvni cast                          %
@@ -144,8 +147,11 @@
       if (tDx1++tDy1++tDz1)=0: cx := 1;  sx := 0;
       else: cx := tDz1/(tDx1++tDy1++tDz1); sx := (tDx1++tDy1)/(tDx1++tDy1++tDz1);
       fi;
-      phiZ=acos(cz);
-      phiX=acos(cx);
+
+      phiZ:=arccosd(cz);
+      phiX:=arccosd(cx);
+show phiZ;
+show phiX;
 % posunuti do pocatku
       tD2=pt.shifted_tD.-tD0;
 % nutace
