@@ -64,16 +64,16 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
   vardef ypart_tD@# = tDy@# enddef;
   vardef zpart_tD@# = tDz@# enddef;
 
-  vardef xpart(expr tDa) =
+  vardef xpart_tD(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;tDx0 endgroup enddef;
-  vardef ypart(expr tDa) =
+  vardef ypart_tD(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;tDy0 endgroup enddef;
-  vardef zpart(expr tDa) =
+  vardef zpart_tD(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;tDz0 endgroup enddef;
 
 % skalarni soucin
   primarydef tDa dotprod_tD tDb = 
-    (xpart(tDa)*xpart(tDb) + ypart(tDa)*ypart(tDb) + zpart(tDa)*zpart(tDb))
+    (xpart_tD(tDa)*xpart_tD(tDb) + ypart_tD(tDa)*ypart_tD(tDb) + zpart_tD(tDa)*zpart_tD(tDb))
   enddef;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,28 +140,25 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 % pocatek, vektor rotace
       tD0=nP;
       tD1=nK-nP;
+%show "Zacatek";
 % vypocet uhlu: precesni, nutacni
-      if tDx1++tDy1=0: cz := 1;   sz := 0; 
-      else: cz := tDy1/(tDx1++tDy1); sz := tDx1/(tDx1++tDy1); 
-      fi;
-      if (tDx1++tDy1++tDz1)=0: cx := 1;  sx := 0;
-      else: cx := tDz1/(tDx1++tDy1++tDz1); sx := (tDx1++tDy1)/(tDx1++tDy1++tDz1);
-      fi;
+      if (tDx1++tDy1)<>0:
+        phiZ:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDy1,tDx1)/(tDx1++tDy1)));
+      else: phiZ:=0; fi;
 
-      if sz<0: phiZ:=arccosd(cz) + 180;
-      else:    phiZ:=arccosd(cz);
-      fi;
-      if sx<0: phiX:=arccosd(cx) + 180;
-      else:    phiX:=arccosd(cx);
-      fi;
+      if (tDx1++tDy1++tDz1)<>0:
+        phiX:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDz1,tDx1++tDy1)/(tDx1++tDy1++tDz1)));
+      else: phiX:=0; fi;
 
-      tD2 = pt.shifted_tD.-tD0;     % posunuti do pocatku
-      tD3 = tD2 SpRotateZ_tD  phiZ; % nutace
-      tD4 = tD3 SpRotateX_tD  phiX; % precese
-      tD5 = tD4 SpRotateZ_tD  phi;  % rotace okolo te spr. osy
-      tD6 = tD5 SpRotateX_tD -phiX; % precese zpet
-      tD7 = tD6 SpRotateZ_tD -phiZ; % nutace zpet
-      tD8=tD7.shifted_tD.tD0;       % posun zpet
-      tD8
+% Transformace
+      tD2 = pt
+            shifted_tD.-tD0     % posunuti do pocatku
+            SpRotateZ_tD  phiZ  % nutace
+            SpRotateX_tD  phiX  % precese
+            SpRotateZ_tD  phi   % rotace okolo te spr. osy
+            SpRotateX_tD -phiX  % precese zpet
+            SpRotateZ_tD -phiZ  % nutace zpet
+            shifted_tD.tD0;     % posun zpet
+      tD2
     endgroup
   enddef;
