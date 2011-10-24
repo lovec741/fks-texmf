@@ -32,7 +32,7 @@
 \newcommand*{\sign@ture}[1]{%
 \hspace{10pt}
 \begin{tabular}{c}
-{\bfseries\itshape\signame{#1}}\\
+\sigstyle{\signame{#1}}\\
 \mail{\sigmail{#1}}
 \end{tabular}}
 
@@ -47,6 +47,9 @@
   \let\do\sign@tureraw
   {\expandafter\docsvlist\expandafter{#1}}
 }
+
+% signature style
+\newcommand\sigstyle[1]{{\bfseries\itshape#1}}
 
 
 
