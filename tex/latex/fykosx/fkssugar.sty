@@ -13,17 +13,20 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{ifthen}
-\RequirePackage{upgreek}
 \RequirePackage{lmodern}
 
 \let\underscore\_					% underscore sign
-\renewcommand\_[1]{_\mathrm{#1}}			% roman index
+\renewcommand\_[1]{_\text{#1}}			% roman index
 \def\({\left(} \def\){\right)}				% parentheses
 \newcommand\ztoho{\quad\Rightarrow\quad}		% implication
 \newcommand\frc[2]{\dfrac#1#2}				% non-reduced fractions [obsolete]
 \newcommand\tsum{\mathop{\textstyle\sum}\limits}	% inline sum
 \newcommand\tprod{\mathop{\textstyle\prod}\limits}	% inline product
 \newcommand\tint{\mathop{\textstyle\int}\nolimits}	% inline integral
+\let\oldint\int                                         % limits for integrals
+\renewcommand\int{\oldint\limits}
+\let\oldoint\oint                                       % limits for integrals
+\renewcommand\oint{\oldoint\limits}
 \newcommand\const{\mathrm{konst}}			% konstanta
 \newcommand\dg{^\circ}					% stupen
 %\newcommand\C{^\circ\mskip-2mu\mathrm{C}}		% Celsiuv stupen
@@ -32,9 +35,9 @@
 \renewcommand\Im{\mathop\mathrm{Im}\nolimits}		% imaginarni cast
 \newcommand\eu{\mathrm{e}}				% Eulerovo cislo
 \newcommand\im{\mathrm{i}}				% imaginarni jednotka
-\renewcommand\d{\mathop{\mathrm{d}\!}}			% differential sign
+\renewcommand\d{\mathrm{d}}			% differential sign
 \newcommand\der[2]{\frac{\d #1}{\d #2}}	% prvni derivace
-\newcommand\dder[2]{\frac{\d{ }^2 #1}{\d #2^2}}	% druha derivace
+\newcommand\dder[2]{\frac{\d^2 #1}{\d #2^2}}	% druha derivace
 \newcommand\pder[2]{\frac%			% prvni parcialni derivace
     {\partial#1}{\partial#2}}	
 \newcommand\ppder[2]{\frac%			% prvni parcialni derivace
@@ -61,13 +64,20 @@
 \newcommand\prumer{\varnothing}   % [obsolete]
 \newcommand\eqdef{\stackrel{\mathrm{def}}{=}} 	% definition equality
 \newcommand\qed{\hfill\square}			% konec dukazu
-\newcommand\vect[1]{\text{\bfseries\sffamily\slshape#1}}     % vector, mathsl is problematic, therefore text
+\DeclareMathAlphabet{\vect}{OT1}{\sfdefault}{bx}{sl}     % vectors
 \newcommand\bod[1]{{\mathsf#1}}	% geometric point
 \newcommand\bb[1]{\mathbb{#1}}                  % blackboard bold
 \newcommand\op[1]{\mathrm{#1}}			% operators
-% greek letters
+
+% -- greek letters --
+%special for upright pi
 \let\oldpi\pi
-\renewcommand\pi{\uppi}
+\IfFileExists{lgrenc.def}{      % part of babel package
+\input{lgrenc.def}
+\DeclareMathAlphabet{\grk}{LGR}{cmr}{m}{n}     % upright greek
+\renewcommand\pi{\grk{p}}
+}%
+{\PackageWarning{fkssugar}{lgrenc.def file not found using italic pi.}}
 \let\oldrho=\rho
 \renewcommand\rho{\varrho}
 \let\oldepsilon=\epsilon
@@ -76,6 +86,7 @@
 \renewcommand\theta{\vartheta}
 \let\oldphi=\phi
 \renewcommand\phi{\varphi}
+\newcommand\ohm{\Omega}                         % for use as an unit
 
 % block equations
 \newcommand\eq[2][s]{%
