@@ -68,9 +68,16 @@
 \newcommand\bod[1]{{\mathsf#1}}	% geometric point
 \newcommand\bb[1]{\mathbb{#1}}                  % blackboard bold
 \newcommand\op[1]{\mathrm{#1}}			% operators
-% greek letters
+
+% -- greek letters --
+%special for upright pi
 \let\oldpi\pi
-\renewcommand\pi{\uppi}
+\IfFileExists{lgrenc.def}{      % part of babel package
+\input{lgrenc.def}
+\DeclareMathAlphabet{\grk}{LGR}{cmr}{m}{n}     % upright greek
+\renewcommand\pi{\grk{p}}
+}%
+{\PackageWarning{fkssugar}{lgrenc.def file not found using italic pi.}}
 \let\oldrho=\rho
 \renewcommand\rho{\varrho}
 \let\oldepsilon=\epsilon
