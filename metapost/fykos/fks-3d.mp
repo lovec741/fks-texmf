@@ -148,34 +148,20 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
       else: cx := tDz1/(tDx1++tDy1++tDz1); sx := (tDx1++tDy1)/(tDx1++tDy1++tDz1);
       fi;
 
-      phiZ:=arccosd(cz);
-      phiX:=arccosd(cx);
-show phiZ;
-show phiX;
-% posunuti do pocatku
-      tD2=pt.shifted_tD.-tD0;
-% nutace
-      tDx3 = cz*tDx2 - sz*tDy2;
-      tDy3 = sz*tDx2 + cz*tDy2;
-      tDz3 = tDz2;
-% precese
-      tDx4 = tDx3;
-      tDy4 = cx*tDy3 - sx*tDz3;
-      tDz4 = sx*tDy3 + cx*tDz3;
-% rotace okolo te spr. osy
-      tDx5 = cosd(phi)*tDx4 - sind(phi)*tDy4;
-      tDy5 = sind(phi)*tDx4 + cosd(phi)*tDy4;
-      tDz5 = tDz4;
-% precese zpet
-      tDx6 = tDx5;
-      tDy6 =  cx*tDy5 + sx*tDz5;
-      tDz6 = -sx*tDy5 + cx*tDz5;
-% nutace zpet
-      tDx7 =  cz*tDx6 + sz*tDy6;
-      tDy7 = -sz*tDx6 + cz*tDy6;
-      tDz7 = tDz6;
-% posun zpet
-      tD8=tD7.shifted_tD.tD0;
+      if sz<0: phiZ:=arccosd(cz) + 180;
+      else:    phiZ:=arccosd(cz);
+      fi;
+      if sx<0: phiX:=arccosd(cx) + 180;
+      else:    phiX:=arccosd(cx);
+      fi;
+
+      tD2 = pt.shifted_tD.-tD0;     % posunuti do pocatku
+      tD3 = tD2 SpRotateZ_tD  phiZ; % nutace
+      tD4 = tD3 SpRotateX_tD  phiX; % precese
+      tD5 = tD4 SpRotateZ_tD  phi;  % rotace okolo te spr. osy
+      tD6 = tD5 SpRotateX_tD -phiX; % precese zpet
+      tD7 = tD6 SpRotateZ_tD -phiZ; % nutace zpet
+      tD8=tD7.shifted_tD.tD0;       % posun zpet
       tD8
     endgroup
   enddef;
