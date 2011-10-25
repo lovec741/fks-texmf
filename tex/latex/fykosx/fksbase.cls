@@ -42,6 +42,9 @@
   a5paper,
   margin=0.7cm,
   headsep=0.2cm]{geometry}
+\if@twoside
+  \raggedbottom % twoside layout causes expanding vertical space around environments
+\fi
 
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
@@ -101,6 +104,7 @@
 }
 
 \input{fkssignature}
+
 
 
 
