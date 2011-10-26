@@ -35,22 +35,32 @@
 % TODO funkce
 vardef arccosd primary x = angle((x,1+-+x)) enddef;
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                         Prvni cast                          %
+%                        Inicializace                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Pole 3D souradnic
   numeric tDx[],tDy[],tDz[];
 
-% Promenna dD pro 2D kresleni
-  vardef dD@# = 
-    (tDy@# - sqrt(2)/4*tDx@#,tDz@# - sqrt(2)/4*tDx@#) enddef;
+% Promenna tD pro 3D nastavovani
+  vardef tD@# = (tDx@#,tDy@#,tDz@#) enddef;
+
+%%%%%%%%%%%%%%%%
+% nastaveni projekce
+ % volne rovnobezne promitani
+  def VRP_tD =
+    vardef dD@# = (tDy@# - sqrt(2)/4*tDx@#,tDz@# - sqrt(2)/4*tDx@#) enddef;
+  enddef;
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         Prvni cast                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% makro proj pro projekci (zvolenou vyse)
   vardef proj(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;dD0 endgroup enddef;
 
-% Promenna tD pro 3D nastavovani
-  vardef tD@# = (tDx@#,tDy@#,tDz@#) enddef;
 
 %%%%%%%%%%%
 % norma bodu
@@ -136,7 +146,7 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 
 % Rotace pt okolo normaloveho vektoru nP->nK o uhel phi
   def rotate_tD(expr pt,nP,nK,phi) =
-    begingroup save tDx, tDy, tDz phiZ, phiX;
+    begingroup save tDx, tDy, tDz, phiZ, phiX;
   % pocatek, vektor rotace
       tD0=nP;
       tD1=nK-nP;
