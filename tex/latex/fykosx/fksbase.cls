@@ -94,7 +94,7 @@
 
 \newcommand\makefooter{%
 \vspace*{\fill}
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
 \hrule
 \smallskip
 \begin{center}
