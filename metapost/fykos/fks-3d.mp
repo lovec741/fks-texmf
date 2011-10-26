@@ -107,6 +107,7 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 %                         Treti cast                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO - nefunguje
 % Translace ve 3D
   def shifted_dD(expr tD_s) =
     begingroup save tDx,tDy,tDz; tD0=tD_s; shifted.dD0 
@@ -116,7 +117,8 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
     begingroup save tDx,tDy,tDz; 
       tD0=tD_w;
       tD1=tD_t;
-      tD1+tD0
+      tD2=tD1+tD0;
+      tD2
     endgroup
   enddef;
 
