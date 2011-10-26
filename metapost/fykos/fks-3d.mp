@@ -84,17 +84,17 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 % roviny, osa X smeruje do smeru td_o->tD_x, osa Y je na ni kolma.
   def getTr(expr tD_o, tD_x, tD_y) =
     begingroup save tDx, tDy, tDz, T_;
-% pocatek, vektor x', y'
+  % pocatek, vektor x', y'
       tD0 = tD_o;
       tD1 = (tD_x-tD_o);
       tD2 = (tD_y-tD_o);
-% G-S OG
+  % G-S OG
       tD3 = tD1;
       tD4 = tD2-tD1.dotprod_tD.tD2/(tD1.dotprod_tD.tD1)*tD1;
-% ON
+  % ON
       tD5 = tD3/norm.(tD3);
       tD6 = tD4/norm.(tD4);
-% v tD5,6 jsou normovane OG vektory; T_ vysledna transformace
+  % v tD5,6 jsou normovane OG vektory; T_ vysledna transformace
       transform T_;
       (0,0) transformed T_ = dD0;
       (1,0) transformed T_ = dD0+dD5;
@@ -107,12 +107,10 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 %                         Treti cast                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO - nefunguje
-% Translace ve 3D
-  def shifted_dD(expr tD_s) =
-    begingroup save tDx,tDy,tDz; tD0=tD_s; shifted.dD0 
-  endgroup enddef;
+% Translace ve 2D projekci
+  def shifted_dD(expr tD_s) = shifted.proj(tD_s) enddef;
 
+% Translace ve 3D
   primarydef tD_w shifted_tD tD_t =
     begingroup save tDx,tDy,tDz; 
       tD0=tD_w;
@@ -138,19 +136,23 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 
 % Rotace pt okolo normaloveho vektoru nP->nK o uhel phi
   def rotate_tD(expr pt,nP,nK,phi) =
-    begingroup save tDx, tDy, tDz;
-% pocatek, vektor rotace
+    begingroup save tDx, tDy, tDz phiZ, phiX;
+  % pocatek, vektor rotace
       tD0=nP;
       tD1=nK-nP;
-% vypocet uhlu: precesni, nutacni
+  % vypocet uhlu: precesni, nutacni
       if (tDx1++tDy1)<>0:
         phiZ:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDy1,tDx1)/(tDx1++tDy1)));
-      else: phiZ:=0; fi;
+      else: 
+        phiZ:=0; 
+      fi;
 
       if (tDx1++tDy1++tDz1)<>0:
         phiX:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDz1,tDx1++tDy1)/(tDx1++tDy1++tDz1)));
-      else: phiX:=0; fi;
-% Transformace
+      else: 
+        phiX:=0; 
+      fi;
+  % Transformace
       tD2 = pt
             shifted_tD.-tD0     % posunuti do pocatku
             SpRotateZ_tD  phiZ  % nutace
