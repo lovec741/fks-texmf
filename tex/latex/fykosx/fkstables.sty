@@ -28,18 +28,16 @@
 % for decimal numbers
 \newcolumntype{d}[1]{D{.}{,}{#1}}
 
+\met@resultscols % this defines new column type as in fksmeta
+
 \newcommand\resultstab[1]{%
-\begingroup
+\begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
-\begin{tabularx}{\textwidth}{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
-^r^r^r^r^r^r^r% problems
-@{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\itshape}r@{\hspace{8pt}}A{\bfseries}r} % batch, percent, sum
+\begin{tabularx}{\textwidth}{T} % batch, percent, sum
 \rowstyle{\bfseries}
-& {\normalfont\bfseries jméno} & škola & %
-1 & 2 & 3 & 4 & P & E & S & %
-\Roman{solvedbatch} & \textnormal{\%} & $\Sigma$ \\
+\met@resultsheader
 \input{results/#1.tex} %TODO path
 \end{tabularx}
-\endgroup
+\end{center}
 }
