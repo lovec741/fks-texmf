@@ -1,0 +1,53 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage{fkssugar}
+\usepackage{xltxtra}
+\usepackage{tabularx}
+
+
+\title{\texttt{fkssugar.sty} demo}
+\author{Michal Koutný}
+\date{26. října 2011}
+
+\begin{document}
+\maketitle
+
+\begin{tabularx}{\textwidth}{|l|l|X|}
+    \hline
+    kód & výsledek & použití\\
+    \hline
+    \verb+$p\_{voda}$+ & $p\_{voda}$ & subskripty, co nejsou veličina\\
+    \verb+$\(\frac{1}{2}\)$+ & $\(\frac12\)$ & rostoucí závorky\\
+    \verb+$\ztoho$+ & $\ztoho$ & \\
+    \verb+$\tsum_a^b$+ & $\tsum_a^b$ & suma v řádku\\
+    \verb+$\const$+ & $\const$ &\\
+    \verb+$2\dg$+ & $2\dg$ &\\
+    \verb+$"20.1 \C"$+ & $"20.1 \C"$ &\\
+    \verb+$\Re z, \Im z$+ & $\Re z, \Im z$ &\\
+    \verb+$\eu^{\im x}$+ & $\eu^{\im x}$ &\\
+    \verb+$\int \d x$+ & $\int \d x$ &\\
+    \verb+$\der{f}{x}$+ & $\der{f}{x}, \dder{f}{x}, \pder{f}{x}, \ppder{f}{x}$ & také dder, pder a ppder\\
+    \verb+$\Laplace$+ & $\Laplace$ &\\
+    \verb+$\rot, \Div, \grad$+ & $\rot, \Div, \grad$ &\\
+    \verb+$\Dalembert$+ & $\Dalembert$ &\\
+    \verb+$\prumer$+ & $\prumer$ &\\
+    \verb+$\eqdef$+ & $\eqdef$ &\\
+    \verb+$\qed$+ & $\qed$ &\\
+    \verb+$\vect{F}\_G$+ & $\vect{F}\_G$ &\\
+    \verb+$\bod{AB}$+ & $\bod{AB}$ &\\
+    \verb+$\bb{R}$+ & $\bb{R}$ &\\
+    \verb+$\op{dup}$+ & $\op{dup}$ &\\
+    \verb+$\oldpi, \pi$+ & $\oldpi, \pi$ & řecké písmeno, svisle konstanta $\approx "3.14"$\\
+    \verb+$\phi, \theta$+ & $\phi, \theta$ &\\
+    \verb+$\rho, \epsilon$+ & $\rho, \epsilon$ &\\
+    \verb+$\ohm$+ & $\ohm$ &\\
+    \verb+\popi{l}{mm}+ & \popi{l}{mm} &\\
+    \verb+$"24.8 N.kg^2.s^{-2}"$+ & $"24.8 N.kg^2.s^{-2}"$ &\\
+    \verb+$"2.8e18 m^2"$+ & $"2.8e18 m^2"$ &\\
+
+    \hline
+\end{tabularx}
+
+
+\end{document}

@@ -23,10 +23,6 @@
 \newcommand\tsum{\mathop{\textstyle\sum}\limits}	% inline sum
 \newcommand\tprod{\mathop{\textstyle\prod}\limits}	% inline product
 \newcommand\tint{\mathop{\textstyle\int}\nolimits}	% inline integral
-\let\oldint\int                                         % limits for integrals
-\renewcommand\int{\oldint\limits}
-\let\oldoint\oint                                       % limits for integrals
-\renewcommand\oint{\oldoint\limits}
 \newcommand\const{\mathrm{konst}}			% konstanta
 \newcommand\dg{^\circ}					% stupen
 %\newcommand\C{^\circ\mskip-2mu\mathrm{C}}		% Celsiuv stupen
@@ -65,7 +61,7 @@
 \newcommand\eqdef{\stackrel{\mathrm{def}}{=}} 	% definition equality
 \newcommand\qed{\hfill\square}			% konec dukazu
 \DeclareMathAlphabet{\vect}{OT1}{\sfdefault}{bx}{sl}     % vectors
-\newcommand\bod[1]{{\mathsf#1}}	% geometric point
+\newcommand\bod[1]{\mathsf{#1}}	% geometric point
 \newcommand\bb[1]{\mathbb{#1}}                  % blackboard bold
 \newcommand\op[1]{\mathrm{#1}}			% operators
 
