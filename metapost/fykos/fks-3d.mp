@@ -16,7 +16,7 @@
 % Pro ukladani 3D polohy se pouziva color, dale pro           %
 % projektovanou hodnotu se pouziva pair.                      %
 %                                                             %
-% Pouziva se volne rovnobezne promitani.                      %
+% Pouziva se VOLNE ROVNOBEZNE PROMITANI.                      %
 % Prvni cast: 3D souradnice ve trech polich, definovane       %
 %             promenne pro zadavani a 2D vystup.              %
 % Druha cast: projekce rovinnych krivek z libovolne roviny    %
@@ -25,28 +25,42 @@
 %                                                             %
 % TODO: uhel mezi krivkami                                    %
 %       transformace per                                      %
+%       jine projekce (pohled zprava, axonometrie, atp.)      %
 %                                                             %
 % TODO pro masochisty: dodělat stínování                      %
 %                      viditelnost.                           %
 %                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO funkce
+vardef arccosd primary x = angle((x,1+-+x)) enddef;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                         Prvni cast                          %
+%                        Inicializace                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Pole 3D souradnic
   numeric tDx[],tDy[],tDz[];
 
-% Promenna dD pro 2D kresleni
-  vardef dD@# = 
-    (tDy@# - sqrt(2)/4*tDx@#,tDz@# - sqrt(2)/4*tDx@#) enddef;
-  vardef proj(expr tDa) =
-    begingroup.save tDx, tDy, tDz;tD0=tDa;dDx0 endgroup enddef;
-
 % Promenna tD pro 3D nastavovani
   vardef tD@# = (tDx@#,tDy@#,tDz@#) enddef;
+
+%%%%%%%%%%%%%%%%
+% nastaveni projekce
+ % volne rovnobezne promitani
+  def VRP_tD =
+    vardef dD@# = (tDy@# - sqrt(2)/4*tDx@#,tDz@# - sqrt(2)/4*tDx@#) enddef;
+  enddef;
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         Prvni cast                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% makro proj pro projekci (zvolenou vyse)
+  vardef proj(expr tDa) =
+    begingroup.save tDx, tDy, tDz;tD0=tDa;dD0 endgroup enddef;
+
 
 %%%%%%%%%%%
 % norma bodu
@@ -60,23 +74,17 @@
   vardef ypart_tD@# = tDy@# enddef;
   vardef zpart_tD@# = tDz@# enddef;
 
-  vardef xpart(expr tDa) =
+  vardef xpart_tD(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;tDx0 endgroup enddef;
-  vardef ypart(expr tDa) =
+  vardef ypart_tD(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;tDy0 endgroup enddef;
-  vardef zpart(expr tDa) =
+  vardef zpart_tD(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;tDz0 endgroup enddef;
 
 % skalarni soucin
   primarydef tDa dotprod_tD tDb = 
-    begingroup
-    save tDx, tDy, tDz;
-      tD0=tDa; 
-      tD1=tDb;
-      tDx0*tDx1 + tDy0*tDy1 + tDz0*tDz1
-    endgroup
+    (xpart_tD(tDa)*xpart_tD(tDb) + ypart_tD(tDa)*ypart_tD(tDb) + zpart_tD(tDa)*zpart_tD(tDb))
   enddef;
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                         Druha cast                          %
@@ -85,19 +93,18 @@
 % Transformace z roviny definovane tD_o, tD_x, tD_y do projektivni 
 % roviny, osa X smeruje do smeru td_o->tD_x, osa Y je na ni kolma.
   def getTr(expr tD_o, tD_x, tD_y) =
-    begingroup
-    save tDx, tDy, tDz, T_;
-% pocatek, vektor x', y'
+    begingroup save tDx, tDy, tDz, T_;
+  % pocatek, vektor x', y'
       tD0 = tD_o;
       tD1 = (tD_x-tD_o);
       tD2 = (tD_y-tD_o);
-% G-S OG
+  % G-S OG
       tD3 = tD1;
       tD4 = tD2-tD1.dotprod_tD.tD2/(tD1.dotprod_tD.tD1)*tD1;
-% ON
+  % ON
       tD5 = tD3/norm.(tD3);
       tD6 = tD4/norm.(tD4);
-% v tD5,6 jsou normovane OG vektory; T_ vysledna transformace
+  % v tD5,6 jsou normovane OG vektory; T_ vysledna transformace
       transform T_;
       (0,0) transformed T_ = dD0;
       (1,0) transformed T_ = dD0+dD5;
@@ -110,21 +117,20 @@
 %                         Treti cast                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Translace ve 3D
-  def shifted_dD(expr tD_s) =
-    begingroup save tDx,tDy,tDz; 
-    tD0=tD_s; shifted.dD0 endgroup enddef;
+% Translace ve 2D projekci
+  def shifted_dD(expr tD_s) = shifted.proj(tD_s) enddef;
 
+% Translace ve 3D
   primarydef tD_w shifted_tD tD_t =
-    begingroup
-    save tDx,tDy,tDz; 
+    begingroup save tDx,tDy,tDz; 
       tD0=tD_w;
       tD1=tD_t;
-      tD1+tD0
+      tD2=tD1+tD0;
+      tD2
     endgroup
   enddef;
 
-% Rotace okolo os
+% Rotace okolo os ve 3D
   primarydef pt SpRotateX_tD phi =
     begingroup.save tDx,tDy,tDz,x,y; tD0=pt;
     z0=(tDy0,tDz0).rotated(phi); tD1=(tDx0,x0,y0); 
@@ -140,45 +146,31 @@
 
 % Rotace pt okolo normaloveho vektoru nP->nK o uhel phi
   def rotate_tD(expr pt,nP,nK,phi) =
-    begingroup
-    save tDx, tDy, tDz;
-% pocatek, vektor rotace
+    begingroup save tDx, tDy, tDz, phiZ, phiX;
+  % pocatek, vektor rotace
       tD0=nP;
       tD1=nK-nP;
-%%%%%%%%%%%%%%%%%%%%
-% precesni uhel
-      if (tDx1++tDy1) = 0:cz = 1;   sz = 0;
-      else: cz = tDy1/(tDx1++tDy1); sz = tDx1/(tDx1++tDy1);
-      fi
-% nutacni uhel
-      if (tDx1++tDy1++tDz1) = 0: cx = 1;  sx = 0;
-      else: cx = tDz1/(tDx1++tDy1++tDz1); sx = (tDx1++tDy1)/(tDx1++tDy1++tDz1);
-      fi
-%%%%%%%%%%%%%%%%%%%
-% posunuti do pocatku
-      tD2=pt.shifted_tD.-tD0;
-% nutace
-      tDx3 = cz*tDx2 - sz*tDy2;
-      tDy3 = sz*tDx2 + cz*tDy2;
-      tDz3 = tDz2;
-% precese
-      tDx4 = tDx3;
-      tDy4 = cx*tDy3 - sx*tDz3;
-      tDz4 = sx*tDy3 + cx*tDz3;
-% rotace okolo te spr. osy
-      tDx5 = cosd(phi)*tDx4 - sind(phi)*tDy4;
-      tDy5 = sind(phi)*tDx4 + cosd(phi)*tDy4;
-      tDz5 = tDz4;
-% precese zpet
-      tDx6 = tDx5;
-      tDy6 =  cx*tDy5 + sx*tDz5;
-      tDz6 = -sx*tDy5 + cx*tDz5;
-% nutace zpet
-      tDx7 =  cz*tDx6 + sz*tDy6;
-      tDy7 = -sz*tDx6 + cz*tDy6;
-      tDz7 = tDz6;
-% posun zpet
-      tD8=tD7.shifted_tD.tD0;
-      tD8
+  % vypocet uhlu: precesni, nutacni
+      if (tDx1++tDy1)<>0:
+        phiZ:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDy1,tDx1)/(tDx1++tDy1)));
+      else: 
+        phiZ:=0; 
+      fi;
+
+      if (tDx1++tDy1++tDz1)<>0:
+        phiX:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDz1,tDx1++tDy1)/(tDx1++tDy1++tDz1)));
+      else: 
+        phiX:=0; 
+      fi;
+  % Transformace
+      tD2 = pt
+            shifted_tD.-tD0     % posunuti do pocatku
+            SpRotateZ_tD  phiZ  % nutace
+            SpRotateX_tD  phiX  % precese
+            SpRotateZ_tD  phi   % rotace okolo te spr. osy
+            SpRotateX_tD -phiX  % precese zpet
+            SpRotateZ_tD -phiZ  % nutace zpet
+            shifted_tD.tD0;     % posun zpet
+      tD2
     endgroup
   enddef;
