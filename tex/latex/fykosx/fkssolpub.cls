@@ -43,7 +43,7 @@
 }
 
 % comfort macros
-\RequirePackage{fkssugar}
+%\RequirePackage{fkssugar}
 
 
 
