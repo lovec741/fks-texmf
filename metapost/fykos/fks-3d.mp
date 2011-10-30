@@ -61,8 +61,6 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
   vardef proj(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;dD0 endgroup enddef;
 
-
-%%%%%%%%%%%
 % norma bodu
   vardef norm_tD@# =
     sqrt(tDx@#*tDx@# + tDy@#*tDy@# + tDz@#*tDz@#) enddef;
@@ -151,17 +149,8 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
       tD0=nP;
       tD1=nK-nP;
   % vypocet uhlu: precesni, nutacni
-      if (tDx1++tDy1)<>0:
-        phiZ:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDy1,tDx1)/(tDx1++tDy1)));
-      else: 
-        phiZ:=0; 
-      fi;
-
-      if (tDx1++tDy1++tDz1)<>0:
-        phiX:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDz1,tDx1++tDy1)/(tDx1++tDy1++tDz1)));
-      else: 
-        phiX:=0; 
-      fi;
+      phiZ:=angle(tDy1,tDx1);
+      phiX:=angle(tDz1,tDx1++tDy1);
   % Transformace
       tD2 = pt
             shifted_tD.-tD0     % posunuti do pocatku
