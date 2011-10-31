@@ -11,6 +11,7 @@
 %                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 input fks-label
+input mth-function
 
 % základní jednotka
   u=1mm;
