@@ -51,6 +51,10 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
   def VRP_tD =
     vardef dD@# = (tDy@# - sqrt(2)/4*tDx@#,tDz@# - sqrt(2)/4*tDx@#) enddef;
   enddef;
+ % axonometrie
+  def AXON_tD =
+    vardef dD@# = ( (tDy@# - tDx@#)*sqrt(3)/2,tDz@# - tDx@#/2. - tDy@#/2.) enddef;
+  enddef;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
