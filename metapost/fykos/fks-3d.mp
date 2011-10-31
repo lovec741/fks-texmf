@@ -27,7 +27,7 @@
 % Treti cast:   rotace a translace v prostoru                 %
 %                                                             %
 % TODO: kresleni uhelu mezi krivkami                          %
-%       jine projekce (pohled zprava, atp.)                   %
+%       jine projekce???                                      %
 %                                                             %
 % TODO pro masochisty: dodělat stínování                      %
 %                      viditelnost.                           %
@@ -59,6 +59,10 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
     vardef dD@# = ( (tDy@# - tDx@#)*sqrt(3)/2,tDz@# - tDx@#/2. - tDy@#/2.) enddef;
   enddef;
 
+ % pohled zprava (zobrazuje se rovina YZ, X~-Y)
+  def PzP_tD =
+    vardef dD@# = (tDy@# - tDx@#/2.,tDz@#) enddef;
+  enddef;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                         Prvni cast                          %
