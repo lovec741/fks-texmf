@@ -51,6 +51,7 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
   def VRP_tD =
     vardef dD@# = (tDy@# - sqrt(2)/4*tDx@#,tDz@# - sqrt(2)/4*tDx@#) enddef;
   enddef;
+
  % axonometrie
   def AXON_tD =
     vardef dD@# = ( (tDy@# - tDx@#)*sqrt(3)/2,tDz@# - tDx@#/2. - tDy@#/2.) enddef;
@@ -123,14 +124,16 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
   def shifted_dD(expr tD_s) = shifted.proj(tD_s) enddef;
 
 % Translace ve 3D
-  primarydef tD_w shifted_tD tD_t =
-    begingroup save tDx,tDy,tDz; 
-      tD0=tD_w;
-      tD1=tD_t;
-      tD2=tD1+tD0;
-      tD2
-    endgroup
-  enddef;
+  primarydef tD_w shifted_tD tD_t = (tD_w+tD_t) enddef;
+
+%  primarydef tD_w shifted_tD tD_t =
+%    begingroup save tDx,tDy,tDz; 
+%      tD0=tD_w;
+%      tD1=tD_t;
+%      tD2=tD1+tD0;
+%      tD2
+%    endgroup
+%  enddef;
 
 % Rotace okolo os ve 3D
   primarydef pt SpRotateX_tD phi =
@@ -153,8 +156,8 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
       tD0=nP;
       tD1=nK-nP;
   % vypocet uhlu: precesni, nutacni
-      phiZ:=angle(tDy1,tDx1);
-      phiX:=angle(tDz1,tDx1++tDy1);
+      phiZ:= if (tDy1,tDx1)       <>(0,0): angle(tDy1,tDx1)       else: 0 fi;
+      phiX:= if (tDz1,tDx1++tDy1) <>(0,0): angle(tDz1,tDx1++tDy1) else: 0 fi;
   % Transformace
       tD2 = pt
             shifted_tD.-tD0     % posunuti do pocatku
