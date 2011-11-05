@@ -2,7 +2,7 @@
 % Marek Nečada 2011
 % rozšíření balíku makecirc
 % TODO vylepšit kompatibilitu s ostatními fykosími balíky
-input makecirc
+input makecirc-fks
 
 newinternal svorad, svotrcdrat, svoroztec;
 svorad:=.11ssize;
