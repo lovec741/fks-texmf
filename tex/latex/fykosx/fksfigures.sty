@@ -15,7 +15,7 @@
 %\RequirePackage{color}
 \RequirePackage{ifthen}
 \RequirePackage{calc}
-\RequirePackage{caption}
+\RequirePackage[center]{caption}
 \RequirePackage[all]{hypcap} % links jump to an image, not the caption
 \RequirePackage{optional}
 
@@ -76,7 +76,7 @@
 \settowidth{\img@width}{\includegraphics{#2}}%
 \setlength{\img@width}{\minof{\img@width}{0.28\textwidth}}%
 \begin{wrapfigure}[#5]{#1}{1.05\img@width}
-\vspace{-\baselineskip}%
+\vspace{-\intextsep}%
 \includegraphics[width=\img@width]{#2}%
 \ifthenelse{\equal{#3}{}}{}{\caption{#3}}%
 \ifthenelse{\equal{#4}{}}{}{\label{#4}}%
