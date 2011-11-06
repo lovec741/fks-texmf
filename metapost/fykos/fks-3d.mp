@@ -16,24 +16,23 @@
 % Pro ukladani 3D polohy se pouziva color, dale pro           %
 % projektovanou hodnotu se pouziva pair.                      %
 %                                                             %
-% Pouziva se VOLNE ROVNOBEZNE PROMITANI.                      %
-% Prvni cast: 3D souradnice ve trech polich, definovane       %
-%             promenne pro zadavani a 2D vystup.              %
-% Druha cast: projekce rovinnych krivek z libovolne roviny    %
-%             tecne ke kouli v bodu (x,y,z)                   %
-% Treti cast: rotace a translace v prostoru                   %
+% Inicializace: vyber projekce:                               %
+%                 VRP_tD:  volne rovnobezne prmitani PN       %
+%                 AXON_tD: axonometrie                        %
 %                                                             %
-% TODO: uhel mezi krivkami                                    %
-%       transformace per                                      %
-%       jine projekce (pohled zprava, axonometrie, atp.)      %
+% Prvni cast:   3D souradnice ve trech polich, definovane     %
+%               promenne pro zadavani a 2D vystup.            %
+% Druha cast:   projekce rovinnych krivek z libovolne roviny  %
+%               tecne ke kouli v bodu (x,y,z)                 %
+% Treti cast:   rotace a translace v prostoru                 %
+%                                                             %
+% TODO: kresleni uhelu mezi krivkami                          %
+%       jine projekce???                                      %
 %                                                             %
 % TODO pro masochisty: dodělat stínování                      %
 %                      viditelnost.                           %
 %                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% TODO funkce
-vardef arccosd primary x = angle((x,1+-+x)) enddef;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                        Inicializace                         %
@@ -47,22 +46,29 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 
 %%%%%%%%%%%%%%%%
 % nastaveni projekce
- % volne rovnobezne promitani
+ % volne rovnobezne promitani (pravy nadhled)
   def VRP_tD =
     vardef dD@# = (tDy@# - sqrt(2)/4*tDx@#,tDz@# - sqrt(2)/4*tDx@#) enddef;
   enddef;
 
+ % axonometrie
+  def AXON_tD =
+    vardef dD@# = ( (tDy@# - tDx@#)*sqrt(3)/2,tDz@# - tDx@#/2. - tDy@#/2.) enddef;
+  enddef;
+
+ % pohled zprava (zobrazuje se rovina YZ, X~-Y)
+  def PzP_tD =
+    vardef dD@# = (tDy@# - tDx@#/2.,tDz@#) enddef;
+  enddef;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                         Prvni cast                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% makro proj pro projekci (zvolenou vyse)
+% vypocet projekce (zvolene vyse)
   vardef proj(expr tDa) =
     begingroup.save tDx, tDy, tDz;tD0=tDa;dD0 endgroup enddef;
 
-
-%%%%%%%%%%%
 % norma bodu
   vardef norm_tD@# =
     sqrt(tDx@#*tDx@# + tDy@#*tDy@# + tDz@#*tDz@#) enddef;
@@ -121,14 +127,7 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
   def shifted_dD(expr tD_s) = shifted.proj(tD_s) enddef;
 
 % Translace ve 3D
-  primarydef tD_w shifted_tD tD_t =
-    begingroup save tDx,tDy,tDz; 
-      tD0=tD_w;
-      tD1=tD_t;
-      tD2=tD1+tD0;
-      tD2
-    endgroup
-  enddef;
+  primarydef tD_w shifted_tD tD_t = (tD_w+tD_t) enddef;
 
 % Rotace okolo os ve 3D
   primarydef pt SpRotateX_tD phi =
@@ -151,17 +150,8 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
       tD0=nP;
       tD1=nK-nP;
   % vypocet uhlu: precesni, nutacni
-      if (tDx1++tDy1)<>0:
-        phiZ:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDy1,tDx1)/(tDx1++tDy1)));
-      else: 
-        phiZ:=0; 
-      fi;
-
-      if (tDx1++tDy1++tDz1)<>0:
-        phiX:=45*xpart(fullcircle intersectiontimes ((0,0)--(tDz1,tDx1++tDy1)/(tDx1++tDy1++tDz1)));
-      else: 
-        phiX:=0; 
-      fi;
+      phiZ:= if (tDy1,tDx1)      <>(0,0): angle(tDy1,tDx1)       else: 0 fi;
+      phiX:= if (tDz1,tDx1++tDy1)<>(0,0): angle(tDz1,tDx1++tDy1) else: 0 fi;
   % Transformace
       tD2 = pt
             shifted_tD.-tD0     % posunuti do pocatku
