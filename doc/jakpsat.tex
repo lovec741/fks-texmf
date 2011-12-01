@@ -1,0 +1,135 @@
+\documentclass[fykos]{fksbase} % dle názvu semináře
+\setcounter{year}{25}
+\fancyhead{}
+\fancyhead[L]{\bfseries\small \metavar{headername}}
+\fancyhead[R]{\bfseries\small Jak psát vzorové řešení}
+\usepackage{multicol}
+
+\begin{document}
+\section{Jak psát autorská řešení}
+
+Řešení pište bez chyb! Kdo tam bude mít chyby, bude zmrskán!
+
+Všechny texty týkající se FYKOSu jsou psány v typografickém systému \TeX
+(využívajíc {\LaTeX}ových maker). Řešení úloh pište v libovolném
+textovém editoru do souboru úlohy v kódování UTF-8. Výsledný soubor buď uložte
+do repozitáře, nebo pošlete e-mailem TeXaři.
+
+Text pište česky s háčky a čárkami v první osobě množného čísla, asi po 60~znacích
+(po~logických celcích) se snažte odřádkovávat. Více mezer a (jednotlivé) odřádkování
+nemá vliv na vizuální podobu výsledného textu. Nový odstavec vytvoříte prázdným
+řádkem. Velká většina příkazů
+se v TeXu uvozuje zpětným lomítkem (\verb|\|). Například text do uvozovek dáte
+pomocí~\verb|\uv{}|.
+
+\subsection{Matematické vzorce}
+\begin{compactitem}
+    \item Inline matematiku píšeme mezi dolary (např.~\verb|rychlost~$v_1 = w_0$|).
+    \item Jednořádkovou blokovou matematiku píšeme mezi \verb|\eq{}| (ekvivalent \verb|$$|)
+    a víceřádkovou mezi \verb|\eq[m]{}| (obdoba \verb|align|) a před znaky, na než chceme
+    zarovnat dáme \verb|&|.
+    \item Blokovou matematiku odsazujeme čtyřmi mezerami pro lepší čitelnost.
+    \item Odkazy děláme pomocí \verb|\lbl| na konkrétní řádek.
+    \item Vzorec se chová jako část textu (čárku, tečku na konci řádku oddělujeme mezerou~\verb|\,|).
+    \item Ve vzorcích používejte normálně znaménka plus, mínus; znaménko krát není vhodné psát.
+    \item Horní a dolní index vytvoříte pomocí stříšky (\verb|^|) nebo podtržítka~(\verb|_|).
+    \item Pokud je v indexu více znaků, dejte je do složených závorek. Index, který
+    vznikl z nějakého slova, se píše stojatý – před podtržítko dejte zpětné lomítko~(\verb|\_|).
+    \item Čárku nad veličinou pište pomocí anglického apostrofu (\verb|'|).
+\end{compactitem}
+
+Snažte se o to, aby zdrojový kód byl co nejpřehlednější. Pokud nevíte, jaká je
+přesná syntaxe určitého příkazu,
+Google a manuál {\LaTeX}u vám poradí. Poznámky, které se nemají objevit ve
+výsledném textu, pište na řádek začínající \verb|%|.
+
+\subsubsection{Příklady příkazů}
+
+Hodit se vám budou následující příkazy:
+\begin{multicols}{2}
+\begin{compactitem}
+    \item \verb|\frac{}{}| zlomek, do závorek napíšete čitatele a jmenovatele,
+    \item \verb|\cdot| tečka mezi dvěma zlomky,
+    \item \verb|\sqrt{}| odmocnina,
+    \item \verb|\alpha| malá alfa (ostatní řecká písmena obdobně),
+    \item \verb|\Alpha| velká alfa,
+    \item \verb|\int| integrál,
+    \item \verb|\sum| součet,
+    \item \verb|\sin{}| sinus,
+    \item \verb|\cos{}| kosinus,
+    \item \verb|\dot{}| tečka nad znakem (např. časová derivace),
+    \item \verb|\ddot{}| dvě tečky (druhá časová derivace),
+    \item \verb|\%| procento,
+    \item \verb|\dots| tři tečky,
+    \item \verb|\cdots| centrované tři tečky,
+    \item \verb|\footnote{}| poznámka pod čarou.
+\end{compactitem} 
+\end{multicols}
+
+\newpage
+Další příkazy se týkají pouze FYKOSu, jsou definovány ve FYKOSích makrech
+(balíček~\verb|fkssugar|).\nopagebreak
+\begin{multicols}{2}
+\begin{compactitem}
+    \item \verb|\d| diferenciál,
+    \item \verb|\der{y}{x}| první derivace $y$ podle $x$,
+    \item \verb|\dder{}{}| druhá derivace,
+    \item \verb|\pder{}{}| parciální derivace,
+    \item \verb|\vect{}| vektor vysázený tučně,
+    \item \verb|\bb{}| množiny (např. $\bb{R}$),
+    \item \verb|\eu| Eulerovo číslo,
+    \item \verb|\tg{}| tangens,
+    \item \verb|\(| \verb|\)| levá a pravá závorka,
+    \item \verb|\ztoho| implikace,
+    \item \verb|\const| konstanta,
+    \item \verb|\dg| stupeň,
+    \item \verb|\im| imaginární jednotka,
+    \item \verb|\bod{A}| geometrický bod~$\bod{A}$,
+    \item \verb|\C| stupně Celsia,
+    \item \verb|\pi| kontanta $\approx "3.14"$,
+    \item \verb|\oldpi| úhel, rovina, paralaxa.
+\end{compactitem}
+\end{multicols}
+
+\subsection{Čísla a jednotky}
+
+Chceme-li napsat desetinné číslo, příp. číslo s jednotkami, použijeme uvozovkového
+pomocníka (je citlivý na mezeru před jednotkou). Čísla píšeme s desetinnou
+tečkou(!) (snadno pak naformátujeme i výstup z Gnuplotu).
+
+\begin{verbatim}
+Teplota $"21.3 \C"$, úhel je $"123\dg", $\sigma = "5.67e-8 J.s^{-1}.m^{-2}.K^{-4}"$
+$"(0.7687\pm 0.0003) arcsec"$, vzestup o $"13.2 \%"$.
+\end{verbatim}
+
+
+\subsection{Obrázky}
+
+Obrázky jsou rozděleny do tří kategorií: grafy, drobné ilustrační, datové/velké
+ilustrační.
+\smallskip
+
+\noindent\verb|\plotfig{|{\tt \itshape cesta k souboru .tex}\verb|}{|{\tt \itshape popiska}\verb|}{|{\tt \itshape referenční ID}\verb|} % Gnuplot term eps latex|\\
+\verb|\fullfig{|{\tt \itshape cesta k souboru}\verb|}{|{\tt \itshape popiska}\verb|}{|{\tt \itshape referenční ID}\verb|}|\\
+\verb|\illfig{|{\tt \itshape cesta k souboru}\verb|}{|{\tt \itshape popiska}\verb|}{|{\tt \itshape referenční ID}\verb|}{|{\tt \itshape výška v řádcích}\verb|}|
+\smallskip
+
+\emph{Poznámka}\quad Jediným povinným argumentem je cesta k souboru
+(implicitně se prohledávají adresáře \verb|graphics|).
+Ostatní argumenty lze též zadat jako prázdné tokenem \verb|{}|.
+
+Obrázky (i zdrojáky) k úlohám se ukládají do adresáře \verb|problems/graphics|.
+Ostatní obrázky (seriál, úvodníček) se ukládají k dané sérii
+(\verb|batchB/graphics|).
+
+\subsection{Ostatní}
+
+Seznam vytvoříte pomocí {\LaTeX}ového prostředí~\verb|compactitem| nebo~\verb|compactenum|,
+každou položku označte~\verb|\item|.
+
+Na webové odkazy použijte makro \verb|\url{|{\tt \itshape adresa}\verb|}|. Odkazy do textu vložíte pomocí
+maker~\verb|\ref{|{\tt \itshape referenční ID}\verb|}| (obrázky, tabulky) a~\verb|\eqref{|{\tt \itshape referenční ID}\verb|}| (pro rovnice).
+
+Text pište v první osobě množného čísla, na konci svého řešení můžete uvést
+hlavní chyby, kterých se řešitelé dopouštěli.
+\end{document}
