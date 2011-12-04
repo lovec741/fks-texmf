@@ -46,12 +46,12 @@ breaklines=true%
 
 % quotation with author
 \newcommand\signed[1]{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
-  \hbox{}\nobreak\hfil(#1)%
+  \hbox{}\nobreak\hfil#1%
   \parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
 
 \newsavebox\quotebox
 \newenvironment{aquote}[1]
-  {\savebox\quotebox{#1}\begin{quote}}
+  {\savebox\quotebox{(#1)}\begin{quote}}
   {\signed{\usebox\quotebox}\end{quote}}
 
 % handy macros

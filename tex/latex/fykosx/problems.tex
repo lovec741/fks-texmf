@@ -67,14 +67,12 @@
        \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
    \textsl{\@probtask}
-   
-   
-   \hfill \textit{\@proborigin} %zarovnat doprava jako u citace, ne kvůli obrázkům
+   \signed{\textit{\@proborigin}}
 
    \medskip
    
    \noindent \@probsolution\par
-   \nopagebreak\expandafter\signature\@probsolauthors\par
+   \nopagebreak\vspace{6pt}\nopagebreak\expandafter\signature\@probsolauthors\par
 }
 
 
