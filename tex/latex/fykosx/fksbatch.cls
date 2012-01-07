@@ -12,14 +12,6 @@
 \LoadClass{fksbase}
 
 
-% packages
-\fancyfoot{}
-\if@twoside
-  \fancyfoot[EL]{\bfseries \thepage}
-  \fancyfoot[OR]{\bfseries \thepage}
-\else
-  \fancyfoot[C]{\bfseries \thepage}
-\fi
 
 \newcommand\problemsheading{%
 \section[Zadání \Roman{batch}. série]{\met@headerproblems}

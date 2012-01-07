@@ -51,8 +51,15 @@
 \fancyhead{}
 \fancyhead[L]{\bfseries\small \met@headername}
 \fancyhead[R]{\bfseries\small \met@volumeid}
+
+% options
 \fancyfoot{}
-\fancyfoot[C]{\bfseries \thepage}
+\if@twoside
+  \fancyfoot[EL]{\bfseries \thepage}
+  \fancyfoot[OR]{\bfseries \thepage}
+\else
+  \fancyfoot[C]{\bfseries \thepage}
+\fi
 
 % FYKOS packages
 \RequirePackage{fksmeta}

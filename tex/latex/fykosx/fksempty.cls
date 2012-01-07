@@ -14,6 +14,8 @@
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 
+\AtBeginDocument{\hypersetup{pdftitle={}}}
+
 \geometry{ignoreheadfoot,
   a5paper,
   margin=0.7cm,

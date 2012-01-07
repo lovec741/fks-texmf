@@ -1,0 +1,25 @@
+%
+% @author Michal Koutný <michal@fykos.cz>
+%
+% @description Loading classical Fyziklání format of tasks for new macros.
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fkslegacyloader}[2012/01/07 FYKOS legacy problem loader]
+
+\newcommand\uloha[6]{%
+\probname{#1}
+\probtask{#2}
+\probsolauthors{#4}
+\probsolution{#5}
+\proborigin{#6}
+}
+
+\renewcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
+  \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#2.tex}
+  \probfig{N/A}\probsolvers{N/A}\probavg{N/A}
+  \IfFileExists{\@tmpfilename}{
+  \input{\@tmpfilename}%
+  \ClassInfo{fksserie}{Loaded \@tmpfilename}
+  #3
+  }{\ClassWarning{fksserie}{Problem file \@tmpfilename not found.}}
+}

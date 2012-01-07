@@ -27,15 +27,17 @@
 }
 
 \newcommand\problemtask{%
+  \tasktrue\solutionfalse\solutionsinglefalse%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-   \problem[\metaprobletter{problem}: \@probname]{Úloha \Roman{batch}.\metaprobletter{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}}%
+   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
   }
 }
 
 \newcommand\problemsolution{%
+  \taskfalse\solutiontrue\solutionsinglefalse%
   \stepcounter{problem}%
   \@LoadProblem{\thesolvedbatch}{\theproblem}{%
   \pr@blemsolution
@@ -48,6 +50,7 @@
 }
 
 \newcommand\problemsolutionsingle{%
+  \taskfalse\solutiontrue\solutionsingletrue%
   \setcounter{solvedbatch}{\@probbatch}
   \setcounter{problem}{\@probno}
   \hypersetup{
@@ -60,11 +63,8 @@
 
 \newcommand\pr@blemsolution{%  
    \problem[\metaprobletter{problem}: \@probname]%
-    {Úloha \Roman{solvedbatch}.\metaprobletter{problem} \,\ldots{} \@probname{} \hfill
-      {\normalfont\normalsize\@probpoints~\plural{\@probpoints}{bod}{body}{bodů};
-       \ifthenelse{\equal\@probavg{N/A}}{(chybí statistiky)\PackageWarning{fks problems}{Missing stats for problem \Roman{solvedbatch}.\theproblem.}}{%
-       průměr \@probavg;
-       \plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}}%
+    {Úloha \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
+      {\normalfont\normalsize\problemstats}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
    \textsl{\@probtask}
    \signed{\textit{\@proborigin}}
@@ -74,6 +74,21 @@
    \noindent \@probsolution\par
    \nopagebreak\vspace{6pt}\nopagebreak\expandafter\signature\@probsolauthors\par
 }
+
+% problem info fields macros
+\newcommand\problemnum[2]{\Roman{#1}.\metaprobletter{#2}}
+
+\newcommand\problemstats{\problempoints;
+\ifthenelse{\equal\@probavg{N/A}}{(chybí statistiky)\PackageWarning{fks problems}{Missing stats for problem \Roman{solvedbatch}.\theproblem.}}{%
+průměr \@probavg;
+\plural{\@probsolvers}{řešil}{řešili}{řešilo}{} \@probsolvers{} \plural{\@probsolvers}{student}{studenti}{studentů}}}
+
+\newcommand\problempoints{\@probpoints~\plural{\@probpoints}{bod}{body}{bodů}}
+
+% ifs for customizing problems layout
+\newif\iftask
+\newif\ifsolution
+\newif\ifsolutionsingle % solutionsingle implies solution
 
 
 % problem attributes
