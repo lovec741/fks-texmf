@@ -16,7 +16,11 @@
 \newcommand\problemsheading{%
 \section[Zadání \Roman{batch}. série]{\met@headerproblems}
 \vspace{-4pt}
+\ifthenelse{\equal{\@deadlineS}{N/A}}{%
 \centerline{\Large\slshape\sffamily Termín doručení: \@deadline}
+}{%
+\centerline{\Large\slshape\sffamily Termín uploadu: \@deadline}
+\centerline{\Large\slshape\sffamily Termín odeslání: \@deadlineS}}
 \vspace{1.5ex}
 \setcounter{problem}{0}}
 
@@ -45,8 +49,11 @@
   \oldfooter
 }
 
-\newcommand\@deadline{NENÍ ZADÁNO}
+\newcommand\@deadline{NENÍ ZADÁNO} % upload/receive
 \newcommand\deadline[1]{\renewcommand\@deadline{#1}}
+
+\newcommand\@deadlineS{N/A} % send
+\newcommand\deadlineS[1]{\renewcommand\@deadlineS{#1}}
 
 
 
