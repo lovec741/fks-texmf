@@ -36,3 +36,7 @@ vardef arcsin  primary x = ((arcsind(x))/radian)                 enddef;
 vardef arccos  primary x = ((arccosd(x))/radian)                 enddef;
 vardef argcosh primary x = ln(x+(x+-+1))                         enddef;
 vardef argsinh primary x = ln(x+(x++1))                          enddef;
+vardef arctand primary x = arcsind(x/sqrt(x++1))                 enddef;
+vardef arctan  primary x = ((arctand(x))/radian)                 enddef;
+vardef arccotd primary x = arccosd(x/sqrt(x++1))                 enddef;
+vardef arccot  primary x = ((arccotd(x))/radian)                 enddef;
