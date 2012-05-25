@@ -9,6 +9,8 @@
 %              of mathematical stuff. Based on mathstuff.sty
 %              by Jan Houštěk.
 % @note If you use this package separately with XeLaTeX, load it prior xltxtra package.
+% @note If you use 'babel' package, unit convenience macro will block macros
+%       that use active double quote (") char.
 %
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fkssugar}[2011/09/11 FYKOS comfort macros]
@@ -70,7 +72,7 @@
 
 % -- greek letters --
 %special for upright pi
-\let\oldpi\pi
+\let\varpi\pi
 \IfFileExists{lgrenc.def}{      % part of babel package
 \input{lgrenc.def}
 \DeclareMathAlphabet{\grk}{LGR}{cmr}{m}{n}     % upright greek
@@ -121,10 +123,18 @@
 
 % pohodlne psani cisel a jednotek (napr. $ G = "6.672e-11 N.m^2.kg^{-2}" $)
 \begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
-\begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
 \mathchardef\mathquote=\mathcode`\"
-\mathcode`\"="8000      % " je v matematice aktivni a expanduje na \jed@A
 \def\jed@A #1 {\begingroup\mathcode`\.="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers always written with dot
 \def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
-}
+\begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
+\mathcode`\"="8000    
+
+\@ifpackageloaded{babel}{%
+  \PackageWarning{fkssugar}{Package babel detected, macros with active double quote ", will be disabled.}
+% -- Uncomment if you need use standard babel double quote macros --
+%  \begingroup\uccode`~=`*\uppercase{\endgroup\def~}#1*{\jed@A #1 @@}
+%  \mathcode`\*="8000    
+  \catcode`\"=12
+}{%
+}}
 
