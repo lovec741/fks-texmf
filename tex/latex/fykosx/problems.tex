@@ -15,6 +15,9 @@
 
 % problems
 \newcommand\problemsfileprefix{} % possibility to override standard filename (for inter-year import)
+\newcommand\suppressprobfig{\renewcommand\probfig[1]{\renewcommand\@probfig{N/A}}} % when rendering figure manually
+\newcommand\revertprobfig{\renewcommand\probfig[1]{\renewcommand\@probfig{##1}}} % when rendering figure manually
+
 \newcommand\@tmpfilename{}
 \newcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
   \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#1-#2.tex}

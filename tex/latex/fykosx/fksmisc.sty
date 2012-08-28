@@ -73,3 +73,9 @@ breaklines=true%
   \fi%
 }
 
+% IPA font (usage: \textIPA{<unicode string>})
+% Note: font is visually different from Latin Modern,
+%       however, `tipa` package is only for LaTeX (8b encoding).
+\newfontfamily\doulos{[DoulosSIL-R.ttf]}
+\DeclareTextFontCommand{\textIPA}{\doulos}
+
