@@ -17,14 +17,14 @@
 \begin{document}
 \maketitle
 
-Několik konvencí:
+\noindent Několik konvencí:
 \begin{itemize}
 \item Body vyznačujeme pomocí \verb+odot(0.4mm,pozice)+.
 \item Úhly kreslíme se základním poloměrem $"8 mm"$.
 \item Šrafujeme s roztečí $"1 mm"$.
 \end{itemize}
 
-{\centering\large\texttt{cary.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{cary.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
     \verb+drawdots(size) path+ & \includegraphics{mp_cary_1} & 
@@ -42,14 +42,15 @@ Několik konvencí:
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{fkscirc.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{fkscirc.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
+    \verb+svorky+ & &\\\hline
     {\bf !TODO!} & &\\\hline
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{fks-label.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{fks-label.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
     \verb+olabel.poz(label,point)+ & & 
@@ -62,7 +63,7 @@ Několik konvencí:
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{fks-logo-color.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{fks-logo-color.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
     \verb+mpost fks-logo-color.mp+&\includegraphics{fks-logo-color}& 
@@ -70,7 +71,7 @@ Několik konvencí:
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{fks-logo.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{fks-logo.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
     \verb+mpost fks-logo.mp+&\includegraphics{fks-logo_1}& fks-logo.1\\\hline
@@ -88,7 +89,7 @@ Několik konvencí:
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{fks.mp} (hlavní soubor)\nopagebreak\\\medskip}
+{\centering\large\texttt{fks.mp} (hlavní soubor)\nopagebreak\\\medskip\noindent}
 Natahuje {\tt fks-label.mp} a {\tt mth-function.mp}.\nopagebreak\\
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
@@ -125,12 +126,23 @@ Natahuje {\tt fks-label.mp} a {\tt mth-function.mp}.\nopagebreak\\
 	označení bodu, používá se {\tt 0.4mm}\\\hline
     \verb+kulicka(5mm,(0,0))+ & \includegraphics{mp_fks_14}&
 	kulička\\\hline
-    {\bf !TODO!} \verb+kotovani+ & & 
-	kótování dvojšipkou a čerchovanými čarami\\\hline
+    \verb+kotaDPK.top(z0,z1,0.5u,btex $l$ etex,0.5,0mm)+ &
+	\raise-24pt\hbox{\includegraphics{mp_fks_15}} & 
+	kóta mezi body \verb+z0+ a \verb+z1+ odsazená o \verb+0.5u+ popisek 
+	\verb+btex $l$ etex+ umístěný nahoru, posunutý na $50\%$ k \verb+z1+,
+	posunutý od dvojšipky o \verb+0mm+.\\\hline
+    \verb+kotaDP.dir(poc,kon,lab,poz)+ &&
+	\verb+kotaDPK.dir(poc,kon,0.5u,lab,poz,0mm)+\\\hline
+    \verb+kotaD.dir(poc,kon,lab)+ &&
+	\verb+kotaDP.dir(poc,kon,lab,0.5)+\\\hline
+    \verb+kota(poc,kon,lab)+ &&
+	\verb+kotaD.dir(poc,kon,lab)+, kde \verb+dir+ se nastavuje podle
+	směru dvojšipky automaticky.\\\hline
+    {\bf !TODO!} Zbylé kombinace&&\\\hline
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{fks-tricko.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{fks-tricko.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
     \verb+mpost fks-tricko.mp+ & \includegraphics[width=3cm]{fks-tricko_1} & 
@@ -139,14 +151,14 @@ Natahuje {\tt fks-label.mp} a {\tt mth-function.mp}.\nopagebreak\\
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{fks-znacky.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{fks-znacky.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
     Stará makra pro kreslení el. obvodů.&&\\\hline
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{fks-3d.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{fks-3d.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
     \verb+VRP_tD+ && nastavení volného rovnoběžného promítání, 
@@ -180,14 +192,14 @@ Natahuje {\tt fks-label.mp} a {\tt mth-function.mp}.\nopagebreak\\
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{makecirc-fks.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{makecirc-fks.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
-    Má pod palcem Marek.&&\\\hline
+    {\bf !TODO!}&&\\\hline
 \end{tabularx}\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\centering\large\texttt{mth-function.mp}\nopagebreak\\\medskip}
+{\centering\large\texttt{mth-function.mp}\nopagebreak\\\medskip\noindent}
 \begin{tabularx}{\textwidth}{|l|l|X|}\hline
     kód & výsledek & použití\\\hline
     \verb+sqr+  && druhá mocnina\\\hline

@@ -77,6 +77,10 @@ beginfig(14);
 kulicka(5mm,(0,0));
 endfig;
 
+beginfig(15);
+z0=(0,0);z1=(u,u);
+kota.top(z0,z1,0.5u,btex $l$ etex,0.5,0mm);
+endfig;
 
 
 verbatimtex
