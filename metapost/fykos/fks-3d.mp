@@ -13,8 +13,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                             %
-% Pro ukladani 3D polohy se pouziva color, dale pro           %
-% projektovanou hodnotu se pouziva pair.                      %
+% Pro ukladani 3D polohy se pouzivaji tri pole analogicky     %
+%      k "z", "x" a "y", dale pro projektovanou hodnotu se    %
+%      pouziva makro projektujisi z trech 3D poli.            %
 %                                                             %
 % Inicializace: vyber projekce:                               %
 %                 VRP_tD:  volne rovnobezne prmitani PN       %
