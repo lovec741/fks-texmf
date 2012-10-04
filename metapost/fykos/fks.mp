@@ -7,7 +7,8 @@
 %                                                             %
 % vzniklo obohacenim starsiho fks.mp                          %
 %                                                             %
-% Jan Houstek, 12. 2001                                       %
+% Jan Houstek,   12. 2001                                     %
+% Lukas Ledvina, 10. 2012                                     %
 %                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 input fks-label
@@ -130,4 +131,44 @@ def kulicka(expr prumer,bod)=
          withcolor .95white;
   erase fill fullcircle scaled (.2*prumer) shifted(bod+.19*prumer*dir135);
 enddef;
+
+% kotovani
+
+vardef kota(expr poc, kon,lab)=
+  save phi;
+  phi:=angle(kon-poc)+22.5;
+  phi:=(phi+720) mod 360;
+  show phi;
+  if phi<45:      kotaD.top(poc,kon,lab);
+  elseif phi<90:  kotaD.ulft(poc,kon,lab);
+  elseif phi<135: kotaD.lft(poc,kon,lab);
+  elseif phi<180: kotaD.llft(poc,kon,lab);
+  elseif phi<225: kotaD.bot(poc,kon,lab);
+  elseif phi<270: kotaD.lrt(poc,kon,lab);
+  elseif phi<315: kotaD.rt(poc,kon,lab);
+  elseif phi<360: kotaD.urt(poc,kon,lab);
+  elseif phi<405: kotaD.top(poc,kon,lab);
+  fi
+enddef;
+
+vardef kotaD@#(expr poc, kon,lab)=
+  kotaDP@#(poc,kon,lab,0.5);
+enddef;
+
+vardef kotaDP@#(expr poc, kon,lab, poz)=
+  kotaDPK@#(poc,kon,0.5u,lab,poz,0mm);
+enddef;
+
+vardef kotaDPK@#(expr poc, kon, delta, lab, poz,kor)=
+  save dirc,labL; pair dirc; picture labL;
+  dirc=unitvector(kon-poc);
+  draw poc--(poc+dirc.rotated90*delta) dashed cerch;
+  draw kon--(kon+dirc.rotated90*delta) dashed cerch;
+  drawdblvarrow (poc+dirc.rotated90*delta)--(kon+dirc.rotated90*delta);
+  labL=thelabel.@#(lab,(0,0));
+  labL:=labL.shifted(poz[poc,kon]+dirc.rotated90*(delta+kor));
+  draw labL;
+enddef;
+
+
 
