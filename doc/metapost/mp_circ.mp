@@ -1,5 +1,6 @@
 input fks
-input cary
+input makecirc-fks
+input fkscirc
 verbatimtex
 %&latex
 \documentclass[9pt]{extarticle}
@@ -12,74 +13,38 @@ prologues:=3;
 u:=1cm;
  
 beginfig(1);
-draw (0,0)--(u,0) dashed cerch;
+fks_center:=true;
+inductor.AA((0,0),Up,45,btex $L_1$ etex, btex $"1 H"$ etex);
 endfig;
- 
+
 beginfig(2);
-draw (0,0)--(u,0) dashed cark;
+fks_center:=true;
+capacitor.AA((0,0),Up,45,btex $C_1$ etex, btex $"1 \micro F"$ etex);
 endfig;
-  
+
 beginfig(3);
-draw (0,0)--(u,0) wp5;
+fks_center:=true;
+motor.AA((0,0),45,btex $M_1$ etex,"");
 endfig;
 
 beginfig(4);
-draw (0,0)--(u,0);
-draw (0,0)--(u,0).rotated30;
-uhel((u,0),(0,0),(u,0).rotated30,8mm);
-olabel.bot(btex $\bod A$ etex,(u,0));
-olabel.bot(btex $\bod B$ etex,(0,0));
-olabel.top(btex $\bod C$ etex,(u,0).rotated30);
+fks_center:=true;
+transformer.AA((0,0),mid,0);
 endfig;
 
 beginfig(5);
-draw (0,0)--(u,0);
-draw (0,0)--(0,u);
-uhelR((u,0),(0,0),5mm);
-olabel.bot(btex $\bod A$ etex,(u,0));
-olabel.bot(btex $\bod B$ etex,(0,0));
+fks_center:=true;
+source.AA((0,0),AC,90,btex$B_0$etex,btex$"3 V"$etex);
 endfig;
-  
+
 beginfig(6);
-axis((0,0),.2u,u,.1u,.5u);
-endfig;
-
-beginfig(7);
-srafuj((0,0)--(u,0)--(0,.5u)--cycle,dir45,1mm);
-endfig;
-
-beginfig(8);
-drawearrow (0,0)--(u,0);
-endfig;
-
-beginfig(9);
-drawdblearrow (0,0)--(u,0); 
+fks_center:=true;
+diode.AA((0,0),zener,45,pinA,btex$D_1$etex,"");
 endfig;
 
 beginfig(10);
-drawvarrow ((0,0)--(u,0));
-endfig;
-
-beginfig(11);
-drawdblvarrow ((0,0)--(u,0));
-endfig;
-
-beginfig(12);
-pruzina((0,0),(u,0),.1u,4);
-endfig;
-
-beginfig(13);
-odot(.4mm,(0,0));
-endfig;
-
-
-beginfig(14);
-kulicka(5mm,(0,0));
-endfig;
-
-beginfig(15);
-z0=(0,0);z1=(u,u);
-kotaDPK.ulft(z0,z1,0.5u,btex $l$ etex,0.5,0mm);
+fks_center:=true;
+impedance.AA((0,0),45,btex $R_1$ etex, btex $"1 \ohm"$ etex);
 endfig;
 
 
