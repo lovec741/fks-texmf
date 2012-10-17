@@ -82,6 +82,16 @@ z0=(0,0);z1=(u,u);
 kotaDPK.ulft(z0,z1,0.5u,btex $l$ etex,0.5,0mm);
 endfig;
 
+beginfig(16);
+z0=(0,0);z1=(u,0);
+provaz(8,z0--z1);
+endfig;
+
+beginfig(17);
+z0=(0,0);z1=(u,0);
+provazVR(8,z0--z1);
+endfig;
+
 
 verbatimtex
 \end{document}

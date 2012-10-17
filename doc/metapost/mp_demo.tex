@@ -51,7 +51,7 @@
 	nakreslí pravý úhel $\sphericalangle ABC$ s obloučkem 
 	poloměru $"8 mm"$. Typicky se dělá menší než $"8 mm"$, zde $"5 mm"$.
 	\\\hline
-    \verb+axis((0,0),.2u,u,.1u,.5u)+ & \includegraphics{mp_fks_6}&
+    \verb+axis((0,0),.2u,u,.1u,.5u)+ & \raise-12pt\hbox{\includegraphics{mp_fks_6}}&
 	osový kříž se středem v {\tt (0,0)}, dále rozsahy na osách\\\hline 
     \verb+srafuj((0,0)--(u,0)--(0,.5u)--cycle,dir45,1mm)+ & 
       \raise-12pt\hbox{\includegraphics{mp_fks_7}}&
@@ -83,6 +83,13 @@
 	\verb+kotaD.dir(poc,kon,lab)+, kde \verb+dir+ se nastavuje podle
 	směru dvojšipky automaticky.\\\hline
     {\bf !TODO!} Zbylé kombinace&&\\\hline
+    \verb+dist(a,b)+&&\\\hline
+    \verb+provaz(size,path)+&\includegraphics{mp_fks_16}&Nakreslí lanko šířky
+	\verb+size+ po trajektorii \verb+path+\\\hline
+    \verb+provazVR(size,path)+&\includegraphics{mp_fks_17}&To samé, ale kreslí
+	provaz, tj.~má vroubky. Jednotlibé provazy jdou na sebe navazovat, 
+	při křížení cesty se může chovat nestandardně, mezní křivost je 
+	\verb+1mm+ pro šířku 1 (platí přímá úměra).\\\hline
     \multicolumn{3}{|l|}{\emph{Další příkazy pocházejí z} {\tt fks-label.mp}}\\\hline
     \verb+olabel.poz(label,point)+ & & 
 	standardní label, ale vykreslí též bod pomocí \verb+odot+, 
