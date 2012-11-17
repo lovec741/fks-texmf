@@ -6,6 +6,7 @@
 % A MetaPost library for drawing electrical circuit diagrams.
 % Copyright (c) 2003 GS Bustamante Argañaraz. 
 % Modified to not use latex.mp by Marek Necada
+% Modified to centering diagrams by Lukas Ledvina (not finished)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % This program may be distributed and/or modified under the conditions
@@ -26,6 +27,8 @@
 verbatimtex
 \font\circsf=cmss10
 etex
+
+boolean fks_center;fks_center:=false;
 
 newinternal labeling, rotatelabel, norotatelabel;
 labeling:=0; norotatelabel:=labeling; rotatelabel:=1;
@@ -230,7 +233,8 @@ enddef;
 newinternal coil, Up, Down;
 coil:=2mm; Up:=0; Down:=1;
 
-vardef inductor@#(expr z,type,ang,name,val)=
+vardef inductor@#(expr zz,type,ang,name,val)=
+	save z;pair z;z:=zz.if fks_center:-(3coil,0).rotated.ang.fi;
 	save bobina;
 	pair L@#.l, L@#.r; % pines %
 	L@#.l=z; L@#.r=(z+(6coil,0)) rotatedaround (z,ang);
@@ -255,7 +259,8 @@ enddef;
 newinternal normal, electrolytic, variable, variant, platsep;
 normal:=0; electrolytic:=1; variable:=2; platsep:=1mm; variant:=3;
 
-vardef capacitor@#(expr z,type,ang,name,val)=
+vardef capacitor@#(expr zz,type,ang,name,val)=
+	save z;pair z;z:=zz.if fks_center:-(3.5platsep,0).rotated.ang.fi;
 	save cap;
 	pair C@#.l, C@#.r; % pines %
 	C@#.l:=z;
@@ -301,7 +306,8 @@ enddef;
 
 %%%<--- Electrical machines (maquinas electricas) --->%%%
 
-vardef motor@#(expr z,ang,name,val)=
+vardef motor@#(expr zz,ang,name,val)=
+	save z;pair z;z:=zz.if fks_center:-(ssize,0).rotated.ang.fi;
 	save mot, p, q, r, s, ca, cb, c, hc;
 	pair M@#.D, M@#.B; % pines %
 	M@#.D:=z; M@#.B:=(z+(2ssize,0)) rotatedaround(z,ang);
@@ -337,7 +343,8 @@ vardef motor@#(expr z,ang,name,val)=
 	putlabel(M@#.D,M@#.B,.5ssize,.5ssize,ang,name,val);
 enddef;
 
-vardef generator@#(expr z,ang,name,val)=
+vardef generator@#(expr zz,ang,name,val)=
+	save z;pair z;z:=zz.if fks_center:-(ssize,0).rotated.ang.fi;
 	save gen;
 	pair G@#.D, G@#.B; % pines %
 	G@#.D:=z; G@#.B:=(z+(2ssize,0)) rotatedaround(z,ang);
@@ -357,7 +364,8 @@ enddef;
 newinternal mid, Fe, auto;
 mid:=1; Fe:=2; auto:=3;
 
-vardef transformer@#(expr z,type,ang)=
+vardef transformer@#(expr zz,type,ang)=
+	save z;pair z;z:=zz.if fks_center:-if.type=normal:(1.2coil,4coil).elseif.type=mid:(1.2coil,4coil).elseif.type=Fe:(7coil,2.614coil).elseif type=auto:(0,0).fi.rotated.ang.fi;
 	save trafo;
 	pair tf@#.pi, tf@#.ps, tf@#.si, tf@#.ss, tf@#.m;
 	tf@#.pi:=z; tf@#.ps:=(z+(0,8coil)) rotatedaround(z,ang);
@@ -437,7 +445,8 @@ enddef;
 newinternal AC,DC,I,V,ssize;
 AC:=1; DC:=0; I:=2; V:=3; ssize:=6mm; 
 
-vardef source@#(expr z,type,ang,name,val)=
+vardef source@#(expr zz,type,ang,name,val)=
+	save z;pair z;z:=zz.if fks_center:-(ssize,0).rotated.ang.fi;
 	save fuente, positive, negative, seno;
 	pair S@#.p,S@#.n; % pines %
 	if (type=AC) or (type=I) or (type=V):
@@ -529,7 +538,8 @@ enddef;
 newinternal zener, LED, diodeht, pinK, pinA;
 zener:=1; LED:=2; diodeht:=3.5mm; pinK:=3; pinA:=4;
 
-vardef diode@#(expr z,type,ang,pin,name,val)=
+vardef diode@#(expr zz,type,ang,pin,name,val)=
+	save z;pair z;z:=zz.if.fks_center:-(1.5diodeht,0)rotated.ang.fi;
 	save diodo;
 	pair D@#.K,D@#.A; % pines %
 	picture diodo;

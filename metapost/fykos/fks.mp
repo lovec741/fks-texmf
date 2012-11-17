@@ -7,7 +7,8 @@
 %                                                             %
 % vzniklo obohacenim starsiho fks.mp                          %
 %                                                             %
-% Jan Houstek, 12. 2001                                       %
+% Jan Houstek,   12. 2001                                     %
+% Lukas Ledvina, 10. 2012                                     %
 %                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 input fks-label
@@ -129,5 +130,143 @@ def kulicka(expr prumer,bod)=
   fill fullcircle scaled (.4*prumer) shifted(bod+.17*prumer*dir135)
          withcolor .95white;
   erase fill fullcircle scaled (.2*prumer) shifted(bod+.19*prumer*dir135);
+enddef;
+
+% kotovani
+
+vardef kota(expr poc, kon,lab)=
+  save phi;
+  phi:=angle(kon-poc)+22.5;
+  phi:=(phi+720) mod 360;
+  show phi;
+  if phi<45:      kotaD.top(poc,kon,lab);
+  elseif phi<90:  kotaD.ulft(poc,kon,lab);
+  elseif phi<135: kotaD.lft(poc,kon,lab);
+  elseif phi<180: kotaD.llft(poc,kon,lab);
+  elseif phi<225: kotaD.bot(poc,kon,lab);
+  elseif phi<270: kotaD.lrt(poc,kon,lab);
+  elseif phi<315: kotaD.rt(poc,kon,lab);
+  elseif phi<360: kotaD.urt(poc,kon,lab);
+  elseif phi<405: kotaD.top(poc,kon,lab);
+  fi
+enddef;
+
+vardef kotaD@#(expr poc, kon,lab)=
+  kotaDP@#(poc,kon,lab,0.5);
+enddef;
+
+vardef kotaDP@#(expr poc, kon,lab, poz)=
+  kotaDPK@#(poc,kon,0.5u,lab,poz,0mm);
+enddef;
+
+vardef kotaDPK@#(expr poc, kon, delta, lab, poz,kor)=
+  save dirc,labL; pair dirc; picture labL;
+  dirc=unitvector(kon-poc);
+  draw poc--(poc+dirc.rotated90*delta) dashed cerch;
+  draw kon--(kon+dirc.rotated90*delta) dashed cerch;
+  drawdblvarrow (poc+dirc.rotated90*delta)--(kon+dirc.rotated90*delta);
+  labL=thelabel.@#(lab,(0,0));
+  labL:=labL.shifted(poz[poc,kon]+dirc.rotated90*(delta+kor));
+  draw labL;
+enddef;
+
+% Lanko (bez vroubku)
+def provaz(expr width, cesta)=
+begingroup
+  save _linecap;_linecap:=linecap;
+  linecap:=butt;
+  draw cesta wp.width  withcolor white;
+  draw cesta wp.8width;
+  draw cesta wp.4width withcolor white;
+  linecap:=_linecap;
+endgroup
+enddef;
+
+vardef dist(expr a,b)=(xpart a-xpart b)++(ypart a-ypart b) enddef;
+
+% Provaz (ma vroubky)
+% Minimalni polomer 1mm pro sirku 1.
+% Nedelejte ten provaz moc krátký, blbne.
+% 0.14 (delka carky) by mela byt co nejdyssi pro male polomery, ale 
+%   nesmi byt moc vysoka je-li phi (uhel natoceni) maly, pak couha ven roh.
+def provazVR(expr width, cestaX)=
+begingroup
+  save cesta,vrub,lastvr,direc,vrbot,vrtop,phi,carky,truelgt,A,B,C;
+  provaz(width,cestaX);
+% prodlouzeni cesty o jeden pricky prouzek
+  path cesta;cesta:=
+    point.0.of.cestaX-.5width*unitvector(direction.0.of.cestaX)--
+    cestaX--
+    point.length.cestaX.of.cestaX+width*unitvector(direction.length.cestaX.of.cestaX);
+
+  pair vrub;  vrub  :=point.0.of.cesta;
+  pair lastvr;lastvr:=point.0.of.cesta;
+  pair direc;
+  numeric vrbot,vrtop,phi;
+  phi:=30; % uhel sklonu
+  vrbot:=0;
+  pen carky;carky:=makepen((0,-1)--(0,0)--cycle);
+
+% mereni delky
+  numeric n_lines;n_lines:=0;
+  forever:
+    vrtop:=length.cesta;
+    for i=0 upto 32:
+      vrub:=point .5[vrtop,vrbot]of.cesta;
+      if dist(vrub,lastvr)>width/2:
+        vrtop:=.5[vrtop,vrbot];
+      else:
+        vrbot:=.5[vrtop,vrbot];
+      fi
+    endfor
+    lastvr:=point.vrbot.of.cesta;
+    exitif (dist(vrub,point.length.cesta.of.cesta))<width;
+    n_lines:=n_lines+1;
+  endfor
+% prava delka
+numeric truelgt; truelgt:=n_lines*width/2-dist(vrub,point.length.cesta-1.of.cesta);
+% nova roztec
+  numeric _width;_width=2*truelgt/n_lines;
+% nove natazeni cesty
+  cesta:=
+    point.0.of.cestaX-.5_width*unitvector(direction.0.of.cestaX)--
+    cestaX--
+    point.length.cestaX.of.cestaX+_width*unitvector(direction.length.cestaX.of.cestaX);
+
+  boolean pockon;pockon:=true;
+  vrub  :=point.0.of.cesta;
+  lastvr:=point.0.of.cesta;
+  vrbot :=0;
+  for j=0 upto n_lines:
+    vrtop:=length.cesta;
+    for i=0 upto 32:
+      vrub:=point .5[vrtop,vrbot]of.cesta;
+      if dist(vrub,lastvr)>_width/2:
+        vrtop:=.5[vrtop,vrbot];
+      else:
+        vrbot:=.5[vrtop,vrbot];
+      fi
+    endfor
+    lastvr:=point.vrbot.of.cesta;
+    exitif j=n_lines;
+
+    direc:=unitvector(direction.vrbot.of.cesta).rotated.phi;
+    direc:=direc*.14width/sind.phi;
+    draw vrub.if.not.pockon:shifted(-direc)fi--vrub.shifted.direc
+      withpen carky.rotated(angle.direc-phi+90).scaled.2width;
+% zakonceni pocatku
+    if.pockon:draw vrub--vrub.shifted.direc
+      withpen carky.rotated(angle.direc-phi).scaled((.2*tand.phi)*width).fi;
+
+    if pockon:pockon:=false.fi;
+  endfor
+% zakonceni konce
+  direc:=unitvector(direction.vrbot.of.cesta).rotated.phi;
+  direc:=direc*.14width/sind.phi;
+  pair A;A:=vrub;
+  pair B;B:=vrub.shifted(-direc);
+  pair C;C:=A+(B-A).rotated(90-phi)*sind.phi;
+  fill A--B--C--cycle wp .01;
+endgroup
 enddef;
 
