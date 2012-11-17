@@ -24,6 +24,7 @@
   }{\ClassWarning{fksserie}{Problem file \@tmpfilename not found.}}
 }
 
+% první ročník FoL
 \DeclareOption{fyziklani-online}{
     \renewcommand\uloha[7]{%
     \probname{#1}
@@ -44,5 +45,25 @@
     }
 }
 
+% FoL, rozšíření o platné cifry
+\DeclareOption{fyziklani-online2}{
+    \renewcommand\uloha[8]{%
+    \probname{#1}
+    \probtask{#2}
+    \probsolauthors{#4}
+    \probsolution{#5}
+    \proborigin{#6}
+    \probpoints{#7}
+    }
+    \renewcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
+    \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#1-#2.tex}
+    \probfig{N/A}\probsolvers{N/A}\probavg{N/A}
+    \IfFileExists{\@tmpfilename}{
+    \input{\@tmpfilename}%
+    \ClassInfo{fksserie}{Loaded \@tmpfilename}
+    #3
+    }{\ClassWarning{fksserie}{Problem file \@tmpfilename not found.}}
+    }
+}
 
 \ProcessOptions\relax
