@@ -25,8 +25,10 @@
 \setcounter{problem}{0}}
 
 \newcommand\solutionheading{%
+\ifthenelse{\equal{\thesolvedbatch}{0}}{% implicitly set solvedbatch = batch - 1
 \setcounter{solvedbatch}{\value{batch}}%
 \addtocounter{solvedbatch}{-1}%
+}{}%
 \setcounter{problem}{0}%
 \section[Řešení \Roman{solvedbatch}. série]{\met@headersolutions}}
 
