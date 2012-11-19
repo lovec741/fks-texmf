@@ -28,7 +28,4 @@ vardef svorky@#(expr zz, type, ang, name, val)=
 	putlabel(SV@#.p,SV@#.n,.1ssize,.1ssize,ang,name,val);
 enddef;
 
-def junction(expr z)=
-	draw z withpen pencircle scaled junctiondiam;
-enddef;
 	

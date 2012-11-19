@@ -813,7 +813,8 @@ enddef;
 newinternal NO, NC, ssep, swt;
 NO:=0; NC:=1; ssep:=3mm; swt:=1.2ssep;
 
-vardef switch@#(expr z,type,ang,name,val)=
+vardef switch@#(expr zz,type,ang,name,val)=
+	save z;pair z;z:=zz.if.fks_center:-(swt,0)rotated.ang.fi;
 	save swt; 
 	pair st@#.l, st@#.r;
 	st@#.l:=z; st@#.r:= (z+(2.4ssep,0)) rotatedaround(z,ang);
@@ -835,7 +836,8 @@ enddef;
 
 %%%<--- Battery (bater'ia) --->%%%
 
-vardef battery@#(expr z,ang,name,val)=
+vardef battery@#(expr zz,ang,name,val)=
+		save z;pair z;z:=zz.if.fks_center:-(.9ssize,0)rotated.ang.fi;
 		save bat;
 		pair B@#.n, B@#.p;
 		B@#.n:=z; B@#.p:=(z+(1.8ssize,0)) rotatedaround(z,ang);

@@ -47,6 +47,18 @@ fks_center:=true;
 impedance.AA((0,0),45,btex $R_1$ etex, btex $"1 \ohm"$ etex);
 endfig;
 
+beginfig(11);
+fks_center:=true;
+switch.Sa((0,0  ),NC,0,"","");
+switch.Sb((0,.5u),NO,0,"","");
+endfig;
+
+beginfig(12);
+fks_center:=true;
+battery.Ba((0,0),0,"","");
+endfig;
+
+
 
 verbatimtex
 \end{document}
