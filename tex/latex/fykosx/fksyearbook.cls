@@ -1,0 +1,334 @@
+%
+% @author Michal Koutný <michal@fykos.cz>
+%
+% @description Provides Year book class
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{fksyearbook}[2012/11/13 Year book class]
+
+% inherit from report class
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\ProcessOptions
+\LoadClass[9pt]{report}
+
+
+% packages
+\@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
+
+\RequirePackage{optional} % ought be first
+\RequirePackage{amssymb} 
+\RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
+\RequirePackage{xltxtra} % includes xunicode, fontspec
+\RequirePackage{pgffor}
+\RequirePackage{lastpage}
+\UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal ellipsis
+
+\RequirePackage[xetex,
+  setpagesize=false,
+  linkcolor=black,
+  anchorcolor=black,
+  citecolor=black,
+  filecolor=black,
+  urlcolor=black,
+  bookmarks=true,
+]{hyperref} 
+\opt{web}{\hypersetup{colorlinks=true}}
+\opt{print}{\hypersetup{colorlinks=false}}
+\RequirePackage{xkeyval}
+\RequirePackage{polyglossia}
+\setdefaultlanguage{czech}
+
+
+% layout settings
+\RequirePackage[includeheadfoot,
+  twoside,
+  a5paper,
+  margin=0.7cm,
+  headsep=0.2cm]{geometry}
+\if@twoside
+  \raggedbottom % twoside layout causes expanding vertical space around environments
+\fi
+
+\newcommand\chapternamehdr{}%obsahuje jmeno aktualni casti
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+
+%vertikalni centrovani horiz. cary
+\newcommand\lineleft[1]{\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\hrulefill\hspace{1ex}\raisebox{-.8ex}{#1}}}}
+\newcommand\lineright[1]{\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\raisebox{-.8ex}{#1}\hspace{1ex}\hrulefill}}}
+
+\fancyhead[EL]{\lineright{\textit{{\met@shortname}, \Roman{year}. ročník}}}
+\fancyhead[OR]{\lineleft{\textit{\chapternamehdr}}}
+
+% options
+\fancyfoot{}
+\if@twoside
+  \fancyfoot[EL]{\bfseries \thepage}
+  \fancyfoot[OR]{\bfseries \thepage}
+\else
+  \fancyfoot[C]{\bfseries \thepage}
+\fi
+
+% FYKOS packages
+\RequirePackage{fksmeta}
+\RequirePackage{fkssugar}
+%\RequirePackage{fkslegacy}
+\RequirePackage{fksfigures}
+\RequirePackage{fkstables}
+\RequirePackage{fksmisc}
+
+% counters
+\newcounter{year}
+\newcounter{batch}[year]
+\newcounter{problem}[batch]
+\newcounter{solvedbatch}
+\newcounter{serieschapter}
+
+\setcounter{serieschapter}{0}
+
+%nastaveni nazvu Obsahu TODO haze chybu (zrejme diky raiseboxu) ale vysazi se
+%\addto\captionsczech{
+%  \renewcommand{\contentsname}{\met@headeryeartoc}
+%}
+
+% headings
+\renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\huge}}
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\huge}}
+\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\Large}}
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\normalsize}}
+\newcommand\problem{\@startsection {subsection}{2}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\bfseries\large}}
+
+\newenvironment{comercial}{
+\newpage
+\normalfont\rmfamily\upshape\normalsize
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\rmfamily\upshape\huge}}
+\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\rmfamily\upshape\Large}}
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\rmfamily\upshape\normalsize}}
+}
+{
+\normalfont\sffamily\slshape\normalsize
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\huge}}
+\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\Large}}
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\normalsize}}
+}
+
+%pro vypisovani jmena sekce do zahlavi
+\newcommand\newchapter[2][]{\chapter[#1]{#2}\renewcommand{\chapternamehdr}{#1}}
+
+\setcounter{secnumdepth}{-2} % do not number headings
+\setcounter{tocdepth}{1}
+
+% other
+\input{problems}
+\problemsdir{../problems}
+
+\newcommand\makefooter{%
+\vspace*{\fill}
+\noindent\begin{minipage}{\textwidth}
+\hrule
+\smallskip
+\begin{center}
+\met@licence
+\end{center}
+\end{minipage}
+}
+
+\input{fkssignature}
+
+\newcommand\problemsheading{%
+\section[Zadání \Roman{batch}. série]{\met@headerproblems}
+\vspace{-4pt}
+\ifthenelse{\equal{\@deadlineS}{N/A}}{%
+\centerline{\Large\slshape\sffamily Termín doručení: \@deadline}
+}{%
+\centerline{\Large\slshape\sffamily Termín uploadu: \@deadline}
+\centerline{\Large\slshape\sffamily Termín odeslání: \@deadlineS}}
+\vspace{1.5ex}
+\setcounter{problem}{0}}
+
+\newcommand\solutionheading{%
+\ifthenelse{\equal{\thesolvedbatch}{0}}{% implicitly set solvedbatch = batch - 1
+\setcounter{solvedbatch}{\value{batch}}%
+\addtocounter{solvedbatch}{-1}%
+}{}%
+\setcounter{problem}{0}%
+\section[Řešení \Roman{solvedbatch}. série]{\met@headersolutions}}
+
+%nove TODO predelat ze section na chapter
+\newcommand\introheading{%
+\newchapter[Předmluva]{\met@headeryearintro}}
+
+\newcommand\theorproblemsheading{%
+\newchapter[Zadání teoretických úloh]{\met@headeryeartheorproblems}}
+
+\newcommand\theorsolutionsheading{%
+\newchapter[Řešení teoretických úloh]{\met@headeryeartheorsolutions}}
+
+\newcommand\expproblemsheading{%
+\newchapter[Zadání experimentálních úloh]{\met@headeryearexpproblems}}
+
+\newcommand\expsolutionsheading{%
+\newchapter[Řešení experimentálních úloh]{\met@headeryearexpsolutions}}
+
+\newcommand\seriespartheading[1]{%
+\newchapter[Seriál o #1]{\met@headeryearseries{#1}}}
+
+\newcommand\seriesheading[1]{%TODO mozna subsection
+%\addcontentsline{toc}{section}{Kapitola \arabic{serieschapter}: {#1}}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}} % povolit section v TOC
+\section[Kapitola \arabic{serieschapter}: #1]{\met@headeryearserieschapter{#1}}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}} % zakazat section v TOC
+}
+
+\newcommand\seriessolutionsheading{%
+\newchapter[Řešení úloh ze seriálu]{\met@headeryearseriessolutions}}
+
+\newcommand\eventsheading{%
+\newchapter[Akce \met@shortname u]{\met@headeryearevents}}
+
+\newcommand\resultsheading{%
+\newchapter[Pořadí nejlepších řešitelů]{\met@headeryearresults}
+}
+
+\newcommand\address{
+\met@address
+}
+%pro potreby rocenky
+%\newcommand\met@headeryeartheorproblems{Zadání teoretických úloh}
+%\newcommand\met@headeryeartheorsolutions{Řešení teoretických úloh}
+%\newcommand\met@headeryearexpproblems{Zadání experimentálních úloh}
+%\newcommand\met@headeryearexpsolutions{Řešení experimentálních úloh}
+%\newcommand\met@headeryearseries[1]{Seriál o #1}
+%\newcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
+%\newcommand\met@headeryearseriessolutions{Řešení úloh ze seriálu}
+%\newcommand\met@headeryearresults{Pořadí nejlepších řešitelů}
+%\newcommand\met@headeryearevents{Akce semináře}%FYKOSu || VYFUKu
+
+%for loop USAGE: \forLoop[STEP]{START}{END}{COUNTERNAME}{COMMANDS}
+\newcommand{\forLoop}[5][1]{%
+   \setcounter{#4}{#2} %
+   \ifthenelse{ \value{#4}<#3 }%
+   {%
+      #5 %
+      \addtocounter{#4}{#1} %
+      \forLoop[#1]{\value{#4}}{#3}{#4}{#5} %
+   }%
+   {%
+      #5 %
+   }%
+}%
+
+%big roman numerals in text
+\newcommand{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+
+\newcommand\authorspage{
+\newpage
+\thispagestyle{empty}
+
+\noindent{\large\rmfamily
+\textsc{Karel Kolář a kolektiv}\\
+\textbf{\met@headername\\
+\Roman{year}. ročník -- 2011/2012}\\
+}
+
+\renewcommand{\baselinestretch}{1.5}
+\noindent\textit{Předmluva:} \\
+\textit{Náměty úloh:} \\
+\indent
+\begin{minipage}{12cm}
+\input{authors/probauthors}
+\end{minipage}\\
+\textit{Autoři řešení úloh:} \\
+\indent
+\begin{minipage}{12cm}
+\input{authors/solauthors}
+\end{minipage}\\
+\textit{Seriál o astrofyzice:} Jana Poledniková\\
+\textit{Legenda podzimního soustředění:} \\
+\textit{Legenda jarního soustředění:} \\
+~\\
+\textit{Sazba:} \\
+\textit{Obrázky a grafy:} \\
+\textit{Jazykové korektury:} \\
+\renewcommand{\baselinestretch}{1}
+
+\makefooter
+\newpage
+}
+
+\newcommand\closingpage{
+\newpage
+\thispagestyle{empty}
+\begin{center}
+\raisebox{-12cm}{
+\begin{minipage}{10cm}
+\noindent{\large\rmfamily
+\textsc{Karel Kolář a kolektiv}\\
+\textbf{\met@headername\\
+\Roman{year}. ročník -- 2011/2012}\\
+}
+~\\
+~\\
+\noindent
+Vydal \textsf{\textbf{MATFYZ}PRESS}\\
+vydavatelství Matematicko-fyzikální fakulty\\
+Univerzity Karlovy v Praze\\
+Sokolovská 83, 186 75 Praha 8\\
+jako svou 381. publikaci\\ %TODO
+~\\
+Vytiskl Akcent Třebíč\\
+~\\
+Vydáno pro vnitřní potřebu MFF UK\\
+Publikace není určena k prodeji\\
+~\\
+\pageref{LastPage} stran, \arabic{figure} obrázků\\ %TODO
+Sazba písmem Computer Modern v programu \TeX \\
+Vydání první\\
+Náklad 350 výtisků\\ %TODO
+~\\
+Praha 2012\\
+~\\
+ISBN 978-80-7378-187-3 %TODO
+\end{minipage}
+}
+\end{center}
+}
+
+
+
