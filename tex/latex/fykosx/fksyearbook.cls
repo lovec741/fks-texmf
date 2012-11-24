@@ -1,4 +1,5 @@
 %
+% @author Lukáš Timko <luky.timko@gmail.com>
 % @author Michal Koutný <michal@fykos.cz>
 %
 % @description Provides Year book class
@@ -7,9 +8,9 @@
 \ProvidesClass{fksyearbook}[2012/11/13 Year book class]
 
 % inherit from report class
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{extreport}}
 \ProcessOptions
-\LoadClass[9pt]{report}
+\LoadClass[9pt]{extreport}
 
 
 % packages
@@ -43,7 +44,8 @@
 \RequirePackage[includeheadfoot,
   twoside,
   a5paper,
-  margin=0.7cm,
+  hmargin=1.6cm,  
+  vmargin=1.0cm,
   headsep=0.2cm]{geometry}
 \if@twoside
   \raggedbottom % twoside layout causes expanding vertical space around environments
@@ -94,27 +96,33 @@
 %  \renewcommand{\contentsname}{\met@headeryeartoc}
 %}
 
-% headings
+%
+% Headings
+%
 \renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
-  {1.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\huge}}
+  {3.5ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\Huge}}
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
   {1.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\huge}}
+  {\normalfont\sffamily\slshape\LARGE}}
 \renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
   {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\Large}}
+  {0.5ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\large}}
 \renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
+  {-2.25ex \@plus -1ex \@minus -.2ex}%
+  {0.5ex \@plus.2ex}%
   {\normalfont\sffamily\slshape\normalsize}}
 \newcommand\problem{\@startsection {subsection}{2}{\z@}%
   {-3.25ex \@plus -1ex \@minus -.2ex}%
   {1.0ex \@plus.2ex}%
   {\normalfont\bfseries\large}}
+\newcommand\varproblem{\@startsection {subsection}{2}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\sffamily\Large}}
 
 \newenvironment{comercial}{
 \newpage
@@ -154,9 +162,36 @@
 \setcounter{secnumdepth}{-2} % do not number headings
 \setcounter{tocdepth}{1}
 
-% other
+%
+% Zadání a řešení úloh
+%
 \input{problems}
 \problemsdir{../problems}
+% bez statistik
+\renewcommand\problemstats\relax
+% odkaz na vzorák
+\renewcommand\problemtask{%
+  \tasktrue\solutionfalse\solutionsinglefalse%
+  \stepcounter{problem}%
+  \@LoadProblem{\thebatch}{\theproblem}{%
+   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
+   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
+   \@probtask%
+   \signed{\textit{(řešení str. \pageref{solution\thecountx-\thecounty})}}
+  }
+}
+% bez autora námětu a vzoráku (jsou vzadu)
+\renewcommand\pr@blemsolution{%  
+   \varproblem[\metaprobletter{problem}: \@probname]%
+    {Úloha \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
+      {\normalfont\normalsize\problemstats}}%
+   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
+   \textsl{\@probtask}
+   
+   \medskip
+   
+   \noindent \@probsolution\par   
+}
 
 \newcommand\makefooter{%
 \vspace*{\fill}
@@ -170,6 +205,7 @@
 }
 
 \input{fkssignature}
+
 
 \newcommand\problemsheading{%
 \section[Zadání \Roman{batch}. série]{\met@headerproblems}
@@ -207,7 +243,7 @@
 \newchapter[Řešení experimentálních úloh]{\met@headeryearexpsolutions}}
 
 \newcommand\seriespartheading[1]{%
-\newchapter[Seriál o #1]{\met@headeryearseries{#1}}}
+\newchapter[#1]{\met@headeryearseries{#1}}}
 
 \newcommand\seriesheading[1]{%TODO mozna subsection
 %\addcontentsline{toc}{section}{Kapitola \arabic{serieschapter}: {#1}}
