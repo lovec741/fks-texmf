@@ -79,6 +79,12 @@
 \RequirePackage{fkssugar}
 %\RequirePackage{fkslegacy}
 \RequirePackage{fksfigures}
+
+% tabulky řešitelů (musí být před fkstables)
+\renewcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & $\Sigma$ \\}
+\renewcommand\met@resultscols{\newcolumntype{T}{x{\bfseries}rA{\itshape}p{0.3\textwidth}^X% order, name, school
+A{\bfseries}r}} % sum
+
 \RequirePackage{fkstables}
 \RequirePackage{fksmisc}
 
@@ -365,6 +371,8 @@ ISBN 978-80-7378-187-3 %TODO
 }
 \end{center}
 }
+
+
 
 
 
