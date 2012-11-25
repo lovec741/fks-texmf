@@ -97,10 +97,11 @@ A{\bfseries}r}} % sum
 
 \setcounter{serieschapter}{0}
 
-%nastaveni nazvu Obsahu TODO haze chybu (zrejme diky raiseboxu) ale vysazi se
-%\addto\captionsczech{
-%  \renewcommand{\contentsname}{\met@headeryeartoc}
-%}
+% Snad to nezávisí na příliš interních makrech (@starttoc), ale funguje to.
+\renewcommand\tableofcontents{%
+    \chapter*{\met@headeryeartoc}%
+    \@starttoc{toc}%
+}
 
 %
 % Headings
