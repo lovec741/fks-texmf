@@ -12,6 +12,10 @@
 \ProcessOptions
 \LoadClass[9pt]{extreport}
 
+%for year book compatibility with batches
+\newif\ifyearbook
+\yearbooktrue
+
 
 % packages
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
@@ -95,7 +99,7 @@ A{\bfseries}r}} % sum
 \newcounter{solvedbatch}
 \newcounter{serieschapter}
 
-\setcounter{serieschapter}{0}
+\setcounter{serieschapter}{1}
 
 % Snad to nezávisí na příliš interních makrech (@starttoc), ale funguje to.
 \renewcommand\tableofcontents{%
@@ -345,7 +349,7 @@ A{\bfseries}r}} % sum
 \noindent{\large\rmfamily
 \textsc{\@guru~a kolektiv}\\
 \textbf{\met@headername\\
-\Roman{year}. ročník -- 2011/2012}\\
+\Roman{year}. ročník -- \met@schoolyear}\\
 }
 
 \renewcommand{\baselinestretch}{1.5}
@@ -398,9 +402,9 @@ A{\bfseries}r}} % sum
 \raisebox{-12cm}{
 \begin{minipage}{10cm}
 \noindent{\large\rmfamily
-\textsc{Karel Kolář a kolektiv}\\
+\textsc{\@guru~a kolektiv}\\
 \textbf{\met@headername\\
-\Roman{year}. ročník -- 2011/2012}\\
+\Roman{year}. ročník -- \met@schoolyear}\\
 }
 ~\\
 ~\\

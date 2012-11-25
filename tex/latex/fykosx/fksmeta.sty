@@ -40,6 +40,8 @@
 \newcommand\met@headeryearseriessolutions{Řešení úloh ze seriálu}
 \newcommand\met@headeryearresults{Pořadí nejlepších řešitelů}
 \newcommand\met@headeryearevents{Akce semináře}%FYKOSu || VYFUKu
+\newcounter{schoolyear}
+\newcommand\met@schoolyear{\setcounter{schoolyear}{\value{year}}\addtocounter{schoolyear}{1986}\arabic{schoolyear}/\stepcounter{schoolyear}\theschoolyear}
 
 
 % results table parameter
@@ -73,6 +75,7 @@
 \renewcommand\met@headeryearseriessolutions{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení úloh ze seriálu}}
 \renewcommand\met@headeryearresults{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí nejlepších řešitelů}}
 \renewcommand\met@headeryearevents{\centering \includegraphics{logo6.eps}\hspace{10pt}\raisebox{0.6cm}{Akce FYKOSu}}
+\renewcommand\met@schoolyear{\setcounter{schoolyear}{\value{year}}\addtocounter{schoolyear}{1986}\arabic{schoolyear}/\stepcounter{schoolyear}\theschoolyear}
 
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
