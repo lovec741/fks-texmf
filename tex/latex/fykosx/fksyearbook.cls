@@ -74,6 +74,10 @@
   \fancyfoot[C]{\bfseries \thepage}
 \fi
 
+% Some packages rely on this condition
+\newif\ifyearbook
+\yearbooktrue
+
 % FYKOS packages
 \RequirePackage{fksmeta}
 \RequirePackage{fkssugar}
