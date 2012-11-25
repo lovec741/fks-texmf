@@ -298,18 +298,58 @@ A{\bfseries}r}} % sum
 %big roman numerals in text
 \newcommand{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 
+\newcommand\@predmluva{}
+\newcommand\predmluva[1]{
+\renewcommand\@predmluva{#1}
+}
+
+\newcommand\autor@serialu{Jana Poledniková}
+\newcommand\autorserialu[1]{
+\renewcommand\autor@serialu{#1}
+}
+
+\newcommand\podzimni@soustredeni{}
+\newcommand\podzimnisoustredeni[1]{
+\renewcommand\podzimni@soustredeni{#1}
+}
+
+\newcommand\jarni@soustredeni{}
+\newcommand\jarnisoustredeni[1]{
+\renewcommand\jarni@soustredeni{#1}
+}
+
+\newcommand\s@zba{}
+\newcommand\sazba[1]{
+\renewcommand\s@zba{#1}
+}
+
+\newcommand\obr@zky{}
+\newcommand\obrazky[1]{
+\renewcommand\obr@zky{#1}
+}
+
+\newcommand\@korektury{}
+\newcommand\korektury[1]{
+\renewcommand\@korektury{#1}
+}
+
+\newcommand\@guru{Karel Kolář}
+\newcommand\guru[1]{
+\renewcommand\@guru{#1}
+}
+
 \newcommand\authorspage{
 \newpage
 \thispagestyle{empty}
 
 \noindent{\large\rmfamily
-\textsc{Karel Kolář a kolektiv}\\
+\textsc{\@guru~a kolektiv}\\
 \textbf{\met@headername\\
 \Roman{year}. ročník -- 2011/2012}\\
 }
 
 \renewcommand{\baselinestretch}{1.5}
-\noindent\textit{Předmluva:} \\
+\noindent\textit{Předmluva:} \@predmluva\\
 \textit{Náměty úloh:} \\
 \indent
 \begin{minipage}{12cm}
@@ -320,16 +360,36 @@ A{\bfseries}r}} % sum
 \begin{minipage}{12cm}
 \input{authors/solauthors}
 \end{minipage}\\
-\textit{Seriál o astrofyzice:} Jana Poledniková\\
-\textit{Legenda podzimního soustředění:} \\
-\textit{Legenda jarního soustředění:} \\
+\textit{Seriál o astrofyzice:} \autor@serialu\\
+\textit{Legenda podzimního soustředění:} \podzimni@soustredeni\\
+\textit{Legenda jarního soustředění:} \jarni@soustredeni\\
 ~\\
-\textit{Sazba:} \\
-\textit{Obrázky a grafy:} \\
-\textit{Jazykové korektury:} \\
+\textit{Sazba:} \s@zba\\
+\textit{Obrázky a grafy:} \obr@zky\\
+\textit{Jazykové korektury:} \@korektury\\
 \renewcommand{\baselinestretch}{1}
 
 \makefooter
+}
+
+\newcommand\cislo@publikace{381}
+\newcommand\cislopublikace[1]{
+\renewcommand\cislo@publikace{#1}
+}
+
+\newcommand\pocet@vytisku{350}
+\newcommand\pocetvytisku[1]{
+\renewcommand\pocet@vytisku{#1}
+}
+
+\newcommand\@isbn{978-80-7378-187-3}
+\newcommand\isbn[1]{
+\renewcommand\@isbn{#1}
+}
+
+\newcommand\@tiskarna{Akcent Třebíč}
+\newcommand\tiskarna[1]{
+\renewcommand\@tiskarna{#1}
 }
 
 \newcommand\closingpage{
@@ -349,21 +409,21 @@ Vydal \textsf{\textbf{MATFYZ}PRESS}\\
 vydavatelství Matematicko-fyzikální fakulty\\
 Univerzity Karlovy v Praze\\
 Sokolovská 83, 186 75 Praha 8\\
-jako svou 381. publikaci\\ %TODO
+jako svou \cislo@publikace. publikaci\\ %TODO
 ~\\
-Vytiskl Akcent Třebíč\\
+Vytiskl \@tiskarna \\
 ~\\
 Vydáno pro vnitřní potřebu MFF UK\\
 Publikace není určena k prodeji\\
 ~\\
-\pageref{LastPage} stran, \arabic{figure} obrázků\\ %TODO
+\pageref{LastPage} stran, \arabic{figure} obrázků\\
 Sazba písmem Computer Modern v programu \TeX \\
 Vydání první\\
-Náklad 350 výtisků\\ %TODO
+Náklad \pocet@vytisku~výtisků\\ %TODO
 ~\\
 Praha 2012\\
 ~\\
-ISBN 978-80-7378-187-3 %TODO
+ISBN \@isbn %TODO
 \end{minipage}
 }
 \end{center}
