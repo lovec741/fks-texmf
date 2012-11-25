@@ -131,7 +131,20 @@ A{\bfseries}r}} % sum
   {\normalfont\sffamily\Large}}
 
 \newenvironment{comercial}{
-\newpage
+\normalfont\sffamily\normalsize
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\sffamily\huge}}
+\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\sffamily\Large}}
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\sffamily\normalsize}}
+}{%
 \normalfont\rmfamily\upshape\normalsize
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
@@ -145,21 +158,6 @@ A{\bfseries}r}} % sum
   {-3.25ex \@plus -1ex \@minus -.2ex}%
   {1.0ex \@plus.2ex}%
   {\normalfont\rmfamily\upshape\normalsize}}
-}
-{
-\normalfont\sffamily\slshape\normalsize
-\renewcommand\section{\@startsection {section}{1}{\z@}%
-  {-3.5ex \@plus -1ex \@minus -.2ex}%
-  {1.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\huge}}
-\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\Large}}
-\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\normalsize}}
 }
 
 %pro vypisovani jmena sekce do zahlavi
@@ -331,12 +329,10 @@ A{\bfseries}r}} % sum
 \renewcommand{\baselinestretch}{1}
 
 \makefooter
-\newpage
 }
 
 \newcommand\closingpage{
 \newpage
-\thispagestyle{empty}
 \begin{center}
 \raisebox{-12cm}{
 \begin{minipage}{10cm}
