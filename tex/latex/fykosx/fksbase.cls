@@ -11,10 +11,6 @@
 \ProcessOptions
 \LoadClass[9pt]{extarticle}
 
-%for year book compatibility
-\newif\ifyearbook
-\yearbookfalse
-
 
 % packages
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings

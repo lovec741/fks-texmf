@@ -12,11 +12,7 @@
 \ProcessOptions
 \LoadClass[9pt]{extreport}
 
-%for year book compatibility with batches
-\newif\ifyearbook
-\yearbooktrue
-
-
+%
 % packages
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
 
