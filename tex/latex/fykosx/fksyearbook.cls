@@ -302,135 +302,173 @@ A{\bfseries}r}} % sum
 %big roman numerals in text
 \newcommand{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 
+%
+% Settings (credits) and closing page
+%
+
+\renewcommand\met@headername{Fyzikální korespondenční seminář} % more generic?
+
 \newcommand\@predmluva{}
+\newcommand\autor@serialu{}
+\newcommand\tem@serialu{} % přiklad: "Seriál o astrofyzice"
+\newcommand\podzimni@soustredeni{} % legenda
+\newcommand\jarni@soustredeni{} % legenda
+\newcommand\s@zba{}
+\newcommand\obr@zky{}
+\newcommand\@korektury{}
+\newcommand\@guru{Student Pilný}
+\newcommand\cislo@publikace{???}
+\newcommand\pocet@vytisku{???}
+\newcommand\@isbn{???-???-???}
+\newcommand\@tiskarna{Akcent Třebíč}
+
+
 \newcommand\predmluva[1]{
 \renewcommand\@predmluva{#1}
 }
-
-\newcommand\autor@serialu{Jana Poledniková}
 \newcommand\autorserialu[1]{
 \renewcommand\autor@serialu{#1}
 }
-
-\newcommand\podzimni@soustredeni{}
+\newcommand\temaserialu[1]{
+\renewcommand\tem@serialu{#1}
+}
 \newcommand\podzimnisoustredeni[1]{
 \renewcommand\podzimni@soustredeni{#1}
 }
-
-\newcommand\jarni@soustredeni{}
 \newcommand\jarnisoustredeni[1]{
 \renewcommand\jarni@soustredeni{#1}
 }
-
-\newcommand\s@zba{}
 \newcommand\sazba[1]{
 \renewcommand\s@zba{#1}
 }
-
-\newcommand\obr@zky{}
 \newcommand\obrazky[1]{
 \renewcommand\obr@zky{#1}
 }
-
-\newcommand\@korektury{}
 \newcommand\korektury[1]{
 \renewcommand\@korektury{#1}
 }
-
-\newcommand\@guru{Karel Kolář}
 \newcommand\guru[1]{
 \renewcommand\@guru{#1}
 }
-
-\newcommand\authorspage{
-\newpage
-\thispagestyle{empty}
-
-\noindent{\large\rmfamily
-\textsc{\@guru~a kolektiv}\\
-\textbf{\met@headername\\
-\Roman{year}. ročník -- \met@schoolyear}\\
-}
-
-\renewcommand{\baselinestretch}{1.5}
-\noindent\textit{Předmluva:} \@predmluva\\
-\textit{Náměty úloh:} \\
-\indent
-\begin{minipage}{12cm}
-\input{authors/probauthors}
-\end{minipage}\\
-\textit{Autoři řešení úloh:} \\
-\indent
-\begin{minipage}{12cm}
-\input{authors/solauthors}
-\end{minipage}\\
-\textit{Seriál o astrofyzice:} \autor@serialu\\
-\textit{Legenda podzimního soustředění:} \podzimni@soustredeni\\
-\textit{Legenda jarního soustředění:} \jarni@soustredeni\\
-~\\
-\textit{Sazba:} \s@zba\\
-\textit{Obrázky a grafy:} \obr@zky\\
-\textit{Jazykové korektury:} \@korektury\\
-\renewcommand{\baselinestretch}{1}
-
-\makefooter
-}
-
-\newcommand\cislo@publikace{381}
 \newcommand\cislopublikace[1]{
 \renewcommand\cislo@publikace{#1}
 }
-
-\newcommand\pocet@vytisku{350}
 \newcommand\pocetvytisku[1]{
 \renewcommand\pocet@vytisku{#1}
 }
-
-\newcommand\@isbn{978-80-7378-187-3}
 \newcommand\isbn[1]{
 \renewcommand\@isbn{#1}
 }
-
-\newcommand\@tiskarna{Akcent Třebíč}
 \newcommand\tiskarna[1]{
 \renewcommand\@tiskarna{#1}
 }
 
+
+
+\renewcommand\met@licence{
+\footnotesize
+Fyzikální korespondenční seminář je organizován studenty UK~MFF.
+Je zastřešen Oddělením pro vnější vztahy a~propagaci UK~MFF 
+a~podporován Ústavem teoretické fyziky\\
+UK~MFF, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
+\par
+}
+
+
+\newlength{\tmpp@rindent}\newlength{\tmpp@rskip}
+
+\newcommand\nullp@r{%
+\setlength{\tmpp@rindent}{\parindent}%
+\setlength{\tmpp@rskip}{\parskip}}
+
+\newcommand\revertp@r{%
+\setlength{\parindent}\tmpp@rindent%
+\setlength{\parskip}\tmpp@rskip}
+
+\newcommand\authorspage{
+\newpage
+\thispagestyle{empty}
+\nullp@r
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+{\LARGE\rmfamily
+\textsc{\@guru~a kolektiv}\par
+\textbf{\met@headername}\par
+\textbf{\Roman{year}. ročník -- \met@schoolyear}}
+\bigskip
+\setlength{\parskip}{4pt}
+
+
+\textit{Předmluva:} \@predmluva\par
+
+\textit{Náměty úloh:}\par
+\hspace{\tmpp@rindent}
+\begin{minipage}{12cm}
+\input{authors/probauthors}
+\end{minipage}\par
+
+\textit{Autoři řešení úloh:}\par
+\hspace{\tmpp@rindent}
+\begin{minipage}{12cm}
+\input{authors/solauthors}
+\end{minipage}\par
+
+\textit{\tem@serialu:} \autor@serialu\par
+\textit{Legenda podzimního soustředění:} \podzimni@soustredeni\par
+\textit{Legenda jarního soustředění:} \jarni@soustredeni\par
+\bigskip
+
+\textit{Sazba:} \s@zba\par
+\textit{Obrázky a grafy:} \obr@zky\par
+\textit{Jazykové korektury:} \@korektury\par
+
+\revertp@r
+
+\makefooter
+}
+
+
 \newcommand\closingpage{
 \newpage
+\nullp@r
+\null\vfill
 \begin{center}
-\raisebox{-12cm}{
 \begin{minipage}{10cm}
-\noindent{\large\rmfamily
-\textsc{\@guru~a kolektiv}\\
-\textbf{\met@headername\\
-\Roman{year}. ročník -- \met@schoolyear}\\
-}
-~\\
-~\\
-\noindent
+\noindent{\LARGE\rmfamily
+\textsc{\@guru~a kolektiv}\par
+\textbf{\met@headername}\par
+\textbf{\Roman{year}. ročník -- \met@schoolyear}}
+\bigskip\bigskip\bigskip
+
 Vydal \textsf{\textbf{MATFYZ}PRESS}\\
 vydavatelství Matematicko-fyzikální fakulty\\
 Univerzity Karlovy v Praze\\
-Sokolovská 83, 186 75 Praha 8\\
-jako svou \cislo@publikace. publikaci\\ %TODO
-~\\
-Vytiskl \@tiskarna \\
-~\\
+Sokolovská 83, 186\,75 Praha 8\\
+jako svou \cislo@publikace. publikaci
+\bigskip
+
+Vytiskl \@tiskarna
+\bigskip
+
 Vydáno pro vnitřní potřebu MFF UK\\
-Publikace není určena k prodeji\\
-~\\
+Publikace není určena k prodeji
+\bigskip
+
 \pageref{LastPage} stran, \arabic{figure} obrázků\\
 Sazba písmem Computer Modern v programu \TeX \\
 Vydání první\\
-Náklad \pocet@vytisku~výtisků\\ %TODO
-~\\
-Praha 2012\\
-~\\
-ISBN \@isbn %TODO
+Náklad \pocet@vytisku~výtisků
+\bigskip
+
+Praha \theschoolyear %BEWARE when delayed publication!!
+\bigskip\bigskip\bigskip
+
+ISBN \@isbn
 \end{minipage}
-}
 \end{center}
+\revertp@r
 }
 
 

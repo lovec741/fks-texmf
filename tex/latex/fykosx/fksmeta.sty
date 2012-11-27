@@ -113,7 +113,7 @@ Pro zobrazení kopie této licence, navštivte
 % to have initialized counters
 \AtBeginDocument{
 \hypersetup{
-    pdftitle={FYKOS, \Roman{year}. ročník, \arabic{batch}. číslo},    % title
+    pdftitle=\ifyearbook{Ročenka FYKOSu, \Roman{year}. ročník}\else{FYKOS, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % title
     pdfauthor={Organizátoři FYKOSu <fykos@fykos.cz>},     % author
     pdfsubject={Fyzikální korespondenční seminář MFF UK},   % subject of the document
 }}} % end FYKOS
@@ -200,7 +200,7 @@ Pro zobrazení kopie této licence, navštivte
 
 % to have initialized counters
 \AtBeginDocument{
-\hypersetup{
+\hypersetup{    
     pdftitle={Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo},    % tady radši Roman
     pdfauthor={Organizátoři Výfuku <vyfuk@fykos.cz>},     % author
     pdfsubject={Fyzikální korespondenční seminář MFF UK pro ZŠ},   % subject of the document
