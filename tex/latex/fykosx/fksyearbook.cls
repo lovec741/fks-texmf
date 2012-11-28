@@ -135,6 +135,9 @@ A{\bfseries}r}} % sum
   {1.5ex \@plus.2ex}%
   {\normalfont\sffamily\Large}}
 
+ %
+ % Pro reklamu odlišný styl písma (sans serif) a nadpisů
+ %
 \newenvironment{comercial}{
 \normalfont\sffamily\normalsize
 \renewcommand\section{\@startsection {section}{1}{\z@}%
@@ -200,17 +203,6 @@ A{\bfseries}r}} % sum
    \medskip
    
    \noindent \@probsolution\par   
-}
-
-\newcommand\makefooter{%
-\vspace*{\fill}
-\noindent\begin{minipage}{\textwidth}
-\hrule
-\smallskip
-\begin{center}
-\met@licence
-\end{center}
-\end{minipage}
 }
 
 \input{fkssignature}
@@ -305,9 +297,17 @@ A{\bfseries}r}} % sum
 %
 % Settings (credits) and closing page
 %
+\newcommand\getparam[1]{%
+  \expandafter\ifx\csname #1\endcsname\relax
+  \PackageWarning{fksyearbook}{Undefined param #1}
+  \else
+  \expandafter\csname #1\endcsname\fi
+}
 
-\renewcommand\met@headername{Fyzikální korespondenční seminář} % more generic?
-
+%\newcommand\@title{}
+\newcommand\@subtitle{}
+%\newcommand\@author{}
+\newcommand\@authors{\@author{} a kolektiv}
 \newcommand\@predmluva{}
 \newcommand\autor@serialu{}
 \newcommand\tem@serialu{} % přiklad: "Seriál o astrofyzice"
@@ -316,13 +316,26 @@ A{\bfseries}r}} % sum
 \newcommand\s@zba{}
 \newcommand\obr@zky{}
 \newcommand\@korektury{}
-\newcommand\@guru{Student Pilný}
 \newcommand\cislo@publikace{???}
 \newcommand\pocet@vytisku{???}
 \newcommand\@isbn{???-???-???}
 \newcommand\@tiskarna{Akcent Třebíč}
+\newcommand\school@year{????/??}
+\newcommand\@published{????}
 
 
+\renewcommand\title[1]{
+\renewcommand\@title{#1}
+}
+\newcommand\subtitle[1]{
+\renewcommand\@subtitle{#1}
+}
+\renewcommand\author[1]{
+\renewcommand\@author{#1}
+}
+\newcommand\authors[1]{
+\renewcommand\@authors{#1}
+}
 \newcommand\predmluva[1]{
 \renewcommand\@predmluva{#1}
 }
@@ -347,9 +360,6 @@ A{\bfseries}r}} % sum
 \newcommand\korektury[1]{
 \renewcommand\@korektury{#1}
 }
-\newcommand\guru[1]{
-\renewcommand\@guru{#1}
-}
 \newcommand\cislopublikace[1]{
 \renewcommand\cislo@publikace{#1}
 }
@@ -362,8 +372,17 @@ A{\bfseries}r}} % sum
 \newcommand\tiskarna[1]{
 \renewcommand\@tiskarna{#1}
 }
+\newcommand\published[1]{
+\renewcommand\@published{#1}
+}
+\newcommand\schoolyear[1]{
+\renewcommand\school@year{#1}
+}
 
 
+%
+% Authors page
+%
 
 \renewcommand\met@licence{
 \footnotesize
@@ -394,9 +413,9 @@ UK~MFF, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \setlength{\parskip}{2pt}
 
 {\LARGE\rmfamily
-\textsc{\@guru~a kolektiv}\par
-\textbf{\met@headername}\par
-\textbf{\Roman{year}. ročník -- \met@schoolyear}}
+\textsc{\@authors}\par
+\textbf{\@title}\par
+\textbf{\@subtitle}}
 \bigskip
 \setlength{\parskip}{4pt}
 
@@ -429,6 +448,9 @@ UK~MFF, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \makefooter
 }
 
+%
+% Closing page
+%
 
 \newcommand\closingpage{
 \newpage
@@ -437,12 +459,12 @@ UK~MFF, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \begin{center}
 \begin{minipage}{10cm}
 \noindent{\LARGE\rmfamily
-\textsc{\@guru~a kolektiv}\par
-\textbf{\met@headername}\par
-\textbf{\Roman{year}. ročník -- \met@schoolyear}}
+\textsc{\@authors}\par
+\textbf{\@title}\par
+\textbf{\@subtitle}}
 \bigskip\bigskip\bigskip
 
-Vydal \textsf{\textbf{MATFYZ}PRESS}\\
+Vydal \mffpress\\
 vydavatelství Matematicko-fyzikální fakulty\\
 Univerzity Karlovy v Praze\\
 Sokolovská 83, 186\,75 Praha 8\\
@@ -462,7 +484,7 @@ Vydání první\\
 Náklad \pocet@vytisku~výtisků
 \bigskip
 
-Praha \theschoolyear %BEWARE when delayed publication!!
+Praha \@published
 \bigskip\bigskip\bigskip
 
 ISBN \@isbn
@@ -471,7 +493,65 @@ ISBN \@isbn
 \revertp@r
 }
 
+\newcommand\makefooter{%
+\vspace*{\fill}
+\noindent\begin{minipage}{\textwidth}
+\hrule
+\smallskip
+\begin{center}
+\met@licence
+\end{center}
+\end{minipage}
+}
 
+% 
+% Title page
+%
+\newcommand\titlefontsc{\fontsize{20pt}{20pt}\selectfont\scshape}
+\newcommand\titlefontmain{\fontsize{40pt}{60pt}\selectfont\bfseries}
+\newcommand\titlefontsub{\fontsize{20pt}{20pt}\selectfont\bfseries}
+
+\renewcommand\maketitle{%
+\thispagestyle{empty}
+
+\begin{center}
+\null\vspace{12pt}
+{\titlefontsc\@authors}
+\vspace{36pt}
+
+{\titlefontmain\@title}
+\vspace{36pt}
+
+{\titlefontsub\@subtitle}
+\vspace{72pt}
+
+\includegraphics[width=40mm]{logo8.eps}
+
+
+\end{center}
+}
+
+\newcommand\copyrightpage{%
+\newpage
+\thispagestyle{empty}
+\null\vfill
+\nullp@r
+\begin{tabular}{@{}l@{}l}
+ Copyright \copyright &\ \@author, \@published\\
+ Copyright \copyright &\ \mffpress, vydavatelství Matematicko-fyzikální fakulty\\
+ &\ Univerzity Karlovy v Praze, \@published
+\end{tabular}
+\vspace{1cm}
+
+ISBN \@isbn
+\revertp@r
+}
+
+
+%
+% Misc
+%
+\newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
 
 
 
