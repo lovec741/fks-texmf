@@ -1,4 +1,5 @@
 %
+% @author Lukáš Timko <luky.timko@gmail.com>
 % @author Michal Koutný <michal@fykos.cz>
 %
 % @description Provides Year book class
@@ -7,11 +8,11 @@
 \ProvidesClass{fksyearbook}[2012/11/13 Year book class]
 
 % inherit from report class
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{extreport}}
 \ProcessOptions
-\LoadClass[9pt]{report}
+\LoadClass[9pt]{extreport}
 
-
+%
 % packages
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
 
@@ -43,7 +44,8 @@
 \RequirePackage[includeheadfoot,
   twoside,
   a5paper,
-  margin=0.7cm,
+  hmargin=1.6cm,  
+  vmargin=1.0cm,
   headsep=0.2cm]{geometry}
 \if@twoside
   \raggedbottom % twoside layout causes expanding vertical space around environments
@@ -72,11 +74,21 @@
   \fancyfoot[C]{\bfseries \thepage}
 \fi
 
+% Some packages rely on this condition
+\newif\ifyearbook
+\yearbooktrue
+
 % FYKOS packages
 \RequirePackage{fksmeta}
 \RequirePackage{fkssugar}
 %\RequirePackage{fkslegacy}
 \RequirePackage{fksfigures}
+
+% tabulky řešitelů (musí být před fkstables)
+\renewcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & $\Sigma$ \\}
+\renewcommand\met@resultscols{\newcolumntype{T}{x{\bfseries}rA{\itshape}p{0.3\textwidth}^X% order, name, school
+A{\bfseries}r}} % sum
+
 \RequirePackage{fkstables}
 \RequirePackage{fksmisc}
 
@@ -87,37 +99,60 @@
 \newcounter{solvedbatch}
 \newcounter{serieschapter}
 
-\setcounter{serieschapter}{0}
+\setcounter{serieschapter}{1}
 
-%nastaveni nazvu Obsahu TODO haze chybu (zrejme diky raiseboxu) ale vysazi se
-%\addto\captionsczech{
-%  \renewcommand{\contentsname}{\met@headeryeartoc}
-%}
+% Snad to nezávisí na příliš interních makrech (@starttoc), ale funguje to.
+\renewcommand\tableofcontents{%
+    \chapter*{\met@headeryeartoc}%
+    \@starttoc{toc}%
+}
 
-% headings
+%
+% Headings
+%
 \renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
-  {1.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\huge}}
+  {3.5ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\Huge}}
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
   {1.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\huge}}
+  {\normalfont\sffamily\slshape\LARGE}}
 \renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
   {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\Large}}
+  {0.5ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\large}}
 \renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
+  {-2.25ex \@plus -1ex \@minus -.2ex}%
+  {0.5ex \@plus.2ex}%
   {\normalfont\sffamily\slshape\normalsize}}
 \newcommand\problem{\@startsection {subsection}{2}{\z@}%
   {-3.25ex \@plus -1ex \@minus -.2ex}%
   {1.0ex \@plus.2ex}%
   {\normalfont\bfseries\large}}
+\newcommand\varproblem{\@startsection {subsection}{2}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\sffamily\Large}}
 
+ %
+ % Pro reklamu odlišný styl písma (sans serif) a nadpisů
+ %
 \newenvironment{comercial}{
-\newpage
+\normalfont\sffamily\normalsize
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\sffamily\huge}}
+\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\sffamily\Large}}
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
+  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus.2ex}%
+  {\normalfont\sffamily\normalsize}}
+}{%
 \normalfont\rmfamily\upshape\normalsize
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
@@ -132,21 +167,6 @@
   {1.0ex \@plus.2ex}%
   {\normalfont\rmfamily\upshape\normalsize}}
 }
-{
-\normalfont\sffamily\slshape\normalsize
-\renewcommand\section{\@startsection {section}{1}{\z@}%
-  {-3.5ex \@plus -1ex \@minus -.2ex}%
-  {1.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\huge}}
-\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\Large}}
-\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\normalsize}}
-}
 
 %pro vypisovani jmena sekce do zahlavi
 \newcommand\newchapter[2][]{\chapter[#1]{#2}\renewcommand{\chapternamehdr}{#1}}
@@ -154,22 +174,39 @@
 \setcounter{secnumdepth}{-2} % do not number headings
 \setcounter{tocdepth}{1}
 
-% other
+%
+% Zadání a řešení úloh
+%
 \input{problems}
 \problemsdir{../problems}
-
-\newcommand\makefooter{%
-\vspace*{\fill}
-\noindent\begin{minipage}{\textwidth}
-\hrule
-\smallskip
-\begin{center}
-\met@licence
-\end{center}
-\end{minipage}
+% bez statistik
+\renewcommand\problemstats\relax
+% odkaz na vzorák
+\renewcommand\problemtask{%
+  \tasktrue\solutionfalse\solutionsinglefalse%
+  \stepcounter{problem}%
+  \@LoadProblem{\thebatch}{\theproblem}{%
+   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
+   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
+   \@probtask%
+   \signed{\textit{(řešení str. \pageref{solution\thecountx-\thecounty})}}
+  }
+}
+% bez autora námětu a vzoráku (jsou vzadu)
+\renewcommand\pr@blemsolution{%  
+   \varproblem[\metaprobletter{problem}: \@probname]%
+    {Úloha \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
+      {\normalfont\normalsize\problemstats}}%
+   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
+   \textsl{\@probtask}
+   
+   \medskip
+   
+   \noindent \@probsolution\par   
 }
 
 \input{fkssignature}
+
 
 \newcommand\problemsheading{%
 \section[Zadání \Roman{batch}. série]{\met@headerproblems}
@@ -207,7 +244,7 @@
 \newchapter[Řešení experimentálních úloh]{\met@headeryearexpsolutions}}
 
 \newcommand\seriespartheading[1]{%
-\newchapter[Seriál o #1]{\met@headeryearseries{#1}}}
+\newchapter[#1]{\met@headeryearseries{#1}}}
 
 \newcommand\seriesheading[1]{%TODO mozna subsection
 %\addcontentsline{toc}{section}{Kapitola \arabic{serieschapter}: {#1}}
@@ -257,78 +294,264 @@
 %big roman numerals in text
 \newcommand{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 
+%
+% Settings (credits) and closing page
+%
+\newcommand\getparam[1]{%
+  \expandafter\ifx\csname #1\endcsname\relax
+  \PackageWarning{fksyearbook}{Undefined param #1}
+  \else
+  \expandafter\csname #1\endcsname\fi
+}
+
+%\newcommand\@title{}
+\newcommand\@subtitle{}
+%\newcommand\@author{}
+\newcommand\@authors{\@author{} a kolektiv}
+\newcommand\@predmluva{}
+\newcommand\autor@serialu{}
+\newcommand\tem@serialu{} % přiklad: "Seriál o astrofyzice"
+\newcommand\podzimni@soustredeni{} % legenda
+\newcommand\jarni@soustredeni{} % legenda
+\newcommand\s@zba{}
+\newcommand\obr@zky{}
+\newcommand\@korektury{}
+\newcommand\cislo@publikace{???}
+\newcommand\pocet@vytisku{???}
+\newcommand\@isbn{???-???-???}
+\newcommand\@tiskarna{Akcent Třebíč}
+\newcommand\school@year{????/??}
+\newcommand\@published{????}
+
+
+\renewcommand\title[1]{
+\renewcommand\@title{#1}
+}
+\newcommand\subtitle[1]{
+\renewcommand\@subtitle{#1}
+}
+\renewcommand\author[1]{
+\renewcommand\@author{#1}
+}
+\newcommand\authors[1]{
+\renewcommand\@authors{#1}
+}
+\newcommand\predmluva[1]{
+\renewcommand\@predmluva{#1}
+}
+\newcommand\autorserialu[1]{
+\renewcommand\autor@serialu{#1}
+}
+\newcommand\temaserialu[1]{
+\renewcommand\tem@serialu{#1}
+}
+\newcommand\podzimnisoustredeni[1]{
+\renewcommand\podzimni@soustredeni{#1}
+}
+\newcommand\jarnisoustredeni[1]{
+\renewcommand\jarni@soustredeni{#1}
+}
+\newcommand\sazba[1]{
+\renewcommand\s@zba{#1}
+}
+\newcommand\obrazky[1]{
+\renewcommand\obr@zky{#1}
+}
+\newcommand\korektury[1]{
+\renewcommand\@korektury{#1}
+}
+\newcommand\cislopublikace[1]{
+\renewcommand\cislo@publikace{#1}
+}
+\newcommand\pocetvytisku[1]{
+\renewcommand\pocet@vytisku{#1}
+}
+\newcommand\isbn[1]{
+\renewcommand\@isbn{#1}
+}
+\newcommand\tiskarna[1]{
+\renewcommand\@tiskarna{#1}
+}
+\newcommand\published[1]{
+\renewcommand\@published{#1}
+}
+\newcommand\schoolyear[1]{
+\renewcommand\school@year{#1}
+}
+
+
+%
+% Authors page
+%
+
+\renewcommand\met@licence{
+\footnotesize
+Fyzikální korespondenční seminář je organizován studenty UK~MFF.
+Je zastřešen Oddělením pro vnější vztahy a~propagaci UK~MFF 
+a~podporován Ústavem teoretické fyziky\\
+UK~MFF, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
+\par
+}
+
+
+\newlength{\tmpp@rindent}\newlength{\tmpp@rskip}
+
+\newcommand\nullp@r{%
+\setlength{\tmpp@rindent}{\parindent}%
+\setlength{\tmpp@rskip}{\parskip}}
+
+\newcommand\revertp@r{%
+\setlength{\parindent}\tmpp@rindent%
+\setlength{\parskip}\tmpp@rskip}
+
 \newcommand\authorspage{
 \newpage
 \thispagestyle{empty}
+\nullp@r
 
-\noindent{\large\rmfamily
-\textsc{Karel Kolář a kolektiv}\\
-\textbf{\met@headername\\
-\Roman{year}. ročník -- 2011/2012}\\
-}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
 
-\renewcommand{\baselinestretch}{1.5}
-\noindent\textit{Předmluva:} \\
-\textit{Náměty úloh:} \\
-\indent
+{\LARGE\rmfamily
+\textsc{\@authors}\par
+\textbf{\@title}\par
+\textbf{\@subtitle}}
+\bigskip
+\setlength{\parskip}{4pt}
+
+
+\textit{Předmluva:} \@predmluva\par
+
+\textit{Náměty úloh:}\par
+\hspace{\tmpp@rindent}
 \begin{minipage}{12cm}
 \input{authors/probauthors}
-\end{minipage}\\
-\textit{Autoři řešení úloh:} \\
-\indent
+\end{minipage}\par
+
+\textit{Autoři řešení úloh:}\par
+\hspace{\tmpp@rindent}
 \begin{minipage}{12cm}
 \input{authors/solauthors}
-\end{minipage}\\
-\textit{Seriál o astrofyzice:} Jana Poledniková\\
-\textit{Legenda podzimního soustředění:} \\
-\textit{Legenda jarního soustředění:} \\
-~\\
-\textit{Sazba:} \\
-\textit{Obrázky a grafy:} \\
-\textit{Jazykové korektury:} \\
-\renewcommand{\baselinestretch}{1}
+\end{minipage}\par
+
+\textit{\tem@serialu:} \autor@serialu\par
+\textit{Legenda podzimního soustředění:} \podzimni@soustredeni\par
+\textit{Legenda jarního soustředění:} \jarni@soustredeni\par
+\bigskip
+
+\textit{Sazba:} \s@zba\par
+\textit{Obrázky a grafy:} \obr@zky\par
+\textit{Jazykové korektury:} \@korektury\par
+
+\revertp@r
 
 \makefooter
-\newpage
 }
+
+%
+% Closing page
+%
 
 \newcommand\closingpage{
 \newpage
-\thispagestyle{empty}
+\nullp@r
+\null\vfill
 \begin{center}
-\raisebox{-12cm}{
 \begin{minipage}{10cm}
-\noindent{\large\rmfamily
-\textsc{Karel Kolář a kolektiv}\\
-\textbf{\met@headername\\
-\Roman{year}. ročník -- 2011/2012}\\
-}
-~\\
-~\\
-\noindent
-Vydal \textsf{\textbf{MATFYZ}PRESS}\\
+\noindent{\LARGE\rmfamily
+\textsc{\@authors}\par
+\textbf{\@title}\par
+\textbf{\@subtitle}}
+\bigskip\bigskip\bigskip
+
+Vydal \mffpress\\
 vydavatelství Matematicko-fyzikální fakulty\\
 Univerzity Karlovy v Praze\\
-Sokolovská 83, 186 75 Praha 8\\
-jako svou 381. publikaci\\ %TODO
-~\\
-Vytiskl Akcent Třebíč\\
-~\\
+Sokolovská 83, 186\,75 Praha 8\\
+jako svou \cislo@publikace. publikaci
+\bigskip
+
+Vytiskl \@tiskarna
+\bigskip
+
 Vydáno pro vnitřní potřebu MFF UK\\
-Publikace není určena k prodeji\\
-~\\
-\pageref{LastPage} stran, \arabic{figure} obrázků\\ %TODO
+Publikace není určena k prodeji
+\bigskip
+
+\pageref{LastPage} stran, \arabic{figure} obrázků\\
 Sazba písmem Computer Modern v programu \TeX \\
 Vydání první\\
-Náklad 350 výtisků\\ %TODO
-~\\
-Praha 2012\\
-~\\
-ISBN 978-80-7378-187-3 %TODO
+Náklad \pocet@vytisku~výtisků
+\bigskip
+
+Praha \@published
+\bigskip\bigskip\bigskip
+
+ISBN \@isbn
+\end{minipage}
+\end{center}
+\revertp@r
+}
+
+\newcommand\makefooter{%
+\vspace*{\fill}
+\noindent\begin{minipage}{\textwidth}
+\hrule
+\smallskip
+\begin{center}
+\met@licence
+\end{center}
 \end{minipage}
 }
+
+% 
+% Title page
+%
+\newcommand\titlefontsc{\fontsize{20pt}{20pt}\selectfont\scshape}
+\newcommand\titlefontmain{\fontsize{40pt}{60pt}\selectfont\bfseries}
+\newcommand\titlefontsub{\fontsize{20pt}{20pt}\selectfont\bfseries}
+
+\renewcommand\maketitle{%
+\thispagestyle{empty}
+
+\begin{center}
+\null\vspace{12pt}
+{\titlefontsc\@authors}
+\vspace{36pt}
+
+{\titlefontmain\@title}
+\vspace{36pt}
+
+{\titlefontsub\@subtitle}
+\vspace{72pt}
+
+\includegraphics[width=40mm]{logo8.eps}
+
+
 \end{center}
 }
+
+\newcommand\copyrightpage{%
+\newpage
+\thispagestyle{empty}
+\null\vfill
+\nullp@r
+\begin{tabular}{@{}l@{}l}
+ Copyright \copyright &\ \@author, \@published\\
+ Copyright \copyright &\ \mffpress, vydavatelství Matematicko-fyzikální fakulty\\
+ &\ Univerzity Karlovy v Praze, \@published
+\end{tabular}
+\vspace{1cm}
+
+ISBN \@isbn
+\revertp@r
+}
+
+
+%
+% Misc
+%
+\newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
 
 
 

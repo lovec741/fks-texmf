@@ -62,7 +62,8 @@
 \ifthenelse{\equal{#3}{}}{\capstarttrue}{}
 \ignorespaces}
 
-\newcommand\plotfig[4][h]{%  
+\newcommand\plotfig[4][h]{%
+\ifyearbook\immediate\write\plotsfile{#2}\else\relax\fi
 \ifthenelse{\equal{#3}{}}{\capstartfalse}{}
 \begin{figure}[#1]
 \centering
@@ -92,4 +93,14 @@
 
 \AtBeginDocument{
   \renewcommand\figurename{Obr.}
+  \ifyearbook
+  \newwrite\plotsfile
+  \immediate\openout\plotsfile=plots.txt
+  \else\relax\fi
+}
+\AtEndDocument{
+  \ifyearbook
+  \newwrite\plotsfile
+    \immediate\closeout\plotsfile
+  \else\relax\fi
 }
