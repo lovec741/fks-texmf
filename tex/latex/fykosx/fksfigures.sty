@@ -19,6 +19,7 @@
 \RequirePackage[all]{hypcap} % links jump to an image, not the caption
 \RequirePackage{optional}
 \RequirePackage{subfig}
+\RequirePackage{xargs}
 
 \renewcommand\figurename{Obr.}
 \newcommand\centercaption{%
@@ -43,12 +44,18 @@
  \@myinputpath{{./graphics/}{\@problemsdir/graphics/}}
 }
 
-% commands for inserting figures syntax is command[position]{filename}{caption}{label}
-\newcommand\fullfig[4][h]{%
+% commands for inserting figures syntax is command[position]{filename}{caption}{label}[opts]
+
+\newcommandx*\fullfig[5][1=h, 5=0]{
 \ifthenelse{\equal{#3}{}}{\capstartfalse}{}
 \begin{figure}[#1]
 \centering
-\includegraphics{#2}
+\ifthenelse{\equal{#5}{0}}{
+	\includegraphics{#2}
+}{
+	\includegraphics[#5]{#2}
+}
+%\includegraphics{#2}
 \ifthenelse{\equal{#3}{}}{}{\caption{#3}}
 \ifthenelse{\equal{#4}{}}{}{\label{#4}}
 \end{figure}
