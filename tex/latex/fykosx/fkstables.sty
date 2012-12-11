@@ -30,14 +30,19 @@
 
 \met@resultscols % this defines new column type as in fksmeta
 
-\newcommand\resultstab[1]{%
-\begin{center}
-\small
-\setlength{\tabcolsep}{2pt}
-\begin{tabularx}{\textwidth}{T} % batch, percent, sum
-\rowstyle{\bfseries}
-\met@resultsheader
-\input{results/#1.tex} %TODO path
-\end{tabularx}
-\end{center}
+
+\newcommand\resultstab[2][0]{%
+	\begin{center}
+		\small
+		\setlength{\tabcolsep}{2pt}
+		\begin{tabularx}{\textwidth}{T} % batch, percent, sum
+			\rowstyle{\bfseries}
+			\met@resultsheader
+			\ifthenelse{\equal{#1}{0}}{%
+				\input{results/#2.tex} %TODO path
+			}{
+				\partialinput{1}{#1}{results/#2} %TODO path
+			}
+		\end{tabularx}
+	\end{center}
 }
