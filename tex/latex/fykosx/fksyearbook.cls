@@ -32,6 +32,7 @@
   filecolor=black,
   urlcolor=black,
   bookmarks=true,
+  bookmarksdepth=subsection,
 ]{hyperref} 
 \opt{web}{\hypersetup{colorlinks=true}}
 \opt{print}{\hypersetup{colorlinks=false}}
@@ -192,12 +193,13 @@ A{\bfseries}r}} % sum
    \signed{\textit{(řešení str. \pageref{solution\thecountx-\thecounty})}}
   }
 }
-% bez autora námětu a vzoráku (jsou vzadu)
+% bez autora námětu a vzoráku (jsou vzadu), suffixování labelů u obrázků v zadání (kolize se skutečným zadáním)
 \renewcommand\pr@blemsolution{%  
    \varproblem[\metaprobletter{problem}: \@probname]%
     {Úloha \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
       {\normalfont\normalsize\problemstats}}%
-   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
+   \renewcommand\labelsuffix{_sol}\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak\renewcommand\labelsuffix{}%   
+%   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
    \textsl{\@probtask}
    
    \medskip

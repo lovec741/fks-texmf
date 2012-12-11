@@ -44,6 +44,11 @@
  \@myinputpath{{./graphics/}{\@problemsdir/graphics/}}
 }
 
+% to avoid label name collision in yearbook, figures inserted in 
+\newcommand\labelsuffix{}
+\newcommand\@putlabel[1]{%
+\ifthenelse{\equal{#1}{}}{}{\label{#1\labelsuffix}}}
+
 % commands for inserting figures syntax is command[position]{filename}{caption}{label}[opts]
 
 \newcommandx*\fullfig[5][1=h, 5=0]{
@@ -57,7 +62,7 @@
 }
 %\includegraphics{#2}
 \ifthenelse{\equal{#3}{}}{}{\caption{#3}}
-\ifthenelse{\equal{#4}{}}{}{\label{#4}}
+\@putlabel{#4}
 \end{figure}
 \ifthenelse{\equal{#3}{}}{\capstarttrue}{}
 \ignorespaces}
@@ -72,7 +77,7 @@
   }\opt{print}{%
   \input{#2}}
 \ifthenelse{\equal{#3}{}}{}{\caption{#3}}
-\ifthenelse{\equal{#4}{}}{}{\label{#4}}
+\@putlabel{#4}
 \end{figure}%
 \ifthenelse{\equal{#3}{}}{\capstarttrue}{}%
 \ignorespaces}
@@ -88,9 +93,10 @@
 \vspace{-\intextsep}%
 \includegraphics[width=\img@width]{#2}%
 \ifthenelse{\equal{#3}{}}{}{\caption{#3}}%
-\ifthenelse{\equal{#4}{}}{}{\label{#4}}%
+\@putlabel{#4}%
 \end{wrapfigure}\ignorespaces}
 
+% plot figures are listed down, in yearbook they have to be narrower
 \AtBeginDocument{
   \renewcommand\figurename{Obr.}
   \ifyearbook
