@@ -321,7 +321,7 @@ A{\bfseries}r}} % sum
 \newcommand\cislo@publikace{???}
 \newcommand\pocet@vytisku{???}
 \newcommand\@isbn{???-???-???}
-\newcommand\@tiskarna{Akcent Třebíč}
+\newcommand\@tiskarna{???}
 \newcommand\school@year{????/??}
 \newcommand\@published{????}
 
@@ -481,7 +481,7 @@ Publikace není určena k prodeji
 \bigskip
 
 \pageref{LastPage} stran, \arabic{figure} obrázků\\
-Sazba písmem Computer Modern v programu \TeX \\
+Sazba písmem Latin Modern v programu \XeLaTeX \\
 Vydání první\\
 Náklad \pocet@vytisku~výtisků
 \bigskip
