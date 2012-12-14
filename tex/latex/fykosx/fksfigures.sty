@@ -85,12 +85,16 @@
 % specialized for third illustration figures
 % maximal width of illustration image is 0.28\textwidth
 % usage: illfig[alignment]{path}{caption}{label}{height (in rows)}
+%        possibly wrapped in \illtoptrue--\illtopfalse when figure is
+%        is on top of the page and negative vertical shift is not intended.
+\newif\ifilltop
+\illtopfalse
 \newlength\img@width
 \newcommand\illfig[5][o]{%
 \settowidth{\img@width}{\includegraphics{#2}}%
 \setlength{\img@width}{\minof{\img@width}{0.28\textwidth}}%
 \begin{wrapfigure}[#5]{#1}{1.05\img@width}
-\vspace{-\intextsep}%
+\ifilltop\else\vspace{-\intextsep}\fi%
 \includegraphics[width=\img@width]{#2}%
 \ifthenelse{\equal{#3}{}}{}{\caption{#3}}%
 \@putlabel{#4}%
