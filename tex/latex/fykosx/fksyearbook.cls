@@ -234,16 +234,16 @@ A{\bfseries}r}} % sum
 \newchapter[Předmluva]{\met@headeryearintro}}
 
 \newcommand\theorproblemsheading{%
-\newchapter[Zadání teoretických úloh]{\met@headeryeartheorproblems}}
+\newchapter[Zadání teoretických úloh]{\met@headeryeartheorproblems}\subpdfbookmark{Úlohy}{book_theory}}
 
 \newcommand\theorsolutionsheading{%
-\newchapter[Řešení teoretických úloh]{\met@headeryeartheorsolutions}}
+\newchapter[Řešení teoretických úloh]{\met@headeryeartheorsolutions}\subpdfbookmark{Úlohy}{book_theorysol}}
 
 \newcommand\expproblemsheading{%
-\newchapter[Zadání experimentálních úloh]{\met@headeryearexpproblems}}
+\newchapter[Zadání experimentálních úloh]{\met@headeryearexpproblems}\subpdfbookmark{Úlohy}{book_exp}}
 
 \newcommand\expsolutionsheading{%
-\newchapter[Řešení experimentálních úloh]{\met@headeryearexpsolutions}}
+\newchapter[Řešení experimentálních úloh]{\met@headeryearexpsolutions}\subpdfbookmark{Úlohy}{book_expsol}}
 
 \newcommand\seriespartheading[1]{%
 \newchapter[#1]{\met@headeryearseries{#1}}}
@@ -256,7 +256,7 @@ A{\bfseries}r}} % sum
 }
 
 \newcommand\seriessolutionsheading{%
-\newchapter[Řešení úloh ze seriálu]{\met@headeryearseriessolutions}}
+\newchapter[Řešení úloh ze seriálu]{\met@headeryearseriessolutions}\subpdfbookmark{Úlohy}{book_sersol}}
 
 \newcommand\eventsheading{%
 \newchapter[Akce \met@shortname u]{\met@headeryearevents}}
@@ -426,13 +426,13 @@ UK~MFF, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 
 \textit{Náměty úloh:}\par
 \hspace{\tmpp@rindent}
-\begin{minipage}{12cm}
+\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} %3pt is magic
 \input{authors/probauthors}
 \end{minipage}\par
 
 \textit{Autoři řešení úloh:}\par
 \hspace{\tmpp@rindent}
-\begin{minipage}{12cm}
+\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} % 3pt is magic
 \input{authors/solauthors}
 \end{minipage}\par
 
