@@ -36,7 +36,12 @@
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
 
-\newfontfamily\cyrillicfont[Script=Cyrillic]{Liberation Serif}
+\newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
+	ItalicFont=[cmunti.ttf],
+	BoldFont=[cmunbx.ttf],
+	BoldItalicFont=[cmunbi.ttf],
+	SlantedFont=[cmunsl.ttf]
+]{[cmunrm.ttf]}
 
 % layout settings
 \RequirePackage[includeheadfoot,
