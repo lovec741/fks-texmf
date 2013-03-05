@@ -36,6 +36,7 @@
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
 
+\newfontfamily\cyrillicfont[Script=Cyrillic]{Liberation Serif}
 
 % layout settings
 \RequirePackage[includeheadfoot,
