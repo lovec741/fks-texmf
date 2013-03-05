@@ -182,6 +182,8 @@ A{\bfseries}r}} % sum
 \problemsdir{../problems}
 % bez statistik
 \renewcommand\problemstats\relax
+% řetezec v labelu pro vzorák
+\newcommand\solutionref{solution}
 % odkaz na vzorák
 \renewcommand\problemtask{%
   \tasktrue\solutionfalse\solutionsinglefalse%
@@ -190,7 +192,7 @@ A{\bfseries}r}} % sum
    \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
-   \signed{\textit{(řešení str. \pageref{solution\thecountx-\thecounty})}}
+   \signed{\textit{(řešení str. \pageref{\solutionref\thecountx-\thecounty})}}
   }
 }
 % bez autora námětu a vzoráku (jsou vzadu), suffixování labelů u obrázků v zadání (kolize se skutečným zadáním)
