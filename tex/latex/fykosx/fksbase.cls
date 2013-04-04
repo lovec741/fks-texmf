@@ -21,6 +21,8 @@
 \RequirePackage{xltxtra} % includes xunicode, fontspec
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal ellipsis
 
+\RequirePackage[version=3]{mhchem}
+
 \RequirePackage[xetex,
   setpagesize=false,
   linkcolor=black,
