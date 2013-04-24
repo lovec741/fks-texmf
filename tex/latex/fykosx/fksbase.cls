@@ -45,6 +45,8 @@
 	SlantedFont=[cmunsl.ttf]
 ]{[cmunrm.ttf]}
 
+\widowpenalty 10000 \clubpenalty 10000 \displaywidowpenalty 10000
+
 % layout settings
 \RequirePackage[includeheadfoot,
   a5paper,
