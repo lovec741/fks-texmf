@@ -39,17 +39,40 @@
 \newsavebox{\RESbox}%
 
 % Tabulka puvodni
+\newcommand\resultstab[2][0]{%
+	\begin{center}
+		\small
+		\setlength{\tabcolsep}{2pt}
+		\begin{tabularx}{\textwidth}{T} % batch, percent, sum
+			\rowstyle{\bfseries}
+			\met@resultsheader
+			\ifthenelse{\equal{#1}{0}}{%
+				\input{results/#2.tex} %TODO path
+			}{
+				\partialinput{1}{#1}{results/#2} %TODO path
+			}
+		\end{tabularx}
+	\end{center}
+}
 
-% Tabulka automaticke rozdeleni
+% Tabulka automaticke rozdeleni 
+% * 1. param je nepovinny (pocet zobrazovanych vysledku)
+%   * zadan:
+%     * Vysazi se vysledkovka az do zadaneho poctu [nutno zadat o 2 vice nez je posledni v poradi]
+%     * Dojde-li stranka, zacne se na nove
+%   * Nezadan
+%     * Vysazi se tolik resitelu nez prijde konec stranky
+%     * Nejak blbne
+% * Psychicke problemy reste vlozenim \newpage [sem tam trochu neocekavane misto] nebo manualnim rozdelenim
 \newcommand\resultstabsplit[2][0]{%
     \setlength{\tableheight}{\textheight}%
-    \addtolength{\tableheight}{5mm}%
-    \ifdim\pagetotal>.8\textwidth\newpage\fi%
+    \addtolength{\tableheight}{4mm}%ideálně co nejvíce, ale je z bulharska
     \setcounter{RESinit}{1}%
     \resultstabR[#1]{#2}%
 }
 
 % Tabulka cast, manualne urcena
+% {prvni}{posledni}{soubor}
 \newcommand\resultstabspart[3]{% from to file
     \setcounter{RESinit}{#1}%
     \setcounter{RESendline}{#2}%
@@ -80,11 +103,11 @@
 
 \newcommand\resultstabR[2][0]{%
 % vytvoreni boxu s celou tabulkou
-    \setcounter{RESendline}{#1}%
+    \ifnum#1=0\setcounter{RESendline}{60}\else\setcounter{RESendline}{#1}\fi%
     \addtocounter{RESendline}{-60}%
     \ifnum\theRESendline>\theRESinit\setcounter{RESendline}{\theRESinit}\fi%
     \addtocounter{RESendline}{60}%
-
+%
     \resultsmakebox[#1]{#2}%
     \setlength{\RESenddist}{\pagetotal}%
     \addtolength{\RESenddist}{\ht\RESbox}%
@@ -108,17 +131,8 @@
                 \message{D}%
             \fi%
         \repeat%
-        \begin{center}\box\RESbox\end{center}%
-        \ifdim\pagetotal>.5\textwidth%
-            \newpage%
-            \message{New page:\thepage}%
-        \else%
-            \setlength{\RESenddist}{\pagetotal}%
-            \addtolength{\RESenddist}{6mm}% Konstanta bulharská...
-            \vspace{-\RESenddist}%
-        \fi%
+        \hbox{\hss\box\RESbox\hss}\eject%
         \message{Vesla se pouze cast.(#2)}%
-%        \ifdim\pagetotal>.8\tableheight\newpage\message{New page:\thepage}\fi%
         \ifnum\theRESendline<#1%
             \addtocounter{RESendline}{1}%
             \setcounter{RESinit}{\theRESendline}%
@@ -126,3 +140,4 @@
         \fi%
     \fi%
 }
+
