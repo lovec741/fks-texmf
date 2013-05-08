@@ -31,18 +31,75 @@
 \met@resultscols % this defines new column type as in fksmeta
 
 
+\newcounter{RESendline}%
+\newcounter{RESinit}%
+\newcounter{resultstmp}
+\newlength{\RESenddist}
+\newbox\RESbox%
+
 \newcommand\resultstab[2][0]{%
-	\begin{center}
-		\small
-		\setlength{\tabcolsep}{2pt}
-		\begin{tabularx}{\textwidth}{T} % batch, percent, sum
-			\rowstyle{\bfseries}
-			\met@resultsheader
-			\ifthenelse{\equal{#1}{0}}{%
-				\input{results/#2.tex} %TODO path
-			}{
-				\partialinput{1}{#1}{results/#2} %TODO path
-			}
-		\end{tabularx}
-	\end{center}
+%    \ifdim\pagetotal>.9\pagegoal\newpage\fi%
+    \setcounter{RESinit}{1}%
+    \resultstabR[#1]{#2}%
+}
+
+\newcommand\resultsmakebox[2][0]{
+    \setbox\RESbox=\hbox{%
+        \small\setlength{\tabcolsep}{2pt}%
+        \begin{tabularx}{\textwidth}{T}% batch, percent, sum
+            \rowstyle{\bfseries}%
+            \met@resultsheader%
+            \ifthenelse{\equal{#1}{0}}{%
+                \input{results/#2.tex}%TODO path
+            }{%
+%hlavicka u pokracovani
+                \ifnum\value{RESinit}=1\else\partialinput{1}{2}{results/#2}\fi%
+                \partialinput{\theRESinit}{\theRESendline}{results/#2}%TODO path
+            }%
+        \end{tabularx}%
+    }% end hbox
+}
+
+% TODO pretekajici prijmeni/skola
+
+\newcommand\resultstabR[2][0]{%
+% vytvoreni boxu s celou tabulkou
+    \setcounter{RESendline}{#1}%
+    \resultsmakebox[#1]{#2}%
+    \setlength{\RESenddist}{\pagetotal}%
+    \addtolength{\RESenddist}{\ht\RESbox}%
+    \addtolength{\RESenddist}{\dp\RESbox}%
+%\dotfill\hspace{\RESenddist}\dotfill\hspace{\pagegoal}\dotfill\\%
+% pokud se tam box vejde, vlozi se
+    \ifdim\RESenddist<\pagegoal%
+        \begin{center}A\box\RESbox\end{center}%
+% jinak: urceni poctu radek, co se tam vejdou
+    \else%
+        \setcounter{RESendline}{1}%
+        \setlength{\RESenddist}{\pagetotal}%
+        \addtolength{\RESenddist}{10mm}%TODO skvira na spodku stranky
+        \loop\ifdim\RESenddist<\pagegoal%
+            \small%
+            \addtolength{\RESenddist}{\baselineskip}%
+            \addtocounter{RESendline}{1}%
+        \repeat%
+%        \addtocounter{RESendline}{-1}%
+%
+        \setcounter{resultstmp}{50}%max pocet pretykajicich radek
+        \loop\ifnum\theresultstmp>0\addtocounter{resultstmp}{-1}%
+            \resultsmakebox[1]{#2}%
+	    \setlength{\RESenddist}{\pagetotal}%
+            \addtolength{\RESenddist}{\ht\RESbox}%
+            \addtolength{\RESenddist}{\dp\RESbox}%
+            \addtolength{\RESenddist}{10mm}% TODO stejna skvira
+            \ifdim\RESenddist>\pagegoal\addtocounter{RESendline}{-1}\fi%
+        \repeat%
+%
+        \begin{center}B\box\RESbox\end{center}\newpage%
+        \ifnum\theRESendline<#1%
+            \addtocounter{RESendline}{1}%
+            \setcounter{RESinit}{\theRESendline}%
+            \resultstabR[#1]{#2}%
+        \fi%
+    \fi%
 }
