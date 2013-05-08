@@ -38,16 +38,27 @@
 \newlength{\tableheight}
 \newsavebox{\RESbox}%
 
-\newcommand\resultstab[2][0]{%
+% Tabulka puvodni
+
+% Tabulka automaticke rozdeleni
+\newcommand\resultstabsplit[2][0]{%
     \setlength{\tableheight}{\textheight}%
-%    \addtolength{\tableheight}{7mm}%
+    \addtolength{\tableheight}{5mm}%
     \ifdim\pagetotal>.8\textwidth\newpage\fi%
     \setcounter{RESinit}{1}%
     \resultstabR[#1]{#2}%
 }
 
+% Tabulka cast, manualne urcena
+\newcommand\resultstabspart[3]{% from to file
+    \setcounter{RESinit}{#1}%
+    \setcounter{RESendline}{#2}%
+    \resultsmakebox[1]{#3}%
+    \begin{center}\box\RESbox\end{center}%
+}
 
 \newcommand\resultsmakebox[2][0]{
+  \ifnum\theRESinit=\theRESendline\else%
     \savebox{\RESbox}{\hbox{%
         \small\setlength{\tabcolsep}{2pt}%
         \begin{tabularx}{\textwidth}{T}% batch, percent, sum
@@ -62,7 +73,7 @@
             }%
         \end{tabularx}%
     }}% end hbox
-%  \fi%
+  \fi%
 }
 
 % TODO pretekajici prijmeni/skola
@@ -89,7 +100,7 @@
 	    \setlength{\RESenddist}{\pagetotal}%
             \addtolength{\RESenddist}{\ht\RESbox}%
             \addtolength{\RESenddist}{\dp\RESbox}%
-            \addtolength{\RESenddist}{\baselineskip}% TODO stejna skvira
+            \addtolength{\RESenddist}{\baselineskip}%
             \ifnum\theRESendline=\theRESinit\setcounter{resultstmp}{-2}\fi%chyba
             \ifdim\RESenddist>\tableheight%
                 \addtocounter{RESendline}{-1}%
@@ -97,8 +108,17 @@
                 \message{D}%
             \fi%
         \repeat%
-        \begin{center}\box\RESbox\newpage\end{center}\message{Vesla se pouze cast.(#2)}%
-        \ifdim\pagetotal>.8\tableheight\newpage\message{New page:\thepage}\fi%
+        \begin{center}\box\RESbox\end{center}%
+        \ifdim\pagetotal>.5\textwidth%
+            \newpage%
+            \message{New page:\thepage}%
+        \else%
+            \setlength{\RESenddist}{\pagetotal}%
+            \addtolength{\RESenddist}{6mm}% Konstanta bulharská...
+            \vspace{-\RESenddist}%
+        \fi%
+        \message{Vesla se pouze cast.(#2)}%
+%        \ifdim\pagetotal>.8\tableheight\newpage\message{New page:\thepage}\fi%
         \ifnum\theRESendline<#1%
             \addtocounter{RESendline}{1}%
             \setcounter{RESinit}{\theRESendline}%
