@@ -35,16 +35,22 @@
 \newcounter{RESinit}%
 \newcounter{resultstmp}
 \newlength{\RESenddist}
-\newbox\RESbox%
+\newlength{\tableheight}
+\newsavebox{\RESbox}%
 
 \newcommand\resultstab[2][0]{%
+%    \message{begin: #2; #1}%
+    \setlength{\tableheight}{\textheight}%
+%    \addtolength{\tableheight}{7mm}%
 %    \ifdim\pagetotal>.9\pagegoal\newpage\fi%
     \setcounter{RESinit}{1}%
     \resultstabR[#1]{#2}%
 }
 
+
 \newcommand\resultsmakebox[2][0]{
-    \setbox\RESbox=\hbox{%
+%  \ifnum\theRESinit=\theRESendline\else%
+    \savebox{\RESbox}{\hbox{%
         \small\setlength{\tabcolsep}{2pt}%
         \begin{tabularx}{\textwidth}{T}% batch, percent, sum
             \rowstyle{\bfseries}%
@@ -53,53 +59,63 @@
                 \input{results/#2.tex}%TODO path
             }{%
 %hlavicka u pokracovani
-                \ifnum\value{RESinit}=1\else\partialinput{1}{2}{results/#2}\fi%
+                \ifnum\value{RESinit}>1\partialinput{1}{2}{results/#2}\fi%
+%                \message{mbox:\theRESinit;\theRESendline}%
                 \partialinput{\theRESinit}{\theRESendline}{results/#2}%TODO path
             }%
         \end{tabularx}%
-    }% end hbox
+    }}% end hbox
+%  \fi%
 }
 
 % TODO pretekajici prijmeni/skola
 
 \newcommand\resultstabR[2][0]{%
+%    \message{subBegin: #2; #1;\theRESinit}%
 % vytvoreni boxu s celou tabulkou
     \setcounter{RESendline}{#1}%
+    \addtocounter{RESendline}{-60}%
+    \ifnum\theRESendline>\theRESinit\setcounter{RESendline}{\theRESinit}\fi%
+    \addtocounter{RESendline}{60}%
+
     \resultsmakebox[#1]{#2}%
     \setlength{\RESenddist}{\pagetotal}%
     \addtolength{\RESenddist}{\ht\RESbox}%
     \addtolength{\RESenddist}{\dp\RESbox}%
-%\dotfill\hspace{\RESenddist}\dotfill\hspace{\pagegoal}\dotfill\\%
+%    \message{\value{RESenddist}}%
+%A\dotfill A\hspace{.1\RESenddist}B\dotfill B\hspace{.01\pagegoal}B\dotfill C\\%
 % pokud se tam box vejde, vlozi se
-    \ifdim\RESenddist<\pagegoal%
-        \begin{center}A\box\RESbox\end{center}%
+    \ifdim\RESenddist<\tableheight%pagegoal%
+        \begin{center}\box\RESbox\end{center}\message{Veslo se (#2).}%
 % jinak: urceni poctu radek, co se tam vejdou
     \else%
-        \setcounter{RESendline}{1}%
-        \setlength{\RESenddist}{\pagetotal}%
-        \addtolength{\RESenddist}{10mm}%TODO skvira na spodku stranky
-        \loop\ifdim\RESenddist<\pagegoal%
-            \small%
-            \addtolength{\RESenddist}{\baselineskip}%
-            \addtocounter{RESendline}{1}%
-        \repeat%
-%        \addtocounter{RESendline}{-1}%
+%        \setlength{\RESenddist}{\pagetotal}%
+%        \addtolength{\RESenddist}{7mm}%TODO skvira na spodku stranky
+%        \loop\ifdim\RESenddist<\pagegoal%
+%            \small%
+%            \addtolength{\RESenddist}{\baselineskip}%
+%            \addtocounter{RESendline}{1}%
+%        \repeat%
 %
-        \setcounter{resultstmp}{50}%max pocet pretykajicich radek
+        \setcounter{resultstmp}{5}%
         \loop\ifnum\theresultstmp>0\addtocounter{resultstmp}{-1}%
             \resultsmakebox[1]{#2}%
 	    \setlength{\RESenddist}{\pagetotal}%
             \addtolength{\RESenddist}{\ht\RESbox}%
             \addtolength{\RESenddist}{\dp\RESbox}%
-            \addtolength{\RESenddist}{10mm}% TODO stejna skvira
-            \ifdim\RESenddist>\pagegoal\addtocounter{RESendline}{-1}\fi%
+            \addtolength{\RESenddist}{\baselineskip}% TODO stejna skvira
+            \ifnum\theRESendline=\theRESinit\setcounter{resultstmp}{-2}\fi%
+            \ifdim\RESenddist>\tableheight\addtocounter{RESendline}{-1}\message{D}\addtocounter{resultstmp}{1}\fi%
         \repeat%
 %
-        \begin{center}B\box\RESbox\end{center}\newpage%
+        \begin{center}\box\RESbox\newpage\end{center}\message{Vesla se pouze cast.(#2)}%
+        \ifdim\pagetotal>.8\tableheight\newpage\message{New page:\thepage}\fi%
         \ifnum\theRESendline<#1%
             \addtocounter{RESendline}{1}%
             \setcounter{RESinit}{\theRESendline}%
             \resultstabR[#1]{#2}%
+        \else%
+            \ifdim\pagetotal>.70\tableheight\newpage\message{NEW PAGE:\thepage}\fi%
         \fi%
     \fi%
 }
