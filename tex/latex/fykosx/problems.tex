@@ -101,6 +101,7 @@ průměr~\@probavg;
 \newcommand\@proborigin{N/A}
 \newcommand\@probpoints{N/A}
 \newcommand\@probsolauthors{N/A}
+\newcommand\@probauthors{N/A}
 \newcommand\@probsolvers{N/A}
 \newcommand\@probavg{N/A}
 \newcommand\@probtask{N/A}
@@ -112,7 +113,9 @@ průměr~\@probavg;
 \newcommand\probname[1]{\renewcommand\@probname{#1}}
 \newcommand\proborigin[1]{\renewcommand\@proborigin{#1}}
 \newcommand\probpoints[1]{\renewcommand\@probpoints{#1}}
-\newcommand\probsolauthors[1]{\renewcommand\@probsolauthors{{#1}}} % due to foreach expansion
+\newcommand\probsolauthors[1]{\renewcommand\@probsolauthors{{#1}}} % due to 
+%foreach expansion
+\newcommand\probauthors[1]{\renewcommand\@probauthors{{#1}}}
 \newcommand\probsolvers[1]{\renewcommand\@probsolvers{#1}}
 \newcommand\probavg[1]{\renewcommand\@probavg{#1}}
 \newcommand\probtask[1]{\renewcommand\@probtask{#1}}
