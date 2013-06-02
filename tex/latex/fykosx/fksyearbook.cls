@@ -22,7 +22,10 @@
 \RequirePackage{xltxtra} % includes xunicode, fontspec
 \RequirePackage{pgffor}
 \RequirePackage{lastpage}
-\UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal ellipsis
+\UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal 
+%ellipsis
+
+\RequirePackage[version=3]{mhchem}
 
 \RequirePackage[xetex,
   setpagesize=false,
