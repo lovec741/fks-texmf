@@ -277,6 +277,9 @@ A{\bfseries}r}} % sum
 \newcommand\resultsheading{%
 \newchapter[Pořadí nejlepších řešitelů]{\met@headeryearresults}
 }
+\newcommand\resultsheadingall{%
+	\newchapter[Pořadí řešitelů]{\met@headeryearresultsall}
+}
 
 \newcommand\address{
 \met@address
