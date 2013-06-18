@@ -334,6 +334,7 @@ A{\bfseries}r}} % sum
 \newcommand\s@zba{}
 \newcommand\obr@zky{}
 \newcommand\@korektury{}
+\newcommand\@odbornekorektury{}
 \newcommand\cislo@publikace{???}
 \newcommand\pocet@vytisku{???}
 \newcommand\@isbn{???-???-???}
@@ -377,6 +378,9 @@ A{\bfseries}r}} % sum
 }
 \newcommand\korektury[1]{
 \renewcommand\@korektury{#1}
+}
+\newcommand\odbornekorektury[1]{
+\renewcommand\@odbornekorektury{#1}
 }
 \newcommand\cislopublikace[1]{
 \renewcommand\cislo@publikace{#1}
@@ -460,6 +464,7 @@ UK~MFF, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \textit{Sazba:} \s@zba\par
 \textit{Obrázky a grafy:} \obr@zky\par
 \textit{Jazykové korektury:} \@korektury\par
+\textit{Odborné korektury:} \@odbornekorektury\par
 
 \revertp@r
 
