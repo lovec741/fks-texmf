@@ -34,6 +34,7 @@
 \newcounter{RESendline}%
 \newcounter{RESinit}%
 \newcounter{resultstmp}
+\newcounter{linecount}
 \newlength{\RESenddist}
 \newlength{\tableheight}
 \newsavebox{\RESbox}%
@@ -59,6 +60,7 @@
 % * 1. param je nepovinny (pocet zobrazovanych vysledku)
 %   * zadan:
 %     * Vysazi se vysledkovka az do zadaneho poctu [nutno zadat o 2 vice nez je posledni v poradi]
+%     * pro parametr -1 vysází celou výsledkovku
 %     * Dojde-li stranka, zacne se na nove
 %   * Nezadan
 %     * Vysazi se tolik resitelu nez prijde konec stranky
@@ -68,7 +70,23 @@
     \setlength{\tableheight}{\textheight}%
     \addtolength{\tableheight}{4mm}%ideálně co nejvíce, ale je z bulharska
     \setcounter{RESinit}{1}%
-    \resultstabR[#1]{#2}%
+    \ifnum#1=-1
+        \setcounter{linecount}{-1}
+        \newread\lf
+        \openin\lf results/#2
+        \unless\ifeof\lf
+                \loop\unless\ifeof\lf
+                    \readline\lf to\lfline
+                    \addtocounter{linecount}{1}
+                    \message{R}%
+                \repeat
+                \closein\lf
+        \fi
+        \message{Auto (#2): \thelinecount}
+        \resultstabR[\thelinecount]{#2}%
+    \else
+        \resultstabR[#1]{#2}%
+    \fi
 }
 
 % Tabulka cast, manualne urcena
