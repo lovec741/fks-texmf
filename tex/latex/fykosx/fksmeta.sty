@@ -124,14 +124,14 @@ Pro zobrazení kopie této licence, navštivte
 \DeclareOption{vyfuk}{%  
   \renewcommand\met@headername{VÝpočty Fyzikálních ÚKolů -- kores. sem. UK MFF pro ZŠ}
   \renewcommand\met@shortname{Výfuk}
-  \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or E\or S\else \@ctrerr\fi}
+  \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or E\or C\else \@ctrerr\fi}
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
   \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
   \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
   \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
   \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
   \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
-%pro potreby rocenky
+  %pro potreby rocenky (TODO seriál->Výfučtení)
 % \renewcommand\met@headeryeartoc{\centering Obsah}
 % \renewcommand\met@headeryearintro{\centering Předmluva}
 % \renewcommand\met@headeryeartheorproblems{\centering Zadání teoretických úloh}
