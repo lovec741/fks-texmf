@@ -19,6 +19,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{ifthen}
 \RequirePackage{lmodern}
+\RequirePackage{xargs}
 
 \let\underscore\_					% underscore sign
 \renewcommand\_[1]{_\text{#1}}			% roman index
@@ -107,6 +108,8 @@
 \newcommand\my@jd[1]{\begingroup\begingroup\!\jed@B#1@@}
 \newcommand\jd[1]{\ensuremath{\my@jd{#1}}} % pro psani samostatnych jednotek (napr. $\jd{m.s^{-1}}$)
 \newcommand\popi[2]{{$\dfrac{#1}{\jd{#2}}$}} % labels for graphs/tables
+\DeclareExpandableDocumentCommand{\popit}{O{1}O{c}mm}
+  {\multicolumn{#1}{#2}{\popi{#3}{#4}}}% labels for tables
 
 
 % following definition must be loaded after begining of the document
