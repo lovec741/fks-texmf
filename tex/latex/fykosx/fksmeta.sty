@@ -132,17 +132,18 @@ Pro zobrazení kopie této licence, navštivte
   \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
   \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
   %pro potreby rocenky (TODO seriál->Výfučtení)
-% \renewcommand\met@headeryeartoc{\centering Obsah}
-% \renewcommand\met@headeryearintro{\centering Předmluva}
-% \renewcommand\met@headeryeartheorproblems{\centering Zadání teoretických úloh}
-% \renewcommand\met@headeryeartheorsolutions{\centering Řešení teoretických úloh}
-% \renewcommand\met@headeryearexpproblems{\centering Zadání experimentálních úloh}
-% \renewcommand\met@headeryearexpsolutions{\centering Řešení experimentálních úloh}
-% \renewcommand\met@headeryearseries[1]{\centering Seriál o #1}
-% \renewcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
-% \renewcommand\met@headeryearseriessolutions{\centering Řešení úloh ze seriálu}
-% \renewcommand\met@headeryearresults{\centering Pořadí nejlepších řešitelů}
-% \renewcommand\met@headeryearevents{\centering Akce semináře}
+\renewcommand\met@headeryeartoc{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Obsah}}
+\renewcommand\met@headeryearintro{\centering \includegraphics{logo8.eps}\hspace{10pt}\raisebox{0.6cm}{Předmluva}}
+\renewcommand\met@headeryeartheorproblems{\centering Zadání teoretických úloh}
+\renewcommand\met@headeryeartheorsolutions{\centering Řešení teoretických úloh}
+\renewcommand\met@headeryearexpproblems{\centering Zadání experimentálních úloh}
+\renewcommand\met@headeryearexpsolutions{\centering Řešení experimentálních úloh}
+\renewcommand\met@headeryearseries[1]{\centering Výfučtení} %parametr z duvodu genericity
+\renewcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
+\renewcommand\met@headeryearseriessolutions{\centering Řešení úloh ze seriálu}
+\renewcommand\met@headeryearresults{\centering Pořadí nejlepších řešitelů}
+\renewcommand\met@headeryearevents{\centering \includegraphics[scale=0.4]{vyfuk-schlitt.eps}\hspace{10pt}\raisebox{0.6cm}{Akce Výfuku}}
+
 
   \fancypagestyle{titlepage}{
     \newgeometry{head=0pt,headsep=0pt,margin=0.7cm,includeheadfoot}
@@ -201,6 +202,7 @@ Pro zobrazení kopie této licence, navštivte
 
 % to have initialized counters
 \AtBeginDocument{
+\temaserialu{Výfučtení} %pro zachovani genericity maker (ovlivnuje vysazeni nazvu bookmarku)
 \hypersetup{    
     pdftitle={Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo},    % tady radši Roman
     pdfauthor={Organizátoři Výfuku <vyfuk@fykos.cz>},     % author
