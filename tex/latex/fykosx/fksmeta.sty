@@ -203,7 +203,9 @@ Pro zobrazení kopie této licence, navštivte
 
 % to have initialized counters
 \AtBeginDocument{
+\ifyearbook
 \temaserialu{Výfučtení} %pro zachovani genericity maker (ovlivnuje vysazeni nazvu bookmarku)
+\fi
 \hypersetup{    
     pdftitle={Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo},    % tady radši Roman
     pdfauthor={Organizátoři Výfuku <vyfuk@fykos.cz>},     % author
