@@ -127,7 +127,8 @@ Pro zobrazení kopie této licence, navštivte
   \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or E\or C\else \@ctrerr\fi}
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
   \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
-  \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
+%  \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
+  \renewcommand\met@headerproblems{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\hspace{20pt}\includegraphics{logo8.eps}}
   \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
   \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
   \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
@@ -177,7 +178,16 @@ Pro zobrazení kopie této licence, navštivte
   e-mail: & \normalfont\mail{vyfuk@fykos.cz}\\
 \end{tabular}
 \nopagebreak\smallskip
+%
+%{\sffamily\VYFUK{} je také na Facebooku \raisebox{-0.2\baselineskip}{%
+%\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
+%\opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
+%}\nopagebreak
+%
+%\href{http://www.facebook.com/???}{\bfseries\slshape http://www.facebook.com/???}}
 }
+
+
 \renewcommand\met@licence{
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
 Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK 
