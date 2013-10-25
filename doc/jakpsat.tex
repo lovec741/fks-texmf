@@ -1,34 +1,134 @@
-\documentclass[fykos]{fksbase} % dle názvu semináře
-\setcounter{year}{25}
-\fancyhead{}
-\fancyhead[L]{\bfseries\small \metavar{headername}}
-\fancyhead[R]{\bfseries\small Jak psát vzorové řešení}
+\documentclass[fykos]{fksbase}
+\setcounter{year}{27}
+
+\geometry{ignoreheadfoot,a4paper,margin=1.5cm}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+
 \usepackage{multicol}
+\usepackage{afterpage}
+
+\usepackage{minted}
+\definecolor{mintedbg}{rgb}{0.90, 0.90, 1}
+\newminted[texminted]{tex}{bgcolor=mintedbg, tabsize=2, xleftmargin=1mm, xrightmargin=1mm}
+\newmintedfile[texfile]{tex}{bgcolor=mintedbg, tabsize=2, xleftmargin=1mm, xrightmargin=1mm,obeytabs=true}
+\newmint{tex}{showspaces=false}
+\newmintinline{tex}{showspaces=false}
+
+\usepackage{mdframed}
+\mdfsetup{backgroundcolor=blue!2, linecolor=blue!30, linewidth=3pt, leftline=false, rightline=false,
+	innertopmargin=0, innerbottommargin=0, skipabove=15pt, skipbelow=15pt,}
+
+\newenvironment{texcode}
+	{\VerbatimEnvironment\hskip-10pt \minipage[t]{0.52\textwidth}\vspace{0pt}\begin{texminted}{tex}}
+	{\end{texminted} \endminipage}
+\newenvironment{texview}
+	{\hskip 4pt \minipage[t]{0.50\textwidth}\vskip 4pt \vspace{0pt}\parindent=1em}
+	{\vskip 6pt \endminipage}
+\newenvironment{texexamplex}
+	{\begin{mdframed}}
+	{\vskip -2pt\end{mdframed}}
+\newenvironment{texsource}
+	{\VerbatimEnvironment\begin{mdframed}[backgroundcolor=mintedbg]\hskip-16pt\begin{texminted}{tex}}
+	{\end{texminted}\hskip-40pt\end{mdframed}} 
+\newenvironment{texexample}
+	{\VerbatimEnvironment\VerbatimOut[tabsize=2]{\jobname.tmp}}
+	{\endVerbatimOut\begin{mdframed}\hskip-10pt\minipage[t]{0.52\textwidth}\vspace{0pt}\texfile{\jobname.tmp}\endminipage
+		\hskip4pt\minipage[t]{0.50\textwidth}\vskip 4pt \vspace{0pt}\parindent=1em\input{\jobname.tmp}\vskip 6pt\endminipage\vskip-2pt\end{mdframed}}
 
 \begin{document}
-\section{Jak psát autorská řešení}
+
+\begin{center}
+	\includegraphics{logo2.eps} \hspace{10pt}\raisebox{0.6cm}{\normalfont\sffamily\slshape\Huge Jak psát vzorová řešení}
+	\vskip0.6cm
+\end{center}
+
+Tento text je určen zejména organizátorům FYKOSu/VÝFUKu a má pomoci při
+psaní vzorových řešení. Většinu zde popsaných příkazů však lze použít i v jiných
+dokumentech a usnadnit si tak práci hlavně při sazbě matematiky. V tom případě
+do hlavičky souboru přidejte balík \texttt{fkssugar} pomocí~{\texinline|\usepackage{fkssugar}|}.
+
+\section{Překlad}
+
+Překládáme pomocí \texttt{make}. Pokud nemůžete výchozí variantu použít,
+vytvořte soubor \texttt{solution.tex} s obsahem uvedeným níže. Změňte cestu
+k souboru úlohy a přeložte příkazem \texttt{xelatex}. Obrázky nebudou do
+souboru vloženy, protože v některých případech by překlad tímto způsobem
+kvůli chybějícím obrázkům selhal.
+
+\begin{texsource}
+\documentclass[fykos]{fkssolution}
+\setcounter{year}{27}
+\renewcommand{\includegraphics}[2][]{\fbox{#2}}
+\renewcommand\plotfig[4][h]{\begin{figure}[#1]\centering\fbox{#2}\caption{#3}\label{#4}\end{figure}}
+
+\input{"fykos27/problems/problem1-7"} % nahradit souborem s úlohou
+
+\begin{document}
+	\problemsolutionsingle
+	\makefooter
+\end{document}
+\end{texsource}
+
+\section{Obecné zásady}
 
 Řešení pište bez chyb! Kdo tam bude mít chyby, bude zmrskán!
 
 Všechny texty týkající se FYKOSu jsou psány v typografickém systému \TeX
 (využívajíce {\LaTeX}ových maker). Řešení úloh pište v libovolném
-textovém editoru do souboru úlohy v kódování UTF-8. Výsledný soubor buď uložte
-do repozitáře, nebo pošlete e-mailem TeXaři.
+textovém editoru do souboru úlohy v kódování UTF-8.
+
+Výsledný soubor buď uložte
+do repozitáře, nebo pošlete e-mailem TeXaři (v tom případě je nutné je poslat
+s dostatečným předstihem před uzávěrkou). Do repozitáře nevkládejte soubory,
+které nejdou přeložit. Pokud nemáte přístup do repozitáře a chcete provést úpravu
+v řešení, stáhněte si aktuální verzi z Astrid\footnote{\url{http://astrid.fykos.cz}},
+upravte ji a co nejdříve pošlete e-mailem TeXaři, aby se omezily konflikty úprav.
 
 Text pište česky s háčky a čárkami v první osobě množného čísla, asi po 60~znacích
 (po~logických celcích) se snažte odřádkovávat. Více mezer a (jednotlivé) odřádkování
 nemá vliv na vizuální podobu výsledného textu. Nový odstavec vytvoříte prázdným
-řádkem. Velká většina příkazů
-se v TeXu uvozuje zpětným lomítkem (\verb|\|). Například text do uvozovek dáte
-pomocí~\verb|\uv{}|.
+řádkem.
 
-\subsection{Matematické vzorce}
+Velká většina příkazů se v TeXu uvozuje zpětným lomítkem (\texinline|\|)
+povinné argumenty se píší do složených závorek (\texinline|{}|), nepovinné
+argumenty do závorek hranatých (\texinline|[]|). Například text do uvozovek
+dáte pomocí~\texinline|\uv{}|.
+
+\begin{texexample}
+Lorem ipsum dolor sit amet, consectetur adipiscing.
+\uv{Text v uvozovkách} tint laoreet. Fusce varius 
+\textbf{tučně} vitae blandit. Cum sociis tetur
+\textit{kurzívou}.
+
+\emph{Zvýrazněný text} Venatibus et magnis,
+nascetur ridiculus mus. Vestibulum eu neque
+sem. Duis luctus vestibulum ultricies.
+
+Nam sodales sem in egestas iaculis.
+\end{texexample}
+
+\section{Vlnky}
+
+Vlnky (\texinline|~|) vkládáme tam, kde nechceme, aby došlo k rozdělení na dva řádky. Patří:
 \begin{compactitem}
-    \item Inline matematiku píšeme mezi dolary (např.~\verb|rychlost~$v_1 = w_0$|).
-    \item Jednořádkovou blokovou matematiku píšeme mezi \verb|\eq{}| (ekvivalent \verb|$$|)
+	\item TODO
+\end{compactitem}
+
+Pro doplnění vlnek na některá místa je možné použít skript \texttt{vlnka.sh} z repozitáře \texttt{fks-scripts}.
+Funguje pro češtinu a slovenštinu a vlnky doplňuje zejména na základě slovníku slov, u kterých vlnka patří.
+To však znamená, že může doplnit vlnky i na místa, kde nejsou nutné, ale také tam, kde nepatří (do matematiky).
+Naopak nedoplní vlnky všude. Proto je třeba po jeho spuštění soubor znovu projít a smazat přebytečné a přidat
+nedoplněné vlnky. Pokud mažete vlnku z matematiky, nevypisujte místo ní mezeru, aby se při dalším spuštění
+skriptu vlnka opět nepřidala.
+
+\section{Matematické vzorce}
+\begin{compactitem}
+    \item Inline matematiku píšeme mezi dolary (např.~\texinline/rychlost~$v_1 = w_0$/).
+    \item Jednořádkovou blokovou matematiku píšeme mezi \texinline|\eq{}| (ekvivalent \verb|$$|)
     a víceřádkovou mezi \verb|\eq[m]{}| (obdoba \verb|align|) a před znaky, na něž chceme
     zarovnat, dáme \verb|&|.
-    \item Blokovou matematiku odsazujeme čtyřmi mezerami pro lepší čitelnost.
+    \item Blokovou matematiku odsazujeme tabulátorem pro lepší čitelnost.
     \item Odkazy děláme pomocí \verb|\lbl| na konkrétní řádek.
     \item Vzorec se chová jako část textu (čárku, tečku na konci řádku oddělujeme mezerou~\verb|\,|).
     \item Ve vzorcích používejte normálně znaménka plus, mínus; znaménko krát není vhodné psát.
@@ -43,7 +143,24 @@ přesná syntaxe určitého příkazu,
 Google a manuál {\LaTeX}u vám poradí. Poznámky, které se nemají objevit ve
 výsledném textu, pište na řádek začínající \verb|%|.
 
-\subsubsection{Příklady příkazů}
+\begin{texexample}
+Platí
+\eq{
+	y = ax + b \,, \lbl{R27S1U2_rovnice-y}
+}
+kde $a$~je směrnice a $b$~posunutí.
+
+Dle rovnice~\eqref{R27S1U2_rovnice-y} něco platí.
+Řešme soustavu rovnic
+\eq[m]{
+	x &= a+b+1 \,, \\
+	y &= a-b \,.
+}
+Z druhé vyjádříme~$b$ a dosadíme do první.
+\end{texexample}
+
+
+\subsection{Příklady příkazů}
 
 Hodit se vám budou následující příkazy:
 \begin{multicols}{2}
@@ -66,8 +183,8 @@ Hodit se vám budou následující příkazy:
 \end{compactitem} 
 \end{multicols}
 
-\newpage
-Další příkazy se týkají pouze FYKOSu (včetně Výfuku), jsou definovány ve FYKOSích makrech
+Další příkazy se týkají pouze FYKOSu (včetně Výfuku), jsou definovány ve FYKOSích 
+makrech
 (balíček~\verb|fkssugar|).\nopagebreak
 \begin{multicols}{2}
 \begin{compactitem}
@@ -91,45 +208,279 @@ Další příkazy se týkají pouze FYKOSu (včetně Výfuku), jsou definovány 
 \end{compactitem}
 \end{multicols}
 
-\subsection{Čísla a jednotky}
+\section{Čísla a jednotky}
 
 Chceme-li napsat desetinné číslo, příp. číslo s jednotkami, použijeme uvozovkového
-pomocníka (je citlivý na mezeru před jednotkou). Čísla píšeme s desetinnou
-tečkou(!) (snadno pak naformátujeme i výstup z Gnuplotu).
-
-\begin{verbatim}
-Teplota $"21.3 \C"$, úhel je $"123\dg", $\sigma = "5.67e-8 J.s^{-1}.m^{-2}.K^{-4}"$
-$"(0.7687\pm 0.0003) arcsec"$, vzestup o $"13.2 \%"$.
-\end{verbatim}
+pomocníka. Ten je citlivý na mezeru před jednotkou. Pokud je jednotka součinem 
+několika jiných, píšeme tečku. Čísla do uvozovek píšeme s desetinnou
+tečkou (snadno pak naformátujeme i výstup z Gnuplotu). Exponent desítky napíšeme 
+pomocí \texinline|e|. Chceme-li psát samostatně jednotku, využijeme příkaz 
+\texinline|\jd{}|.
 
 
-\subsection{Obrázky}
+\begin{texexample}
+Teplota~$"21.3 \C"$, \\
+úhel je~$"123\dg"$, \\
+$\sigma = "5.67e-8 J.s^{-1}.m^{-2}.K^{-4}"$, \\
+$\varphi = "(0.7687\pm 0.0003) arcsec"$, \\
+vzestup o~$"13.2 \%"$, \\
+rychlost v $\jd{m.s^{-1}}$.
+\end{texexample}
 
-Obrázky jsou rozděleny do tří kategorií: grafy, drobné ilustrační, datové/velké
-ilustrační.
-\smallskip
 
-\noindent\verb|\plotfig{|{\tt \itshape cesta k souboru .tex}\verb|}{|{\tt \itshape popiska}\verb|}{|{\tt \itshape referenční ID}\verb|} % Gnuplot term eps latex|\\
-\verb|\fullfig{|{\tt \itshape cesta k souboru}\verb|}{|{\tt \itshape popiska}\verb|}{|{\tt \itshape referenční ID}\verb|}|\\
-\verb|\illfig{|{\tt \itshape cesta k souboru}\verb|}{|{\tt \itshape popiska}\verb|}{|{\tt \itshape referenční ID}\verb|}{|{\tt \itshape výška v řádcích}\verb|}|
-\smallskip
 
-\emph{Poznámka}\quad Jediným povinným argumentem je cesta k souboru
-(implicitně se prohledávají adresáře \verb|graphics|).
-Ostatní argumenty lze též zadat jako prázdné tokenem \verb|{}|.
+\section{Chemické vzorce}
 
-Obrázky (i zdrojáky) k úlohám se ukládají do adresáře \verb|problems/graphics|.
-Ostatní obrázky (seriál, úvodníček) se ukládají k dané sérii
-(\verb|batchB/graphics|).
+Při sazbě různých chemických vzorců a reakcí si můžeme ušetřit práci balíkem \texttt{mhchem}, používáme příkaz \texinline|\ce|.
 
-\subsection{Ostatní}
+\begin{texexample}
+Vzorec látky je~\ce{NO3-}, půlka~\ce{1/2H2O},
+izotop~\ce{^{227}_{90}Th+}. Chemická reakce
+\eq{
+	\ce{CO2 + C -> 2CO} \,. \lbl{R27S1U2_reakce}
+}
+Odkážeme se na rovnici~\eqref{R27S1U2_reakce}.
+Můžeme i nakreslit vazby, např.:
+\eq{
+	\ce{A\bond{-}B\bond{=}C\bond{#}D} \,.
+}
+Objem vody je~$V_{\ce{H2O}}="5.1 m^3"$.
+\end{texexample}
 
-Seznam vytvoříte pomocí {\LaTeX}ového prostředí~\verb|compactitem| nebo~\verb|compactenum|,
-každou položku označte~\verb|\item|.
 
-Na webové odkazy použijte makro \verb|\url{|{\tt \itshape adresa}\verb|}|. Odkazy do textu vložíte pomocí
-maker~\verb|\ref{|{\tt \itshape referenční ID}\verb|}| (obrázky, tabulky) a~\verb|\eqref{|{\tt \itshape referenční ID}\verb|}| (pro rovnice).
+\section{Obrázky}
+
+Obrázky jsou rozděleny do tří kategorií: grafy, datové/velké ilustrační a drobné ilustrační (obtékané textem).
+
+\tex|\plotfig{cesta k souboru .tex}{popiska}{referenční ID} % Gnuplot term eps latex|
+\tex|\fullfig{cesta k souboru}{popiska}{referenční ID}|
+\tex|\illfig{cesta k souboru}{popiska}{referenční ID}{výška v řádcích}|
+
+Jediným povinným argumentem je cesta k souboru (implicitně se prohledávají adresáře \verb|graphics|).
+Ostatní argumenty lze též zadat jako prázdné tokenem \texinline|{}|. Chceme-li upravit velikost, popř. jiný 
+argument velkého obrázku, napíšeme jej do nepovinného prvního argumentu.
+
+\tex|\fullfig[width=0.6\textwidth]{cesta k souboru}{popiska}{referenční ID}|
+
+Obrázky (i zdrojáky) k úlohám se ukládají do adresáře \verb|problems/graphics|. Ostatní obrázky (seriál,
+úvodníček) se ukládají k dané sérii (\verb|batchB/graphics|).
+
+\begin{figure}[h!]
+\begin{texexamplex}
+\begin{texcode}
+\illfig{obrazek.eps}{Malý}{R27S1U2_maly}{4}
+Obrázek~\ref{R27S1U2_maly} je malinký a obtéká
+ho text. Obrázek~\ref{R27S1U2_velky} je velký.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing
+elit. Etiam neque urna, semper quis diam
+pellentesque, scelerisque vehicula ante. Maecenas
+et feugiat orci. Donec neque eros, eleifend sit amet
+adipiscing vel, dictum at arcu. Pellentesque vitae
+est ante.
+
+
+
+\fullfig{obrazek.eps}{Velký obrázek}{R27S1U2_velky}
+
+
+
+
+
+Quisque a urna erat. Suspendisse in est sem. In
+hac habitasse platea dictumst. Donec varius,
+turpis a tristique gravida, ligula nunc lobortis.
+\end{texcode}
+\begin{texview}
+	\illfig{obrazek.eps}{Malý}{R27S1U2_maly}{6}
+	
+	Obrázek~\ref{R27S1U2_maly} je malinký a obtéká ho text, kdežto 
+	obrázek~\ref{R27S1U2_velky} je velký.
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam neque urna,
+	semper quis diam pellentesque, scelerisque vehicula ante. Maecenas et feugiat
+	orci. Donec neque eros, eleifend sit amet adipiscing vel, dictum at arcu.
+	Pellentesque vitae est ante.
+	
+	\begin{center}
+		\includegraphics{obrazek.eps}
+		\caption{Velký obrázek}
+		\label{R27S1U2_velky}
+	\end{center}
+	
+	Quisque a urna erat. Suspendisse in est sem. In hac habitasse platea dictumst.
+	Donec varius, turpis a tristique gravida, ligula nunc lobortis.
+\end{texview}
+\end{texexamplex}
+\end{figure}
+\afterpage{\clearpage}
+
+\section{Tabulky}
+
+Nad tabulkou se sází vodorovná čára pomocí \texinline|\toprule|, \texinline|\midrule| odděluje 
+většinou záhlaví tabulky od zbytku a pod tabulku patří vodorovná čára \texinline|\bottomrule|.
+
+Popisek (\texinline|\caption{Popisek}|) se sází nad tabulku. Referenční ID (\texinline|\label{ID}|)
+udáváme pro přehlednost ve tvaru např. \verb|R27S1U2_id|, kde zaměníme ročník, sérii a číslo 
+úlohy. Příkaz \texinline|\label| musí být vložen až po \texinline|\caption|. Na tabulku se
+odkazujeme pomocí \texinline|\ref{ID}|.
+
+V záhlaví tabulky použijeme příkaz \texinline|\popit|, který funguje stejně jako \texinline|\popi| 
+(tedy vysází zlomek s veličinou v čitateli a jednotkou ve jmenovateli), ale je pro použití v 
+tabulkách, automaticky zarovnává popisek na střed sloupce. Pomocí nepovinných parametrů
+je možné jej rozšířit na více sloupců a jinak zarovnat, např. pro dva sloupce a zarovnání vlevo
+použijeme \texinline|\popit[2][l]{t}{s} |.
+
+Čísla v tabulce by měla být zarovnána většinou podle desetinné čárky, popř. vpravo. Záhlaví
+zarovnejte doprostřed (použitím \texinline|\popit| nebo \texinline|\multicolumn|, pokud nechcete
+sázet zlomek s jednotkou).
+
+\begin{table}[h!]
+\begin{texexamplex}
+\begin{texcode}
+V tabulce~\ref{R27S1U2_moje-tabulka} je mnoho dat.
+Lorem ipsum dolor sit amet, imperdiet metus nunc,
+eu faucibus nulla euismod ac. Fusce eu consequat mi.
+
+\begin{table}[h!]
+	\centering
+	\caption{Moje tabulka}
+	\label{R27S1U2_moje-tabulka}
+	\begin{tabular}{rrrrrr}
+		\toprule
+		\multicolumn{1}{c}{$n$} & \popit{d}{cm} &
+		\popit{|a'_1|}{m} & \popit{v}{m.s^{-2}} &
+		\popit{t_2-t_1}{s} & $\sin{\alpha}$ \\
+		\midrule
+		1\,113 & 23 & 9 & 3,3 & $"2.1\pm 0.1"$ & 0,11 \\
+		1\,233 & 22 & 8 & 4,5 & $"2.1\pm 0.1"$ & 0,17 \\
+		1\,313 & 21 & 6 & 4,6 & $"2.1\pm 0.1"$ & 0,21 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Integer enim nisl, sodales quis porta vel, tincidunt
+a elit. Fusce non ipsum egestas, egestas enim in,
+facilisis enim. Vestibulum lacinia viverra est, at.
+\end{texcode}
+\begin{texview}
+	V tabulce~\ref{R27S1U2_moje-tabulka} je mnoho dat.
+	Lorem ipsum dolor sit amet, imperdiet metus nunc,
+	eu faucibus nulla euismod ac. Fusce eu consequat mi.
+	
+	
+	\begin{center}
+	\caption{Moje tabulka}
+	\label{R27S1U2_moje-tabulka}
+	\begin{tabular}{rrrrrr}
+		\toprule
+		\multicolumn{1}{c}{$n$} & \popit{d}{cm} &
+		\popit{|a'_1|}{m} & \popit{v}{m.s^{-2}} &
+		\popit{t_2-t_1}{s} & $\sin{\alpha}$ \\
+		\midrule
+		1\,113 & 23 & 9 & 3,3 & $"2.1\pm 0.1"$ & 0,11 \\
+		1\,233 & 22 & 8 & 4,5 & $"2.1\pm 0.1"$ & 0,17 \\
+		1\,313 & 21 & 6 & 4,6 & $"2.1\pm 0.1"$ & 0,21 \\
+		\bottomrule
+	\end{tabular}
+	\end{center}
+	
+	\medskip
+	
+	Integer enim nisl, sodales quis porta vel, tincidunt a elit. Fusce non ipsum egestas, 
+	egestas enim in, facilisis enim. Vestibulum lacinia viverra est, at.
+\end{texview}
+\end{texexamplex}
+\end{table}
+\afterpage{\clearpage}
+
+\section{Seznamy}
+
+Seznam vytvoříte pomocí {\LaTeX}ového prostředí~\texinline|\compactitem| (nečíslovaný)
+nebo~\texinline|\compactenum| (číslovaný, druh číslování můžete uvést v nepovinné parametru),
+každou položku označte~\texinline|\item|.
+
+\begin{texexample}
+Nákupní seznam s písmenky:
+\begin{compactenum}[a)]
+	\item Lorem ipsum dolor sit amet, consectetur adi
+		elit. Etiam neque urna, semper quis diam pelent,
+		scelerisque vehicula ante.
+	\item Maecenas et feugiat orci.
+	\item Donec neque eros, eleifend sit amet.
+\end{compactenum}
+
+Nákupní seznam s odrážkami:
+\begin{compactitem}
+	\item Nulla nec orci imperdiet, dapibus risus vit
+		lacinia vestibulum, eleifend purus.
+	\item Sed consequat mollis lacinia vestibulum.
+\end{compactitem}
+\end{texexample}
+
+
+
+\section{Poznámky pod čarou}
+
+Poznámky pod čarou se dělají pomocí příkazu~\texinline|\footnote{}|. Číslují se automaticky
+a vysází se v dolní části strany. Pokud píšeme poznámku pod čarou uprostřed věty, píše se
+ihned ke slovu, ke kterému patří. Na konci věty se píše za tečkou, pokud patří k celé větě,
+popř. před tečkou, vztahuje-li se k poslednímu slovu věty.
+
+\begin{texexample}
+Lorem ipsum\footnote{Poznámka ke slovu} dolor
+sit amet, consectetur adipis cing elit.
+
+Vestibulum nec augue.\footnote{Poznámka
+k celé větě} Pel lentesque convallis ac felis tinci
+dunt rhoncus. Cras eleifend tortor sit amet.
+\end{texexample}
+
+
+\section{Ostatní}
+
+Na webové odkazy použijte makro \texinline|\url{adresa}|.
+
+Odkazy do textu vložíte pomocí maker~\texinline|\ref{referenční ID}| (obrázky, tabulky) 
+a~\texinline|\eqref{referenční ID}| (pro rovnice, číslo bude v závorkách). Neodkazujte
+se takto na rovnice, tabulky a obrázky mimo řešení příkladu. Číslování je v různých
+souborech (brožurka, samotné řešení, ročenka) různé, takže není jednoznačné.
 
 Text pište v první osobě množného čísla, na konci svého řešení můžete uvést
 hlavní chyby, kterých se řešitelé dopouštěli.
+
+\section{Vzorový soubor}
+
+Následující soubor je minimálním příkladem souboru, ve kterém bude fungovat téměř
+vše, co je v tomto dokumentu uvedeno (kromě obrázků, ty je nutno vkládat běžným
+způsobem). Překládáme příkazem \texttt{xelatex}.
+
+\begin{texsource}
+\documentclass[10pt,a4paper]{article} % typ dokumentu, velikost písma a strany
+\usepackage{amssymb}
+\usepackage[intlimits]{amsmath}
+\usepackage[no-math]{fontspec}
+\usepackage{xltxtra,polyglossia}
+\setmainlanguage{czech} % dokument bude v češtině
+\mathcode`\,="013B % používá se desetinná čárka
+\usepackage{fkssugar} % FYKOS
+\usepackage[margin=2cm]{geometry} % okraje stránky
+\usepackage{color,graphicx,graphics} % barvičky, obrázky
+\usepackage{booktabs,paralist,url} % tabulky, seznamy, odkazy
+\usepackage[version=3]{mhchem} % chemie
+\RequirePackage{csquotes} % uvozovky
+\DeclareQuoteStyle{czech}{\quotedblbase}{\textquotedblleft}{\textquoteleft}{\textquoteright}
+\setquotestyle{czech}\newcommand{\uv}[1]{\enquote{#1}}
+
+\author{Tomáš Pikálek}
+\title{Můj krásný dokument}
+\begin{document}
+	Můj první dokument v \LaTeX u.
+\end{document}
+\end{texsource}
+
+
+
+
+
 \end{document}
