@@ -217,7 +217,7 @@ Pro zobrazení kopie této licence, navštivte
 \temaserialu{Výfučtení} %pro zachovani genericity maker (ovlivnuje vysazeni nazvu bookmarku)
 \fi
 \hypersetup{    
-    pdftitle={Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo},    % tady radši Roman
+    pdftitle=\ifyearbook{Ročenka Výfuku, \Roman{year}. ročník}\else{Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % tady radši Roman
     pdfauthor={Organizátoři Výfuku <vyfuk@fykos.cz>},     % author
     pdfsubject={Fyzikální korespondenční seminář MFF UK pro ZŠ},   % subject of the document
 }}} % end VÝFUK
