@@ -132,7 +132,8 @@
     \addtolength{\RESenddist}{\dp\RESbox}%
 % pokud se tam box vejde, vlozi se
     \ifdim\RESenddist<\tableheight%pagegoal%
-        \begin{center}\box\RESbox\end{center}\message{Veslo se (#2).}%
+        \hbox{\hss\box\RESbox\hss}\message{Veslo se (#2).}%
+%        \begin{center}\fbox{\box\RESbox}\end{center}\message{Veslo se (#2).}%
 % jinak: urceni poctu radek, co se tam vejdou
     \else%
         \setcounter{resultstmp}{5}%
