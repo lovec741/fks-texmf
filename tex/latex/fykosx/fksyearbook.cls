@@ -270,7 +270,7 @@ A{\bfseries}r}} % sum
 }
 
 \newcommand\seriessolutionsheading{%
-\newchapter[Řešení úloh ze seriálu]{\met@headeryearseriessolutions}\subpdfbookmark{Úlohy}{book_sersol}}
+\newchapter[\met@headeryearseriessolutionsbasic]{\met@headeryearseriessolutions}\subpdfbookmark{Úlohy}{book_sersol}}
 
 \newcommand\eventsheading{%
 \newchapter[Akce \met@shortname u]{\met@headeryearevents}}
@@ -328,10 +328,6 @@ A{\bfseries}r}} % sum
 %\newcommand\@author{}
 \newcommand\@authors{\@author{} a kolektiv}
 \newcommand\@predmluva{}
-\newcommand\autor@serialu{}
-\newcommand\tem@serialu{} % přiklad: "Seriál o astrofyzice"
-\newcommand\podzimni@soustredeni{} % legenda
-\newcommand\jarni@soustredeni{} % legenda
 \newcommand\s@zba{}
 \newcommand\obr@zky{}
 \newcommand\@korektury{}
@@ -358,18 +354,6 @@ A{\bfseries}r}} % sum
 }
 \newcommand\predmluva[1]{
 \renewcommand\@predmluva{#1}
-}
-\newcommand\autorserialu[1]{
-\renewcommand\autor@serialu{#1}
-}
-\newcommand\temaserialu[1]{
-\renewcommand\tem@serialu{#1}
-}
-\newcommand\podzimnisoustredeni[1]{
-\renewcommand\podzimni@soustredeni{#1}
-}
-\newcommand\jarnisoustredeni[1]{
-\renewcommand\jarni@soustredeni{#1}
 }
 \newcommand\sazba[1]{
 \renewcommand\s@zba{#1}
@@ -457,10 +441,7 @@ MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \input{authors/solauthors}
 \end{minipage}\par
 
-\textit{\tem@serialu:} \autor@serialu\par
-\textit{Legenda podzimního soustředění:} \podzimni@soustredeni\par
-\textit{Legenda jarního soustředění:} \jarni@soustredeni\par
-\bigskip
+\met@authorspage
 
 \textit{Sazba:} \s@zba\par
 \textit{Obrázky a grafy:} \obr@zky\par
