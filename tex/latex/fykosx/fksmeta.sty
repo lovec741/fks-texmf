@@ -37,10 +37,31 @@
 \newcommand\met@headeryearexpsolutions{Řešení experimentálních úloh}
 \newcommand\met@headeryearseries[1]{Seriál o #1}
 \newcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
-\newcommand\met@headeryearseriessolutions{Řešení úloh ze seriálu}
+\newcommand\met@headeryearseriessolutionsbasic{Řešení úloh ze seriálu}%bez obrazku pro bookmark
+\newcommand\met@headeryearseriessolutions{\met@headeryearseriessolutionsbasic}
 \newcommand\met@headeryearresults{Pořadí nejlepších řešitelů}
 \newcommand\met@headeryearresultsall{Pořadí řešitelů}
 \newcommand\met@headeryearevents{Akce semináře}%FYKOSu || VYFUKu
+%authors page
+\newcommand\autor@serialu{}
+\newcommand\n@zevserialu{} % přiklad: "Seriál o astrofyzice"
+
+\newcommand\autorserialu[1]{
+\renewcommand\autor@serialu{#1}
+}
+\newcommand\nazevserialu[1]{
+\renewcommand\n@zevserialu{#1}
+}
+
+\newcommand\met@ownauthorspage{}
+\newcommand\ownauthorspage[1]{
+\renewcommand\met@ownauthorspage{#1}
+}
+
+\newcommand\met@authorspage{
+\met@ownauthorspage
+\bigskip
+}
 
 
 % results table parameter
@@ -52,6 +73,7 @@
 \newcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & %
 \met@probheader & %
 \Roman{solvedbatch} & \textnormal{\%} & $\Sigma$ \\}
+
 
 % FYKOS
 \DeclareOption{fykos}{%  
@@ -71,12 +93,33 @@
 \renewcommand\met@headeryearexpsolutions{\centering \includegraphics{logo4.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení experimentálních úloh}}
 \renewcommand\met@headeryearseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{#1}}
 \renewcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
-\renewcommand\met@headeryearseriessolutions{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení úloh ze seriálu}}
+\renewcommand\met@headeryearseriessolutionsbasic{Řešení úloh ze seriálu}%bez obrazku pro bookmark
+\renewcommand\met@headeryearseriessolutions{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{\met@headeryearseriessolutionsbasic}}
 \renewcommand\met@headeryearresults{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí nejlepších řešitelů}}
 \renewcommand\met@headeryearresultsall{\centering 
 \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů}}
 \renewcommand\met@headeryearevents{\centering 
 \includegraphics{logo6.eps}\hspace{10pt}\raisebox{0.6cm}{Akce FYKOSu}}
+
+%authors page
+\newcommand\podzimni@soustredeni{} % legenda
+\newcommand\jarni@soustredeni{} % legenda
+
+\newcommand\podzimnisoustredeni[1]{
+\renewcommand\podzimni@soustredeni{#1}
+}
+\newcommand\jarnisoustredeni[1]{
+\renewcommand\jarni@soustredeni{#1}
+}
+
+\renewcommand\met@authorspage{
+\textit{\n@zevserialu:} \autor@serialu\par
+\textit{Legenda podzimního soustředění:} \podzimni@soustredeni\par
+\textit{Legenda jarního soustředění:} \jarni@soustredeni\par
+\met@ownauthorspage
+\bigskip
+}
+
 
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
@@ -141,10 +184,23 @@ Pro zobrazení kopie této licence, navštivte
 \renewcommand\met@headeryearexpsolutions{\centering \includegraphics[scale=0.16]{vyfuk_raketa.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení experimentálních úloh}}
 \renewcommand\met@headeryearseries[1]{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{Výfučtení}} %parametr z duvodu genericity
 \renewcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
-\renewcommand\met@headeryearseriessolutions{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{Řešení úloh ze seriálu}}
+\renewcommand\met@headeryearseriessolutionsbasic{Řešení úloh z výfučtení}%bez obrazku pro bookmark
+\renewcommand\met@headeryearseriessolutions{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{\met@headeryearseriessolutionsbasic}}
 \renewcommand\met@headeryearresults{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí nejlepších řešitelů}}
 \renewcommand\met@headeryearresultsall{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů}}
 \renewcommand\met@headeryearevents{\centering \includegraphics[scale=0.4]{vyfuk-schlitt.eps}\hspace{10pt}\raisebox{0.6cm}{Akce Výfuku}}
+
+%authors page
+\newcommand\t@bor{}
+\newcommand\tabor[1]{
+\renewcommand\t@bor{#1}
+}
+
+\renewcommand\met@authorspage{
+\textit{Legenda tábora:} \t@bor\par
+\met@ownauthorspage
+\bigskip
+}
 
 
   \fancypagestyle{titlepage}{
@@ -214,7 +270,7 @@ Pro zobrazení kopie této licence, navštivte
 % to have initialized counters
 \AtBeginDocument{
 \ifyearbook
-\temaserialu{Výfučtení} %pro zachovani genericity maker (ovlivnuje vysazeni nazvu bookmarku)
+\nazevserialu{Výfučtení} %pro zachovani genericity maker (ovlivnuje vysazeni nazvu bookmarku)
 \fi
 \hypersetup{    
     pdftitle=\ifyearbook{Ročenka Výfuku, \Roman{year}. ročník}\else{Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % tady radši Roman
