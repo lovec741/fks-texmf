@@ -73,6 +73,14 @@
 \newcommand\bb[1]{\mathbb{#1}}                  % blackboard bold
 \newcommand\op[1]{\mathrm{#1}}			% operators
 
+% footnote nad interpunkci
+\newcommand{\footnotei}[2]{%
+\setbox0\hbox{#1}%
+\copy0%
+\hspace{-\wd0}%
+\footnote{#2}%
+}
+
 % -- greek letters --
 %special for upright pi
 \let\varpi\pi
