@@ -14,6 +14,16 @@
 input fks-label
 input mth-function
 
+
+%let endfig endfig.old
+
+%vardef endfigold=endfig.enddef;
+let endfigold=endfig;
+def endfig=%
+  currentpicture := currentpicture shifted (-llcorner currentpicture);
+  endfigold;
+enddef;
+
 % základní jednotka
   u=1mm;
 
