@@ -171,10 +171,13 @@ Pro zobrazení kopie této licence, navštivte
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
   \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
 %  \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
-  \renewcommand\met@headerproblems{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\hspace{20pt}\includegraphics{logo8.eps}}
-  \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
-  \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
-  \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+  \renewcommand\met@headerproblems{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\hspace{20pt}\includegraphics[width=23mm]{vyfuk_vyfuk.eps}}
+%  \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
+  \renewcommand\met@headersolutions{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Řešení \Roman{solvedbatch}. série}\hspace{20pt}\includegraphics[width=23mm]{vyfuk_vyfuk.eps}}
+%  \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
+  \renewcommand\met@headerseries[1]{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Výfučtení: #1}}
+% \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+  \renewcommand\met@headerresults{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}\hspace{20pt}\includegraphics[width=23mm]{vyfuk_vyfuk.eps}}
   %pro potreby rocenky (TODO seriál->Výfučtení)
 \renewcommand\met@headeryeartoc{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Obsah}}
 \renewcommand\met@headeryearintro{\centering \includegraphics{logo8.eps}\hspace{10pt}\raisebox{0.6cm}{Předmluva}}
@@ -222,16 +225,16 @@ Pro zobrazení kopie této licence, navštivte
 
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
-  \multirow{5}{*}{\includegraphics[width=2cm]{vyfuk_vyfuk.eps}} & \FYKOS{} -- Výfuk\\
+  \multirow{5}{*}{\includegraphics[width=2cm]{vyfuk_vyfuk.eps}} & \VYFUK \\
   %\multirow{5}{*}{} & \FYKOS{} -- Výfuk\\
   & UK v Praze, Matematicko-fyzikální fakulta\\
-  & Ústav teoretické fyziky\\
+  & Katedra didaktiky fyziky\\
   & V Holešovičkách 2\\
   & 180\,00 Praha 8\\
 \noalign{\smallskip}
-  www: & \normalfont\url{http://vyfuk.fykos.cz}\\
-  \ifnum\theyear<3 e-mail pro řešení: & \normalfont\mail{vyfuk-reseni@fykos.cz}\\\fi
-  e-mail: & \normalfont\mail{vyfuk@fykos.cz}\\
+  www: & \normalfont\url{http://vyfuk.mff.cuni.cz}\\
+%  \ifnum\theyear<3 e-mail pro řešení: & \normalfont\mail{vyfuk-reseni@fykos.cz}\\\fi
+  e-mail: & \normalfont\mail{vyfuk@mff.cuni.cz}\\
 \end{tabular}
 \nopagebreak\smallskip
 
@@ -242,12 +245,11 @@ Pro zobrazení kopie této licence, navštivte
 
 \href{http://www.facebook.com/ksvyfuk}{\bfseries\slshape http://www.facebook.com/ksvyfuk}}
 }
-
-
+ 
 \renewcommand\met@licence{
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
 Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK 
-a~podporován Ústavem teoretické fyziky\\
+a~podporován Katedrou didaktiky fyziky\\
 MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \nopagebreak\medskip
 
