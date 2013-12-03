@@ -101,6 +101,16 @@
 \@putlabel{#4}%
 \end{wrapfigure}\ignorespaces}
 
+\newcommand\illfigi[6][o]{%
+\settowidth{\img@width}{\includegraphics{#2}}%
+\setlength{\img@width}{\minof{\img@width}{#6\textwidth}}%
+\begin{wrapfigure}[#5]{#1}{1.05\img@width}
+\ifilltop\else\vspace{-\intextsep}\fi%
+\includegraphics[width=\img@width]{#2}%
+\ifthenelse{\equal{#3}{}}{}{\caption{#3}}%
+\@putlabel{#4}%
+\end{wrapfigure}\ignorespaces}
+
 % plot figures are listed down, in yearbook they have to be narrower
 \AtBeginDocument{
   \renewcommand\figurename{Obr.}
