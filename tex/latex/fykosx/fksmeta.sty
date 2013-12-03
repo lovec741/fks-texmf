@@ -171,13 +171,29 @@ Pro zobrazení kopie této licence, navštivte
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
   \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
 %  \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
-  \renewcommand\met@headerproblems{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\hspace{20pt}\includegraphics[width=23mm]{vyfuk_vyfuk.eps}}
+
+  \renewcommand\met@headerproblems{\centering 
+\includegraphics[width=23mm]{tabule2.eps}\hspace{20pt}\raisebox{0.6cm}
+{Zadání \Roman{batch}. série}
+\hspace{20pt}\includegraphics[width=23mm]{plazma.eps}
+}
 %  \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
-  \renewcommand\met@headersolutions{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Řešení \Roman{solvedbatch}. série}\hspace{20pt}\includegraphics[width=23mm]{vyfuk_vyfuk.eps}}
+  \renewcommand\met@headersolutions{\centering 
+\includegraphics[width=23mm]{zarovka.eps}\hspace{20pt}\raisebox{0.6cm}
+{Řešení \Roman{solvedbatch}. série}
+\hspace{20pt}\includegraphics[width=23mm]{tabule.eps}
+}
 %  \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
-  \renewcommand\met@headerseries[1]{\centering \includegraphics[width=23mm]{vyfuk_vyfuk.eps}\hspace{20pt}\raisebox{0.6cm}{Výfučtení: #1}}
+  \renewcommand\met@headerseries[1]{\centering 
+\includegraphics[width=23mm]{kniha.eps}\hspace{20pt}\raisebox{0.6cm}
+{Výfučtení: #1}
+}
 % \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
-  \renewcommand\met@headerresults{\centering \includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}\hspace{20pt}\includegraphics[width=23mm]{vyfuk_vyfuk.eps}}
+  \renewcommand\met@headerresults{\centering 
+\includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
+{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
+}
   %pro potreby rocenky (TODO seriál->Výfučtení)
 \renewcommand\met@headeryeartoc{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Obsah}}
 \renewcommand\met@headeryearintro{\centering \includegraphics{logo8.eps}\hspace{10pt}\raisebox{0.6cm}{Předmluva}}
@@ -225,7 +241,7 @@ Pro zobrazení kopie této licence, navštivte
 
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
-  \multirow{5}{*}{\includegraphics[width=2cm]{vyfuk_vyfuk.eps}} & \VYFUK \\
+  \multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}} & \VYFUK \\
   %\multirow{5}{*}{} & \FYKOS{} -- Výfuk\\
   & UK v Praze, Matematicko-fyzikální fakulta\\
   & Katedra didaktiky fyziky\\
