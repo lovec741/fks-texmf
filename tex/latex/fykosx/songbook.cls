@@ -28,9 +28,16 @@
 \RequirePackage{pgffor}
 \RequirePackage{lastpage}
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal 
-\opt{web}{\hypersetup{colorlinks=false}}
+\opt{print}{\hypersetup{colorlinks=false}}
 \RequirePackage[version=3]{mhchem}
 \RequirePackage{xkeyval}
+\RequirePackage{etoolbox}
+\newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
+ItalicFont=[cmunti.ttf],
+BoldFont=[cmunbx.ttf],
+BoldItalicFont=[cmunbi.ttf],
+SlantedFont=[cmunsl.ttf]
+]{[cmunrm.ttf]}
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
 \pagestyle{plain}
@@ -59,10 +66,25 @@
   {-3.5ex \@plus -1ex \@minus -.2ex}%
   {3.5ex \@plus.2ex}%
   {\normalfont\sffamily\slshape\Huge}}
+  \hypersetup{
+    pdftitle={Vyfučí táborový zpěvník},
+    pdfauthor={Mišo},
+  }
+
 \sffamily
 %--------------------------------------------------------------
 %      začiatok makier ako takých %% koniec deklarácie
 %--------------------------------------------------------------
+
+\newcommand\licence{
+\footnotesize
+Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho organizátov a studentov MFF UK.
+\par
+}
+
+
+
+\newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
 
 %categoria teda o aké pesničky sa jedná (kapitola)
 \newcommand{\CAT}[0]{}
@@ -181,8 +203,13 @@
 \newcommand{\@uthorname}{}
 \newcommand{\@uthordesc}{}
 \newcommand{\@uthorfoto}{}
+\newcommand{\@uthormail}{}
+\newcommand{\@uthorsocn}{}
+
 \newcommand{\authorname}[1]{\renewcommand{\@uthorname}{#1}}
+\newcommand{\authorsocn}[1]{\renewcommand{\@uthorsocn}{#1}}
 \newcommand{\authordesc}[1]{\renewcommand{\@uthordesc}{#1}}
+\newcommand{\authormail}[1]{\renewcommand{\@uthormail}{#1}}
 \newcommand{\authorfoto}[1]{\renewcommand{\@uthorfoto}{\includegraphics[height=1.5cm]{authors/foto/#1}}}
 
 \newcommand{\autor}[1]{
@@ -190,7 +217,7 @@
 \input{authors/#1.tex}
 \vspace{-1\baselineskip}
 \begin{tabular}{c p{0.8\textwidth}}
-\@uthorfoto & \vspace{-1.5\baselineskip} \Large{\ndp\@uthorname} \\ 
+\@uthorfoto & \vspace{-1.5\baselineskip} \Large{\ndp\@uthorname}  {\s@cn} \footnotesize\nolinkurl{\@uthormail} \\ 
  & \vspace{-1.3\baselineskip} \@uthordesc
 \end{tabular}
 \vspace{.8\baselineskip}
@@ -198,8 +225,14 @@
 }
 }%
 
+\newcommand*{\s@cn}{ \socn\@uthorsocn
+}
 
-
+\newcommand*{\socn}[1]{%
+	\renewcommand*{\do}[1]{\includegraphics[height=.5\baselineskip]{graphics/##1_logo}}
+	%\let\do##1{}
+	\expandafter\docsvlist\expandafter{#1}
+}
 
 
 
@@ -210,6 +243,8 @@
 \begin{document}
 \begin{flushleft}
 \fontfamily{cmss}\selectfont
+
+\sffamily
 }%
 
 \newcommand{\konspev}{
