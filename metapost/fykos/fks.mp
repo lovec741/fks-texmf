@@ -47,6 +47,22 @@ input mth-function
     drawdot 0.6d*unitvector(bi-bm) rotated 45 shifted bm wp 3
   enddef;
 
+
+% páka
+  def paka(expr lav,pra,stp,zav,x,y)=
+		draw(-lav,0)--(pra,0) wp2 shifted(x,y);
+		provazVR(0.2stp,(x,y)--(x,y+zav));
+		for i:=-(lav/stp) upto (pra/stp):
+			fill(-0.1stp,0)..(0,0.1stp)..(0.1stp,0)..(0,-0.1stp)..cycle shifted(x+i*stp,y);% shifted bod;
+		endfor;
+	enddef;
+
+%závažia na páku
+  def zavaz(expr sca,x,y)=
+		draw(-0.3sca,-0.5sca)--(0.3sca,-0.5sca)--(0.3sca,-1.1sca)--(-0.3sca,-1.1sca)--cycle wp1.5 shifted(x,y);
+		provazVR(0.2sca,(x,y)--(x,y-0.5sca));
+	enddef;
+
 % nakreslí osový kříž se středem v poc a rozměry x-left/right, y-up/down,
 % vše kladné
   def axis(expr poc,xl,xr,yd,yu)=
