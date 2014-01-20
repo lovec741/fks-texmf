@@ -159,7 +159,9 @@ Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho orga
 }%
 
 
-\newcommand{\song}[1]{\input{songs/#1.tex}}
+\newcommand{\song}[1]{\normalsize\input{songs/#1.tex}}
+
+
 
 \newcommand{\rfr}[1]{\item[\textbf{R:}]{#1}}
 
