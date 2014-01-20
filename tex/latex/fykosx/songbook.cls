@@ -3,10 +3,10 @@
 
 
 
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}} % je to knižka
 \ProcessOptions
-\LoadClass[11pt]{book}
-\@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
+\LoadClass[11pt]{book}   %book
+\@ifundefined{UseOption}{\def\UseOption{web}}{} %zaital nenastavné 
 \RequirePackage{amsfonts,amsmath,amssymb,graphicx,color}
 \RequirePackage{fancyhdr}
 \linespread{1.3}
@@ -21,10 +21,10 @@
   bookmarks=true,
   bookmarksdepth=subsection,
 ]{hyperref}
-\RequirePackage{optional} % ought be first
+\RequirePackage{optional}
 \RequirePackage{amssymb} 
-\RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
-\RequirePackage{xltxtra} % includes xunicode, fontspec
+\RequirePackage[no-math]{fontspec}
+\RequirePackage{xltxtra}
 \RequirePackage{pgffor}
 \RequirePackage{lastpage}
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal 
@@ -32,6 +32,13 @@
 \RequirePackage[version=3]{mhchem}
 \RequirePackage{xkeyval}
 \RequirePackage{etoolbox}
+
+%\newif\ifsongbook
+%\songbooktrue
+%\newif\ifyearbook
+%\yearbookfalse
+
+%\RequirePackage{fksfigures}
 \newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
 ItalicFont=[cmunti.ttf],
 BoldFont=[cmunbx.ttf],
@@ -57,9 +64,10 @@ SlantedFont=[cmunsl.ttf]
 \fancyhead{}
 \fancyhead[R]{}
 \fancyfoot{}
-\fancyfoot[EL]{\thepage}
-\fancyfoot[OR]{\thepage}
+\fancyfoot[EL]{\bfseries \thepage}
+\fancyfoot[OR]{\bfseries \thepage}
 \fancyhead[EL]{Výfučí táborový zpěvník}%}
+
 
 
 \renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
@@ -70,6 +78,8 @@ SlantedFont=[cmunsl.ttf]
     pdftitle={Vyfučí táborový zpěvník},
     pdfauthor={Mišo},
   }
+
+
 
 \sffamily
 %--------------------------------------------------------------
@@ -86,7 +96,7 @@ Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho orga
 
 \newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
 
-%categoria teda o aké pesničky sa jedná (kapitola)
+%categoria teda o aké pesničky sa jedná (podkapitola)
 \newcommand{\CAT}[0]{}
 \newcommand{\cat}[2]{\renewcommand{\CAT}[0]{#1}\section[#1]{\ndp{#1}}\intT{#2}}
 
@@ -133,7 +143,7 @@ Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho orga
 %----------------------------------
 % makra pre pesničky ako také
 %----------------------------------
-\newcommand{\rok}[1]{}
+\newcommand{\rok}[1]{} % TODO doriešiť ako vysadzať rok pri albume 
 \newcommand{\MFF}[0]{\textsc{MatFyz}}
 
 \newcommand{\uv}[1]{\textit{„#1“}}
@@ -149,7 +159,7 @@ Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho orga
 \renewcommand{\NAZPES}[0]{#1}%
 }
 
-% akordy možno ešte doladiť hspace 
+% akordy možno ešte doladiť hspace a hodnotu raiseboxu
 \newcommand{\akor}[1]{
 ~%
 \setbox0\hbox{\raisebox{.55\baselineskip}{\hspace{-0.7em}\textbf{#1}}}%
@@ -194,8 +204,11 @@ Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho orga
 
 
 \newcommand{\iluV}[1]{
+	\capstartfalse
+	%\renewcommand\figurename{Obr.}
 	\begin{figure}[b]
-	\includegraphics[width=0.95\textwidth]{songs/graphics/#1}
+		\includegraphics[width=0.95\textwidth]{songs/graphics/#1}
+		\caption*{~}
 	\end{figure}
 }%
 %--------------------------------------------------------------
