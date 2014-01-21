@@ -87,21 +87,22 @@ SlantedFont=[cmunsl.ttf]
 %      sadzba sekcí spevníku
 %---------------------------------------------
 
-%predefinovanie kapitol si kapitoly
-\renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
-  {-3.5ex \@plus -1ex \@minus -.2ex}%
-  {3.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\Huge}
-}%
+
 
 %obsah
 \newcommand{\obsah}[0]{
-	{\small\renewcommand{\contentsname}{
-		%\includegraphics[width=23mm]{plazma.eps}\hspace{20pt}\raisebox{0.6cm}
-		{\ndp{Obsah}}
-	}
-	\tableofcontents}
+{\small\renewcommand{\contentsname}{{\ndp{Obsah}}}\tableofcontents}
 }
+		%\includegraphics[width=23mm]{plazma.eps}\hspace{20pt}\raisebox{0.6cm}
+
+
+
+
+%predefinovanie kapitol si kapitoly
+\renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
+{-3.5ex \@plus -1ex \@minus -.2ex}%
+{3.5ex \@plus.2ex}%
+{\normalfont\sffamily\slshape\Huge}}%
 
 %predmluva
 \newcommand{\predmluva}[0]{
