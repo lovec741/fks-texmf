@@ -29,16 +29,11 @@
 \RequirePackage{lastpage}
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal 
 \opt{print}{\hypersetup{colorlinks=false}}
-\RequirePackage[version=3]{mhchem}
+\RequirePackage[version=3]{mhchem} % možno sa zíde 
 \RequirePackage{xkeyval}
-\RequirePackage{etoolbox}
+\RequirePackage{etoolbox} %na sadzanie autorov
 
-%\newif\ifsongbook
-%\songbooktrue
-%\newif\ifyearbook
-%\yearbookfalse
 
-%\RequirePackage{fksfigures}
 \newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
 ItalicFont=[cmunti.ttf],
 BoldFont=[cmunbx.ttf],
@@ -47,8 +42,14 @@ SlantedFont=[cmunsl.ttf]
 ]{[cmunrm.ttf]}
 \RequirePackage{polyglossia}
 \setdefaultlanguage{czech}
+
+
+\RequirePackage{chords}
+\RequirePackage{songbook_authors}
+
+
 \pagestyle{plain}
-\RequirePackage{fkssugar}
+\RequirePackage{fkssugar} % hlavne na MFF
 \setcounter{secnumdepth}{-2} %číslovanie sekcí
 \sffamily
 \RequirePackage[includeheadfoot,
@@ -62,7 +63,7 @@ SlantedFont=[cmunsl.ttf]
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[R]{}
+\fancyhead[OR]{}
 \fancyfoot{}
 \fancyfoot[EL]{\bfseries \thepage}
 \fancyfoot[OR]{\bfseries \thepage}
@@ -79,30 +80,14 @@ SlantedFont=[cmunsl.ttf]
     pdfauthor={Mišo},
   }
 
+\newif\ifsongbook
+\songbooktrue
 
 
 \sffamily
-%--------------------------------------------------------------
-%      začiatok makier ako takých %% koniec deklarácie
-%--------------------------------------------------------------
-
-\newcommand\licence{
-\footnotesize
-Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho organizátov a studentov MFF UK.
-\par
-}
 
 
 
-\newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
-
-%categoria teda o aké pesničky sa jedná (podkapitola)
-\newcommand{\CAT}[0]{}
-\newcommand{\cat}[2]{\renewcommand{\CAT}[0]{#1}\section[#1]{\ndp{#1}}\intT{#2}}
-
-
-%nadpis
-\newcommand{\ndp}[1]{\textsl{\textmd{\textsf{#1}}}}
 
 %obsah
 \newcommand{\obsah}[0]{
@@ -139,145 +124,13 @@ Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho orga
 }
 
 
-
-%----------------------------------
-% makra pre pesničky ako také
-%----------------------------------
-\newcommand{\rok}[1]{} % TODO doriešiť ako vysadzať rok pri albume 
-\newcommand{\MFF}[0]{\textsc{MatFyz}}
-
-\newcommand{\uv}[1]{\textit{„#1“}}
-
-\newcommand{\NAZPES}[0]{}
-\newcommand{\NAZPE}[0]{}
-\newcommand{\nazpe}[3]{\renewcommand{\NAZPE}[0]{
-\begin{center}
-\LARGE{\textbf{#1}}  \\
-\Large{#2}
-\ifthenelse{\equal{#3}{}}{}{\\ \large{\ndp{album:} #3}}
-\end{center}}
-\renewcommand{\NAZPES}[0]{#1}%
-}
-
-% akordy možno ešte doladiť hspace a hodnotu raiseboxu
-\newcommand{\akor}[1]{
-~%
-\setbox0\hbox{\raisebox{.55\baselineskip}{\hspace{-0.7em}\textbf{#1}}}%
-\copy0%
-\hspace{-\wd0}%
-\hspace{-0.7em}%
-}%
-
-
-\newcommand{\song}[1]{\normalsize\input{songs/#1.tex}}
-
-
-
-\newcommand{\rfr}[1]{\item[\textbf{R:}]{#1}}
-
-\newcommand{\rfrdva}[1]{\item[\textbf{R2:}]{#1}}
-
-\newcommand{\rfrtri}[1]{\item[\textbf{R3:}]{#1}}
-
-\newcommand{\rfrstyri}[1]{\item[\textbf{R4:}]{#1}}
-
-\newcommand{\erfr}[0]{\item[\textbf{R:}]{~}}
-
-\newcommand{\erfrdva}[0]{\item[\textbf{R:}]{~}}
-
-\newcommand{\erfrtri}[0]{\item[\textbf{R:}]{~}}
-
-\newcommand{\erfrstyri}[0]{\item[\textbf{R:}]{~}}
-
-\newcommand{\str}[0]{\item}
-
-\newcommand{\strnon}[1]{\item[~]{#1}}
-
-\newcommand{\dodtex}[1]{\item[~]{\textit{#1}}}
-
-\newcommand{\medz}[1]{\item[~]{#1}}
-
-\newcommand{\intro}[1]{\item[intro:]{#1}}
-
-\newcommand{\solo}[1]{\item[solo:]{#1}}
-
-
-
-\newcommand{\iluV}[1]{
-	\capstartfalse
-	%\renewcommand\figurename{Obr.}
-	\begin{figure}[b]
-		\includegraphics[width=0.95\textwidth]{songs/graphics/#1}
-		\caption*{~}
-	\end{figure}
-}%
-%--------------------------------------------------------------
-%      sadzba autorov
-%--------------------------------------------------------------
-
-\newcommand{\@uthorname}{}
-\newcommand{\@uthordesc}{}
-\newcommand{\@uthorfoto}{}
-\newcommand{\@uthormail}{}
-\newcommand{\@uthorsocn}{}
-
-\newcommand{\authorname}[1]{\renewcommand{\@uthorname}{#1}}
-\newcommand{\authorsocn}[1]{\renewcommand{\@uthorsocn}{#1}}
-\newcommand{\authordesc}[1]{\renewcommand{\@uthordesc}{#1}}
-\newcommand{\authormail}[1]{\renewcommand{\@uthormail}{#1}}
-\newcommand{\authorfoto}[1]{\renewcommand{\@uthorfoto}{\includegraphics[height=1.5cm]{authors/foto/#1}}}
-
-\newcommand{\autor}[1]{
-{\footnotesize
-\input{authors/#1.tex}
-\vspace{-1\baselineskip}
-\begin{tabular}{c p{0.8\textwidth}}
-\@uthorfoto & \vspace{-1.5\baselineskip} \Large{\ndp\@uthorname}  {\s@cn} \footnotesize\nolinkurl{\@uthormail} \\ 
- & \vspace{-1.3\baselineskip} \@uthordesc
-\end{tabular}
-\vspace{.8\baselineskip}
-\hrule
-}
-}%
-
-\newcommand*{\s@cn}{ \socn\@uthorsocn
-}
-
-\newcommand*{\socn}[1]{%
-	\renewcommand*{\do}[1]{\includegraphics[height=.5\baselineskip]{graphics/##1_logo}}
-	%\let\do##1{}
-	\expandafter\docsvlist\expandafter{#1}
+\newcommand\licence{
+\footnotesize
+Tenhle zpěvík vzniknul za pomoci korešpodenčného seminara Výfuk, jeho organizátov a studentov MFF UK.
+\par
 }
 
 
 
-%----------------------------------------------
-%       definicia sadzania spevniku
-%----------------------------------------------
-\newcommand{\zacspev}{
-\begin{document}
-\begin{flushleft}
-\fontfamily{cmss}\selectfont
-
-\sffamily
-}%
-
-\newcommand{\konspev}{
-\end{flushleft}
-\end{document}
-}%
-
-%----------------------------------------------
-%       definicia sadzania pesnicky
-%----------------------------------------------
-\newcommand{\zacpe}[0]{
-\addcontentsline{toc}{subsection}{\NAZPES}
-\fancyhead[OR]{\CAT}
-\NAZPE%
-\begin{enumerate}%
-}%
-
-\newcommand{\konpe}[0]{
-\end{enumerate}
-}%
+\newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
 

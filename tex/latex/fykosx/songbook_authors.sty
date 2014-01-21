@@ -1,0 +1,37 @@
+%--------------------------------------------------------------
+%      sadzba autorov pre vyfučí zpevník
+%--------------------------------------------------------------
+
+\newcommand{\@uthorname}{}
+\newcommand{\@uthordesc}{}
+\newcommand{\@uthorfoto}{}
+\newcommand{\@uthormail}{}
+\newcommand{\@uthorsocn}{}
+
+\newcommand{\authorname}[1]{\renewcommand{\@uthorname}{#1}}
+\newcommand{\authorsocn}[1]{\renewcommand{\@uthorsocn}{#1}}
+\newcommand{\authordesc}[1]{\renewcommand{\@uthordesc}{#1}}
+\newcommand{\authormail}[1]{\renewcommand{\@uthormail}{#1}}
+\newcommand{\authorfoto}[1]{\renewcommand{\@uthorfoto}{\includegraphics[height=1.5cm]{authors/foto/#1}}}
+
+\newcommand{\autor}[1]{
+{\footnotesize
+\input{authors/#1.tex}
+\vspace{-1\baselineskip}
+\begin{tabular}{c p{0.8\textwidth}}
+\@uthorfoto & \vspace{-1.5\baselineskip} \Large{\ndp\@uthorname}  {\s@cn} \footnotesize\nolinkurl{\@uthormail} \\ 
+ & \vspace{-1.3\baselineskip} \@uthordesc
+\end{tabular}
+\vspace{.8\baselineskip}
+\hrule
+}
+}%
+
+\newcommand*{\s@cn}{ \socn\@uthorsocn
+}
+
+\newcommand*{\socn}[1]{%
+	\renewcommand*{\do}[1]{\includegraphics[height=.5\baselineskip]{graphics/##1_logo}}
+	%\let\do##1{}
+	\expandafter\docsvlist\expandafter{#1}
+}
