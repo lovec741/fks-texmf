@@ -1,7 +1,7 @@
 
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}} % je to knižka
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}} % je to len doc
 \ProcessOptions
-\LoadClass[11pt]{article}   %book
+\LoadClass[11pt]{article}
 \@ifundefined{UseOption}{\def\UseOption{web}}{} %zaital nenastavné 
 \RequirePackage{amsfonts,amsmath,amssymb,graphicx,color}
 \RequirePackage{fancyhdr}
@@ -25,6 +25,7 @@
 \RequirePackage{lastpage}
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal 
 \opt{print}{\hypersetup{colorlinks=false}}
+\opt{web}{\hypersetup{colorlinks=true}}
 \RequirePackage[version=3]{mhchem} % možno sa zíde 
 \RequirePackage{xkeyval}
 \RequirePackage{etoolbox} %na sadzanie autorov

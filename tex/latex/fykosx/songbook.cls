@@ -71,14 +71,10 @@ SlantedFont=[cmunsl.ttf]
 
 
 
-\renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
-  {-3.5ex \@plus -1ex \@minus -.2ex}%
-  {3.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\Huge}}
-  \hypersetup{
+\hypersetup{
     pdftitle={Vyfučí táborový zpěvník},
     pdfauthor={Mišo},
-  }
+}
 
 \newif\ifsongbook
 \songbooktrue
@@ -87,36 +83,70 @@ SlantedFont=[cmunsl.ttf]
 \sffamily
 
 
+%---------------------------------------------
+%      sadzba sekcí spevníku
+%---------------------------------------------
 
+%predefinovanie kapitol si kapitoly
+\renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {3.5ex \@plus.2ex}%
+  {\normalfont\sffamily\slshape\Huge}
+}%
 
 %obsah
 \newcommand{\obsah}[0]{
-{\small
-\renewcommand{\contentsname}{
-%\includegraphics[width=23mm]{plazma.eps}\hspace{20pt}\raisebox{0.6cm}
-{\ndp{Obsah}}
-}
-\tableofcontents}
+	{\small\renewcommand{\contentsname}{
+		%\includegraphics[width=23mm]{plazma.eps}\hspace{20pt}\raisebox{0.6cm}
+		{\ndp{Obsah}}
+	}
+	\tableofcontents}
 }
 
 %predmluva
 \newcommand{\predmluva}[0]{
-{\footnotesize
-\fancyhead[OR]{Predmluva}
-\chapter[Predmluva]{\ndp{Predmluva}}
-\rmfamily
-\input{pages/predmluva.tex}
-}\sffamily
+	{\footnotesize
+		\fancyhead[OR]{Predmluva}
+		\chapter[Predmluva]{\ndp{Predmluva}}
+		\rmfamily
+		\input{pages/predmluva.tex}
+	}\sffamily
 }%
 
+% preddefinovanie CZ SK not SK or CZ
 \newcommand{\ceskeP}[0]{
-\fancyhead[OR]{České piesne}
-\chapter[České piesne]{\ndp{České piesne}}
-\rmfamily
-\input{pages/ceske_piesne.tex}
-\sffamily
+	\fancyhead[OR]{České piesne}
+	\chapter[České piesne]{\ndp{České piesne}}
+	\rmfamily
+		\input{pages/ceske_piesne.tex}
+	\sffamily
 }
 
+\newcommand{\sloveP}[0]{
+	\fancyhead[OR]{Slovenské piesne}
+	\chapter[České piesne]{\ndp{České piesne}}
+	\rmfamily
+		\input{pages/ceske_piesne.tex}
+	\sffamily
+}
+
+
+\newcommand{\zahranicP}[0]{
+	\fancyhead[OR]{Zahraničné piesne}
+	\chapter[České piesne]{\ndp{České piesne}}
+	\rmfamily
+		\input{pages/ceske_piesne.tex}
+	\sffamily
+}
+
+\newcommand{\koledyP}[0]{
+	\fancyhead[OR]{Vianočné koledy}
+	\chapter[České piesne]{\ndp{České piesne}}
+	\rmfamily
+		\input{pages/ceske_piesne.tex}
+	\sffamily
+}
+% TODO dokončiť hore !!!
 
 
 \newcommand{\intT}[1]{
