@@ -44,7 +44,7 @@ SlantedFont=[cmunsl.ttf]
 \RequirePackage{fkssugar} % hlavne na MFF
 \sffamily
 \RequirePackage[includeheadfoot,
-  twoside,
+  %twoside,
   a5paper,
   hmargin=1.55cm,  
   vmargin=1.0cm,

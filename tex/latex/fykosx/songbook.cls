@@ -98,7 +98,7 @@ SlantedFont=[cmunsl.ttf]
 
 
 
-%predefinovanie kapitol si kapitoly
+%predefinovanie kapitol 
 \renewcommand\chapter{\@startsection {chapter}{-1}{\z@}%
 {-3.5ex \@plus -1ex \@minus -.2ex}%
 {3.5ex \@plus.2ex}%
@@ -149,6 +149,9 @@ SlantedFont=[cmunsl.ttf]
 }
 % TODO dokončiť hore !!!
 
+
+\newcommand{\CAT}[0]{}
+\newcommand{\cat}[2]{\renewcommand{\CAT}[0]{#1}\section[#1]{\ndp{#1}}\intT{#2}}
 
 \newcommand{\intT}[1]{
 \input{interprets/#1.tex}
