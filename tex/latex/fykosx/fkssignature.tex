@@ -5,7 +5,7 @@
 %
 \RequirePackage{etoolbox}
 
-\newcommand\newsignature[4]{%
+\newcommand\newsignature[5]{%
   \expandafter\def\csname sign@me#1\endcsname{%
     #2%
   }%
@@ -13,6 +13,9 @@
     #3%
   }%
   \expandafter\def\csname sigs@m#1\endcsname{%
+    #4%
+  }%
+  \expandafter\def\csname sig@nick#1\endcsname{%
     #4%
   }%
 }
@@ -29,6 +32,9 @@
 \newcommand\sigsem[1]{%
   \expandafter\csname sigs@m#1\endcsname
 }
+\newcommand\signick[1]{%
+  \expandafter\csname signick#1\endcsname
+}
 
 \newcommand\sign@tureraw[1]{%
 \signame{#1} <\sigmail{#1}>, %
@@ -39,7 +45,7 @@
 	\hspace{10pt}
 	\begin{tabular}{c}
 	\sigstyle{\signame{#1}}\\
-	\ifthenelse{\equal{\sigsem{#1}}{vyfuk}}{}{\mail{\sigmail{#1}}}
+	\ifthenelse{\equal{\sigsem{#1}}{vyfuk}}{\mail{\sigmail{#1}}}{\mail{\sigmail{#1}}}
 	\end{tabular}}
 
 \newcommand*{\signature}[1]{%
