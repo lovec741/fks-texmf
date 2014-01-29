@@ -1,9 +1,6 @@
-%--------------------------------------------------------------
-%      začiatok makier ako takých %% koniec deklarácie
-%--------------------------------------------------------------
-
-%categoria teda o aké pesničky sa jedná (podkapitola)
-
+%%---------------------------------------------------------------------------
+%%      Makrá na sádzanie VYFUKového zpěvníku --- dotazy na miso@fykos.cz
+%%---------------------------------------------------------------------------
 
 \newcommand{\song}[1]{\normalsize\input{songs/#1.tex}}
 %nadpis
@@ -38,7 +35,8 @@
 %----------------------------------------------
 
 \newcommand{\akor}[1]{
-~%
+%~%
+\hspace{0.7em}%
 \setbox0\hbox{\raisebox{.55\baselineskip}{\hspace{-0.7em}\textbf{#1}}}%
 \copy0%
 \hspace{-\wd0}%
@@ -63,11 +61,11 @@
 
 \newcommand{\erfr}[0]{\item[\textbf{R:}]{~}}
 
-\newcommand{\erfrdva}[0]{\item[\textbf{R:}]{~}}
+\newcommand{\erfrdva}[0]{\item[\textbf{R2:}]{~}}
 
-\newcommand{\erfrtri}[0]{\item[\textbf{R:}]{~}}
+\newcommand{\erfrtri}[0]{\item[\textbf{R3:}]{~}}
 
-\newcommand{\erfrstyri}[0]{\item[\textbf{R:}]{~}}
+\newcommand{\erfrstyri}[0]{\item[\textbf{R4:}]{~}}
 
 \newcommand{\str}[0]{\item}
 
