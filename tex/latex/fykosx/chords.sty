@@ -1,9 +1,6 @@
-%--------------------------------------------------------------
-%      začiatok makier ako takých %% koniec deklarácie
-%--------------------------------------------------------------
-
-%categoria teda o aké pesničky sa jedná (podkapitola)
-
+%%---------------------------------------------------------------------------
+%%      Makrá na sádzanie VYFUKového zpěvníku --- dotazy na miso@fykos.cz
+%%---------------------------------------------------------------------------
 
 \newcommand{\song}[1]{\normalsize\input{songs/#1.tex}}
 %nadpis
@@ -37,8 +34,9 @@
 %       akordy 
 %----------------------------------------------
 
-\newcommand{\akor}[1]{
-~%
+\newcommand{\akor}[1]{%
+%~%
+\hspace{0.7em}%
 \setbox0\hbox{\raisebox{.55\baselineskip}{\hspace{-0.7em}\textbf{#1}}}%
 \copy0%
 \hspace{-\wd0}%
@@ -53,6 +51,10 @@
 %----------------------------------------------
 
 
+\newcommand\ZO{\rule[-0.2\baselineskip]{1.75pt}{0.7\baselineskip}\hspace{1.5pt}\rule[-0.2\baselineskip]{1pt}{0.7\baselineskip}:}
+\newcommand\KO{:\rule[-0.2\baselineskip]{1pt}{0.7\baselineskip}\hspace{1.5pt}\rule[-0.2\baselineskip]{1.75pt}{0.7\baselineskip}}
+
+
 \newcommand{\rfr}[1]{\item[\textbf{R:}]{#1}}
 
 \newcommand{\rfrdva}[1]{\item[\textbf{R2:}]{#1}}
@@ -63,11 +65,11 @@
 
 \newcommand{\erfr}[0]{\item[\textbf{R:}]{~}}
 
-\newcommand{\erfrdva}[0]{\item[\textbf{R:}]{~}}
+\newcommand{\erfrdva}[0]{\item[\textbf{R2:}]{~}}
 
-\newcommand{\erfrtri}[0]{\item[\textbf{R:}]{~}}
+\newcommand{\erfrtri}[0]{\item[\textbf{R3:}]{~}}
 
-\newcommand{\erfrstyri}[0]{\item[\textbf{R:}]{~}}
+\newcommand{\erfrstyri}[0]{\item[\textbf{R4:}]{~}}
 
 \newcommand{\str}[0]{\item}
 
