@@ -14,6 +14,12 @@
 input fks-label
 input mth-function
 
+% TeXLive 2013 ugly fix
+let endfigold=endfig;
+def endfig=%
+  currentpicture := currentpicture shifted (-llcorner currentpicture);
+  endfigold;
+enddef;
 
 % základní jednotka
   u=1mm;
