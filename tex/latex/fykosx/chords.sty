@@ -96,6 +96,7 @@
 %----------------------------------------------
 %       definicia sadzania spevniku
 %----------------------------------------------
+
 \newcommand{\zacspev}{
 \begin{document}
 \begin{flushleft}
@@ -112,10 +113,11 @@
 %----------------------------------------------
 %       definicia sadzania pesnicky
 %----------------------------------------------
+
 \newcommand{\zacpe}[0]{
 \ifsongbook
 \addcontentsline{toc}{subsection}{\NAZPES}
-\else\relax\fi
+\else\zacspev\fi
 \if@twoside
 \fancyhead[OR]{\CAT}
 \else\relax\fi
@@ -124,7 +126,7 @@
 }%
 
 \newcommand{\konpe}[0]{
-\end{enumerate}
+\end{enumerate}\ifsongbook\else\konspev\fi
 }%
 
 
