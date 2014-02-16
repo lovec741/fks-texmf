@@ -18,15 +18,18 @@
 }
 
 \newcommand\signame[1]{%
+  \lazy@signatures%
   \expandafter\ifx\csname sign@me#1\endcsname\relax
   \PackageWarning{fkssignature}{Undefined name #1}
   \else
   \expandafter\csname sign@me#1\endcsname\fi
 }
 \newcommand\sigmail[1]{%
+  \lazy@signatures%
   \expandafter\csname sigm@il#1\endcsname
 }
 \newcommand\sigsem[1]{%
+  \lazy@signatures%
   \expandafter\csname sigs@m#1\endcsname
 }
 
@@ -55,6 +58,14 @@
 % signature style
 \newcommand\sigstyle[1]{{\bfseries\itshape#1}}
 
+\ifx\@signaturesfile\@undefined
+\def\@signaturesfile{signatures.tex}
+\fi
+\renewcommand\@signaturesfile{signatures.tex}
+\newcommand\signaturesfile[1]{\renewcommand\@signaturesfile{#1}}
 
-
-\input{fksemails}
+\newcommand\lazy@signatures{%
+\ifx\@signaturesloaded\@undefined%
+\input{\@signaturesfile}%
+\def\@signaturesloaded\relax%
+\fi}

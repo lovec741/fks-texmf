@@ -191,6 +191,9 @@ A{\bfseries}r}} % sum
 %
 \input{problems}
 \problemsdir{../problems}
+% Podpisy/jména
+\input{fkssignature}
+\signaturesfile{../singatures.tex}
 % bez statistik
 \renewcommand\problemstats\relax
 % řetezec v labelu pro vzorák
