@@ -6,13 +6,13 @@
 \RequirePackage{etoolbox}
 
 \newcommand\newsignature[4]{%
-  \expandafter\def\csname sign@me#1\endcsname{%
+  \expandafter\gdef\csname sign@me#1\endcsname{%
     #2%
   }%
-  \expandafter\def\csname sigm@il#1\endcsname{%
+  \expandafter\gdef\csname sigm@il#1\endcsname{%
     #3%
   }%
-  \expandafter\def\csname sigs@m#1\endcsname{%
+  \expandafter\gdef\csname sigs@m#1\endcsname{%
     #4%
   }%
 }
@@ -28,22 +28,17 @@
   \lazy@signatures%
   \expandafter\csname sigm@il#1\endcsname
 }
-\newcommand\sigsem[1]{%
-  \lazy@signatures%
-  \expandafter\csname sigs@m#1\endcsname
-}
 
 \newcommand\sign@tureraw[1]{%
 \signame{#1} <\sigmail{#1}>, %
 }
 
-%\DeclareOption{fykos}{%  
-	\newcommand*{\sign@ture}[1]{%
-	\hspace{10pt}
-	\begin{tabular}{c}
-	\sigstyle{\signame{#1}}\\
-	\ifthenelse{\equal{\sigsem{#1}}{vyfuk}}{}{\mail{\sigmail{#1}}}
-	\end{tabular}}
+\newcommand*{\sign@ture}[1]{%
+\hspace{10pt}
+\begin{tabular}{c}
+\sigstyle{\signame{#1}}\\
+\mail{\sigmail{#1}}
+\end{tabular}}
 
 \newcommand*{\signature}[1]{%
   \let\do\sign@ture
@@ -67,5 +62,5 @@
 \newcommand\lazy@signatures{%
 \ifx\@signaturesloaded\@undefined%
 \input{\@signaturesfile}%
-\def\@signaturesloaded\relax%
+\gdef\@signaturesloaded\relax%
 \fi}
