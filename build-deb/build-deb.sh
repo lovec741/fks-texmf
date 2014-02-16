@@ -3,7 +3,6 @@
 if [ "x$1" == "x" ] ; then
 	echo "Usage: $0 <refspec>"
 	echo "    Will create DEB package from given revision."
-	echo "    Needs root via sudo to create package with correct permissions."
 	exit 1
 fi
 
@@ -31,8 +30,8 @@ git archive --prefix="$PREFIX/" "$1" | tar -x -C "$WORKDIR"
 render_template $1
 
 cp -r DEBIAN "$WORKDIR"
-sudo chown -R root:root "$WORKDIR"
+fakeroot chown -R root:root "$WORKDIR"
 
 dpkg-deb --build "$WORKDIR" "$BUILDDIR"
 
-sudo rm -rf $WORKDIR
+rm -rf $WORKDIR
