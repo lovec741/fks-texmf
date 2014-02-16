@@ -1,4 +1,4 @@
-Package: fks-tex
+Package: fks-tex-base
 Maintainer: FKS TeX group <tex@fykos.cz>
 Architecture: all
 Depends: lmodern, pgf,
