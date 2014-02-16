@@ -2,7 +2,7 @@ Package: fks-tex-base
 Maintainer: FKS TeX group <tex@fykos.cz>
 Architecture: all
 Depends: lmodern, pgf,
-	texlive-base,
+	texlive-base, texlive-science,
 	texlive-latex-base, texlive-latex-extra, texlive-latex-recommended (>=2012) | fks-tex-2009patch,
 	texlive-xetex (>=2012) | fks-tex-2009patch
 Priority: optional
