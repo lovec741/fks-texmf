@@ -5,27 +5,22 @@
 %
 \RequirePackage{etoolbox}
 
-\newcommand\newsignature[4]{%
+\newcommand\newsignature[3]{%
   \expandafter\gdef\csname sign@me#1\endcsname{%
     #2%
   }%
   \expandafter\gdef\csname sigm@il#1\endcsname{%
     #3%
   }%
-  \expandafter\gdef\csname sigs@m#1\endcsname{%
-    #4%
-  }%
 }
 
 \newcommand\signame[1]{%
-  \lazy@signatures%
   \expandafter\ifx\csname sign@me#1\endcsname\relax
   \PackageWarning{fkssignature}{Undefined name #1}
   \else
   \expandafter\csname sign@me#1\endcsname\fi
 }
 \newcommand\sigmail[1]{%
-  \lazy@signatures%
   \expandafter\csname sigm@il#1\endcsname
 }
 
@@ -59,8 +54,4 @@
 \renewcommand\@signaturesfile{signatures.tex}
 \newcommand\signaturesfile[1]{\renewcommand\@signaturesfile{#1}}
 
-\newcommand\lazy@signatures{%
-\ifx\@signaturesloaded\@undefined%
-\input{\@signaturesfile}%
-\gdef\@signaturesloaded\relax%
-\fi}
+\AtBeginDocument{\input{\@signaturesfile}}
