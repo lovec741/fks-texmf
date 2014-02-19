@@ -1,32 +1,31 @@
 #!/bin/bash
 
+OUT=./out
+TESTS=./tests
+BRANCH=dev
+HASTESTS=1
 
-function usage {
-	echo "Usage: $0 <texmf> <testdir> <outdir>"
-	exit 0
-}
-
-if [ "x$3" = "x" ] ; then
-	usage
+if [ "$1" = "-h" ] ; then
+	echo "Usage: $0 [<brach>]"
+	echo "    branch     [$BRANCH]"
+elif [ "x$1" != "x" ] ; then
+	BRANCH=$1
 fi
 
-TEXMF="$1"
-TESTS="$2"
-OUT="$3"
+. functions.sh
 
-rm -rf "$OUT"
-mkdir "$OUT"
 
-export TEXINPUTS="$TESTS:$TEXMF:"
+workdir=`mktemp -d`/texmf
 
-for file in "$TESTS/t"* ; do
-	if xelatex -interaction nonstopmode -output-directory "$OUT" -halt-on-error $file &>/dev/null ; then
-		true # OK
-	else
-		echo "Test `basename $file` failed." >&2
-		exit 1
-	fi
+export_package $BRANCH "$workdir"
 
-done
+if "$TESTS/run.sh" -v "$workdir" "$TESTS" "$OUT/tests" ; then
+	echo "Tests on $branch OK"
+else
+	echo "Tests on $branch failed."
+	exit 1
+fi
 
-exit 0
+rm -rf "$workdir"
+
+
