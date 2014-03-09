@@ -5,6 +5,10 @@ Popis instalace pro MiKTeX na Windows:
   - jděte na záložku 'Roots' a přidejte tam cestu k ''%home%\texmf''
   - MiKTeX už zbytek zajistí sám
 
+Obsoletní!
+
 Popis instalace pro TeX Live na Debianu (a Ubuntu):
   - adresář ''texmf'' uložte do ''~/texmf'' (pokud tam už něco máte, jste jistě dostatečně zdatní, abyste nová makra přidali)
   - spusťte ''mktexlsr ~/texmf''
+
+
