@@ -23,6 +23,7 @@ if "$TESTS/run.sh" -v "$workdir" "$TESTS" "$OUT/tests" ; then
 	echo "Tests on $branch OK"
 else
 	echo "Tests on $branch failed."
+	rm -rf "$workdir"
 	exit 1
 fi
 
