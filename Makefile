@@ -1,35 +1,38 @@
 .PHONY: test release deb-build deb-publish zip-build init test-build
 
 OUT=./out
+BRANCH_DIST_MASTER=master
+BRANCH_MASTER=dev-master
+BRANCH_DEV=dev-dev
 
 init:
 	git submodule init
 	git submodule update
-	git submodule foreach 'git checkout dev'
+	git submodule foreach 'git checkout $(BRANCH_DEV)'
 
 test:
-	./run-tests.sh
+	./run-tests.sh $(BRANCH_DEV)
 
 test-build:
-	./run-tests.sh master
+	./run-tests.sh $(BRANCH_MASTER)
 
 release: test
 	export MESSAGE=`mktemp` ;\
-	echo "Released texmf.fist" >> $$MESSAGE ;\
+	echo "Released texmf.dist" >> $$MESSAGE ;\
 	echo >> $$MESSAGE ;\
-	git submodule foreach 'git pull origin master' ; \
+	git submodule foreach 'git pull origin $(BRANCH_MASTER)' ; \
 	git submodule foreach '\
-		git checkout master && \
-		git merge --no-ff dev && \
+		git checkout $(BRANCH_MASTER) && \
+		git merge --no-ff $(BRANCH_DEV) && \
 		git push origin && \
 		echo "\t$$name at version `git describe --tags`" >> $$MESSAGE' ;\
 	git add -u components ;\
 	git commit -F $$MESSAGE ;\
-	git push origin master
-	git submodule forach 'git checkout dev'
+	git push origin $(BRANCH_DIST_MASTER)
+	git submodule foreach 'git checkout $(BRANCH_DEV)'
 
 zip-build: test-build
-	./build-zip.sh
+	./zip-build.sh $(BRANCH_MASTER)
 
 deb-build: test-build
 	rm -f "$(OUT)/*.deb"

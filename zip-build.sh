@@ -1,8 +1,11 @@
 #!/bin/bash
 
 OUT=./out
-TESTS=./tests
 BRANCH=master
+
+if [ "x$1" != "x" ] ; then
+	BRANCH=$1
+fi
 
 . functions.sh
 
