@@ -42,7 +42,7 @@ zip-build: test-build
 
 deb-build: test-build
 	rm -f "$(OUT)/*.deb"
-	out=$$PWD/$(OUT) ; git submodule foreach 'fks-debbuild.sh -b $$out'
+	out=$$PWD/$(OUT) ; git submodule foreach 'fks-debbuild.sh -g $$path -b $$out -r $(BRANCH_MASTER)'
 
 deb-publish: deb-build
 	fks-pkgupload.sh $(OUT)/*.deb
