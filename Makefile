@@ -24,7 +24,7 @@ release: test
 	git submodule foreach '\
 		git checkout $(BRANCH_MASTER) && \
 		git merge --no-ff $(BRANCH_DEV) && \
-		git push origin && \
+		git push origin $(BRANCH_MASTER) && \
 		echo "\t$$name at version `git describe --tags`" >> $$MESSAGE' ;\
 	git add -u components ;\
 	git commit -F $$MESSAGE ;\
