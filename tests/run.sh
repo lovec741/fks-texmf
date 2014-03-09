@@ -38,7 +38,7 @@ for file in "$TESTS/t"* ; do
 		if [ -n "$VERBOSE" ] ; then
 			log=`basename -s .tex $file`.log
 			echo "=== $log ==="
-			tail -n 20 $OUT/$log | head -n 10
+			tail -n 21 $OUT/$log | head -n 11
 			echo "======"
 		fi
 		echo -e "${red}Test `basename $file` failed." >&2 ; tput sgr0
