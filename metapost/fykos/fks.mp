@@ -64,9 +64,11 @@ enddef;
 	enddef;
 
 %závažia na páku
-  def zavaz(expr sca,x,y)=
+% (škala,poloha x, y, text na vyplnenie)
+  def zavaz(expr sca,x,y,text)=
 		draw(-0.3sca,-0.5sca)--(0.3sca,-0.5sca)--(0.3sca,-1.1sca)--(-0.3sca,-1.1sca)--cycle wp1.5 shifted(x,y);
 		provazVR(0.2sca,(x,y)--(x,y-0.5sca));
+		label.top(text,(0.0sca,-1.05sca)).shifted(x,y);
 	enddef;
 
 % nakreslí osový kříž se středem v poc a rozměry x-left/right, y-up/down,
