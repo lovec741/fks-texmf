@@ -39,6 +39,20 @@
   }
 }
 
+\newcommand\problemtasksummer[2]{%
+  \tasktrue\solutionfalse\solutionsinglefalse%
+  \stepcounter{problem}\setcounter{batch}{#2}%%
+  \@LoadProblem{\thebatch}{\theproblem}{\setcounter{batch}{#1}%
+   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
+   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
+   \@probtask%
+  }
+}
+
+
+
+
+
 \newcommand\problemsolution{%
   \taskfalse\solutiontrue\solutionsinglefalse%
   \stepcounter{problem}%

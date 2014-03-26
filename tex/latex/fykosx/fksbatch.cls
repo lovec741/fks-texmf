@@ -24,6 +24,15 @@
 \vspace{1.5ex}
 \setcounter{problem}{0}}
 
+
+\newcommand\problemsheadingsummer[3]{%
+\setcounter{batch}{#1}
+\deadline{#2}\deadlineS{#3}
+\problemsheading
+}
+
+
+
 \newcommand\solutionheading{%
 \ifthenelse{\equal{\thesolvedbatch}{0}}{% implicitly set solvedbatch = batch - 1
 \setcounter{solvedbatch}{\value{batch}}%
