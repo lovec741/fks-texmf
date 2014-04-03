@@ -57,6 +57,14 @@
   \pr@blemsolution
 }}
 
+
+\newcommand\problemsolutionsummer[2]{%
+  \taskfalse\solutiontrue\solutionsinglefalse%
+  \stepcounter{problem}\setcounter{solvedbatch}{#2}%%
+  \@LoadProblem{\thesolvedbatch}{\theproblem}{\setcounter{solvedbatch}{#1}%
+  \pr@blemsolution
+}}
+
 \newcommand\myprint[1]{pdfauthor=#1}
 \def\expandargument#1#2{%
     \edef\temp{#2}%

@@ -46,6 +46,13 @@
 \setcounter{problem}{0}%
 \section[Řešení \Roman{solvedbatch}. série]{\met@headersolutions}}
 
+\newcommand\solutionheadingsummer[1]{%
+\setcounter{solvedbatch}{#1}
+\setcounter{problem}{0}%
+\section[Řešení \Roman{solvedbatch}. série]{\met@summerheadersolutions}}
+
+
+
 \newcommand\seriesheading[1]{%
 \section[Seriál: #1]{\met@headerseries{#1}}}
 
