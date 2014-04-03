@@ -24,12 +24,17 @@
 \vspace{1.5ex}
 \setcounter{problem}{0}}
 
-
 \newcommand\problemsheadingsummer[3]{%
 \setcounter{batch}{#1}
 \deadline{#2}\deadlineS{#3}
-\problemsheading
-}
+\section[Zadání \Roman{batch}. série]{\met@summerheaderproblems}
+\vspace{-4pt}
+\centerline{\Large\slshape\sffamily Termín uploadu: \@deadline}
+\centerline{\Large\slshape\sffamily Termín odeslání: \@deadlineS}
+\vspace{1.5ex}
+\setcounter{problem}{0}}
+%}
+
 
 
 
