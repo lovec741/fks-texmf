@@ -29,6 +29,7 @@
 \newcommand\met@summerheadersolutions{Řešení \Roman{solvedbatch}. série}
 \newcommand\met@headerseries[1]{Seriál: #1}
 \newcommand\met@headerresults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\newcommand\met@summerheaderresults[1]{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 \renewcommand\maketitle{}
 %pro potreby rocenky
 \newcommand\met@headeryeartoc{Obsah}
@@ -216,6 +217,12 @@ Pro zobrazení kopie této licence, navštivte
 {Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
 }
+  \renewcommand\met@summerheaderresults[1]{\centering 
+\includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
+{Pořadí #1 řešitelů po \Roman{solvedbatch}. sérii}
+%\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
+}
+
   %pro potreby rocenky (TODO seriál->Výfučtení)
 \renewcommand\met@headeryeartoc{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Obsah}}
 \renewcommand\met@headeryearintro{\centering \includegraphics{logo8.eps}\hspace{10pt}\raisebox{0.6cm}{Předmluva}}

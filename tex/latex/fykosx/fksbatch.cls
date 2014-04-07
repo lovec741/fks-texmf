@@ -60,6 +60,10 @@
 \section[Pořadí řešitelů po \Roman{solvedbatch}. sérii]{\met@headerresults}
 }
 
+\newcommand\resultsheadingsummer[1]{%
+\section[Pořadí #1 řešitelů po \Roman{solvedbatch}. sérii]{\met@summerheaderresults{#1}}
+}
+
 
 % other
 \let\oldfooter\makefooter
