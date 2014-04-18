@@ -14,6 +14,7 @@
 \proborigin{#6}
 }
 
+
 \renewcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
   \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#2.tex}
   \probfig{N/A}\probsolvers{N/A}\probavg{N/A}
@@ -22,6 +23,18 @@
   \ClassInfo{fksserie}{Loaded \@tmpfilename}
   #3
   }{\ClassWarning{fksserie}{Problem file \@tmpfilename not found.}}
+}
+
+\DeclareOption{fyziklani2}{
+    \renewcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
+    \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem_\ifcase#2\problemname\fi.tex}
+    \probfig{N/A}\probsolvers{N/A}\probavg{N/A}
+    \IfFileExists{\@tmpfilename}{
+    \input{\@tmpfilename}%
+    \ClassInfo{fksserie}{Loaded \@tmpfilename}
+    #3
+    }{\ClassWarning{fksserie}{Problem file \@tmpfilename not found.}}
+    }
 }
 
 % první ročník FoL
