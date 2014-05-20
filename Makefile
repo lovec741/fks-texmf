@@ -47,7 +47,11 @@ release: test
 	git submodule foreach '\
 		git checkout $(BRANCH_MASTER) && \
 		git merge --no-ff $(BRANCH_DEV) && \
-		git push $(ORIGIN) $(BRANCH_MASTER) && \
+		git checkout $(BRANCH_DEV) && \
+		git merge $(BRANCH_MASTER) && \
+		echo "Write tag for $$name (previous `git describe --tags`): " &&\
+	   	( ( read tagname && git tag $$tagname ) || true ) && \
+		git push --tags $(ORIGIN) $(BRANCH_MASTER) $(BRANCH_DEV) && \
 		echo "\t$$name at version `git describe --tags`" >> $$MESSAGE' ;\
 	git add -u components ;\
 	git commit -F $$MESSAGE ;\
