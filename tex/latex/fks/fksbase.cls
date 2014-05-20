@@ -112,6 +112,8 @@
 % other
 \input{problems}
 \problemsdir{../problems}
+\input{fkssignature}
+\signaturesfile{../signatures.tex}
 
 \newcommand\makefooter{%
 \vspace*{\fill}
@@ -124,7 +126,6 @@
 \end{minipage}
 }
 
-\input{fkssignature}
 
 
 
