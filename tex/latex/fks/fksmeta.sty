@@ -24,9 +24,12 @@
 \newcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or P\or E\or S\else \@ctrerr\fi}
 \newcommand\metayear[1]{\Roman{#1}}
 \newcommand\met@headerproblems{Zadání \Roman{batch}. série}
+\newcommand\met@summerheaderproblems{Zadání \Roman{batch}. série}
 \newcommand\met@headersolutions{Řešení \Roman{solvedbatch}. série}
+\newcommand\met@summerheadersolutions{Řešení \Roman{solvedbatch}. série}
 \newcommand\met@headerseries[1]{Seriál: #1}
 \newcommand\met@headerresults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\newcommand\met@summerheaderresults[1]{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 \renewcommand\maketitle{}
 %pro potreby rocenky
 \newcommand\met@headeryeartoc{Obsah}
@@ -164,12 +167,15 @@ Pro zobrazení kopie této licence, navštivte
 
 
 % --- VÝFUK ---
-\DeclareOption{vyfuk}{%  
+\DeclareOption{vyfuk}{%
+	\newif\ifsummerbatch  
+  \newcommand\@seriesname{NA}
+	\newcommand\seriesname[1]{\renewcommand\@seriesname{#1}}
   \renewcommand\met@headername{Výpočty fyzikálních úkolů -- kores. sem. MFF UK pro ZŠ}
   \renewcommand\met@shortname{Výfuk}
   \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or E\or C\else \@ctrerr\fi}
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
-  \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
+  \renewcommand\met@volumeid{ročník \metayear{year}\ifsummerbatch{\qquad \@seriesname}\else{\qquad číslo \arabic{batch}/7}\fi}
 
 %zadania 
 %  \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
@@ -178,11 +184,24 @@ Pro zobrazení kopie této licence, navštivte
 {Zadání \Roman{batch}. série}
 \hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
 }
+
+  \renewcommand\met@summerheaderproblems{\centering 
+\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
+{Zadání \Roman{batch}. prázdninové série}
+\hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
+}
+
 % řešení
 %  \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
   \renewcommand\met@headersolutions{\centering 
 \includegraphics[width=23mm]{tabule.eps}\hspace{20pt}\raisebox{0.6cm}
 {Řešení \Roman{solvedbatch}. série}
+\hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
+}
+
+	\renewcommand\met@summerheadersolutions{\centering 
+\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
+{Řešení \Roman{solvedbatch}. prázdninové série}
 \hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
 }
 % Vyfučtení 
@@ -198,6 +217,12 @@ Pro zobrazení kopie této licence, navštivte
 {Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
 }
+  \renewcommand\met@summerheaderresults[1]{\centering 
+\includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
+{Pořadí #1 řešitelů po \Roman{solvedbatch}. sérii}
+%\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
+}
+
   %pro potreby rocenky (TODO seriál->Výfučtení)
 \renewcommand\met@headeryeartoc{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Obsah}}
 \renewcommand\met@headeryearintro{\centering \includegraphics{logo8.eps}\hspace{10pt}\raisebox{0.6cm}{Předmluva}}
@@ -271,7 +296,7 @@ Pro zobrazení kopie této licence, navštivte
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
 Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK 
 a~podporován Katedrou didaktiky fyziky\\
-MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků%
+MFF~UK, jejími zaměstnanci a~Jednotou českých matematiků a~fyziků%
 .
 \nopagebreak\medskip
 
@@ -290,6 +315,8 @@ Pro zobrazení kopie této licence, navštivte
 \renewcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & %
 \met@probheader & %
 \Roman{solvedbatch} & \textnormal{\%} & $\Sigma$ \\}
+
+
 
 % to have initialized counters
 \AtBeginDocument{
