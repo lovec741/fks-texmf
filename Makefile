@@ -2,8 +2,8 @@
 
 OUT=./out
 BRANCH_DIST_MASTER=master
-BRANCH_MASTER=dev-master
-BRANCH_DEV=dev-dev
+BRANCH_MASTER=master
+BRANCH_DEV=dev
 ORIGIN=origin
 
 #
