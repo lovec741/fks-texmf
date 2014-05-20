@@ -1,23 +1,17 @@
 %
 % @author Michal Koutný <michal@fykos.cz>
 %
-% @description Manipulation with signrature "database".
+% @description Manipulation with signature "database".
 %
 \RequirePackage{etoolbox}
 
 \newcommand\newsignature[3]{%
-  \expandafter\def\csname sign@me#1\endcsname{%
+  \expandafter\gdef\csname sign@me#1\endcsname{%
     #2%
   }%
-  \expandafter\def\csname sigm@il#1\endcsname{%
+  \expandafter\gdef\csname sigm@il#1\endcsname{%
     #3%
   }%
-%  \expandafter\def\csname sigs@m#1\endcsname{%
-%    #4%
-%  }%
-%  \expandafter\def\csname sig@nick#1\endcsname{%
-%    #4%
-%  }%
 }
 
 \newcommand\signame[1]{%
@@ -29,24 +23,17 @@
 \newcommand\sigmail[1]{%
   \expandafter\csname sigm@il#1\endcsname
 }
-%\newcommand\sigsem[1]{%
-%  \expandafter\csname sigs@m#1\endcsname
-%}
-%\newcommand\signick[1]{%
-%  \expandafter\csname signick#1\endcsname
-%}
 
 \newcommand\sign@tureraw[1]{%
 \signame{#1} <\sigmail{#1}>, %
 }
 
-%\DeclareOption{fykos}{%  
-	\newcommand*{\sign@ture}[1]{%
-	\hspace{10pt}
-	\begin{tabular}{c}
-	\sigstyle{\signame{#1}}\\
-	\mail{\sigmail{#1}}
-	\end{tabular}}
+\newcommand*{\sign@ture}[1]{%
+\hspace{10pt}
+\begin{tabular}{c}
+\sigstyle{\signame{#1}}\\
+\mail{\sigmail{#1}}
+\end{tabular}}
 
 \newcommand*{\signature}[1]{%
   \let\do\sign@ture
@@ -61,6 +48,10 @@
 % signature style
 \newcommand\sigstyle[1]{{\bfseries\itshape#1}}
 
+\ifx\@signaturesfile\@undefined
+\def\@signaturesfile{signatures.tex}
+\fi
+\renewcommand\@signaturesfile{signatures.tex}
+\newcommand\signaturesfile[1]{\renewcommand\@signaturesfile{#1}}
 
-
-\input{fksemails}
+\AtBeginDocument{\input{\@signaturesfile}}

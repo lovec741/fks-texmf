@@ -191,6 +191,9 @@ A{\bfseries}r}} % sum
 %
 \input{problems}
 \problemsdir{../problems}
+% Podpisy/jména
+\input{fkssignature}
+\signaturesfile{../signatures.tex}
 % bez statistik
 \renewcommand\problemstats\relax
 % řetezec v labelu pro vzorák
@@ -220,8 +223,6 @@ A{\bfseries}r}} % sum
    
    \noindent \@probsolution\par   
 }
-
-\input{fkssignature}
 
 
 \newcommand\problemsheading{%
