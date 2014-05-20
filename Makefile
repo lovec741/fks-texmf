@@ -75,4 +75,4 @@ deb-build: test-build
 # Publish all created DEB packages to the repository
 #
 deb-publish: deb-build
-	fks-pkgupload.sh $(OUT)/*.deb
+	fks-pkg-upload.sh $(OUT)/*.deb
