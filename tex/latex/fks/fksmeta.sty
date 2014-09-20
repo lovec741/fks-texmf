@@ -284,9 +284,11 @@ Pro zobrazení kopie této licence, navštivte
 }
   \renewcommand\maketitle{%    
     \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
-    \includegraphics[width=\textwidth,trim=5.1pt 0 0 0]{vyfuk_logo.eps}
+      \rule[4pt]{\textwidth}{3pt}
+    \includegraphics[width=\textwidth,trim=-5.1pt 0pt 5.1pt 0]{vyfuk_logo.eps}
+    \rule{\textwidth}{3pt}
 
-    {\bfseries\sffamily \met@headername{} \hfill \met@volumeid}
+    {~\bfseries\sffamily \met@headername{} \hfill \met@volumeid}
 
     \rule[10pt]{\textwidth}{3pt}}
     \vspace{-1cm}
@@ -296,7 +298,6 @@ Pro zobrazení kopie této licence, navštivte
 \begin{tabular}{r>{\slshape\bfseries}l}
   \multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}} 
   & Korespondenční seminář \VYFUK \\
-  %\multirow{5}{*}{} & \FYKOS{} -- Výfuk\\
   & UK v Praze, Matematicko-fyzikální fakulta\\
 %  & Katedra didaktiky fyziky\\
   & V Holešovičkách 2\\
