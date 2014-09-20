@@ -33,11 +33,32 @@
   \tasktrue\solutionfalse\solutionsinglefalse%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
+   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \LARGE \ding{187} \ding{188} \ding{189} \ding{190} \hfill {\normalfont\normalsize\problempoints}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
   }
 }
+
+\newcommand\problemtaskSestSedm{%
+  \tasktrue\solutionfalse\solutionsinglefalse%
+  \stepcounter{problem}%
+  \@LoadProblem{\thebatch}{\theproblem}{%
+    \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \LARGE \ding{187} \ding{188} \hfill {\normalfont\normalsize\problempoints}}%
+    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
+    \@probtask%
+  }
+}
+
+\newcommand\problemtaskDifficult{%
+  \tasktrue\solutionfalse\solutionsinglefalse%
+  \stepcounter{problem}%
+  \@LoadProblem{\thebatch}{\theproblem}{%
+    \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \LARGE \ding{187} \ding{188} \ding{189} \ding{190} \ding{80} \hfill {\normalfont\normalsize\problempoints}}%
+    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
+    \@probtask%
+  }
+}
+
 
 \newcommand\problemtasksummer[2]{%
   \tasktrue\solutionfalse\solutionsinglefalse%

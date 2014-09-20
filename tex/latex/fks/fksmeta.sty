@@ -173,7 +173,7 @@ Pro zobrazení kopie této licence, navštivte
 	\newcommand\seriesname[1]{\renewcommand\@seriesname{#1}}
   \renewcommand\met@headername{Výpočty fyzikálních úkolů -- kores. sem. MFF UK pro ZŠ}
   \renewcommand\met@shortname{Výfuk}
-  \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or E\or C\else \@ctrerr\fi}
+  \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or E\or C\else \@ctrerr\fi}
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
   \renewcommand\met@volumeid{ročník \metayear{year}\ifsummerbatch{\qquad \@seriesname}\else{\qquad číslo \arabic{batch}/7}\fi}
 
@@ -278,7 +278,7 @@ Pro zobrazení kopie této licence, navštivte
   & V Holešovičkách 2\\
   & 180\,00 Praha 8\\
 \noalign{\smallskip}
-  www: & \normalfont\url{http://vyfuk.fykos.cz}\\
+  www: & \normalfont\url{http://vyfuk.mff.cuni.cz}\\
 %  \ifnum\theyear<3 e-mail pro řešení: & \normalfont\mail{vyfuk-reseni@fykos.cz}\\\fi
   e-mail: & \normalfont\mail{vyfuk@vyfuk.mff.cuni.cz}\\
 \end{tabular}
@@ -293,7 +293,7 @@ Pro zobrazení kopie této licence, navštivte
 }
  
 \renewcommand\met@licence{
-Fyzikální korespondenční seminář je organizován studenty MFF~UK.
+Korespondenční seminář Výfuk je organizován studenty MFF~UK.
 Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK 
 a~podporován Katedrou didaktiky fyziky\\
 MFF~UK, jejími zaměstnanci a~Jednotou českých matematiků a~fyziků%
@@ -307,7 +307,7 @@ Pro zobrazení kopie této licence, navštivte
 }
 
 % results table parameter
-\renewcommand\met@probheader{1 & 2 & 3 & 4 & E & C} % results table problems header
+\renewcommand\met@probheader{1 & 2 & 3 & 4 & 5 & E & C} % results table problems header
 \renewcommand\met@resultscols{\newcolumntype{T}{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
 ^r^r^r^r^r^r%points columns
 @{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\itshape}r@{\hspace{8pt}}A{\bfseries}r}} % batch sum, sum
