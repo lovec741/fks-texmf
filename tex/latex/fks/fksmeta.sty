@@ -170,9 +170,8 @@ Pro zobrazení kopie této licence, navštivte
 % --- VÝFUK ---
 \DeclareOption{vyfuk}{%
   \newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} } 
-\newcommand\diff@tag[1]{%
-\ifthenelse{\\equal{#1}{diff}}{\ding{80}}{}%
-\ifthenelse{\\equal{#1}{exp}}{}{}%
+\newcommand\type@tag[1]{%
+\ifthenelse{\equal{#1}{hard}}{\ding{80}}{}%
 }   
   
   \newif\ifsummerbatch  
@@ -193,10 +192,11 @@ Pro zobrazení kopie této licence, navštivte
 \let\do\year@tag%
 \expandafter\docsvlist\@probstudyyears%
 }% end of study year tags
-
-\let\do\diff@tag%
-\expandafter\docsvlist\@probtag%
-
+% tags for problem type
+\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
+\let\do\type@tag%
+\expandafter\docsvlist\@probtags%
+} % end of problem type tags
 }}
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
   \renewcommand\met@volumeid{ročník \metayear{year}\ifsummerbatch{\qquad \@seriesname}\else{\qquad číslo \arabic{batch}/7}\fi}
