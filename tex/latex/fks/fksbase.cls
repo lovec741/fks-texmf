@@ -36,6 +36,7 @@
 \opt{print}{\hypersetup{colorlinks=false}}
 \RequirePackage{xkeyval}
 \RequirePackage{polyglossia}
+\RequirePackage{pifont}
 \setdefaultlanguage{czech}
 
 \newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
