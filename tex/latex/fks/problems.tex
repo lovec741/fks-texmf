@@ -22,7 +22,7 @@
 \newcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
   \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#1-#2.tex}%
 % reset optional parameters  
-  \probfig{N/A}\probsolvers{N/A}\probavg{N/A}\probstudyyears{N/A}
+  \probfig{N/A}\probsolvers{N/A}\probavg{N/A}\probstudyyears{N/A}\probtag{N/A}
   \IfFileExists{\@tmpfilename}{
   \input{\@tmpfilename}%
   \ClassInfo{fksserie}{Loaded \@tmpfilename}
@@ -117,6 +117,7 @@ průměr~\@probavg;
 \newcommand\@probsolution{N/A}
 \newcommand\@probfig{N/A}
 \newcommand\@probstudyyears{N/A}
+\newcommand\@probtag{N/A}
 
 \newcommand\probbatch[1]{\renewcommand\@probbatch{#1}}
 \newcommand\probno[1]{\renewcommand\@probno{#1}}
@@ -132,3 +133,4 @@ průměr~\@probavg;
 \newcommand\probsolution[1]{\renewcommand\@probsolution{#1}}
 \newcommand\probfig[1]{\renewcommand\@probfig{#1}}
 \newcommand\probstudyyears[1]{\renewcommand\@probstudyyears{{#1}}} % due to foreach expansion
+\newcommand\probtag[1]{\renewcommand\@probtag{{#1}}} % due to foreach expansion
