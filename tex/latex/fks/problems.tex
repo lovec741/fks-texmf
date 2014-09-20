@@ -20,8 +20,9 @@
 
 \newcommand\@tmpfilename{}
 \newcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
-  \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#1-#2.tex}
-  \probfig{N/A}\probsolvers{N/A}\probavg{N/A}
+  \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#1-#2.tex}%
+% reset optional parameters  
+  \probfig{N/A}\probsolvers{N/A}\probavg{N/A}\probstudyyears{N/A}
   \IfFileExists{\@tmpfilename}{
   \input{\@tmpfilename}%
   \ClassInfo{fksserie}{Loaded \@tmpfilename}
@@ -33,43 +34,11 @@
   \tasktrue\solutionfalse\solutionsinglefalse%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \LARGE \ding{187} \ding{188} \ding{189} \ding{190} \hfill {\normalfont\normalsize\problempoints}}%
+   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \metaprobdata{problem} \hfill {\normalfont\normalsize\problempoints}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
   }
 }
-
-\newcommand\problemtaskSestSedm{%
-  \tasktrue\solutionfalse\solutionsinglefalse%
-  \stepcounter{problem}%
-  \@LoadProblem{\thebatch}{\theproblem}{%
-    \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \LARGE \ding{187} \ding{188} \hfill {\normalfont\normalsize\problempoints}}%
-    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
-    \@probtask%
-  }
-}
-
-\newcommand\problemtaskDifficult{%
-  \tasktrue\solutionfalse\solutionsinglefalse%
-  \stepcounter{problem}%
-  \@LoadProblem{\thebatch}{\theproblem}{%
-    \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \LARGE \ding{187} \ding{188} \ding{189} \ding{190} \ding{80} \hfill {\normalfont\normalsize\problempoints}}%
-    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
-    \@probtask%
-  }
-}
-
-
-\newcommand\problemtasksummer[2]{%
-  \tasktrue\solutionfalse\solutionsinglefalse%
-  \stepcounter{problem}\setcounter{batch}{#2}%%
-  \@LoadProblem{\thebatch}{\theproblem}{\setcounter{batch}{#1}%
-   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
-   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
-   \@probtask%
-  }
-}
-
 
 \newcommand\problemsolution{%
   \taskfalse\solutiontrue\solutionsinglefalse%
@@ -147,6 +116,7 @@ průměr~\@probavg;
 \newcommand\@probtask{N/A}
 \newcommand\@probsolution{N/A}
 \newcommand\@probfig{N/A}
+\newcommand\@probstudyyears{N/A}
 
 \newcommand\probbatch[1]{\renewcommand\@probbatch{#1}}
 \newcommand\probno[1]{\renewcommand\@probno{#1}}
@@ -154,11 +124,11 @@ průměr~\@probavg;
 \newcommand\probname[2][]{\renewcommand\@probname{#2}}
 \newcommand\proborigin[1]{\renewcommand\@proborigin{#1}}
 \newcommand\probpoints[1]{\renewcommand\@probpoints{#1}}
-\newcommand\probsolauthors[1]{\renewcommand\@probsolauthors{{#1}}} % due to 
-%foreach expansion
+\newcommand\probsolauthors[1]{\renewcommand\@probsolauthors{{#1}}} % due to foreach expansion
 \newcommand\probauthors[1]{\renewcommand\@probauthors{{#1}}}
 \newcommand\probsolvers[1]{\renewcommand\@probsolvers{#1}}
 \newcommand\probavg[1]{\renewcommand\@probavg{#1}}
 \newcommand\probtask[1]{\renewcommand\@probtask{#1}}
 \newcommand\probsolution[1]{\renewcommand\@probsolution{#1}}
 \newcommand\probfig[1]{\renewcommand\@probfig{#1}}
+\newcommand\probstudyyears[1]{\renewcommand\@probstudyyears{{#1}}} % due to foreach expansion
