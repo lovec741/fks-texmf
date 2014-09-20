@@ -23,19 +23,22 @@
 \newcommand\sigmail[1]{%
   \expandafter\csname sigm@il#1\endcsname
 }
-% TODO remove?
-\newcommand\vyfukmail{{\tt vyfuk@vyfuk.mff.cuni.cz}}
 
 \newcommand\sign@tureraw[1]{%
 \signame{#1} <\sigmail{#1}>, %
 }
 
-\newcommand*{\sign@ture}[1]{%
+\newcommand*{\sign}[3][]{%
+\ifthenelse{\equal{#1}{nofill}}{}{\hfill}%
 \hspace{10pt}
 \begin{tabular}{c}
-\sigstyle{\signame{#1}}\\
-\mail{\sigmail{#1}}
+\sigstyle{#2}\\
+\mail{#3}
 \end{tabular}}
+
+\newcommand*{\sign@ture}[1]{%
+\sign{\signame{#1}}{\sigmail{#1}}%
+}
 
 \newcommand*{\signature}[1]{%
   \let\do\sign@ture
