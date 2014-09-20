@@ -36,7 +36,8 @@ for file in "$TESTS/t"* ; do
 		[ -n "$VERBOSE" ] && echo -e "${green}Test `basename $file` passed." >&2 ; tput sgr0		
 	else
 		if [ -n "$VERBOSE" ] ; then
-			log=`basename -s .tex $file`.log
+			log=`basename $file`
+			log=${log%.tex}.log
 			echo "=== $log ==="
 			tail -n 21 $OUT/$log | head -n 11
 			echo "======"
