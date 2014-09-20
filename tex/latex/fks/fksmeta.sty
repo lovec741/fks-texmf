@@ -21,6 +21,7 @@
 \newcommand\met@address{Contact address}
 \newcommand\met@licence{Licence}
 \newcommand\metaprobletter[1]{\expandafter \@metaprobletter \csname c@#1\endcsname}
+\newcommand\metaprobdata[1]{}
 \newcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or P\or E\or S\else \@ctrerr\fi}
 \newcommand\metayear[1]{\Roman{#1}}
 \newcommand\met@headerproblems{Zadání \Roman{batch}. série}
@@ -168,12 +169,35 @@ Pro zobrazení kopie této licence, navštivte
 
 % --- VÝFUK ---
 \DeclareOption{vyfuk}{%
-	\newif\ifsummerbatch  
+  \newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} } 
+\newcommand\type@tag[1]{%
+\ifthenelse{\equal{#1}{hard}}{\ding{80}}{}%
+}   
+  
+  \newif\ifsummerbatch  
   \newcommand\@seriesname{NA}
-	\newcommand\seriesname[1]{\renewcommand\@seriesname{#1}}
+  \newcommand\seriesname[1]{\renewcommand\@seriesname{#1}}
   \renewcommand\met@headername{Výpočty fyzikálních úkolů -- kores. sem. MFF UK pro ZŠ}
   \renewcommand\met@shortname{Výfuk}
-  \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or E\or C\else \@ctrerr\fi}
+  \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or E\or C\else \@ctrerr\fi}
+  \renewcommand\metaprobdata[1]{%
+% Tags for study years (default are all)
+{\LARGE
+\ifthenelse{\equal{\@probstudyyears}{{N/A}}}{%
+\year@tag{6}%
+\year@tag{7}%
+\year@tag{8}%
+\year@tag{9}
+}{%
+\let\do\year@tag%
+\expandafter\docsvlist\@probstudyyears%
+}% end of study year tags
+% tags for problem type
+\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
+\let\do\type@tag%
+\expandafter\docsvlist\@probtags%
+} % end of problem type tags
+}}
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
   \renewcommand\met@volumeid{ročník \metayear{year}\ifsummerbatch{\qquad \@seriesname}\else{\qquad číslo \arabic{batch}/7}\fi}
 
@@ -260,9 +284,11 @@ Pro zobrazení kopie této licence, navštivte
 }
   \renewcommand\maketitle{%    
     \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
-    \includegraphics[width=\textwidth,trim=5.1pt 0 0 0]{vyfuk_logo.eps}
+      \rule[4pt]{\textwidth}{3pt}
+    \includegraphics[width=\textwidth,trim=-5.1pt 0pt 5.1pt 0]{vyfuk_logo.eps}
+    \rule{\textwidth}{3pt}
 
-    {\bfseries\sffamily \met@headername{} \hfill \met@volumeid}
+    {~\bfseries\sffamily \met@headername{} \hfill \met@volumeid}
 
     \rule[10pt]{\textwidth}{3pt}}
     \vspace{-1cm}
@@ -272,7 +298,6 @@ Pro zobrazení kopie této licence, navštivte
 \begin{tabular}{r>{\slshape\bfseries}l}
   \multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}} 
   & Korespondenční seminář \VYFUK \\
-  %\multirow{5}{*}{} & \FYKOS{} -- Výfuk\\
   & UK v Praze, Matematicko-fyzikální fakulta\\
 %  & Katedra didaktiky fyziky\\
   & V Holešovičkách 2\\
@@ -293,7 +318,7 @@ Pro zobrazení kopie této licence, navštivte
 }
  
 \renewcommand\met@licence{
-Fyzikální korespondenční seminář je organizován studenty MFF~UK.
+Korespondenční seminář Výfuk je organizován studenty MFF~UK.
 Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK 
 a~podporován Katedrou didaktiky fyziky\\
 MFF~UK, jejími zaměstnanci a~Jednotou českých matematiků a~fyziků%
@@ -307,7 +332,7 @@ Pro zobrazení kopie této licence, navštivte
 }
 
 % results table parameter
-\renewcommand\met@probheader{1 & 2 & 3 & 4 & E & C} % results table problems header
+\renewcommand\met@probheader{1 & 2 & 3 & 4 & 5 & E & C} % results table problems header
 \renewcommand\met@resultscols{\newcolumntype{T}{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
 ^r^r^r^r^r^r%points columns
 @{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\itshape}r@{\hspace{8pt}}A{\bfseries}r}} % batch sum, sum
