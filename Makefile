@@ -33,7 +33,7 @@ test:
 #
 # Run tests on production branch (of each component)
 #
-test-build: update
+test-build: 
 	./run-tests.sh $(BRANCH_MASTER)
 
 #
