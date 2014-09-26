@@ -1,10 +1,12 @@
 .PHONY: test release deb-build deb-publish zip-build init test-build update
 
-OUT=./out
+mkfile_path:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+OUT:=$(mkfile_path)out
 BRANCH_DIST_MASTER=master
 BRANCH_MASTER=master
 BRANCH_DEV=dev
 ORIGIN=origin
+merge:=$(mkfile_path)merge-component.sh
 
 #
 # Initialize components after clone
@@ -44,15 +46,7 @@ release: test
 	echo "Released texmf.dist" >> $$MESSAGE ;\
 	echo >> $$MESSAGE ;\
 	git submodule foreach 'git pull $(ORIGIN) $(BRANCH_MASTER)' ; \
-	git submodule foreach '\
-		git checkout $(BRANCH_MASTER) && \
-		git merge --no-ff $(BRANCH_DEV) && \
-		git checkout $(BRANCH_DEV) && \
-		git merge $(BRANCH_MASTER) && \
-		echo "Write tag for $$name (previous `git describe --tags`): " &&\
-	   	( ( read tagname && git tag $$tagname ) || true ) && \
-		git push --tags $(ORIGIN) $(BRANCH_MASTER) $(BRANCH_DEV) && \
-		echo "\t$$name at version `git describe --tags`" >> $$MESSAGE' ;\
+	git submodule foreach '$(merge) $(ORIGIN) $(BRANCH_MASTER) $(BRANCH_DEV) $$MESSAGE' ;\
 	git add -u components ;\
 	git commit -F $$MESSAGE ;\
 	git push $(ORIGIN) $(BRANCH_DIST_MASTER)
