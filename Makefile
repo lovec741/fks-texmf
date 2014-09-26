@@ -56,7 +56,7 @@ release: test
 # Creates ZIP archive with all components in their production branches
 #
 zip-build: test-build
-	./zip-build.sh $(BRANCH_MASTER)
+	./zip-build.sh $(ORIGIN)/$(BRANCH_MASTER)
 
 #
 # Creates DEB package for each component (their production branch)
