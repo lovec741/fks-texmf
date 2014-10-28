@@ -62,8 +62,8 @@ zip-build: test-build
 # Creates DEB package for each component (their production branch)
 #
 deb-build: test-build
-	rm -f "$(OUT)/*.deb"
-	export out=$$PWD/$(OUT) ; git submodule foreach 'fks-debbuild.sh -g $$PWD -b $$out -r $(BRANCH_MASTER)'
+	rm -f $(OUT)/*.deb
+	git submodule foreach 'fks-debbuild.sh -g $$PWD -b $(OUT) -r $(BRANCH_MASTER)'
 
 #
 # Publish all created DEB packages to the repository
