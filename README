@@ -1,14 +1,3 @@
-Popis instalace pro MiKTeX na Windows:
-  - aktualizujte na poslední verzi MiKTeXu
-  - adresář ''texmf'' uložte na dobře známé místo (''%home%\texmf'', pro budoucí aktualizace)
-  - spusťte Start->MiKTeX->Maintenance (Admin)->Settings
-  - jděte na záložku 'Roots' a přidejte tam cestu k ''%home%\texmf''
-  - MiKTeX už zbytek zajistí sám
-
-Obsoletní!
-
-Popis instalace pro TeX Live na Debianu (a Ubuntu):
-  - adresář ''texmf'' uložte do ''~/texmf'' (pokud tam už něco máte, jste jistě dostatečně zdatní, abyste nová makra přidali)
-  - spusťte ''mktexlsr ~/texmf''
-
+See
+https://wiki.fykos.cz/spolecne:texani:instalace
 
