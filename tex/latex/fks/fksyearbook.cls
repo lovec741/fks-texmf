@@ -276,6 +276,14 @@ A{\bfseries}r}} % sum
 \newcommand\eventsheading{%
 \newchapter[Akce \met@shortname u]{\met@headeryearevents}}
 
+\newcommand\summerheading{%
+\newchapter[Zadání prázdninových úloh]{\met@headersummer}%
+}
+
+\newcommand\summersolutionsheading{%
+\newchapter[Řešení prázdninových úloh]{\met@headersummersolutions}%
+}
+
 \newcommand\resultsheading{%
 \newchapter[Pořadí nejlepších řešitelů]{\met@headeryearresults}
 }
@@ -531,7 +539,7 @@ ISBN \@isbn
 {\titlefontsub\@subtitle}
 \vspace{72pt}
 
-\includegraphics[width=40mm]{logo8.eps}
+\includegraphics[width=80mm]{logo_vyfuk.eps}
 
 
 \end{center}
