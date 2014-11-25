@@ -438,11 +438,11 @@ MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 
 \textit{Předmluva:} \@predmluva\par
 
-\textit{Náměty úloh:}\par
-\hspace{\tmpp@rindent}
-\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} %3pt is magic
-\input{authors/probauthors}
-\end{minipage}\par
+%\textit{Náměty úloh:}\par
+%\hspace{\tmpp@rindent}
+%\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} %3pt is magic
+%\input{authors/probauthors}
+%\end{minipage}\par
 
 \textit{Autoři řešení úloh:}\par
 \hspace{\tmpp@rindent}
