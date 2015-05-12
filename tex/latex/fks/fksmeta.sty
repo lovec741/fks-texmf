@@ -26,12 +26,14 @@
 \newcommand\metayear[1]{\Roman{#1}}
 \newcommand\met@headerproblems{Zadání \Roman{batch}. série}
 \newcommand\met@summerheaderproblems{Zadání \Roman{batch}. série}
+\newcommand\met@summerheaderproblemsBonus{Zadání \Roman{batch}. série}
 \newcommand\met@headersolutions{Řešení \Roman{solvedbatch}. série}
 \newcommand\met@summerheadersolutions{Řešení \Roman{solvedbatch}. série}
 \newcommand\met@headerseries[1]{Seriál: #1}
 \newcommand\met@headerresults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 \newcommand\met@summerheaderresults[1]{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 \renewcommand\maketitle{}
+\newcommand\maketitlenew{}
 %pro potreby rocenky
 \newcommand\met@headeryeartoc{Obsah}
 \newcommand\met@headeryearintro{Předmluva}
@@ -215,6 +217,12 @@ Pro zobrazení kopie této licence, navštivte
 \hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
 }
 
+  \renewcommand\met@summerheaderproblemsBonus{\centering 
+\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
+{Zadání bonusové prázdninové série}
+\hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
+}
+
 % řešení
 %  \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
   \renewcommand\met@headersolutions{\centering 
@@ -287,12 +295,30 @@ Pro zobrazení kopie této licence, navštivte
   \renewcommand\maketitle{%    
     \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
       \rule[4pt]{\textwidth}{3pt}
-    \includegraphics[width=\textwidth,trim=-5.1pt 0pt 5.1pt 0]{vyfuk_logo.eps}
+    \includegraphics[width=\textwidth,trim=-5.1pt 0pt 5.1pt 0]{vyfuk_logo.eps} 
     \rule{\textwidth}{3pt}
 
     {~\bfseries\sffamily \met@headername{} \hfill \met@volumeid}
 
     \rule[10pt]{\textwidth}{3pt}}
+    \vspace{-1cm}
+  }
+
+\renewcommand\maketitlenew{%    
+    \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
+      %\rule[4pt]{\textwidth}{3pt}
+
+    {~\bfseries\sffamily \met@headername{} \hfill \met@volumeid\vspace{5mm}}
+
+\makebox{
+    \includegraphics[width=0.5\textwidth,trim=-5.1pt 0pt 5.1pt 0]{vyfuk_logo_2.eps}
+    \includegraphics[width=0.5\textwidth,trim=-5.1pt 0pt 5.1pt 0]{tabule.eps}
+    }
+%\rule{\textwidth}{3pt}
+    \vspace{1cm}
+
+    %\rule[10pt]{\textwidth}{3pt}
+    }
     \vspace{-1cm}
   }
 
