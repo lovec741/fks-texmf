@@ -438,11 +438,11 @@ MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 
 \textit{Předmluva:} \@predmluva\par
 
-%\textit{Náměty úloh:}\par
-%\hspace{\tmpp@rindent}
-%\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} %3pt is magic
-%\input{authors/probauthors}
-%\end{minipage}\par
+\textit{Náměty úloh:}\par
+\hspace{\tmpp@rindent}
+\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} %3pt is magic
+\input{authors/probauthors}
+\end{minipage}\par
 
 \textit{Autoři řešení úloh:}\par
 \hspace{\tmpp@rindent}
@@ -539,7 +539,7 @@ ISBN \@isbn
 {\titlefontsub\@subtitle}
 \vspace{72pt}
 
-\includegraphics[width=80mm]{logo_vyfuk.eps}
+\includegraphics[width=40mm]{logo8.eps}
 
 
 \end{center}
