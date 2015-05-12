@@ -79,6 +79,7 @@
   \taskfalse\solutiontrue\solutionsingletrue%
   \setcounter{solvedbatch}{\@probbatch}
   \setcounter{problem}{\@probno}
+  % only simple macros can be used inside pdftitle (e.g. stepcounter doesn't work)
   \hypersetup{
     pdftitle={\met@shortname, \Roman{year}.\Roman{solvedbatch}.\arabic{problem} \@probname},
     pdfauthor={\@probsolauthors},
