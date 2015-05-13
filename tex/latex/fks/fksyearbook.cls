@@ -276,6 +276,14 @@ A{\bfseries}r}} % sum
 \newcommand\eventsheading{%
 \newchapter[Akce \met@shortname u]{\met@headeryearevents}}
 
+\newcommand\summerheading{%
+\newchapter[Zadání prázdninových úloh]{\met@headersummer}%
+}
+
+\newcommand\summersolutionsheading{%
+\newchapter[Řešení prázdninových úloh]{\met@headersummersolutions}%
+}
+
 \newcommand\resultsheading{%
 \newchapter[Pořadí nejlepších řešitelů]{\met@headeryearresults}
 }
