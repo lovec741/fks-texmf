@@ -47,27 +47,6 @@
   \pr@blemsolution
 }}
 
-%%%%%%%%%%%Prázdninová séria výfuku%%%%%%%%%%%
-\newcommand\problemtasksummer[2]{%
-  \tasktrue\solutionfalse\solutionsinglefalse%
-  \stepcounter{problem}\setcounter{batch}{#2}%%
-  \@LoadProblem{\thebatch}{\theproblem}{%
-   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
-   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
-   \@probtask%
-  }
-}
-
-\newcommand\problemsolutionsummer[2]{%
-  \taskfalse\solutiontrue\solutionsinglefalse%
-  \stepcounter{problem}\setcounter{solvedbatch}{#2}%%
-  \@LoadProblem{\thesolvedbatch}{\theproblem}{\setcounter{solvedbatch}{#1}%
-  \pr@blemsolution
-}}
-
-
-
-%%%%%%%%%%%%END OF PRS%%%%%%%%%%%
 
 \newcommand\myprint[1]{pdfauthor=#1}
 \def\expandargument#1#2{%
