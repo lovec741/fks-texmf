@@ -23,4 +23,4 @@ if [ "x$tagname" != "x" ] ; then
 	git push --tags $ORIGIN $BRANCH_MASTER $BRANCH_DEV
 fi
 
-echo "\t$name at version `git describe --tags`" >> $MSG_FILE
+echo "    $name at version `git describe --tags`" >> $MSG_FILE

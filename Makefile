@@ -46,7 +46,8 @@ release: test
 	echo "Released texmf.dist" >> $$MESSAGE ;\
 	echo >> $$MESSAGE ;\
 	git submodule foreach 'git pull $(ORIGIN) $(BRANCH_MASTER)' ; \
-	git submodule foreach '$(merge) $(ORIGIN) $(BRANCH_MASTER) $(BRANCH_DEV) $$MESSAGE' ;\
+	git submodule foreach 'export name; \
+		$(merge) $(ORIGIN) $(BRANCH_MASTER) $(BRANCH_DEV) $$MESSAGE' ;\
 	git submodule foreach 'git push $(ORIGIN) $(BRANCH_MASTER) $(BRANCH_DEV)' ; \
 	git add -u components ;\
 	git commit -F $$MESSAGE ;\
