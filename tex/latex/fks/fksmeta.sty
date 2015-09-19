@@ -294,15 +294,14 @@ Pro zobrazení kopie této licence, navštivte
 }
   \renewcommand\maketitle{%    
     \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
-      \rule[4pt]{\textwidth}{3pt}
-    \includegraphics[width=\textwidth,trim=-5.1pt 0pt 5.1pt 0]{vyfuk_logo.eps} 
-    \rule{\textwidth}{3pt}
-
-    {~\bfseries\sffamily \met@headername{} \hfill \met@volumeid}
-
-    \rule[10pt]{\textwidth}{3pt}}
-    \vspace{-1cm}
-  }
+     \setlength\fboxsep{3pt}\colorbox{black}{
+     \begin{minipage}{\textwidth-6pt}
+      \textcolor{white}{~\bfseries\sffamily \met@headername{} \hfill \met@volumeid~}
+     \end{minipage}}}%
+    \vspace{5mm}
+    \includegraphics[width=\textwidth]{vyfuk_hlavicka.eps}%
+    \vspace{8mm}
+}
 
 \renewcommand\maketitlenew{%    
     \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
