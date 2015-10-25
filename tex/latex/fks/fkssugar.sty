@@ -1,7 +1,7 @@
 %
 % @author Michal Koutný <michal@fykos.cz>
 % @author Jan Houštěk (2002/6)
-% 
+%
 % This work is licenced under CC BY-SA 3.0 licence.
 % Full form can be found at http://creativecommons.org/licenses/by-sa/3.0/.
 %
@@ -43,9 +43,9 @@
 \newcommand\der[2]{\frac{\d #1}{\d #2}}	% prvni derivace
 \newcommand\dder[2]{\frac{\d^2 #1}{\d #2^2}}	% druha derivace
 \newcommand\pder[2]{\frac%			% prvni parcialni derivace
-    {\partial#1}{\partial#2}}	
+    {\partial#1}{\partial#2}}
 \newcommand\ppder[2]{\frac%			% prvni parcialni derivace
-    {\partial^2#1}{\partial#2^2}}	
+    {\partial^2#1}{\partial#2^2}}
 \newcommand\tg{\mathop\mathrm{tg}\nolimits}	% cesky tangens
   \renewcommand\tan{\mathop\mathrm{tg}\nolimits}
 \newcommand\cotg{\mathop\mathrm{cotg}\nolimits}	% cesky cotangens
@@ -102,6 +102,8 @@
 \let\oldphi=\phi
 \renewcommand\phi{\varphi}
 \newcommand\ohm{\Omega}                         % for use as an unit
+\newcommand\Kc{K\check{c}}
+\newcommand\Euro{\text{€}}
 
 % block equations
 \newcommand\eq[2][s]{%
@@ -142,13 +144,13 @@
 \def\jed@A #1 {\begingroup\mathcode`\.="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers always written with dot
 \def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
 \begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
-\mathcode`\"="8000    
+\mathcode`\"="8000
 
 \@ifpackageloaded{babel}{%
   \PackageWarning{fkssugar}{Package babel detected, macros with active double quote ", will be disabled.}
 % -- Uncomment if you need use standard babel double quote macros --
 %  \begingroup\uccode`~=`*\uppercase{\endgroup\def~}#1*{\jed@A #1 @@}
-%  \mathcode`\*="8000    
+%  \mathcode`\*="8000
   \catcode`\"=12
 }{%
 }}
