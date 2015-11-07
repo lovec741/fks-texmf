@@ -30,14 +30,10 @@
 \everymath{%
 \renewcommand\_[1]{_\text{\rm #1}}			% roman subscript
 \renewcommand\^[1]{^\text{\rm #1}}          % roman superscript
-%\renewcommand{\<}{\left\langle}             % closed intervals
-%\renewcommand{\>}{\right\rangle}
 }
 \everydisplay{%
 \renewcommand\_[1]{_\text{\rm #1}}			% roman subscript
 \renewcommand\^[1]{^\text{\rm #1}}          % roman superscript
-%\renewcommand{\<}{\left\langle}             % closed intervals
-%\renewcommand{\>}{\right\rangle}
 }
 
 \def\({\left(} \def\){\right)}				% parentheses
@@ -94,6 +90,14 @@
 \newcommand\bod[1]{\mathsf{#1}}	% geometric point
 \newcommand\bb[1]{\mathbb{#1}}                  % blackboard bold
 \newcommand\op[1]{\mathrm{#1}}			% operators
+\newcommand\abs[1]{\left|#1\right|}   % absolutní hodnota
+\newcommand\conj[1]{#1^\ast}          % komplexní sdružení
+
+% intervaly
+\newcommand{\interoo}[2]{\(#1,#2\)}
+\newcommand{\interoc}[2]{\!\left.\(#1,#2\right\rangle\right.\!}
+\newcommand{\interco}[2]{\!\left.\left\langle#1,#2\)\right.\!}
+\newcommand{\intercc}[2]{\left\langle#1,#2\right\rangle}
 
 % footnote nad interpunkci
 \newcommand{\footnotei}[2]{%
@@ -123,7 +127,7 @@
 \renewcommand\phi{\varphi}
 \newcommand\ohm{\Omega}                         % for use as an unit
 \newcommand\Ohm{\ohm}                           % Ohm pro Mirka
-\newcommand\Kc{K\check{c}}                      % for use as an unit of CZK
+\newcommand\Kc{\textrm{Kč}}                     % for use as an unit of CZK
 \newcommand\Euro{\text{€}}                      % or use as an unit of EUR
 
 % block equations
