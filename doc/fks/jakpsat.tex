@@ -5,7 +5,7 @@
 % - potřebuje python-pygments
 
 \documentclass[fykos]{fksbase}
-\setcounter{year}{27}
+\setcounter{year}{29}
 
 \geometry{ignoreheadfoot,a4paper,margin=1.5cm}
 \fancyhf{}
@@ -14,7 +14,7 @@
 \usepackage{multicol}
 \usepackage{colortbl}
 
-\usepackage{minted}
+\usepackage{minted-2.0-alpha2/source/minted}
 \definecolor{mintedbg}{rgb}{0.90, 0.90, 1}
 \newminted[texminted]{tex}{bgcolor=mintedbg, tabsize=2,
 	xleftmargin=1mm, xrightmargin=1mm}
@@ -34,7 +34,7 @@
 
 \newenvironment{texcode}
 	{\VerbatimEnvironment\hskip-10pt
-		 \minipage[t]{0.52\textwidth}\vspace{0pt}\begin{texminted}{tex}}
+		 \minipage[t]{0.52\textwidth}\vspace{0pt}\begin{texminted}}
 	{\end{texminted} \endminipage}
 \newenvironment{texview}
 	{\hskip 4pt \minipage[t]{0.50\textwidth}\vskip 4pt \vspace{0pt}\parindent=1em}
@@ -44,7 +44,7 @@
 	{\vskip -2pt\end{mdframed}}
 \newenvironment{texsource}
 	{\VerbatimEnvironment\begin{mdframed}[backgroundcolor=mintedbg]%
-		\hskip-16pt\begin{texminted}{tex}}
+		\hskip-16pt\begin{texminted}}
 	{\end{texminted}\hskip-40pt\end{mdframed}}
 \newenvironment{texexample}
 	{\VerbatimEnvironment\VerbatimOut[tabsize=2]{\jobname.tmp}}
@@ -315,7 +315,7 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		reálná a~imaginární část \\\hline
 	\texinline|$\eu^{\im x}$| & $\eu^{\im x}$ &
 		Eulerovo číslo, imaginární jednotka \\\hline
-	\texinline|$\der{f}{x}, \dder{f}{x},|\ \texinline|\pder{f}{x}, \ppder{f}{x}$| &
+	\texinline|$\der{f}{x}, \dder{f}{x},$|\ \texinline|$\pder{f}{x}, \ppder{f}{x}$| &
 		$\der{f}{x}, \dder{f}{x}, \pder{f}{x}, \ppder{f}{x}$ &
 		derivace (první, druhá, parciální, druhá parciální)\\\hline
 	\texinline|$\Laplace, \Dalembert$| & $\Laplace, \Dalembert$ &
@@ -338,7 +338,7 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		geometrický bod\\\hline
 	\texinline|$\bb{R}, \bb{C}, \bb{N}$| & $\bb{R}, \bb{C}, \bb{N}$ &
 		množiny\\\hline
-	\texinline|$\ointo{1}{2}$, $\ointc{1}{2}$, $\cinto{1}{2}$, $\cintc{1}{2}$| &
+	\texinline|$\ointo{1}{2}, \ointc{1}{2},$|\ \texinline|$\cinto{1}{2}, \cintc{1}{2}$| &
 		$\ointo{1}{2}$, $\ointc{1}{2}$, $\cinto{1}{2}$, $\cintc{1}{2}$ &
  		intervaly\\\hline
 	\texinline|$\varpi, \pi$| & $ \varpi, \pi$ &
@@ -347,7 +347,7 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		úhlový stupeň\\\hline
 	\texinline|$\C$| & $\C$ &
 		stupně Celsia\\\hline
-	\texinline|$\ohm$| & $\ohm$ &
+	\texinline|$\ohm, \Ohm$| & $\ohm$ &
 		ohm (jednotka)\\\hline
 \end{texexampletab}
 
@@ -487,21 +487,21 @@ turpis a~tristique gravida, ligula nunc lobortis.
 \end{texcode}
 \begin{texview}
 	\illfig{obrazek.eps}{Malý}{R27S1U2_maly}{6}
-	
+
 	Obrázek~\ref{R27S1U2_maly} je malinký a~obtéká ho text, kdežto
 	obrázek~\ref{R27S1U2_velky} je velký.
-	
+
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam neque urna,
 	semper quis diam pellentesque, scelerisque vehicula ante. Maecenas et feugiat
 	orci. Donec neque eros, eleifend sit amet adipiscing vel, dictum at arcu.
 	Pellentesque vitae est ante.
-	
+
 	\begin{center}
 		\includegraphics{obrazek.eps}
 		\caption{Velký obrázek}
 		\label{R27S1U2_velky}
 	\end{center}
-	
+
 	Quisque a~urna erat. Suspendisse in est sem. In hac habitasse platea dictumst.
 	Donec varius, turpis a~tristique gravida, ligula nunc lobortis.
 \end{texview}
@@ -565,8 +565,8 @@ facilisis enim. Vestibulum lacinia viverra est, at.
 	V~tabulce~\ref{R27S1U2_moje-tabulka} je mnoho dat.
 	Lorem ipsum dolor sit amet, imperdiet metus nunc,
 	eu faucibus nulla euismod ac. Fusce eu consequat mi.
-	
-	
+
+
 	\begin{center}
 	\caption{Moje tabulka}
 	\label{R27S1U2_moje-tabulka}
@@ -582,9 +582,9 @@ facilisis enim. Vestibulum lacinia viverra est, at.
 		\bottomrule
 	\end{tabular}
 	\end{center}
-	
+
 	\medskip
-	
+
 	Integer enim nisl, sodales quis porta vel, tincidunt a~elit. Fusce non ipsum egestas,
 	egestas enim in, facilisis enim. Vestibulum lacinia viverra est, at.
 \end{texview}
