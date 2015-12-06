@@ -59,4 +59,6 @@
 \renewcommand\@signaturesfile{signatures.tex}
 \newcommand\signaturesfile[1]{\renewcommand\@signaturesfile{#1}}
 
-\AtBeginDocument{\input{\@signaturesfile}}
+\IfFileExists{\@signaturesfile}%
+{\AtBeginDocument{\input{\@signaturesfile}}}%
+{\ClassWarning{fkssignatures}{Missing ../signatures.tex}}

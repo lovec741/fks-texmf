@@ -17,6 +17,7 @@
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{isomath}
 \RequirePackage{ifthen}
 \RequirePackage{lmodern}
 \RequirePackage{xparse}
@@ -24,7 +25,17 @@
 \RequirePackage[nointegrals]{wasysym}
 
 \let\underscore\_					% underscore sign
-\renewcommand\_[1]{_\text{\rm #1}}			% roman index
+\let\xor\^	        				% xor sign
+% TODO only one instance of macros
+\everymath{%
+\renewcommand\_[1]{_\text{\rm #1}}			% roman subscript
+\renewcommand\^[1]{^\text{\rm #1}}          % roman superscript
+}
+\everydisplay{%
+\renewcommand\_[1]{_\text{\rm #1}}			% roman subscript
+\renewcommand\^[1]{^\text{\rm #1}}          % roman superscript
+}
+
 \def\({\left(} \def\){\right)}				% parentheses
 \newcommand\ztoho{\quad\Rightarrow\quad}		% implication
 \newcommand\frc[2]{\dfrac#1#2}				% non-reduced fractions [obsolete]
@@ -58,8 +69,12 @@
   \newcommand\arccot{\mathop\mathrm{arccotg}\nolimits}
 \newcommand\tgh{\mathop\mathrm{tgh}\nolimits}		% cesky hyp. tangens
   \renewcommand\tanh{\mathop\mathrm{tgh}\nolimits}
+\newcommand\argcosh{\mathop\mathrm{argcosh}\nolimits}	% cesky inverzni hyp. cosinus
+\newcommand\argsinh{\mathop\mathrm{argsinh}\nolimits}	% cesky inverzni hyp. sinus
 \newcommand\argtgh{\mathop\mathrm{argtgh}\nolimits}	% cesky inverzni hyp. tangens
   \newcommand\argtanh{\mathop\mathrm{argtgh}\nolimits}
+\newcommand\argcotgh{\mathop\mathrm{argcotgh}\nolimits}	% cesky inverzni hyp. sinus
+  \newcommand\argcoth{\mathop\mathrm{argcotgh}\nolimits}	% cesky inverzni hyp. sinus
 \newcommand\tr{\mathop\mathrm{Tr}\nolimits}		% stopa
 \newcommand\sgn{\mathop\mathrm{sgn}\nolimits}		% funkce signum
 \newcommand\Laplace{\Delta}				% trojuhelnickovity operator
@@ -71,9 +86,18 @@
 \newcommand\eqdef{\stackrel{\mathrm{def}}{=}} 	% definition equality
 \newcommand\qed{\hfill\square}			% konec dukazu
 \DeclareMathAlphabet{\vect}{OT1}{\sfdefault}{bx}{sl}     % vectors
+\newcommand{\vectgr}[1]{\mathsfbfit{#1}}
 \newcommand\bod[1]{\mathsf{#1}}	% geometric point
 \newcommand\bb[1]{\mathbb{#1}}                  % blackboard bold
 \newcommand\op[1]{\mathrm{#1}}			% operators
+\newcommand\abs[1]{\left|#1\right|}   % absolutní hodnota
+\newcommand\conj[1]{#1^\ast}          % komplexní sdružení
+
+% intervaly
+\newcommand{\ointo}[2]{\(#1,#2\)}
+\newcommand{\ointc}[2]{\!\left.\(#1,#2\right\rangle\right.\!}
+\newcommand{\cinto}[2]{\!\left.\left\langle#1,#2\)\right.\!}
+\newcommand{\cintc}[2]{\left\langle#1,#2\right\rangle}
 
 % footnote nad interpunkci
 \newcommand{\footnotei}[2]{%
@@ -102,8 +126,9 @@
 \let\oldphi=\phi
 \renewcommand\phi{\varphi}
 \newcommand\ohm{\Omega}                         % for use as an unit
-\newcommand\Kc{K\check{c}}
-\newcommand\Euro{\text{€}}
+\newcommand\Ohm{\ohm}                           % Ohm pro Mirka
+\newcommand\Kc{\textrm{Kč}}                     % for use as an unit of CZK
+\newcommand\Euro{\text{€}}                      % or use as an unit of EUR
 
 % block equations
 \newcommand\eq[2][s]{%
