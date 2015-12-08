@@ -488,8 +488,9 @@ jako svou \cislo@publikace. publikaci
 Vytiskl \@tiskarna
 \bigskip
 
-Vydáno pro vnitřní potřebu MFF UK\\
-Publikace není určena k prodeji
+Publikace neprošla recenzním ani lektorským řízením\\
+Vydáno pro interní potřebu MFF UK\\
+Neprodejná publikace
 \bigskip
 
 \pageref{LastPage} stran, \arabic{figure} obrázků\\
