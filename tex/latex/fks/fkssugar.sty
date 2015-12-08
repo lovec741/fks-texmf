@@ -26,15 +26,8 @@
 
 \let\underscore\_					% underscore sign
 \let\xor\^	        				% xor sign
-% TODO only one instance of macros
-\everymath{%
-\renewcommand\_[1]{_\text{\rm #1}}			% roman subscript
-\renewcommand\^[1]{^\text{\rm #1}}          % roman superscript
-}
-\everydisplay{%
-\renewcommand\_[1]{_\text{\rm #1}}			% roman subscript
-\renewcommand\^[1]{^\text{\rm #1}}          % roman superscript
-}
+\renewcommand\_[1]{\ifmmode _\text{\rm #1}\else\underscore#1\fi} %roman subscript
+\renewcommand\^[1]{\ifmmode ^\text{\rm #1}\else\xor#1\fi} %roman superscript
 
 \def\({\left(} \def\){\right)}				% parentheses
 \newcommand\ztoho{\quad\Rightarrow\quad}		% implication
