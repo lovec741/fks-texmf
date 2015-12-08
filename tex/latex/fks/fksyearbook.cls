@@ -452,10 +452,10 @@ MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 
 \met@authorspage
 
-\textit{Sazba:} \s@zba\par
-\textit{Obrázky a grafy:} \obr@zky\par
-\textit{Jazykové korektury:} \@korektury\par
-\textit{Odborné korektury:} \@odbornekorektury\par
+\ifthenelse{\equal{\s@zba}{}}{}{\textit{Sazba:} \s@zba\par}
+\ifthenelse{\equal{\obr@zky}{}}{}{\textit{Obrázky a grafy:} \obr@zky\par}
+\ifthenelse{\equal{\@korektury}{}}{}{\textit{Jazykové korektury:} \@korektury\par}
+\ifthenelse{\equal{\@odbornekorektury}{}}{}{\textit{Odborné korektury:} \@odbornekorektury\par}
 
 \revertp@r
 
