@@ -82,7 +82,7 @@
 
 
 % FYKOS
-\DeclareOption{fykos}{%  
+\DeclareOption{fykos}{%
   \renewcommand\met@headername{Fyzikální korespondenční seminář MFF UK}
   \renewcommand\met@shortname{FYKOS}
   \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
@@ -102,9 +102,9 @@
 \renewcommand\met@headeryearseriessolutionsbasic{Řešení úloh ze seriálu}%bez obrazku pro bookmark
 \renewcommand\met@headeryearseriessolutions{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{\met@headeryearseriessolutionsbasic}}
 \renewcommand\met@headeryearresults{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí nejlepších řešitelů}}
-\renewcommand\met@headeryearresultsall{\centering 
+\renewcommand\met@headeryearresultsall{\centering
 \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů}}
-\renewcommand\met@headeryearevents{\centering 
+\renewcommand\met@headeryearevents{\centering
 \includegraphics{logo6.eps}\hspace{10pt}\raisebox{0.6cm}{Akce FYKOSu}}
 
 %authors page
@@ -149,14 +149,14 @@
 }
 \renewcommand\met@licence{
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
-Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK 
+Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK
 a~podporován Ústavem teoretické fyziky\\
 MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \nopagebreak\medskip
 
-\footnotesize Toto dílo je šířeno pod licencí Creative Commons 
+\footnotesize Toto dílo je šířeno pod licencí Creative Commons
 Attribution-Share Alike 3.0 Unported.\\
-Pro zobrazení kopie této licence, navštivte 
+Pro zobrazení kopie této licence navštivte
 \url{http://creativecommons.org/licenses/by-sa/3.0/}.\par
 }
 
@@ -171,12 +171,12 @@ Pro zobrazení kopie této licence, navštivte
 
 % --- VÝFUK ---
 \DeclareOption{vyfuk}{%
-  \newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} } 
+  \newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} }
 \newcommand\type@tag[1]{%
 \ifthenelse{\equal{#1}{hard}}{\ding{80}}{}%
-}   
+}
   
-  \newif\ifsummerbatch  
+  \newif\ifsummerbatch
   \newcommand\@seriesname{NA}
   \newcommand\seriesname[1]{\renewcommand\@seriesname{#1}}
   \renewcommand\met@headername{Korespondenční seminář MFF UK pro základní školy}
@@ -203,21 +203,21 @@ Pro zobrazení kopie této licence, navštivte
   \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
   \renewcommand\met@volumeid{ročník \metayear{year}\ifsummerbatch{\qquad \@seriesname}\else{\qquad číslo \arabic{batch}/7}\fi}
 
-%zadania 
+%zadania
 %  \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
-  \renewcommand\met@headerproblems{\centering 
+  \renewcommand\met@headerproblems{\centering
 \includegraphics[width=23mm]{tabule2.eps}\hspace{20pt}\raisebox{0.6cm}
 {Zadání \Roman{batch}. série}
 \hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
 }
 
-  \renewcommand\met@summerheaderproblems{\centering 
+  \renewcommand\met@summerheaderproblems{\centering
 \includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
 {Zadání \Roman{batch}. prázdninové série}
 \hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
 }
 
-  \renewcommand\met@summerheaderproblemsBonus{\centering 
+  \renewcommand\met@summerheaderproblemsBonus{\centering
 \includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
 {Zadání bonusové prázdninové série}
 \hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
@@ -225,31 +225,31 @@ Pro zobrazení kopie této licence, navštivte
 
 % řešení
 %  \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
-  \renewcommand\met@headersolutions{\centering 
+  \renewcommand\met@headersolutions{\centering
 \includegraphics[width=23mm]{tabule.eps}\hspace{20pt}\raisebox{0.6cm}
 {Řešení \Roman{solvedbatch}. série}
 \hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
 }
 
-	\renewcommand\met@summerheadersolutions{\centering 
+	\renewcommand\met@summerheadersolutions{\centering
 \includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
 {Řešení \Roman{solvedbatch}. prázdninové série}
 \hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
 }
-% Vyfučtení 
+% Vyfučtení
 %  \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
-  \renewcommand\met@headerseries[1]{\centering 
+  \renewcommand\met@headerseries[1]{\centering
 \includegraphics[width=23mm]{kniha.eps}\hspace{20pt}\raisebox{0.6cm}
 {Výfučtení: #1}
 }
 % poradie
 % \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
-  \renewcommand\met@headerresults{\centering 
+  \renewcommand\met@headerresults{\centering
 \includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
 {Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
 }
-  \renewcommand\met@summerheaderresults[1]{\centering 
+  \renewcommand\met@summerheaderresults[1]{\centering
 \includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
 {Pořadí #1 řešitelů po \Roman{solvedbatch}. sérii}
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
@@ -293,7 +293,7 @@ Pro zobrazení kopie této licence, navštivte
     \rhead{}
     \cfoot{\includegraphics[height=61pt]{matfyz_logo.eps}}
 }
-  \renewcommand\maketitle{%    
+  \renewcommand\maketitle{%
     \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
      \setlength\fboxsep{3pt}\colorbox{black}{
      \begin{minipage}{\textwidth-6pt}
@@ -304,7 +304,7 @@ Pro zobrazení kopie této licence, navštivte
     \vspace{8mm}
 }
 
-\renewcommand\maketitlenew{%    
+\renewcommand\maketitlenew{%
     \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
       %\rule[4pt]{\textwidth}{3pt}
 
@@ -324,7 +324,7 @@ Pro zobrazení kopie této licence, navštivte
 
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
-  \multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}} 
+  \multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}}
   & Korespondenční seminář \VYFUK \\
   & UK v Praze, Matematicko-fyzikální fakulta\\
   & V Holešovičkách 2\\
@@ -346,15 +346,15 @@ Pro zobrazení kopie této licence, navštivte
  
 \renewcommand\met@licence{
 Korespondenční seminář Výfuk je organizován studenty a přáteli MFF~UK.
-Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK 
+Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK
 a~podporován Katedrou didaktiky fyziky\\
 MFF~UK, jejími zaměstnanci a~Jednotou českých matematiků a~fyziků%
 .
 \nopagebreak\medskip
 
-\footnotesize Toto dílo je šířeno pod licencí Creative Commons 
+\footnotesize Toto dílo je šířeno pod licencí Creative Commons
 Attribution-Share Alike 3.0 Unported.\\
-Pro zobrazení kopie této licence, navštivte 
+Pro zobrazení kopie této licence navštivte
 \url{http://creativecommons.org/licenses/by-sa/3.0/}.\par
 }
 
@@ -375,7 +375,7 @@ Pro zobrazení kopie této licence, navštivte
 \ifyearbook
 \nazevserialu{Výfučtení} %pro zachovani genericity maker (ovlivnuje vysazeni nazvu bookmarku)
 \fi
-\hypersetup{    
+\hypersetup{
     pdftitle=\ifyearbook{Ročenka Výfuku, \Roman{year}. ročník}\else{Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % tady radši Roman
     pdfauthor={Organizátoři Výfuku <vyfuk@vyfuk.mff.cuni.cz>},     % author
     pdfsubject={Fyzikální korespondenční seminář MFF UK pro ZŠ},   % subject of the document
