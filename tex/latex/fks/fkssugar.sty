@@ -1,7 +1,7 @@
 %
 % @author Michal Koutný <michal@fykos.cz>
 % @author Jan Houštěk (2002/6)
-% 
+%
 % This work is licenced under CC BY-SA 3.0 licence.
 % Full form can be found at http://creativecommons.org/licenses/by-sa/3.0/.
 %
@@ -24,7 +24,10 @@
 \RequirePackage[nointegrals]{wasysym}
 
 \let\underscore\_					% underscore sign
-\renewcommand\_[1]{_\text{\rm #1}}			% roman index
+\let\xor\^	        				% xor sign
+\renewcommand\_[1]{\ifmmode _\text{\rm #1}\else\underscore#1\fi} %roman subscript
+\renewcommand\^[1]{\ifmmode ^\text{\rm #1}\else\xor#1\fi} %roman superscript
+
 \def\({\left(} \def\){\right)}				% parentheses
 \newcommand\ztoho{\quad\Rightarrow\quad}		% implication
 \newcommand\frc[2]{\dfrac#1#2}				% non-reduced fractions [obsolete]
@@ -43,9 +46,9 @@
 \newcommand\der[2]{\frac{\d #1}{\d #2}}	% prvni derivace
 \newcommand\dder[2]{\frac{\d^2 #1}{\d #2^2}}	% druha derivace
 \newcommand\pder[2]{\frac%			% prvni parcialni derivace
-    {\partial#1}{\partial#2}}	
+    {\partial#1}{\partial#2}}
 \newcommand\ppder[2]{\frac%			% prvni parcialni derivace
-    {\partial^2#1}{\partial#2^2}}	
+    {\partial^2#1}{\partial#2^2}}
 \newcommand\tg{\mathop\mathrm{tg}\nolimits}	% cesky tangens
   \renewcommand\tan{\mathop\mathrm{tg}\nolimits}
 \newcommand\cotg{\mathop\mathrm{cotg}\nolimits}	% cesky cotangens
@@ -58,8 +61,12 @@
   \newcommand\arccot{\mathop\mathrm{arccotg}\nolimits}
 \newcommand\tgh{\mathop\mathrm{tgh}\nolimits}		% cesky hyp. tangens
   \renewcommand\tanh{\mathop\mathrm{tgh}\nolimits}
+\newcommand\argcosh{\mathop\mathrm{argcosh}\nolimits}	% cesky inverzni hyp. cosinus
+\newcommand\argsinh{\mathop\mathrm{argsinh}\nolimits}	% cesky inverzni hyp. sinus
 \newcommand\argtgh{\mathop\mathrm{argtgh}\nolimits}	% cesky inverzni hyp. tangens
   \newcommand\argtanh{\mathop\mathrm{argtgh}\nolimits}
+\newcommand\argcotgh{\mathop\mathrm{argcotgh}\nolimits}	% cesky inverzni hyp. sinus
+  \newcommand\argcoth{\mathop\mathrm{argcotgh}\nolimits}	% cesky inverzni hyp. sinus
 \newcommand\tr{\mathop\mathrm{Tr}\nolimits}		% stopa
 \newcommand\sgn{\mathop\mathrm{sgn}\nolimits}		% funkce signum
 \newcommand\Laplace{\Delta}				% trojuhelnickovity operator
@@ -74,6 +81,14 @@
 \newcommand\bod[1]{\mathsf{#1}}	% geometric point
 \newcommand\bb[1]{\mathbb{#1}}                  % blackboard bold
 \newcommand\op[1]{\mathrm{#1}}			% operators
+\newcommand\abs[1]{\left|#1\right|}   % absolutní hodnota
+\newcommand\conj[1]{#1^\ast}          % komplexní sdružení
+
+% intervaly
+\newcommand{\ointo}[2]{\(#1,#2\)}
+\newcommand{\ointc}[2]{\!\left.\(#1,#2\right\rangle\right.\!}
+\newcommand{\cinto}[2]{\!\left.\left\langle#1,#2\)\right.\!}
+\newcommand{\cintc}[2]{\left\langle#1,#2\right\rangle}
 
 % footnote nad interpunkci
 \newcommand{\footnotei}[2]{%
@@ -84,6 +99,33 @@
 }
 
 % -- greek letters --
+
+%bold serif italic greek font for vectors (from isomath.sty and fixmath.sty)
+\DeclareMathSymbol{\alpha}{\mathalpha}{letters}{11}
+\DeclareMathSymbol{\beta}{\mathalpha}{letters}{12}
+\DeclareMathSymbol{\gamma}{\mathalpha}{letters}{13}
+\DeclareMathSymbol{\delta}{\mathalpha}{letters}{14}
+\DeclareMathSymbol{\epsilon}{\mathalpha}{letters}{15}
+\DeclareMathSymbol{\zeta}{\mathalpha}{letters}{16}
+\DeclareMathSymbol{\eta}{\mathalpha}{letters}{17}
+\DeclareMathSymbol{\theta}{\mathalpha}{letters}{18}
+\DeclareMathSymbol{\iota}{\mathalpha}{letters}{19}
+\DeclareMathSymbol{\kappa}{\mathalpha}{letters}{20}
+\DeclareMathSymbol{\lambda}{\mathalpha}{letters}{21}
+\DeclareMathSymbol{\mu}{\mathalpha}{letters}{22}
+\DeclareMathSymbol{\nu}{\mathalpha}{letters}{23}
+\DeclareMathSymbol{\xi}{\mathalpha}{letters}{24}
+\DeclareMathSymbol{\pi}{\mathalpha}{letters}{25}
+\DeclareMathSymbol{\rho}{\mathalpha}{letters}{26}
+\DeclareMathSymbol{\sigma}{\mathalpha}{letters}{27}
+\DeclareMathSymbol{\tau}{\mathalpha}{letters}{28}
+\DeclareMathSymbol{\upsilon}{\mathalpha}{letters}{29}
+\DeclareMathSymbol{\phi}{\mathalpha}{letters}{30}
+\DeclareMathSymbol{\chi}{\mathalpha}{letters}{31}
+\DeclareMathSymbol{\psi}{\mathalpha}{letters}{32}
+\DeclareMathSymbol{\omega}{\mathalpha}{letters}{33}
+\DeclareMathAlphabet{\vectgr}{OML}{cmbr}{bx}{it}
+
 %special for upright pi
 \let\varpi\pi
 \IfFileExists{lgrenc.def}{      % part of babel package
@@ -93,6 +135,7 @@
 \newcommand\micro{\grk{m}} %TODO (Xe)LaTeX compatibility, µ (u00b5) has better look
 }%
 {\PackageWarning{fkssugar}{lgrenc.def file not found using italic pi.}}
+
 \let\oldrho=\rho
 \renewcommand\rho{\varrho}
 \let\oldepsilon=\epsilon
@@ -102,6 +145,9 @@
 \let\oldphi=\phi
 \renewcommand\phi{\varphi}
 \newcommand\ohm{\Omega}                         % for use as an unit
+\newcommand\Ohm{\ohm}                           % Ohm pro Mirka
+\newcommand\Kc{\textrm{Kč}}                     % for use as an unit of CZK
+\newcommand\Euro{\text{€}}                      % or use as an unit of EUR
 
 % block equations
 \newcommand\eq[2][s]{%
@@ -142,13 +188,13 @@
 \def\jed@A #1 {\begingroup\mathcode`\.="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers always written with dot
 \def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
 \begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
-\mathcode`\"="8000    
+\mathcode`\"="8000
 
 \@ifpackageloaded{babel}{%
   \PackageWarning{fkssugar}{Package babel detected, macros with active double quote ", will be disabled.}
 % -- Uncomment if you need use standard babel double quote macros --
 %  \begingroup\uccode`~=`*\uppercase{\endgroup\def~}#1*{\jed@A #1 @@}
-%  \mathcode`\*="8000    
+%  \mathcode`\*="8000
   \catcode`\"=12
 }{%
 }}

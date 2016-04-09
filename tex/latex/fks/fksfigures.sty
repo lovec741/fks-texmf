@@ -22,7 +22,6 @@
 \RequirePackage{xargs}
 \RequirePackage{tikz}
 
-\renewcommand\figurename{Obr.}
 \newcommand\centercaption{%
   \captionsetup{format=plain,labelsep=newline,justification=centering}}
 % paths to graphics
@@ -40,12 +39,12 @@
 \fi
 
 \opt{web}{%
- \@myinputpath{{./graphics/color/}{\@problemsdir/graphics/color/}{./graphics/}{\@problemsdir/graphics/}} 
+ \@myinputpath{{./graphics/color/}{\@problemsdir/graphics/color/}{./graphics/}{\@problemsdir/graphics/}}
 }\opt{print}{%
  \@myinputpath{{./graphics/}{\@problemsdir/graphics/}}
 }
 
-% to avoid label name collision in yearbook, figures inserted in 
+% to avoid label name collision in yearbook, figures inserted in
 \newcommand\labelsuffix{}
 \newcommand\@putlabel[1]{%
 \ifthenelse{\equal{#1}{}}{}{\label{#1\labelsuffix}}}
@@ -117,7 +116,6 @@
 
 % plot figures are listed down, in yearbook they have to be narrower
 \AtBeginDocument{
-  \renewcommand\figurename{Obr.}
   \ifyearbook
   \newwrite\plotsfile
   \immediate\openout\plotsfile=plots.txt
