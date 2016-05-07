@@ -6,6 +6,8 @@
 %
 
 \RequirePackage{ifthen}
+% language id transcription to ISO693-1
+\input{fkslang}
 % cooperation with fksfigures input@path change
 \ifx\@problemsdir\@undefined
 \def\@problemsdir{.}
@@ -21,8 +23,14 @@
 \newcommand\@tmpfilename{}
 \newcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
   \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#1-#2.tex}%
-% reset optional parameters  
-  \probfig{N/A}\probsolvers{N/A}\probavg{N/A}\probstudyyears{N/A}\probtags{N/A}
+% reset optional parameters
+    \probbatch{N/A}\probno{N/A}\probpoints{N/A}\probsolauthors{N/A}%
+    \probauthors{N/A}\probsolvers{N/A}\probavg{N/A}\probtags{N/A}%
+    \probsource{N/A}\proborigintruth{N/A}\probtopics{N/A}%
+    \probexpectedprecision{N/A}\probmachineresult{N/A}\probstudyyears{N/A}%
+    \probname[\isolang]{N/A}\probdbname[\isolang]{N/A}\proborigin[\isolang]{N/A}%
+    \probtask[\isolang]{N/A}\probsolution[\isolang]{N/A}\probfig[\isolang]{N/A}%
+    \probhumanresult[\isolang]{N/A}%
   \IfFileExists{\@tmpfilename}{
   \input{\@tmpfilename}%
   \ClassInfo{fksserie}{Loaded \@tmpfilename}
@@ -67,11 +75,11 @@
   \pr@blemsolution
 }
 
-\newcommand\pr@blemsolution{%  
+\newcommand\pr@blemsolution{%
    \problem[\metaprobletter{problem}: \@probname]%
     {Úloha \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
       {\normalfont\normalsize\problemstats}}%
-   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
+   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \textsl{\@probtask}
    \signed{\textit{\@proborigin}}
 
@@ -100,31 +108,49 @@ průměr~\@probavg;
 % problem attributes
 \newcommand\@probbatch{N/A}
 \newcommand\@probno{N/A}
-\newcommand\@probname{N/A}
-\newcommand\@proborigin{N/A}
 \newcommand\@probpoints{N/A}
 \newcommand\@probsolauthors{N/A}
 \newcommand\@probauthors{N/A}
 \newcommand\@probsolvers{N/A}
 \newcommand\@probavg{N/A}
+\newcommand\@probtags{N/A}
+\newcommand\@probsource{N/A}
+\newcommand\@proborigintruth{N/A}
+\newcommand\@probtopics{N/A}
+\newcommand\@probexpectedprecision{N/A}
+\newcommand\@probmachineresult{N/A}
+\newcommand\@probstudyyears{N/A}
+
+\newcommand\@probname{N/A}
+\newcommand\@probdbname{N/A}
+\newcommand\@proborigin{N/A}
 \newcommand\@probtask{N/A}
 \newcommand\@probsolution{N/A}
 \newcommand\@probfig{N/A}
-\newcommand\@probstudyyears{N/A}
-\newcommand\@probtags{N/A}
+\newcommand\@probhumanresult{N/A}
 
+% setters for global attributes
 \newcommand\probbatch[1]{\renewcommand\@probbatch{#1}}
 \newcommand\probno[1]{\renewcommand\@probno{#1}}
-%\newcommand\probname[1]{\renewcommand\@probname{#1}}
-\newcommand\probname[2][]{\renewcommand\@probname{#2}}
-\newcommand\proborigin[1]{\renewcommand\@proborigin{#1}}
 \newcommand\probpoints[1]{\renewcommand\@probpoints{#1}}
 \newcommand\probsolauthors[1]{\renewcommand\@probsolauthors{{#1}}} % due to foreach expansion
 \newcommand\probauthors[1]{\renewcommand\@probauthors{{#1}}}
 \newcommand\probsolvers[1]{\renewcommand\@probsolvers{#1}}
-\newcommand\probavg[1]{\renewcommand\@probavg{#1}}
-\newcommand\probtask[1]{\renewcommand\@probtask{#1}}
-\newcommand\probsolution[1]{\renewcommand\@probsolution{#1}}
-\newcommand\probfig[1]{\renewcommand\@probfig{#1}}
 \newcommand\probstudyyears[1]{\renewcommand\@probstudyyears{{#1}}} % due to foreach expansion
+\newcommand\probavg[1]{\renewcommand\@probavg{#1}}
 \newcommand\probtags[1]{\renewcommand\@probtags{{#1}}} % due to foreach expansion
+\newcommand\probsource[1]{\renewcommand\@probsource{#1}}
+\newcommand\proborigintruth[1]{\renewcommand\@proborigintruth{#1}}
+\newcommand\probtopics[1]{\renewcommand\@probtopics{{#1}}} % due to foreach expansion
+\newcommand\probexpectedprecision[1]{\renewcommand\@probexpectedprecision{#1}}
+\newcommand\probmachineresult[1]{\renewcommand\@probmachineresult{#1}}
+
+% setters for per language attributes
+\newcommand\probname[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probname{#2}}{}}
+\newcommand\probdbname[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probdbname{#2}}{}}
+\newcommand\proborigin[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@proborigin{#2}}{}}
+\newcommand\probfig[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probfig{#2}}{}}
+\newcommand\probhumanresult[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probhumanresult{#2}}{}}
+\newcommand\probsolution[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probsolution{#2}}{}}
+\newcommand\probtask[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probtask{#2}}{}}
+
