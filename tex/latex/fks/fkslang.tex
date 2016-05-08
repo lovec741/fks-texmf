@@ -6,19 +6,24 @@
 
 
 \newcommand\newl@ng[2]{%
-  \expandafter\gdef\csname l@ng#1\endcsname{%
-    #2%
-  }%
+  \expandafter\gdef\csname l@ngiso#1\endcsname{#2}%
+  \expandafter\gdef\csname isol@ng#2\endcsname{#1}%
 }%
 
 \newcommand\isolang[0]{%
-  \expandafter\ifx\csname l@ng\languagename\endcsname\relax
+  \expandafter\ifx\csname l@ngiso\languagename\endcsname\relax
   \PackageWarning{fkslang}{Undefined language \languagename}%
   null%
   \else
-  \expandafter\csname l@ng\languagename\endcsname\fi
+  \expandafter\csname l@ngiso\languagename\endcsname\fi
 }
-
+\newcommand\langiso[1]{%
+  \expandafter\ifx\csname isol@ng#1\endcsname\relax
+  \PackageWarning{fkslang}{Undefined language #1}%
+  null%
+  \else
+  \expandafter\csname isol@ng#1\endcsname\fi
+}
 \newl@ng{czech}{cs}
 \newl@ng{slovak}{sk}
 \newl@ng{english}{en}
