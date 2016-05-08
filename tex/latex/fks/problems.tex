@@ -30,7 +30,7 @@
     \probexpectedprecision{N/A}\probmachineresult{N/A}\probstudyyears{N/A}%
     \probname[\isolang]{N/A}\probdbname[\isolang]{N/A}\proborigin[\isolang]{N/A}%
     \probtask[\isolang]{N/A}\probsolution[\isolang]{N/A}\probfig[\isolang]{N/A}%
-    \probhumanresult[\isolang]{N/A}%
+    \probwebfig[\isolang]{N/A}{N/A}\probhumanresult[\isolang]{N/A}%
   \IfFileExists{\@tmpfilename}{
   \input{\@tmpfilename}%
   \ClassInfo{fksserie}{Loaded \@tmpfilename}
@@ -127,6 +127,7 @@ průměr~\@probavg;
 \newcommand\@probtask{N/A}
 \newcommand\@probsolution{N/A}
 \newcommand\@probfig{N/A}
+\newcommand\@probwebfig{N/A}
 \newcommand\@probhumanresult{N/A}
 
 % setters for global attributes
@@ -150,6 +151,7 @@ průměr~\@probavg;
 \newcommand\probdbname[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probdbname{#2}}{}}
 \newcommand\proborigin[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@proborigin{#2}}{}}
 \newcommand\probfig[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probfig{#2}}{}}
+\newcommand\probwebfig[3][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probwebfig{FIGURE#1CAPTION#2LANG\isolang EFIGURE}}{}}
 \newcommand\probhumanresult[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probhumanresult{#2}}{}}
 \newcommand\probsolution[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probsolution{#2}}{}}
 \newcommand\probtask[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probtask{#2}}{}}
