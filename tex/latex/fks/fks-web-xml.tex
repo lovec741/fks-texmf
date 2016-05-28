@@ -62,7 +62,8 @@
 % header
 \immediate\write\tempfile{<?xml version="1.0" encoding="utf-8"?>}
 \immediate\write\tempfile{<series xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns="http://fykos.cz/xml/series/schema">}
-\immediate\write\tempfile{<contest>\met@shortname\theyear</contest>}
+\ifthenelse{\equal{\met@shortname}{FYKOS}}{\immediate\write\tempfile{<contest>FYKOS\theyear</contest>}}{}
+\ifthenelse{\equal{\met@shortname}{Výfuk}}{\immediate\write\tempfile{<contest>VYFUK\theyear</contest>}}{}
 \immediate\write\tempfile{<number>\thebatch</number>}
 \immediate\write\tempfile{<deadline>\mdeadline</deadline>}
 \immediate\write\tempfile{<deadline-post>\mdeadlineS</deadline-post>}
