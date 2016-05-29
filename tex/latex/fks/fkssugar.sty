@@ -199,3 +199,41 @@
 }{%
 }}
 
+% == muĺtilang support ==
+% TODO
+% Fig. vs. Obr. somehow
+% == english typeset ==
+
+\def\fkssug@renglish{%
+% tg can be used: https://en.wikipedia.org/wiki/Trigonometric_functions
+
+% decimal point
+\def\jed@A ##1 {\begingroup\mathcode`\.="013A\mathcode`\,="013A \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
+
+%quotation
+\ifdefined\uv\renewcommand\uv[1]{``##1''}\fi
+}
+
+% == czech typeset ==
+\def\fkssug@rczech{%
+% tg implicit
+
+% decimal point
+\def\jed@A ##1 {\begingroup\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
+
+%quotation
+\ifdefined\uv\renewcommand\uv[1]{„##1“}\fi
+}
+
+% == package options ==
+\DeclareOption{english}{%
+    \AtBeginDocument{\fkssug@renglish}
+}
+\DeclareOption{czech}{%
+    \AtBeginDocument{\fkssug@rczech}
+}
+\DeclareOption*{%
+    \PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}
+}
+\ProcessOptions\relax
+
