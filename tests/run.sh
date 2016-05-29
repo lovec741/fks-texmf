@@ -1,27 +1,35 @@
 #!/bin/bash
 
-# colors
-wipe="\033[1m\033[0m"
-green='\E[32;40m'
-yellow='\E[33;40m'
-red='\E[31;40m'
-blue='\E[34;40m'
+pushd `dirname $0` > /dev/null
+SCRIPTPATH=`pwd`
+popd > /dev/null
+
+. $SCRIPTPATH/../functions.sh
 
 function usage {
-	echo "Usage: $0 <texmf> <testdir> <outdir>"
+	echo "Usage: $0 [-v] <texmf> <testdir> <outdir>"
 	exit 0
 }
 
-function echoError {
-    [ -n "$VERBOSE" ] && echo -e "${red}Test $2 `basename $1` failed ($3)." >&2 ; tput sgr0
+function test_pass {
+	local name=$1
+	local phase=$2
+	[ -n "$3" ] && local reason=" ($3)" || local reason=""
+	green "Test $name/$phase passed$reason."
 }
 
-function echoPass {
-    [ -n "$VERBOSE" ] && echo -e "${green}Test $2 `basename $1` passed." >&2 ; tput sgr0
+function test_fail {
+	local name=$1
+	local phase=$2
+	[ -n "$3" ] && local reason=" ($3)" || local reason=""
+	err "Test $name/$phase failed$reason."
 }
 
-function echoSkip {
-    [ -n "$VERBOSE" ] && echo -e "${yellow}Test $2 `basename $1` skipped ($3)." >&2 ; tput sgr0
+function test_skip {
+	local name=$1
+	local phase=$2
+	[ -n "$3" ] && local reason=" ($3)" || local reason=""
+	warn "Test $name/$phase skipped$reason."
 }
 
 if [ "x$3" = "x" ] ; then
@@ -29,9 +37,11 @@ if [ "x$3" = "x" ] ; then
 fi
 
 if [ "$1" = "-v" ] ; then
-	VERBOSE=1
+	log_init $LOG_VERBOSE
 	verb=-v
 	shift
+else
+	log_init $LOG_ERROR
 fi
 
 TEXMF="$1"
@@ -45,7 +55,7 @@ mkdir "$OUT"
 
 export TEXMFHOME="$TEXMF"
 export TEXINPUTS="$TESTSSRC:"
-[ -n "$VERBOSE" ] && echo "Running tests with TEXMFHOME=\"$TEXMFHOME\"" >&2		
+info "Running tests with TEXMFHOME=\"$TEXMFHOME\""
 
 # tests
 NUMERR=0
@@ -56,7 +66,7 @@ for file in $TESTSSRC/t*.tex ; do
 # test build             #
 ##########################
 	if xelatex -interaction nonstopmode -output-directory "$OUT" -halt-on-error $file &>/dev/null ; then
-		echoPass $file "build"
+		test_pass $file "build"
         BUILDOK=1
 	else
 		if [ -n "$VERBOSE" ] ; then
@@ -66,7 +76,7 @@ for file in $TESTSSRC/t*.tex ; do
 			tail -n 21 $OUT/$log | head -n 11
 			echo "======"
 		fi
-		echoError $file "build"
+		test_fail $file "build"
         NUMERR=$NUMERR+1
 	fi
 ##########################
@@ -74,7 +84,7 @@ for file in $TESTSSRC/t*.tex ; do
 ##########################
 # skip if build failed
     if [ "$BUILDOK" -eq 0 ]; then
-        echoSkip $file "appearance" "build failed"
+        test_skip $file "appearance" "build failed"
         NUMWARN=$NUMWARN+1
         NUMERR=$NUMERR+1
         continue
@@ -83,7 +93,7 @@ for file in $TESTSSRC/t*.tex ; do
 # skip if no reference png found
     ls $TESTSRES/`basename $file | sed -e 's/\.tex/*.png/'` >/dev/null 2>&1
     if [ $? -ne 0 ]; then
-        echoSkip $file "appearance" "no png found"
+        test_skip $file "appearance" "no PNG found"
         NUMWARN=$NUMWARN+1
         continue
     fi
@@ -92,7 +102,7 @@ for file in $TESTSSRC/t*.tex ; do
     PDFFILE=$OUT/`basename $file | sed -e 's/\.tex/.pdf/'`
     $TESTS/make-result.sh $verb $PDFFILE $OUT/
     if [ $? -ne 0 ]; then
-        echoError $file "appearance" "png creation failed"
+        test_fail $file "appearance" "PNG creation failed"
         NUMERR=$NUMERR+1
         continue
     fi
@@ -110,15 +120,15 @@ for file in $TESTSSRC/t*.tex ; do
                 cat $testlog
                 echo "======"
             fi
-            echoError $file "appearance" "page $file"
+            test_fail $file "appearance" "page $file"
             NUMERR=$NUMERR+1
             APPFAIL=1
         fi
     done
     if [ $APPFAIL -ne 0 ]; then
-        echoError $file "appearance"
+        test_fail $file "appearance"
     else
-        echoPass $file "appearance"
+        test_pass $file "appearance"
     fi
 done
 
