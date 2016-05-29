@@ -8,6 +8,12 @@ BRANCH_DEV=dev
 ORIGIN=origin
 merge:=$(mkfile_path)merge-component.sh
 
+TESTS=./tests/
+TESTSRES=$(TESTS)/exp-res
+TESTSSRC=$(TESTS)/source
+TESTSOUT=out/tests
+
+
 #
 # Initialize components after clone
 #
@@ -23,6 +29,15 @@ init:
 update:
 	git submodule foreach 'git checkout $(BRANCH_MASTER) && git pull $(ORIGIN) $(BRANCH_MASTER)'
 	git submodule foreach 'git checkout $(BRANCH_DEV) && git pull $(ORIGIN) $(BRANCH_DEV)'
+#
+# Recreate tests expected results from actual test results
+#
+test-results:
+	rm -f $(TESTSRES)/*
+	for file in $(TESTSSRC)/t*.tex; do \
+		xelatex -output-directory $(TESTSOUT) $$file; \
+	done
+	$(TESTS)/make-results.sh -v $(TESTSOUT) $(TESTSRES)
 
 #
 # Run tests on develepment branch (of each component)
