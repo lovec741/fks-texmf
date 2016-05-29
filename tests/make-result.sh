@@ -31,11 +31,14 @@ GSLOG=`sed -e 's/\.pdf$/-gs.log/' <<< $PDFFILE`
 #GSLOG=`sed -e 's/\.pdf$/-gs.log/' <<< $PDFFILE`
 
 #convert -density 1000 $PDFFILE $PNGDIR/$PNGFILE; ec=$?
-gs -o $PNGDIR/$PNGFILE -sDEVICE=png16m -r500 $PDFFILE > $GSLOG; ec=$?
+GSCMD="gs -o $PNGDIR/$PNGFILE -sDEVICE=pnggray -dAlignToPixels=0 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r500 $PDFFILE"
+
+
+$GSCMD >$GSLOG; ec=$?
 
 if [ $ec -ne 0 ]; then
     if [ -n "$VERBOSE" ]; then
-        echo "=== gs -o $PNGDIR/$PNGFILE -sDEVICE=png16m -r1000 $PDFFILE > $GSLOG  ==="
+        echo "=== $GSCMD > $GSLOG  ==="
         cat $GSLOG
         echo "======"
         echo -e "${red}Conversion $PDFFILE to $PNGFILE failed $ec." >&2 ; tput sgr0
