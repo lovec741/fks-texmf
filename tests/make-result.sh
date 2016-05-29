@@ -31,7 +31,7 @@ GSLOG=`sed -e 's/\.pdf$/-gs.log/' <<< $PDFFILE`
 #GSLOG=`sed -e 's/\.pdf$/-gs.log/' <<< $PDFFILE`
 
 #convert -density 1000 $PDFFILE $PNGDIR/$PNGFILE; ec=$?
-GSCMD="gs -o $PNGDIR/$PNGFILE -sDEVICE=pnggray -dAlignToPixels=0 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r500 $PDFFILE"
+GSCMD="gs -o $PNGDIR/$PNGFILE -sDEVICE=png16m -dAlignToPixels=0 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r500 $PDFFILE"
 
 
 $GSCMD >$GSLOG; ec=$?
