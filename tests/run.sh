@@ -102,7 +102,8 @@ for file in $TESTSSRC/t*.tex ; do
     for file in $TESTSRES/`basename $file | sed -e 's/\.tex/*.png/'`; do
         testfile=$OUT/`basename $file`
         testlog=`sed -e 's/png$/log/' <<< $testfile`
-        python $TESTS/test-png.py $file $testfile > $testlog 2>&1
+        testpngout=`sed -e 's/\.png$/-diff.png/' <<< $testfile`
+        python $TESTS/test-png.py $file $testfile $testpngout > $testlog 2>&1
         if [ $? -ne 0 ]; then
             if [ -n "$VERBOSE" ] ; then
                 echo "=== $testlog ==="

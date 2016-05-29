@@ -31,7 +31,7 @@ GSLOG=`sed -e 's/\.pdf$/-gs.log/' <<< $PDFFILE`
 #GSLOG=`sed -e 's/\.pdf$/-gs.log/' <<< $PDFFILE`
 
 #convert -density 1000 $PDFFILE $PNGDIR/$PNGFILE; ec=$?
-gs -o $PNGDIR/$PNGFILE -sDEVICE=png16m -r1000 $PDFFILE > $GSLOG; ec=$?
+gs -o $PNGDIR/$PNGFILE -sDEVICE=png16m -r500 $PDFFILE > $GSLOG; ec=$?
 
 if [ $ec -ne 0 ]; then
     if [ -n "$VERBOSE" ]; then
