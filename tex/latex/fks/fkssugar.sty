@@ -173,6 +173,7 @@
 % following definition must be loaded after begining of the document
 \AtBeginDocument{
 % breaking equations according Czech/Russian typography rules (repeat =)
+\def\neq {\mathrel{\not=}} % no break @ \neq
 \begingroup\lccode`~=`\=\lowercase{\endgroup\newcommand~}{\math@eq\discretionary{}{=}{}}
 \mathchardef\math@eq=\mathcode`\=
 \mathcode`\=="8000      % = je v matematice aktivni znak
