@@ -25,16 +25,18 @@ fi
 PDFFILE="$1"
 PNGDIR="$2"
 
-PNGFILE=`basename $PDFFILE | sed -e 's/\.pdf$/_%02d.png/'`
+PNGFILE=`basename $PDFFILE | sed -e 's/\.pdf$//'`
 GSLOG=`sed -e 's/\.pdf$/-gs.log/' <<< $PDFFILE`
-#PNGFILE=`sed -e 's/\.pdf$/_%02d.png/' <<< $PDFFILE`
-#GSLOG=`sed -e 's/\.pdf$/-gs.log/' <<< $PDFFILE`
+PDFPPMLOG=`sed -e 's/\.pdf$/-pdfppm.log/' <<< $PDFFILE`
 
 #convert -density 1000 $PDFFILE $PNGDIR/$PNGFILE; ec=$?
-GSCMD="gs -o $PNGDIR/$PNGFILE -sDEVICE=png16m -dAlignToPixels=0 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r500 $PDFFILE"
+#GSCMD="gs -o $PNGDIR/$PNGFILE -sDEVICE=png16m -dAlignToPixels=0 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r500 $PDFFILE"
+#GSCMD="gs -o $PNGDIR/$PNGFILE -sDEVICE=png16m -dGridFitTT=2 -dAlignToPixels=0 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r500 $PDFFILE"
+PDFPPMCMD="pdftoppm -r 500 -png -freetype yes -thinlinemode none -aa yes -aaVector yes $PDFFILE $PNGDIR/$PNGFILE"
 
+#$GSCMD >$GSLOG; ec=$?
+$PDFPPMCMD > $PDFPPMLOG; ec=$?
 
-$GSCMD >$GSLOG; ec=$?
 
 if [ $ec -ne 0 ]; then
     if [ -n "$VERBOSE" ]; then
