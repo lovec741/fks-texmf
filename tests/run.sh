@@ -142,13 +142,13 @@ NUMWARN=$(($NUMWARN))
 
 echo ""
 if [ "$NUMERR" -ne 0 ] ; then
-    [ -n "$VERBOSE" ] && echo -e "${red}Tests failed with $NUMERR errors and $NUMWARN warnings." >&2 ; tput sgr0
+    [ -n "$VERBOSE" ] && echo -e "${_RED}Tests failed with $NUMERR errors and $NUMWARN warnings." >&2 ; tput sgr0
 	exit 1
 else
     if [ "$NUMWARN" -ne 0 ] ; then
-        [ -n "$VERBOSE" ] && echo -e "${green}Tests passed ${yellow}with $NUMWARN warnings." >&2 ; tput sgr0
+        [ -n "$VERBOSE" ] && echo -e "${_GREEN}Tests passed ${_YELLOW}with $NUMWARN warnings." >&2 ; tput sgr0
     else
-        [ -n "$VERBOSE" ] && echo -e "${green}Tests passed." >&2 ; tput sgr0
+        [ -n "$VERBOSE" ] && echo -e "${_GREEN}Tests passed." >&2 ; tput sgr0
     fi
 	exit 0
 fi
