@@ -8,10 +8,10 @@ BRANCH_DEV=dev
 ORIGIN=origin
 merge:=$(mkfile_path)merge-component.sh
 
-TESTS=./tests/
-TESTSRES=$(TESTS)/exp-res
-TESTSSRC=$(TESTS)/source
-TESTSOUT=out/tests
+TESTS=./tests
+TESTS_RES=$(TESTS)/exp-res
+TESTS_SRC=$(TESTS)/source
+TESTS_OUT=out/tests
 
 
 #
@@ -29,15 +29,22 @@ init:
 update:
 	git submodule foreach 'git checkout $(BRANCH_MASTER) && git pull $(ORIGIN) $(BRANCH_MASTER)'
 	git submodule foreach 'git checkout $(BRANCH_DEV) && git pull $(ORIGIN) $(BRANCH_DEV)'
+
 #
 # Recreate tests expected results from actual test results
 #
-test-results:
-	rm -f $(TESTSRES)/*
-	for file in $(TESTSSRC)/t*.tex; do \
-		xelatex -output-directory $(TESTSOUT) $$file; \
-	done
-	$(TESTS)/make-results.sh -v $(TESTSOUT) $(TESTSRES)
+test_files:=$(addprefix $(TESTS_OUT)/,$(notdir \
+	$(patsubst %.tex,%.pdf,$(wildcard $(TESTS_SRC)/t*.tex))))
+
+test-results: $(test_files)
+
+# PNG files are created as side-effect of this rule
+$(TESTS_OUT)/%.pdf: $(TESTS_SRC)/%.tex
+	xelatex -output-directory $(TESTS_OUT) $<
+	rm -f $(TESTS_RES)/$**.png
+	if [ -f $@ ] ; then \
+		$(TESTS)/make-result.sh $@ $(TESTS_RES) ;\
+	fi
 
 #
 # Run tests on develepment branch (of each component)
