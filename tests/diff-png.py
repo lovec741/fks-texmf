@@ -1,8 +1,8 @@
 import sys
 import matplotlib.image as img
 import numpy as np
-from scipy import signal
 
+convolve = False
 
 if len(sys.argv) != 4:
     print sys.argv
@@ -30,23 +30,19 @@ error=0
 imAbw = ( im_refr[:,:,0] + im_refr[:,:,1] + im_refr[:,:,2] ) / 3
 imBbw = ( im_test[:,:,0] + im_test[:,:,1] + im_test[:,:,2] ) / 3
 
+if convolve == True:
+    i = np.arange(-2,3,1)
+    j = np.arange(-2,3,1)
 
-i = np.arange(-2,3,1)
-j = np.arange(-2,3,1)
+    i = np.repeat(i, 5).reshape((5,5))
+    j = np.repeat(j, 5).reshape((5,5)).T
 
-i = np.repeat(i, 5).reshape((5,5))
-j = np.repeat(j, 5).reshape((5,5)).T
+    w = 1./(1.+i*i+j*j)
+    w = w / np.sum(w)
 
-w = 1./(1.+i*i+j*j)
-w = w / np.sum(w)
-
-imAbw = signal.convolve2d(imAbw, w, boundary='symm', mode='same')
-imBbw = signal.convolve2d(imBbw, w, boundary='symm', mode='same')
-
-#tmp = imAbw
-#imAbw = (2*tmp[1:-1,1:-1] + .5*tmp[1:-1,0:-2] + .5*tmp[1:-1,2:] + .5*tmp[0:-2,1:-1] + .5*tmp[0:-2,1:-1])/4.
-#tmp = imBbw
-#imBbw = (2*tmp[1:-1,1:-1] + .5*tmp[1:-1,0:-2] + .5*tmp[1:-1,2:] + .5*tmp[0:-2,1:-1] + .5*tmp[0:-2,1:-1])/4.
+    from scipy import signal
+    imAbw = signal.convolve2d(imAbw, w, boundary='symm', mode='same')
+    imBbw = signal.convolve2d(imBbw, w, boundary='symm', mode='same')
 
 # dalculate difference
 diff = imAbw - imBbw
@@ -84,7 +80,6 @@ if np.amax( diffM ) != 0:
 
 im_test[:,:,0] = diffP
 im_test[:,:,1] = diffM
-#im_test[:,:,2] = imAbw
 im_test[:,:,2] = ( im_refr[:,:,0] + im_refr[:,:,1] + im_refr[:,:,2] ) / 3
 
 img.imsave( sys.argv[3], im_test )
