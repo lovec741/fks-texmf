@@ -39,6 +39,7 @@ fi
 if [ "$1" = "-v" ] ; then
 	log_init $LOG_VERBOSE
 	verb=-v
+    VERBOSE=1
 	shift
 else
 	log_init $LOG_ERROR
