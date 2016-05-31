@@ -1,4 +1,4 @@
-.PHONY: test release deb-build deb-publish zip-build init test-build update
+.PHONY: test release deb-build deb-publish zip-build init test-master update
 
 mkfile_path:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 OUT:=$(mkfile_path)out
@@ -12,6 +12,8 @@ TESTS=./tests
 TESTS_RES=$(TESTS)/exp-res
 TESTS_SRC=$(TESTS)/source
 TESTS_OUT=out/tests
+TEXMF_TMP=out/texmf.tmp
+TEXMF_STAMP=out/texmf.stamp
 
 
 #
@@ -31,39 +33,52 @@ update:
 	git submodule foreach 'git checkout $(BRANCH_DEV) && git pull $(ORIGIN) $(BRANCH_DEV)'
 
 #
-# Recreate tests expected results from actual test results
+# Recreate tests expected results with current working copy
 #
 test_files:=$(addprefix $(TESTS_OUT)/,$(notdir \
 	$(patsubst %.tex,%.pdf,$(wildcard $(TESTS_SRC)/t*.tex))))
 
 test-results: $(test_files)
+	# TODO this recipe should be called regardless prerequsities success
+	rm $(TEXMF_STAMP)
+
+
+$(TEXMF_STAMP):
+	./export-wc.sh $(TEXMF_TMP)
+	touch $@
 
 # PNG files are created as side-effect of this rule
-$(TESTS_OUT)/%.pdf: $(TESTS_SRC)/%.tex
-	xelatex -output-directory $(TESTS_OUT) $<
-	rm -f $(TESTS_RES)/$**.png
-	if [ -f $@ ] ; then \
-		$(TESTS)/make-result.sh $@ $(TESTS_RES) ;\
-	fi
+$(TESTS_OUT)/%.pdf: $(TESTS_SRC)/%.tex $(TEXMF_STAMP)
+	@rm -f $(TESTS_RES)/$**.png
+	$(TESTS)/make-result.sh $(TEXMF_TMP) $< $(TESTS_RES)
 
 #
-# Run tests on develepment branch (of each component)
+# Test working copy version
 #
 test:
-	./run-tests.sh $(BRANCH_DEV)
+	./export-wc.sh $(TEXMF_TMP)
+	./run-tests.sh $(TEXMF_TMP)
 
 #
-# Run tests on production branch (of each component)
+# Test production branch (of each component)
 #
-test-build: 
-	./run-tests.sh $(BRANCH_MASTER)
+test-master: 
+	./export-branch.sh $(BRANCH_MASTER) $(TEXMF_TMP)
+	./run-tests.sh $(TEXMF_TMP)
+
+#
+# Test development branch (of each component)
+#
+test-dev: 
+	./export-branch.sh $(BRANCH_DEV) $(TEXMF_TMP)
+	./run-tests.sh $(TEXMF_TMP)
 
 #
 # 1) Merge development branch into production branch in each component
 # 2) Creates new commit in the 'dist' repository with updated submodules to new
 #    production branches in components
 #
-release: test
+release: test-dev
 	export MESSAGE=`mktemp` ;\
 	echo "Released texmf.dist" >> $$MESSAGE ;\
 	echo >> $$MESSAGE ;\
@@ -79,13 +94,13 @@ release: test
 #
 # Creates ZIP archive with all components in their production branches
 #
-zip-build: test-build
+zip-build: test-master
 	./zip-build.sh $(ORIGIN)/$(BRANCH_MASTER)
 
 #
 # Creates DEB package for each component (their production branch)
 #
-deb-build: test-build
+deb-build: test-master
 	rm -f $(OUT)/*.deb
 	git submodule foreach 'fks-debbuild.sh -g $$PWD -b $(OUT) -r $(BRANCH_MASTER)'
 

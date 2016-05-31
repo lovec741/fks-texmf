@@ -9,6 +9,7 @@ function export_package {
 	[ -d "$workdir" ] || mkdir "$workdir"
 	for dir in $COMPATH/* ; do
 		export GIT_DIR="$dir/.git";
+		#git describe "$branch" &>/dev/null || continue # hotfix?
 		git archive "$branch" | tar -x -C "$workdir"
 		unset GIT_DIR
 	done
@@ -62,3 +63,32 @@ function green {
 	_log $LOG_INFO $_GREEN "$1"
 }
 
+#
+# Compiling functions
+#
+
+# Call xelatex in TEST environment
+function test_xelatex {
+	local texmf=$1
+	local file=$2
+	local out=$3
+
+	local dir=`dirname $file`
+
+	TEXMFHOME="$texmf" TEXINPUTS="$dir:" \
+	  xelatex -interaction nonstopmode -output-directory "$out" \
+	  -halt-on-error "$file" &>/dev/null
+}
+
+function pdf_to_png {
+	local file=$1
+	local out=$2
+
+	local png_stem=`basename ${file%.pdf}`
+	local log_file=$out/${png_stem}-render.log
+
+	cmd="pdftoppm \
+		-r 500 -png -freetype yes -thinlinemode none -aa yes -aaVector yes \
+		$file $out/$png_stem"
+	$cmd &>$log_file
+}

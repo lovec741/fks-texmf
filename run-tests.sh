@@ -2,31 +2,22 @@
 
 OUT=./out
 TESTS=./tests
-BRANCH=dev
-HASTESTS=1
 
-if [ "$1" = "-h" ] ; then
-	echo "Usage: $0 [<brach>]"
-	echo "    branch     [$BRANCH]"
-elif [ "x$1" != "x" ] ; then
-	BRANCH=$1
+if [ "$1" = "-h" -o "x$1" = "x" ] ; then
+	echo "Usage: $0 <texmf>"
+	exit 1
 fi
+
+TEXMF="$1"
 
 . functions.sh
 
 
-workdir=`mktemp -d`/texmf
-
-export_package $BRANCH "$workdir"
-
-if "$TESTS/run.sh" -v "$workdir" "$TESTS" "$OUT/tests" ; then
-	echo "Tests on $branch OK"
+if "$TESTS/run.sh" -v "$TEXMF" "$TESTS" "$OUT/tests" ; then
+	echo "Tests on $TEXMF OK"
 else
-	echo "Tests on $branch failed."
-	rm -rf "$workdir"
+	echo "Tests on $TEXMF failed."
 	exit 1
 fi
-
-rm -rf "$workdir"
 
 
