@@ -113,7 +113,10 @@ for file in $TESTSSRC/t*.tex ; do
         testfile=$OUT/`basename $file`
         testlog=`sed -e 's/png$/log/' <<< $testfile`
         testpngout=`sed -e 's/\.png$/-diff.png/' <<< $testfile`
-        python $TESTS/diff-png.py $file $testfile $testpngout > $testlog 2>&1
+        (diff $file $testfile  && 
+            info "Compare by diff passed." && 
+            echo "diff OK" > $testlog ) || 
+            python $TESTS/diff-png.py $file $testfile $testpngout > $testlog 2>&1
         if [ $? -ne 0 ]; then
             if [ -n "$VERBOSE" ] ; then
                 echo "=== $testlog ==="
