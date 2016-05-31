@@ -123,7 +123,7 @@ for file in $TESTSSRC/t*.tex ; do
                 cat $testlog
                 echo "======"
             fi
-            test_fail $file "appearance" "page $file"
+            test_fail $file "appearance" "page `basename $file`"
             NUMERR=$NUMERR+1
             APPFAIL=1
         fi
