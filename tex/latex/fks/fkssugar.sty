@@ -100,6 +100,17 @@
 % -- greek letters --
 
 %bold serif italic greek font for vectors (from isomath.sty and fixmath.sty)
+\DeclareMathSymbol{\fksGamma}{\mathalpha}{letters}{0}
+\DeclareMathSymbol{\fksDelta}{\mathalpha}{letters}{1}
+\DeclareMathSymbol{\fksTheta}{\mathalpha}{letters}{2}
+\DeclareMathSymbol{\fksLambda}{\mathalpha}{letters}{3}
+\DeclareMathSymbol{\fksXi}{\mathalpha}{letters}{4}
+\DeclareMathSymbol{\fksPi}{\mathalpha}{letters}{5}
+\DeclareMathSymbol{\fksSigma}{\mathalpha}{letters}{6}
+\DeclareMathSymbol{\fksUpsilon}{\mathalpha}{letters}{7}
+\DeclareMathSymbol{\fksPhi}{\mathalpha}{letters}{8}
+\DeclareMathSymbol{\fksPsi}{\mathalpha}{letters}{9}
+\DeclareMathSymbol{\fksOmega}{\mathalpha}{letters}{10}
 \DeclareMathSymbol{\fksalpha}{\mathalpha}{letters}{11}
 \DeclareMathSymbol{\fksbeta}{\mathalpha}{letters}{12}
 \DeclareMathSymbol{\fksgamma}{\mathalpha}{letters}{13}
@@ -128,33 +139,44 @@
 \DeclareMathAlphabet{\vectgralpha}{OML}{cmbr}{bx}{it}     % greek vectors alphabet
 
 % redefine greek letters to serif, slanted, bold greek letters
-\newcommand\sw@pgreekletters[0]{%
-\renewcommand\alpha{\vectgralpha\fksalpha}
-\renewcommand\beta{\vectgralpha\fksbeta}
-\renewcommand\gamma{\vectgralpha\fksgamma}
-\renewcommand\delta{\vectgralpha\fksdelta}
-\renewcommand\epsilon{\vectgralpha\fksepsilon}
-\renewcommand\zeta{\vectgralpha\fkszeta}
-\renewcommand\eta{\vectgralpha\fkseta}
-\renewcommand\theta{\vectgralpha\fkstheta}
-\renewcommand\iota{\vectgralpha\fksiota}
-\renewcommand\kappa{\vectgralpha\fkskappa}
-\renewcommand\lambda{\vectgralpha\fkslambda}
-\renewcommand\mu{\vectgralpha\fksmu}
-\renewcommand\nu{\vectgralpha\fksnu}
-\renewcommand\xi{\vectgralpha\fksxi}
-\renewcommand\pi{\vectgralpha\fkspi}
-\renewcommand\rho{\vectgralpha\fksrho}
-\renewcommand\sigma{\vectgralpha\fkssigma}
-\renewcommand\tau{\vectgralpha\fkstau}
-\renewcommand\upsilon{\vectgralpha\fksupsilon}
-\renewcommand\phi{\vectgralpha\fksphi}
-\renewcommand\chi{\vectgralpha\fkschi}
-\renewcommand\psi{\vectgralpha\fkspsi}
-\renewcommand\omega{\vectgralpha\fksomega}
+\newcommand\sw@pgreekletters[1]{%
+  \renewcommand\Gamma{#1\fksGamma}
+  \renewcommand\Delta{#1\fksDelta}
+  \renewcommand\Theta{#1\fksTheta}
+  \renewcommand\Lambda{#1\fksLambda}
+  \renewcommand\Xi{#1\fksXi}
+  \renewcommand\Pi{#1\fksPi}
+  \renewcommand\Sigma{#1\fksSigma}
+  \renewcommand\Upsilon{#1\fksUpsilon}
+  \renewcommand\Phi{#1\fksPhi}
+  \renewcommand\Psi{#1\fksPsi}
+  \renewcommand\Omega{#1\fksOmega}
+  \renewcommand\alpha{#1\fksalpha}
+  \renewcommand\beta{#1\fksbeta}
+  \renewcommand\gamma{#1\fksgamma}
+  \renewcommand\delta{#1\fksdelta}
+  \renewcommand\epsilon{#1\fksepsilon}
+  \renewcommand\zeta{#1\fkszeta}
+  \renewcommand\eta{#1\fkseta}
+  \renewcommand\theta{#1\fkstheta}
+  \renewcommand\iota{#1\fksiota}
+  \renewcommand\kappa{#1\fkskappa}
+  \renewcommand\lambda{#1\fkslambda}
+  \renewcommand\mu{#1\fksmu}
+  \renewcommand\nu{#1\fksnu}
+  \renewcommand\xi{#1\fksxi}
+  \renewcommand\pi{#1\fkspi}
+  \renewcommand\rho{#1\fksrho}
+  \renewcommand\sigma{#1\fkssigma}
+  \renewcommand\tau{#1\fkstau}
+  \renewcommand\upsilon{#1\fksupsilon}
+  \renewcommand\phi{#1\fksphi}
+  \renewcommand\chi{#1\fkschi}
+  \renewcommand\psi{#1\fkspsi}
+  \renewcommand\omega{#1\fksomega}
 }%
 % swap definitions only for vect macro.
-\newcommand\vect[1]{\sw@pgreekletters\vectalpha#1}
+\newcommand\vect[1]{\sw@pgreekletters\vectgralpha\vectalpha#1}
 \newcommand\vectgr\vect % only for compatibility reasons
 
 %special for upright pi
