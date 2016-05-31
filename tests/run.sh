@@ -101,7 +101,7 @@ for file in $TESTSSRC/t*.tex ; do
 
 # skip if png sreation fails
     PDFFILE=$OUT/`basename $file | sed -e 's/\.tex/.pdf/'`
-    $TESTS/make-result.sh $verb $PDFFILE $OUT/
+    $TESTS/pdf-png.sh $verb $PDFFILE $OUT/
     if [ $? -ne 0 ]; then
         test_fail $file "appearance" "PNG creation failed"
         NUMERR=$NUMERR+1
@@ -114,8 +114,7 @@ for file in $TESTSSRC/t*.tex ; do
         testfile=$OUT/`basename $file`
         testlog=`sed -e 's/png$/log/' <<< $testfile`
         testpngout=`sed -e 's/\.png$/-diff.png/' <<< $testfile`
-        (diff $file $testfile  && 
-            info "Compare by diff passed." && 
+        (diff $file $testfile > /dev/null && 
             echo "diff OK" > $testlog ) || 
             python $TESTS/diff-png.py $file $testfile $testpngout > $testlog 2>&1
         if [ $? -ne 0 ]; then
