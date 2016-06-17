@@ -55,9 +55,11 @@ rm -rf "$OUT"
 mkdir "$OUT"
 
 # tests
+NUMALL=0
 NUMERR=0
 NUMWARN=0
 for file in $TESTSSRC/t*.tex ; do
+	NUMALL=$NUMALL+1
 	BUILDOK=0
 	bfile=`basename $file`
 ##########################
@@ -84,7 +86,6 @@ for file in $TESTSSRC/t*.tex ; do
 	if [ "$BUILDOK" -eq 0 ]; then
 		test_skip $file "appearance" "build failed"
 		NUMWARN=$NUMWARN+1
-		NUMERR=$NUMERR+1
 		continue
 	fi
 
@@ -130,18 +131,19 @@ for file in $TESTSSRC/t*.tex ; do
 done
 
 # print summary
+NUMALL=$(($NUMALL))
 NUMERR=$(($NUMERR))
 NUMWARN=$(($NUMWARN))
 
 echo ""
 if [ "$NUMERR" -ne 0 ] ; then
-	[ -n "$VERBOSE" ] && echo -e "${_RED}Tests failed with $NUMERR errors and $NUMWARN warnings." >&2 ; tput sgr0
+	[ -n "$VERBOSE" ] && echo -e "${_RED}Tests: $NUMALL, failed $NUMERR, warnings: $NUMWARN." >&2 ; tput sgr0
 	exit 1
 else
 	if [ "$NUMWARN" -ne 0 ] ; then
-		[ -n "$VERBOSE" ] && echo -e "${_GREEN}Tests passed ${_YELLOW}with $NUMWARN warnings." >&2 ; tput sgr0
+		[ -n "$VERBOSE" ] && echo -e "${_GREEN}Tests: $NUMALL, ${_YELLOW}warnings $NUMWARN." >&2 ; tput sgr0
 	else
-		[ -n "$VERBOSE" ] && echo -e "${_GREEN}Tests passed." >&2 ; tput sgr0
+		[ -n "$VERBOSE" ] && echo -e "${_GREEN}$NUMALL tests passed." >&2 ; tput sgr0
 	fi
 	exit 0
 fi
