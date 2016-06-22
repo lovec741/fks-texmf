@@ -107,6 +107,12 @@
   {-3.25ex \@plus -1ex \@minus -.2ex}%
   {1.0ex \@plus.2ex}%
   {\normalfont\bfseries\large}}
+\newcommand*\solutionnote[1]{%
+  \ifyearbook\else%
+  \subsubsection{Poznámky k došlým řešením}#1%
+  \fi}
+
+\newcommand\taskhint[2]{\par\noindent\emph{#1}\quad{#2}}
 
 \setcounter{secnumdepth}{-1} % do not number headings
 
