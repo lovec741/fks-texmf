@@ -94,7 +94,7 @@ release: test-dev
 #
 # Creates ZIP archive with all components in their production branches
 #
-zip-build: test-master
+zip-build: 
 	./zip-build.sh $(ORIGIN)/$(BRANCH_MASTER)
 
 #
