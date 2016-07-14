@@ -176,7 +176,7 @@
   \renewcommand\omega{#1\fksomega}
 }%
 % swap definitions only for vect macro.
-\newcommand\vect[1]{\sw@pgreekletters\vectgralpha\vectalpha#1}
+\newcommand\vect[1]{\bgroup\sw@pgreekletters\vectgralpha\vectalpha#1\egroup}
 \newcommand\vectgr\vect % only for compatibility reasons
 
 %special for upright pi
