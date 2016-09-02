@@ -479,8 +479,8 @@ MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \bigskip\bigskip\bigskip
 
 Vydal \mffpress\\
-vydavatelství Matematicko-fyzikální fakulty\\
-Univerzity Karlovy v Praze\\
+nakladatelství Matematicko-fyzikální fakulty\\
+Univerzity Karlovy\\
 Sokolovská 83, 186\,75 Praha 8\\
 jako svou \cislo@publikace. publikaci
 \bigskip
@@ -490,6 +490,7 @@ Vytiskl \@tiskarna
 
 Publikace neprošla recenzním ani lektorským řízením\\
 Vydáno pro interní potřebu MFF UK\\
+Nakladatelství neodpovídá za kvalitu a obsah textu\\
 Neprodejná publikace
 \bigskip
 
