@@ -16,7 +16,7 @@
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
 
 \RequirePackage{optional} % ought be first
-\RequirePackage{amssymb} 
+\RequirePackage{amssymb}
 \RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
 \RequirePackage{xltxtra} % includes xunicode, fontspec
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal ellipsis
@@ -31,7 +31,7 @@
   filecolor=black,
   urlcolor=black,
   bookmarks=true,
-]{hyperref} 
+]{hyperref}
 \opt{web}{\hypersetup{colorlinks=true}}
 \opt{print}{\hypersetup{colorlinks=false}}
 \RequirePackage{xkeyval}
@@ -107,6 +107,12 @@
   {-3.25ex \@plus -1ex \@minus -.2ex}%
   {1.0ex \@plus.2ex}%
   {\normalfont\bfseries\large}}
+\newcommand*\solutionnote[1]{%
+  \ifyearbook\else%
+  \subsubsection{Poznámky k došlým řešením}#1%
+  \fi}
+
+\newcommand\taskhint[2]{\par\noindent\emph{#1}\quad{#2}}
 
 \setcounter{secnumdepth}{-1} % do not number headings
 
@@ -127,7 +133,10 @@
 \end{minipage}
 }
 
-
+\AtBeginDocument{%
+  \renewcommand\figurename{Obr.}
+  \renewcommand\tablename{Tab.}
+}
 
 
 

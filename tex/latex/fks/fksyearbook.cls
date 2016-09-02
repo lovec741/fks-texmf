@@ -17,12 +17,12 @@
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
 
 \RequirePackage{optional} % ought be first
-\RequirePackage{amssymb} 
+\RequirePackage{amssymb}
 \RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
 \RequirePackage{xltxtra} % includes xunicode, fontspec
 \RequirePackage{pgffor}
 \RequirePackage{lastpage}
-\UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal 
+\UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal
 %ellipsis
 
 \RequirePackage[version=3]{mhchem}
@@ -36,7 +36,7 @@
   urlcolor=black,
   bookmarks=true,
   bookmarksdepth=subsection,
-]{hyperref} 
+]{hyperref}
 \opt{web}{\hypersetup{colorlinks=false}}
 \opt{print}{\hypersetup{colorlinks=true}}
 \RequirePackage{xkeyval}
@@ -56,7 +56,7 @@ SlantedFont=[cmunsl.ttf]
 \RequirePackage[includeheadfoot,
   twoside,
   a5paper,
-  hmargin=1.6cm,  
+  hmargin=1.6cm,
   vmargin=1.0cm,
   headsep=0.2cm]{geometry}
 \if@twoside
@@ -210,18 +210,18 @@ A{\bfseries}r}} % sum
   }
 }
 % bez autora námětu a vzoráku (jsou vzadu), suffixování labelů u obrázků v zadání (kolize se skutečným zadáním)
-\renewcommand\pr@blemsolution{%  
+\renewcommand\pr@blemsolution{%
    \varproblem[\metaprobletter{problem}: \@probname]%
     {Úloha \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
       {\normalfont\normalsize\problemstats}}%
 	  \label{solution\thebatch-\theproblem}%
-   \renewcommand\labelsuffix{_sol}\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak\renewcommand\labelsuffix{}%   
-%   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%   
+   \renewcommand\labelsuffix{_sol}\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak\renewcommand\labelsuffix{}%
+%   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \textsl{\@probtask}
    
    \medskip
    
-   \noindent \@probsolution\par   
+   \noindent \@probsolution\par
 }
 
 
@@ -403,7 +403,7 @@ A{\bfseries}r}} % sum
 \renewcommand\met@licence{
 \footnotesize
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
-Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK 
+Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK
 a~podporován Ústavem teoretické fyziky\\
 MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \par
@@ -520,7 +520,7 @@ ISBN \@isbn
 \end{minipage}
 }
 
-% 
+%
 % Title page
 %
 \newcommand\titlefontsc{\fontsize{20pt}{20pt}\selectfont\scshape}
@@ -569,5 +569,8 @@ ISBN \@isbn
 %
 \newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
 
-
+\AtBeginDocument{%
+  \renewcommand\figurename{Obr.}
+  \renewcommand\tablename{Tab.}
+}
 
