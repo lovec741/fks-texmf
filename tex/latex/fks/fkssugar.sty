@@ -141,43 +141,44 @@
 
 % redefine greek letters to serif, slanted, bold greek letters
 \newcommand\sw@pgreekletters[1]{%
-  \renewcommand\Gamma{#1\fksGamma}
-  \renewcommand\Delta{#1\fksDelta}
-  \renewcommand\Theta{#1\fksTheta}
-  \renewcommand\Lambda{#1\fksLambda}
-  \renewcommand\Xi{#1\fksXi}
-  \renewcommand\Pi{#1\fksPi}
-  \renewcommand\Sigma{#1\fksSigma}
-  \renewcommand\Upsilon{#1\fksUpsilon}
-  \renewcommand\Phi{#1\fksPhi}
-  \renewcommand\Psi{#1\fksPsi}
-  \renewcommand\Omega{#1\fksOmega}
-  \renewcommand\alpha{#1\fksalpha}
-  \renewcommand\beta{#1\fksbeta}
-  \renewcommand\gamma{#1\fksgamma}
-  \renewcommand\delta{#1\fksdelta}
-  \renewcommand\epsilon{#1\fksepsilon}
-  \renewcommand\zeta{#1\fkszeta}
-  \renewcommand\eta{#1\fkseta}
-  \renewcommand\theta{#1\fkstheta}
-  \renewcommand\iota{#1\fksiota}
-  \renewcommand\kappa{#1\fkskappa}
-  \renewcommand\lambda{#1\fkslambda}
-  \renewcommand\mu{#1\fksmu}
-  \renewcommand\nu{#1\fksnu}
-  \renewcommand\xi{#1\fksxi}
-  \renewcommand\pi{#1\fkspi}
-  \renewcommand\rho{#1\fksrho}
-  \renewcommand\sigma{#1\fkssigma}
-  \renewcommand\tau{#1\fkstau}
-  \renewcommand\upsilon{#1\fksupsilon}
-  \renewcommand\phi{#1\fksphi}
-  \renewcommand\chi{#1\fkschi}
-  \renewcommand\psi{#1\fkspsi}
-  \renewcommand\omega{#1\fksomega}
+%  \renewcommand\Gamma{#1\fksGamma} % stack overflow in caption
+  \def\Gamma{#1\fksGamma}
+  \def\Delta{#1\fksDelta}
+  \def\Theta{#1\fksTheta}
+  \def\Lambda{#1\fksLambda}
+  \def\Xi{#1\fksXi}
+  \def\Pi{#1\fksPi}
+  \def\Sigma{#1\fksSigma}
+  \def\Upsilon{#1\fksUpsilon}
+  \def\Phi{#1\fksPhi}
+  \def\Psi{#1\fksPsi}
+  \def\Omega{#1\fksOmega}
+  \def\alpha{#1\fksalpha}
+  \def\beta{#1\fksbeta}
+  \def\gamma{#1\fksgamma}
+  \def\delta{#1\fksdelta}
+  \def\epsilon{#1\fksepsilon}
+  \def\zeta{#1\fkszeta}
+  \def\eta{#1\fkseta}
+  \def\theta{#1\fkstheta}
+  \def\iota{#1\fksiota}
+  \def\kappa{#1\fkskappa}
+  \def\lambda{#1\fkslambda}
+  \def\mu{#1\fksmu}
+  \def\nu{#1\fksnu}
+  \def\xi{#1\fksxi}
+  \def\pi{#1\fkspi}
+  \def\rho{#1\fksrho}
+  \def\sigma{#1\fkssigma}
+  \def\tau{#1\fkstau}
+  \def\upsilon{#1\fksupsilon}
+  \def\phi{#1\fksphi}
+  \def\chi{#1\fkschi}
+  \def\psi{#1\fkspsi}
+  \def\omega{#1\fksomega}
 }%
 % swap definitions only for vect macro.
-\newcommand\vect[1]{\sw@pgreekletters\vectgralpha\vectalpha#1}
+\newcommand\vect[1]{\bgroup\sw@pgreekletters\vectgralpha\vectalpha#1\egroup}
 \newcommand\vectgr\vect % only for compatibility reasons
 
 %special for upright pi
