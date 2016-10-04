@@ -27,8 +27,8 @@
 
 \let\underscore\_                                       % underscore sign
 \let\xor\^                                              % xor sign
-\renewcommand\_[1]{\ifmmode _\textnormal{#1}\else\underscore#1\fi} %roman subscript
-\renewcommand\^[1]{\ifmmode ^\textnormal{#1}\else\xor#1\fi} %roman superscript
+\renewcommand\_[1]{\ifmmode _{\scriptsize\textnormal{#1}}\else\underscore#1\fi} %roman subscript
+\renewcommand\^[1]{\ifmmode ^{\scriptsize\textnormal{#1}}\else\xor#1\fi} %roman superscript
 
 \def\({\left(} \def\){\right)}                          % parentheses
 \newcommand\ztoho{\quad\Rightarrow\quad}                % implication
