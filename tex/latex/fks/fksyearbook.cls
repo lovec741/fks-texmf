@@ -40,8 +40,7 @@
 \opt{web}{\hypersetup{colorlinks=false}}
 \opt{print}{\hypersetup{colorlinks=true}}
 \RequirePackage{xkeyval}
-\RequirePackage{polyglossia}
-\setdefaultlanguage{czech}
+\RequirePackage{fkslang}
 
 \newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
 ItalicFont=[cmunti.ttf],

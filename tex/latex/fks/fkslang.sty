@@ -2,14 +2,19 @@
 % @author Lukáš Ledvina <lukasl@fykos.cz>
 %
 % @description transcription of language names to ISO639-1 codes
+%              set polyglossia language from class option (default czech)
 %
 
+\RequirePackage{polyglossia}
 
+% add new language to FYKOS macros
 \newcommand\newl@ng[2]{%
   \expandafter\gdef\csname l@ngiso#1\endcsname{#2}%
   \expandafter\gdef\csname isol@ng#2\endcsname{#1}%
+  \DeclareOption{#1}{\setdefaultlanguage{#1}}
 }%
 
+% returns iso code for actual lang name
 \newcommand\isolang[0]{%
   \expandafter\ifx\csname l@ngiso\languagename\endcsname\relax
   \PackageWarning{fkslang}{Undefined language \languagename}%
@@ -17,6 +22,8 @@
   \else
   \expandafter\csname l@ngiso\languagename\endcsname\fi
 }
+
+% returns ilang name for iso code
 \newcommand\langiso[1]{%
   \expandafter\ifx\csname isol@ng#1\endcsname\relax
   \PackageWarning{fkslang}{Undefined language #1}%
@@ -24,6 +31,17 @@
   \else
   \expandafter\csname isol@ng#1\endcsname\fi
 }
+
+% language optional
+\newcommand\lngopt[2]{%
+    \ifthenelse{\equal{#1}{\isolang}}{#2}{}%
+}
+
+% language without options
+\setdefaultlanguage{czech}
+% supproted languages
 \newl@ng{czech}{cs}
 \newl@ng{slovak}{sk}
 \newl@ng{english}{en}
+\ProcessOptions\relax
+
