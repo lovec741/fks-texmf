@@ -267,6 +267,9 @@
 
 %quotation
 \ifdefined\uv\renewcommand\uv[1]{``##1''}\fi
+
+% konstanta
+\renewcommand\const{\mathrm{const}}
 }
 
 % == czech typeset ==
@@ -278,6 +281,9 @@
 
 %quotation
 \ifdefined\uv\renewcommand\uv[1]{„##1“}\fi
+
+% konstanta
+\renewcommand\const{\mathrm{konst}}
 }
 
 % == package options ==
@@ -285,6 +291,9 @@
     \AtBeginDocument{\fkssug@renglish}
 }
 \DeclareOption{czech}{%
+    \AtBeginDocument{\fkssug@rczech}
+}
+\DeclareOption{slovak}{%
     \AtBeginDocument{\fkssug@rczech}
 }
 \DeclareOption*{%
