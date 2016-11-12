@@ -68,6 +68,7 @@
 \bigskip
 }
 
+\newcommand\met@probthemeauthors{}
 
 % results table parameter
 \newcommand\met@probheader{1 & 2 & 3 & 4 & 5 & P & E & S} % results table problems header
@@ -123,6 +124,14 @@
 \textit{Legenda jarního soustředění:} \jarni@soustredeni\par
 \met@ownauthorspage
 \bigskip
+}
+
+\renewcommand\met@probthemeauthors{
+\textit{Náměty úloh:}\par
+\hspace{\tmpp@rindent}
+\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} %3pt is magic
+\input{authors/probauthors}
+\end{minipage}\par
 }
 
 
@@ -278,6 +287,8 @@ Pro zobrazení kopie této licence navštivte
 }
 
 \renewcommand\met@authorspage{
+% TODO implement ''Autoři Výfučtení'' in accordance with ''Náměty úloh''.
+% That means to update templates, write script for generating requested file.
 \textit{Legenda tábora:} \t@bor\par
 \met@ownauthorspage
 \bigskip
@@ -383,6 +394,26 @@ Pro zobrazení kopie této licence navštivte
 	MFF~UK, jejími zaměstnanci a~Jednotou českých matematiků a~fyziků.
 	\par
 }
+\renewcommand\maketitle{%
+	\thispagestyle{empty}
+	\begin{center}
+		\null\vspace{12pt}
+		
+		{\titlefontsc\@authors}
+		\vspace{36pt}
+		
+		{\titlefontmain\@title}
+		\vspace{36pt}
+		
+		{\titlefontsub\@subtitle}
+		\vspace{72pt}
+		
+		% Feel free to use different logo each year. Already used:
+		% vyfuk6 -- vyfuk_logo2
+		\includegraphics[width=60mm]{vyfuk_logo2}
+	\end{center}
+}
+\renewcommand\met@probthemeauthors{}
 \fi
 \hypersetup{
     pdftitle=\ifyearbook{Ročenka Výfuku, \Roman{year}. ročník}\else{Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % tady radši Roman
