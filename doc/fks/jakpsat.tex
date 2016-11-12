@@ -311,10 +311,12 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		implikace \\\hline
 	\texinline|$\const$| & $\const$ &
 		konstanta \\\hline
-	\texinline|$\Re z, \Im z$| & $\Re z, \Im z$ &
-		reálná a~imaginární část \\\hline
+	\texinline|$\Re z, \Im z, \conj{z}$| & $\Re z, \Im z, \conj{z}$ &
+		reálná a~imaginární část, komplexní sdružení \\\hline
 	\texinline|$\eu^{\im x}$| & $\eu^{\im x}$ &
 		Eulerovo číslo, imaginární jednotka \\\hline
+	\texinline|$\abs{x}$| & $\abs{x}$ &
+		absolutní hodnota \\\hline
 	\texinline|$\der{f}{x}, \dder{f}{x},$|\ \texinline|$\pder{f}{x}, \ppder{f}{x}$| &
 		$\der{f}{x}, \dder{f}{x}, \pder{f}{x}, \ppder{f}{x}$ &
 		derivace (první, druhá, parciální, druhá parciální)\\\hline
@@ -333,14 +335,14 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 	\texinline|$\vect{F}\_G$| & $\vect{F}\_G$ &
 		vektor vysázený tučně\\\hline
 	\texinline|$\vectgr{\alpha}$| & $\vectgr{\alpha}$ &
-		řecký vektor vysázený tučně\\\hline
+		řecký vektor vysázený tučně (zastaralé, použít \texinline|\vect{}|)\\\hline
 	\texinline|$\bod{AB}$| & $\bod{AB}$ &
 		geometrický bod\\\hline
 	\texinline|$\bb{R}, \bb{C}, \bb{N}$| & $\bb{R}, \bb{C}, \bb{N}$ &
 		množiny\\\hline
 	\texinline|$\ointo{1}{2}, \ointc{1}{2},$|\ \texinline|$\cinto{1}{2}, \cintc{1}{2}$| &
 		$\ointo{1}{2}$, $\ointc{1}{2}$, $\cinto{1}{2}$, $\cintc{1}{2}$ &
- 		intervaly\\\hline
+		intervaly\\\hline
 	\texinline|$\varpi, \pi$| & $ \varpi, \pi$ &
 		rovina, svisle konstanta~$\approx "3.14"$\\\hline
 	\texinline|$\dg$| & $\dg$ &
@@ -349,6 +351,10 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		stupně Celsia\\\hline
 	\texinline|$\ohm, \Ohm$| & $\ohm$ &
 		ohm (jednotka)\\\hline
+\end{texexampletab}
+\begin{texexampletab}
+	\texinline|$\Kc, \Euro$| & $\Kc, \Euro$ &
+		CZK a~EUR (jednotka)\\\hline
 \end{texexampletab}
 
 \begin{texexample}
@@ -451,9 +457,10 @@ ilustrační (obtékané textem).
 Jediným povinným argumentem je cesta k~souboru (implicitně se prohledávají
 adresáře \verb|graphics|). Ostatní argumenty lze též zadat jako prázdné tokenem
 \texinline|{}|. Chceme-li upravit velikost, popř.~jiný argument velkého obrázku,
-napíšeme jej do nepovinného prvního argumentu.
+napíšeme jej do nepovinného posledního argumentu. Chceme-li upravit pozici
+plovoucího prostředí obrázku, použijeme první nepovinný parametr.
 
-\tex|\fullfig[width=0.6\textwidth]{cesta k~souboru}{popiska}{referenční ID}|
+\tex|\fullfig[h]{cesta k~souboru}{popiska}{referenční ID}[width=0.6\textwidth]|
 
 Obrázky (i~zdrojáky) k~úlohám se ukládají do adresáře \verb|problems/graphics|.
 Ostatní obrázky (seriál, úvodníček) se ukládají k~dané sérii
@@ -644,6 +651,10 @@ tabulky) a~\texinline|\eqref{referenční ID}| (pro rovnice, číslo bude
 v~závorkách). Neodkazujte se takto na rovnice, tabulky a~obrázky mimo řešení
 příkladu. Číslování je v~různých souborech (brožurka, samotné řešení, ročenka)
 různé, takže není jednoznačné.
+
+Pokud chcete do~řešení vložit poznámky k~došlým řešením, použijte k~tomu
+makro~\texinline|\solutionnote{Zde vložit poznámky}|. Pro vložení nápovědy,
+bonusu, \dots{} do~zadání použijte makro \texinline|\taskhint{Nápověda}{Text nápovědy}|.
 
 \begin{texexample}
 Více na~\url{http://www.fykos.cz}.
