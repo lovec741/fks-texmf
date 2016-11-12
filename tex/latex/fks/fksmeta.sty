@@ -25,13 +25,13 @@
 \newcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or P\or E\or S\else \@ctrerr\fi}
 \newcommand\metayear[1]{\Roman{#1}}
 \newcommand\met@headerproblems{Zadání \Roman{batch}. série}
-\newcommand\met@summerheaderproblems{Zadání \Roman{batch}. série}
-\newcommand\met@summerheaderproblemsBonus{Zadání \Roman{batch}. série}
+\newcommand\met@summerheaderproblems{Zadání \Roman{batch}. části prázdninové série}
+\newcommand\met@summerheaderproblemsBonus{Zadání \Roman{batch}. části prázdninové série}
 \newcommand\met@headersolutions{Řešení \Roman{solvedbatch}. série}
-\newcommand\met@summerheadersolutions{Řešení \Roman{solvedbatch}. série}
+\newcommand\met@summerheadersolutions{Řešení \Roman{solvedbatch}. části prázdninové série}
 \newcommand\met@headerseries[1]{Seriál: #1}
 \newcommand\met@headerresults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
-\newcommand\met@summerheaderresults[1]{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\newcommand\met@summerheaderresults{Konečné pořadí řešitelů prázdninové série}
 \renewcommand\maketitle{}
 \newcommand\maketitlenew{}
 %pro potreby rocenky
@@ -173,7 +173,7 @@ Pro zobrazení kopie této licence navštivte
 \DeclareOption{vyfuk}{%
   \newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} }
 \newcommand\type@tag[1]{%
-\ifthenelse{\equal{#1}{hard}}{\ding{80}}{}%
+\ifthenelse{\equal{#1}{hard}}{\ding{72}}{}%
 }
   
   \newif\ifsummerbatch
@@ -213,7 +213,7 @@ Pro zobrazení kopie této licence navštivte
 
   \renewcommand\met@summerheaderproblems{\centering
 \includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
-{Zadání \Roman{batch}. prázdninové série}
+{Zadání \Roman{batch}. části prázdninové série}
 \hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
 }
 
@@ -233,7 +233,7 @@ Pro zobrazení kopie této licence navštivte
 
 	\renewcommand\met@summerheadersolutions{\centering
 \includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
-{Řešení \Roman{solvedbatch}. prázdninové série}
+{Řešení \Roman{solvedbatch}. části prázdninové série}
 \hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
 }
 % Vyfučtení
@@ -249,9 +249,9 @@ Pro zobrazení kopie této licence navštivte
 {Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
 }
-  \renewcommand\met@summerheaderresults[1]{\centering
+  \renewcommand\met@summerheaderresults{\centering
 \includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
-{Pořadí #1 řešitelů po \Roman{solvedbatch}. sérii}
+{Konečné pořadí řešitelů prázdninové série}
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
 }
 
@@ -264,13 +264,13 @@ Pro zobrazení kopie této licence navštivte
 \renewcommand\met@headeryearexpsolutions{\centering \includegraphics[scale=0.16]{vyfuk_raketa.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení experimentálních úloh}}
 \renewcommand\met@headeryearseries[1]{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{Výfučtení}} %parametr z duvodu genericity
 \renewcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
-\renewcommand\met@headeryearseriessolutionsbasic{Řešení úloh z výfučtení}%bez obrazku pro bookmark
+\renewcommand\met@headeryearseriessolutionsbasic{Řešení úloh z Výfučtení}%bez obrazku pro bookmark
 \renewcommand\met@headeryearseriessolutions{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{\met@headeryearseriessolutionsbasic}}
 \renewcommand\met@headeryearresults{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí nejlepších řešitelů}}
 \renewcommand\met@headeryearresultsall{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů}}
 \renewcommand\met@headeryearevents{\centering \includegraphics[scale=0.4]{vyfuk-schlitt.eps}\hspace{10pt}\raisebox{0.6cm}{Akce Výfuku}}
-\newcommand\met@headersummer{\centering \includegraphics[width=23mm]{zmrzlina.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání prázdninových úloh}}
-\newcommand\met@headersummersolutions{\centering \includegraphics[width=23mm]{zmrzlina.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení prázdninových úloh}}
+\newcommand\met@headersummer{\centering \includegraphics[width=23mm]{zmrzlina.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání úloh prázdninové série}}
+\newcommand\met@headersummersolutions{\centering \includegraphics[width=23mm]{zmrzlina.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení úloh prázdninové série}}
 
 %authors page
 \newcommand\t@bor{}
