@@ -553,7 +553,7 @@ ISBN \@isbn
 \nullp@r
 \begin{tabular}{@{}l@{}l}
  Copyright \copyright &\ \@author, \@published\\
- Copyright \copyright &\ \mffpress, vydavatelství Matematicko-fyzikální fakulty\\
+ Copyright \copyright &\ \mffpress, nakladatelství Matematicko-fyzikální fakulty\\
  &\ Univerzity Karlovy, \@published
 \end{tabular}
 \vspace{1cm}
