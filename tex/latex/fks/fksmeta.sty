@@ -33,7 +33,6 @@
 \newcommand\met@headerresults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 \newcommand\met@summerheaderresults{Konečné pořadí řešitelů prázdninové série}
 \renewcommand\maketitle{}
-\newcommand\maketitlenew{}
 %pro potreby rocenky
 \newcommand\met@headeryeartoc{Obsah}
 \newcommand\met@headeryearintro{Předmluva}
@@ -303,24 +302,6 @@ Pro zobrazení kopie této licence navštivte
     \includegraphics[width=\textwidth]{vyfuk_hlavicka.eps}%
     \vspace{8mm}
 }
-
-\renewcommand\maketitlenew{%
-    \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
-      %\rule[4pt]{\textwidth}{3pt}
-
-    {~\bfseries\sffamily \met@headername{} \hfill \met@volumeid\vspace{5mm}}
-
-\makebox{
-    \includegraphics[width=0.5\textwidth,trim=-5.1pt 0pt 5.1pt 0]{vyfuk_logo_2.eps}
-    \includegraphics[width=0.5\textwidth,trim=-5.1pt 0pt 5.1pt 0]{tabule.eps}
-    }
-%\rule{\textwidth}{3pt}
-    \vspace{1cm}
-
-    %\rule[10pt]{\textwidth}{3pt}
-    }
-    \vspace{-1cm}
-  }
 
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
