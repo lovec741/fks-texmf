@@ -294,14 +294,35 @@ Pro zobrazení kopie této licence navštivte
 }
   \renewcommand\maketitle{%
     \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
-     \setlength\fboxsep{3pt}\colorbox{black}{
+     \colorbox{black}{
      \begin{minipage}{\textwidth-6pt}
-      \textcolor{white}{~\bfseries\sffamily \met@headername{} \hfill \met@volumeid~}
+		\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \met@headername{}}
+		\hfill \raisebox{-8.5pt}{\bfseries\sffamily \met@volumeid~}}
      \end{minipage}}}%
     \vspace{5mm}
     \includegraphics[width=\textwidth]{vyfuk_hlavicka.eps}%
     \vspace{8mm}
 }
+
+% Since yearbook defines its own header and code below in else branch overwrites
+% such a behaviour, we need to exclude it within ifyearbook.
+\ifyearbook
+	%
+\else
+	% Layout settings brought from fksbase.cls, redefining headers.
+	\fancyhead{} % To get rid of fksbaseheader, cleaning it up.
+	\pagestyle{fancy} % New definition of header starts here.
+	\renewcommand{\headrulewidth}{0pt}
+	\chead{\setlength{\parindent}{0pt}
+		\colorbox{black}{
+	     	\begin{minipage}{\textwidth-6pt}
+	      		\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \met@headername{}}
+	      		\hfill \raisebox{-8.5pt}{\bfseries\sffamily \met@volumeid~}}
+	     	\end{minipage}
+		}
+	}
+	\setlength{\headsep}{5mm}
+\fi
 
   \renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
