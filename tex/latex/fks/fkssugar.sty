@@ -240,7 +240,7 @@
 % pohodlne psani cisel a jednotek (napr. $ G = "6.672e-11 N.m^2.kg^{-2}" $)
 \begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
 \mathchardef\mathquote=\mathcode`\"
-\def\jed@A #1 {\begingroup\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers written with dot or comma
+\def\jed@A #1 {\begingroup\def~{\,}\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers written with dot or comma
 \def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
 \begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
 \mathcode`\"="8000
@@ -261,9 +261,10 @@
 
 \def\fkssug@renglish{%
 % tg can be used: https://en.wikipedia.org/wiki/Trigonometric_functions
+\mathchardef\carka=\mathcode`\,
 
 % decimal point
-\def\jed@A ##1 {\begingroup\mathcode`\.="013A\mathcode`\,="013A \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
+	\def\jed@A ##1 {\begingroup\def~{\carka}\mathcode`\.="013A\mathcode`\,="013A \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
 
 %quotation
 \ifdefined\uv\renewcommand\uv[1]{``##1''}\fi
@@ -277,7 +278,7 @@
 % tg implicit
 
 % decimal point
-\def\jed@A ##1 {\begingroup\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
+\def\jed@A ##1 {\begingroup\def~{\,}\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
 
 %quotation
 \ifdefined\uv\renewcommand\uv[1]{„##1“}\fi
