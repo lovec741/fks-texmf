@@ -99,9 +99,13 @@ Obsah souboru~\texttt{problemS-U.tex}:
 	\item \texinline|\probbatch|~--~série úlohy
 	\item \texinline|\probno|~--~číslo úlohy
 	\item \texinline|\probname|~--~název úlohy (začínající malým písmenem, nejde-li
-		o~vlastní jméno)
+		o~vlastní jméno, vyplňte českou i~anglickou verzi)
 	\item \texinline|\proborigin|~--~původ úlohy (krátká věta, zobrazí se v~brožurce pod
-		zadáním)
+		zadáním, vyplte českou i~anglickou verzi)
+	\item \texinline|\proborigintruth|~--~pravda o~původu úlohy, nesází se
+	\item \texinline|\probtopics|~--~obor úlohy (mechanika hmotného bodu, termodynamika, \dots),
+	pokud úloha spadá do více kategorií, zapište je za sebe oddělené čárkami bez mezer.
+	Vybírejte ze zkratek uvedených nad tímto políčkem, nevymýšlejte si prosím vlastní.
 	\item \texinline|\probauthors|~--~autor úlohy, použije se při sazbě ročenky. Jméno
 	je většinou ve formátu příjmení malými písmeny bez diakritiky (viz soubor
 	\texttt{tex/latex/fykosx/fksemails.tex} v~repozitáři \texttt{texmf}). Více jmen
@@ -112,6 +116,10 @@ Obsah souboru~\texttt{problemS-U.tex}:
 		z~výsledkovek)
 	\item \texinline|\probavg|~--~průměrný počet bodů (generuje se automaticky
 		z~výsledkovek)
+	\item \texinline|\probfig|~--~obrázek k úloze, jazykové verze rozlišujte,
+	jen pokud se liší
+	\item \texinline|\probwebfig|~--~obrázek k webové verzi úlohy, pokud se liší od
+	\texinline|\probfig|
 	\item \texinline|\probtask|~--~zadání úlohy. Ihned za posledním znakem musí
 	být ukončena závorka.
 	\item \texinline|\probsolution|~--~vzorové řešení úlohy. Toto by mělo být jediné
@@ -409,20 +417,22 @@ Chceme-li napsat desetinné číslo, příp. číslo s~jednotkami, použijeme
 uvozovkového pomocníka. Ten je citlivý na mezeru před jednotkou. Pokud je
 jednotka součinem několika jiných, píšeme tečku. Čísla do uvozovek píšeme
 s~desetinnou tečkou (snadno pak naformátujeme i~výstup z~Gnuplotu). Exponent
-desítky napíšeme pomocí \texinline|e|. Čísla oddělujeme do skupin po třech
-mezerou \texinline|\,|. Chceme-li psát samostatně jednotku, využijeme příkaz
+desítky napíšeme pomocí \texinline|e|. Číslice oddělujeme do skupin po třech
+symbolem vlnky \texinline|~|, která se v~úvozovkovém módu aktivuje podle používaného
+jazyka. V~angličtině vysází čárku, v~češtině a~v~nespecifikovaném prostředí úzkou
+mezeru. Chceme-li psát samostatně jednotku, využijeme příkaz
 \texinline|\jd{}|.
 
 \begin{texexample}
 Teplota~$"21.3 \C"$, \\
 úhel je~$"123\dg"$, \\
 $\sigma = "5.67e-8 J.s^{-1}.m^{-2}.K^{-4}"$, \\
-$\varphi = "(0.768\,7\pm 0.000\,3) arcsec"$, \\
+$\varphi = "(0.768~7\pm 0.000~3) arcsec"$, \\
 vzestup o~$"13.2 \%"$, \\
 délka~$\lambda = "600 nm" = "0.6 \micro m"$, \\
-odpor~$R = "1200 k\ohm"$, \\
+odpor~$R = "1~200 k\ohm"$, \\
 rychlost v~$\jd{m.s^{-1}}$,\\
-konstanta~$\pi \doteq "3.141\,592\,65"$,\\
+konstanta~$\pi \doteq "3.141~592~65"$,\\
 konstanta~$\eu \doteq "2.718"$.
 \end{texexample}
 
@@ -694,4 +704,38 @@ pomocí příkazu \texttt{pdflatex}).
 \end{document}
 \end{texsource}
 
+\section{Angličtina}
+Makra dovolují i anglickou sazbu.
+
+\medskip\noindent
+Ve \texinline|fkssugar.sty| anglická sazba ovlivňuje:
+\begin{compactenum}
+\item Desetinnou tečku / čárku v~uvozovkovém makru,
+\item oddělovač tisíců,
+\item konst vs. const.
+\end{compactenum}
+Soubor \texinline|fksmeta.sty| zavádí:
+\begin{compactenum}
+\item anglickou patičku,
+\item anglickou adresu,
+\item anglické hlavičku zadání/řešení.
+\end{compactenum}
+Potomci \texinline|fksbase.cls| podporují
+\begin{compactenum}
+\item Obr. vs. Fig.
+\end{compactenum}
+
+\medskip\noindent
+Jazyk sazby se nastavuje: {\sl (preferenčně 1, nouzově 2, nedoporučovaně 3. a 4.)}
+\begin{compactenum}
+\item \textbf{globálně:} zadáním nepovinného parametru {\tt czech},
+    {\tt english}, {\tt slovak} do \texinline|\documentclass|
+\item nebo nepovinným parametrem do \texinline|\usepackage{fkssugar}|
+    (pak nefunguje Obr. vs. Fig.),
+\item nebo nepovinným parametrem do \texinline|\usepackage{fksmeta}|
+    (je též ovlivněn pouze tento balík),
+\item \textbf{lokálně v betaverzi:} zavoláním makra \texinline|\fkssug@rczech|
+    resp. \texinline|\fkssug@renglish| se přepne funkcionalita
+    \texinline|fkssugar.sty|. Funguje pouze není-li @ \uv{other}.
+\end{compactenum}
 \end{document}
