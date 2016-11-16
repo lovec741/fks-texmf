@@ -83,6 +83,28 @@
 % For switching between FYKOS and Vyfuk functionality across texmf files.
 \newif\iffykos
 \fykosfalse
+\newif\ifvyfuk
+\vyfukfalse
+% language selector
+\newif\iffksczech
+\fksczechfalse
+\newif\iffksslovak
+\fksslovakfalse
+\newif\iffksenglish
+\fksenglishfalse
+\newif\iffkslang
+\fkslangfalse
+
+% set default language czech
+\DeclareOption{czech}{\fksczechtrue\fkslangtrue}
+\DeclareOption{slovak}{\fksslovaktrue\fkslangtrue}
+\DeclareOption{english}{\fksenglishtrue\fkslangtrue}
+\ProcessOptions\relax
+\iffkslang\else%
+\fksczechtrue%
+\PackageWarning{fksmeta}{No language passed czech selected.}
+\fi
+
 
 % FYKOS
 \DeclareOption{fykos}{%
@@ -143,11 +165,9 @@
     pdftitle=\ifyearbook{Ročenka FYKOSu, \Roman{year}. ročník}\else{FYKOS, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % title
     pdfauthor={Organizátoři FYKOSu <fykos@fykos.cz>},     % author
     pdfsubject={Fyzikální korespondenční seminář MFF UK},   % subject of the document
-}}} % end FYKOS all lang
+}}
 
-
-\DeclareOption{czech}{%
-\iffykos
+\iffksczech
 \renewcommand\met@licence{%
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
 Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK
@@ -181,9 +201,8 @@ Pro zobrazení kopie této licence navštivte
 
 \href{http://www.facebook.com/Fykos}{\bfseries\slshape http://www.facebook.com/Fykos}}\fi
 }
-\fi}
-\DeclareOption{english}{%
-\iffykos
+\fi%iffksczech
+\iffksenglish
 \renewcommand\met@licence{%
 FYKOS is organized by students of Faculty of Mathematics and Physics of Charles University.
 It's part of Public Relations Office activities and is supported by Institute of Theoretical Physics, MFF UK,
@@ -217,13 +236,13 @@ To view a copy of the license, visit
 
 \href{http://www.facebook.com/Fykos}{\bfseries\slshape http://www.facebook.com/Fykos}}
 }
-\fi}
-
-% end FYKOS
+\fi%iffksenglish
+}% end FYKOS
 
 
 % --- VÝFUK ---
 \DeclareOption{vyfuk}{%
+  \vyfuktrue
   \newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} }
 \newcommand\type@tag[1]{%
 \ifthenelse{\equal{#1}{hard}}{\ding{72}}{}%
