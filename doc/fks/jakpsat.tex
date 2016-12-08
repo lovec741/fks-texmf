@@ -334,6 +334,8 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		rotace, divergence, gradient\\\hline
 	\texinline|$\op{dup}$| & $\op{dup}$ &
 		vlastní (jinak nedefinovaný) operátor \\\hline
+\end{texexampletab}
+\begin{texexampletab}
 	\texinline|$\prumer$| & $\prumer$ &
 		průměr\\\hline
 	\texinline|$\eqdef,\doteq,\approx,\propto$| & $\eqdef, \doteq, \approx, \propto $ &
@@ -359,8 +361,6 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		stupně Celsia\\\hline
 	\texinline|$\ohm, \Ohm$| & $\ohm$ &
 		ohm (jednotka)\\\hline
-\end{texexampletab}
-\begin{texexampletab}
 	\texinline|$\Kc, \Euro$| & $\Kc, \Euro$ &
 		CZK a~EUR (jednotka)\\\hline
 \end{texexampletab}
@@ -704,4 +704,39 @@ pomocí příkazu \texttt{pdflatex}).
 \end{document}
 \end{texsource}
 
+\newpage
+\section{Angličtina}
+Makra dovolují i anglickou sazbu.
+
+\medskip\noindent
+Ve \texinline|fkssugar.sty| anglická sazba ovlivňuje:
+\begin{compactenum}
+\item Desetinnou tečku / čárku v~uvozovkovém makru,
+\item oddělovač tisíců,
+\item konst vs. const.
+\end{compactenum}
+Soubor \texinline|fksmeta.sty| zavádí:
+\begin{compactenum}
+\item anglickou patičku,
+\item anglickou adresu,
+\item anglické hlavičku zadání/řešení.
+\end{compactenum}
+Potomci \texinline|fksbase.cls| podporují
+\begin{compactenum}
+\item Obr. vs. Fig.
+\end{compactenum}
+
+\medskip\noindent
+Jazyk sazby se nastavuje: {\sl (preferenčně 1, nouzově 2, nedoporučovaně 3. a 4.)}
+\begin{compactenum}
+\item \textbf{globálně:} zadáním nepovinného parametru {\tt czech},
+    {\tt english}, {\tt slovak} do \texinline|\documentclass|
+\item nebo nepovinným parametrem do \texinline|\usepackage{fkssugar}|
+    (pak nefunguje Obr. vs. Fig.),
+\item nebo nepovinným parametrem do \texinline|\usepackage{fksmeta}|
+    (je též ovlivněn pouze tento balík),
+\item \textbf{lokálně v betaverzi:} zavoláním makra \texinline|\fkssug@rczech|
+    resp. \texinline|\fkssug@renglish| se přepne funkcionalita
+    \texinline|fkssugar.sty|. Funguje pouze není-li @ \uv{other}.
+\end{compactenum}
 \end{document}
