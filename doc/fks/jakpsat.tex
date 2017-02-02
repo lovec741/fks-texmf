@@ -137,7 +137,7 @@ a~mít tak možnost si nechat automaticky přeložit celý ročník včetně obr
 soubor \texttt{solution.tex} s~obsahem uvedeným níže. Změňte cestu k~souboru
 úlohy, popř.~název semináře a~ročník a~přeložte příkazem \texttt{xelatex}. Vždy
 překládejte soubor~\texttt{solution.tex}, nikoliv
-soubor~\texttt{problems/problemS-U.tex}\footnote{Používate-li např.~TeXstudio,
+soubor~\texttt{problems/problemS-U.tex}\footnote{Používáte-li např.~TeXstudio,
 	otevřete soubor~\texttt{solution.tex} a~zvolte Volby~→~Prohlásit současný
 	dokument za Hlavní dokument. Poté můžete mít otevřený soubor s~úlohou, ale
 	překládat se vždy bude soubor~\texttt{solution.tex}}. Obrázky nebudou do souboru
@@ -158,12 +158,15 @@ chybějícím obrázkům selhal.
 
 \section{Obecné zásady}
 
-Řešení pište bez chyb! Kdo tam bude mít chyby, bude zmrskán!
+\TeX{}ař bude velice rád, pokud se budete snažit psát co nejvíc dle tohoto manuálu.
+Nicméně hlavní je fyzika, takže se snažte mít řešení po obsahové stránce správně
+a~TeX vám vejde do krve časem. Snažte se ale níže uvedené postupy používat.
+Když nevíte, napište TeXaři, co byste potřebovali.
 
 Všechny texty týkající se FYKOSu jsou psány v~typografickém systému \TeX
 (využívajíce {\LaTeX}ových maker). Řešení úloh pište v~libovolném textovém
 editoru (např.~\texttt{TeXstudio}\footnotei{,}{\url{http://texstudio.sourceforge.net},
-	dostupné pro Windows, Linux i~Mac OS X} které vám s~psaním pomocí různých
+dostupné pro Windows, Linux i~Mac OS X} které vám s~psaním pomocí různých
 klikátek velmi pomůže) do souboru úlohy v~kódování UTF-8.
 
 Výsledný soubor uložte do repozitáře. V~případě nouze nebo nemáte-li do
@@ -314,7 +317,7 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 	\texinline|$\tprod_{i=1}^N$| & $\tprod_{i=1}^N$ &
 		součin v~řádku \\\hline
 	\texinline|$\tint_a^b \d x$| & $\tint_a^b \d x$ &
-		integrál v~řádku, direfenciál \\\hline
+		integrál v~řádku, diferenciál \\\hline
 	\texinline|$\ztoho$| & $\ztoho$ &
 		implikace \\\hline
 	\texinline|$\const$| & $\const$ &
@@ -418,7 +421,7 @@ uvozovkového pomocníka. Ten je citlivý na mezeru před jednotkou. Pokud je
 jednotka součinem několika jiných, píšeme tečku. Čísla do uvozovek píšeme
 s~desetinnou tečkou (snadno pak naformátujeme i~výstup z~Gnuplotu). Exponent
 desítky napíšeme pomocí \texinline|e|. Číslice oddělujeme do skupin po třech
-symbolem vlnky \texinline|~|, která se v~úvozovkovém módu aktivuje podle používaného
+symbolem vlnky \texinline|~|, která se v~uvozovkovém módu aktivuje podle používaného
 jazyka. V~angličtině vysází čárku, v~češtině a~v~nespecifikovaném prostředí úzkou
 mezeru. Chceme-li psát samostatně jednotku, využijeme příkaz
 \texinline|\jd{}|.
