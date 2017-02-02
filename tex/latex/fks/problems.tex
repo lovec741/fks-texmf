@@ -6,8 +6,6 @@
 %
 
 \RequirePackage{ifthen}
-% language id transcription to ISO693-1
-\input{fkslang}
 % cooperation with fksfigures input@path change
 \ifx\@problemsdir\@undefined
 \def\@problemsdir{.}
@@ -144,7 +142,7 @@ průměr~\@probavg;
 \newcommand\proborigintruth[1]{\renewcommand\@proborigintruth{#1}}
 \newcommand\probtopics[1]{\renewcommand\@probtopics{{#1}}} % due to foreach expansion
 \newcommand\probexpectedprecision[1]{\renewcommand\@probexpectedprecision{#1}}
-\newcommand\probmachineresult[1]{\renewcommand\@probmachineresult{#1}}
+\newcommand\probmachineresult[1]{\renewcommand\@probmachineresult{\unexpanded{#1}}}
 
 % setters for per language attributes
 \newcommand\probname[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probname{#2}}{}}
