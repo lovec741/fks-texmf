@@ -32,12 +32,11 @@
   urlcolor=black,
   bookmarks=true,
 ]{hyperref}
-\opt{web}{\hypersetup{colorlinks=true}}
-\opt{print}{\hypersetup{colorlinks=false}}
+\opt{web}{\hypersetup{colorlinks=false}}
+\opt{print}{\hypersetup{colorlinks=true}}
 \RequirePackage{xkeyval}
-\RequirePackage{polyglossia}
+\RequirePackage{fkslang}
 \RequirePackage{pifont}
-\setdefaultlanguage{czech}
 
 \newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
 	ItalicFont=[cmunti.ttf],
