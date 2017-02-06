@@ -23,66 +23,67 @@
 \RequirePackage{bbding}
 \RequirePackage[nointegrals]{wasysym}
 
-\DeclareMathAlphabet{\mathup}{OT1}{\familydefault}{m}{n} % stojate pismo v matematice
+\DeclareMathAlphabet{\mathup}{OT1}{\familydefault}{m}{n}    % stojate pismo v matematice
 
-\let\underscore\_                                       % underscore sign
-\let\xor\^                                              % xor sign
-\renewcommand\_[1]{\ifmmode _{\scriptsize\textnormal{#1}}\else\underscore#1\fi} %roman subscript
-\renewcommand\^[1]{\ifmmode ^{\scriptsize\textnormal{#1}}\else\xor#1\fi} %roman superscript
+\let\underscore\_                                           % underscore sign
+\let\xor\^                                                  % xor sign
+\renewcommand\_[1]{\ifmmode _{\textnormal{#1}}\else\underscore#1\fi} %roman subscript
+\renewcommand\^[1]{\ifmmode ^{\textnormal{#1}}\else\xor#1\fi}        %roman superscript
 
-\def\({\left(} \def\){\right)}                          % parentheses
-\newcommand\ztoho{\quad\Rightarrow\quad}                % implication
-\newcommand\frc[2]{\dfrac#1#2}                          % non-reduced fractions [obsolete]
-\newcommand\tsum{\mathop{\textnormalstyle\sum}\limits}  % inline sum
-\newcommand\tprod{\mathop{\textnormalstyle\prod}\limits}% inline product
-\newcommand\tint{\mathop{\textnormalstyle\int}\nolimits}% inline integral
-\newcommand\const{\textnormal{konst}}                   % konstanta
-\newcommand\dg{^\circ}                                  % stupen
-\def\C{^\circ\mskip-2mu\mathup{C}}                      % Celsiuv stupen
-\let\Re\relax\DeclareMathOperator\Re{Re}                % realna cast
-\let\Im\relax\DeclareMathOperator\Im{Im}                % imaginarni cast
-\newcommand\eu{\mathup{e}}                              % Eulerovo cislo
-\newcommand\im{\mathup{i}}                              % imaginarni jednotka
-\renewcommand\d{\mathup{d}}                             % differential sign
-\newcommand\der[2]{\frac{\d #1}{\d #2}}                 % prvni derivace
-\newcommand\dder[2]{\frac{\d^2 #1}{\d #2^2}}            % druha derivace
-\newcommand\pder[2]{\frac%                              % prvni parcialni derivace
+\def\({\left(} \def\){\right)}                              % parentheses
+\newcommand\ztoho{\quad\Rightarrow\quad}                    % implication
+\newcommand\frc[2]{\dfrac#1#2}                              % non-reduced fractions [obsolete]
+\newcommand\tsum{\mathop{\textstyle\sum}\limits}            % inline sum, chybne v beamru, \textnormalstyle ???
+\newcommand\tprod{\mathop{\textstyle\prod}\limits}          % inline product, chybne v beameru
+\newcommand\tint{\mathop{\textstyle\int}\nolimits}          % inline integral, chybne v beameru
+\newcommand\const{\textnormal{konst}}                       % konstanta
+\newcommand\dg{^\circ}                                      % stupen
+%\newcommand\C{^\circ\mskip-2mu\mathrm{C}}                  % Celsiuv stupen
+\def\C{^\circ\mskip-2mu\mathup{C}}                          % Celsiuv stupen (ugly fix for Win/Linux compatibility), beamer
+\let\Re\relax\DeclareMathOperator\Re{Re}                    % realna cast
+\let\Im\relax\DeclareMathOperator\Im{Im}                    % imaginarni cast
+\newcommand\eu{\mathup{e}}                                  % Eulerovo cislo
+\newcommand\im{\mathup{i}}                                  % imaginarni jednotka
+\renewcommand\d{\mathup{d}}                                 % differential sign
+\newcommand\der[2]{\frac{\d #1}{\d #2}}                     % prvni derivace
+\newcommand\dder[2]{\frac{\d^2 #1}{\d #2^2}}                % druha derivace
+\newcommand\pder[2]{\frac%                                  % prvni parcialni derivace
     {\partial#1}{\partial#2}}
-\newcommand\ppder[2]{\frac%                             % prvni parcialni derivace
+\newcommand\ppder[2]{\frac%                                 % druhá parcialni derivace
     {\partial^2#1}{\partial#2^2}}
-\DeclareMathOperator\tg{tg}                             % cesky tangens
-\let\tan\relax\DeclareMathOperator\tan{tg}
-\DeclareMathOperator\cotg{cotg}                         % cesky cotangens
-\let\cot\relax\DeclareMathOperator\cot{cotg}
-\DeclareMathOperator\cosec{cosec}                       % cesky kosecans
-\let\csc\relax\DeclareMathOperator\csc{cosec}
-\DeclareMathOperator\arctg{arctg}                       % cesky arcustangens
-\let\arctan\relax\DeclareMathOperator\arctan{arctg}
-\DeclareMathOperator\arccotg{arccotg}                   % cesky arcuscotangens
+\DeclareMathOperator\tg{tg}                                 % cesky tangens
+  \let\tan\relax\DeclareMathOperator\tan{tg}
+\DeclareMathOperator\cotg{cotg}                             % cesky cotangens
+  \let\cot\relax\DeclareMathOperator\cot{cotg}
+\DeclareMathOperator\cosec{cosec}                           % cesky kosecans
+  \let\csc\relax\DeclareMathOperator\csc{cosec}
+\DeclareMathOperator\arctg{arctg}                           % cesky arcustangens
+  \let\arctan\relax\DeclareMathOperator\arctan{arctg}
+\DeclareMathOperator\arccotg{arccotg}                       % cesky arcuscotangens
 \DeclareMathOperator\arccot{arccotg}
-\DeclareMathOperator\tgh{tgh}                           % cesky hyp. tangens
-\let\tanh\relax\DeclareMathOperator\tanh{tgh}
-\DeclareMathOperator\argcosh{argcosh}                   % cesky inverzni hyp. cosinus
-\DeclareMathOperator\argsinh{argsinh}                   % cesky inverzni hyp. sinus
-\DeclareMathOperator\argtgh{argtgh}                     % cesky inverzni hyp. tangens
-\DeclareMathOperator\argtanh{argtgh}
-\DeclareMathOperator\argcotgh{argcotgh}                 % cesky inverzni hyp. sinus
-\DeclareMathOperator\argcoth{argcotgh}                  % cesky inverzni hyp. sinus
-\DeclareMathOperator\tr{Tr}                             % stopa
-\DeclareMathOperator\sgn{sgn}                           % funkce signum
-\newcommand\Laplace{\Delta}                             % trojuhelnickovity operator
-\DeclareMathOperator\rot{rot}                           % rotace
-\DeclareMathOperator\Div{div}                           % divergence
-\DeclareMathOperator\grad{grad}                         % gradient
-\DeclareMathOperator\Dalembert{\Box}                    % operátor D'Alembert
-\newcommand\prumer{\varnothing}                         % [obsolete]
-\newcommand\eqdef{\stackrel{\mathup{def}}{=}}           % definition equality
-\providecommand\qed{\hfill\square}			% konec dukazu, podmínění kvůli beameru
-\newcommand\bod[1]{\mathsf{#1}}                         % geometric point
-\newcommand\bb[1]{\mathbb{#1}}                          % blackboard bold
-\newcommand\op[1]{\mathup{#1}}                          % operators
-\newcommand\abs[1]{\left|#1\right|}                     % absolutní hodnota
-\newcommand\conj[1]{#1^\ast}                            % komplexní sdružení
+\DeclareMathOperator\tgh{tgh}                               % cesky hyp. tangens
+  \let\tanh\relax\DeclareMathOperator\tanh{tgh}
+\DeclareMathOperator\argcosh{argcosh}                       % cesky inverzni hyp. cosinus
+\DeclareMathOperator\argsinh{argsinh}                       % cesky inverzni hyp. sinus
+\DeclareMathOperator\argtgh{argtgh}                         % cesky inverzni hyp. tangens
+  \DeclareMathOperator\argtanh{argtgh}
+\DeclareMathOperator\argcotgh{argcotgh}                     % cesky inverzni hyp. cotangens
+  \DeclareMathOperator\argcoth{argcotgh}
+\DeclareMathOperator\tr{Tr}                                 % stopa
+\DeclareMathOperator\sgn{sgn}                               % funkce signum
+\newcommand\Laplace{\Delta}                                 % trojuhelnickovity operator
+\DeclareMathOperator\rot{rot}                               % rotace
+\DeclareMathOperator\Div{div}                               % divergence
+\DeclareMathOperator\grad{grad}                             % gradient
+\newcommand\Dalembert{\Box}                                 % operátor D'Alembert
+\newcommand\prumer{\varnothing}                             % [obsolete]
+\newcommand\eqdef{\stackrel{\mathup{def}}{=}}               % definition equality
+\providecommand\qed{\hfill\square}                          % konec dukazu, podmínění kvůli beameru
+\newcommand\bod[1]{\mathsf{#1}}                             % geometric point
+\newcommand\bb[1]{\mathbb{#1}}                              % blackboard bold
+\newcommand\op[1]{\mathup{#1}}                              % operators
+\newcommand\abs[1]{\left|#1\right|}                         % absolutní hodnota
+\newcommand\conj[1]{#1^\ast}                                % komplexní sdružení
 
 % intervaly
 \newcommand{\ointo}[2]{\(#1,#2\)}
@@ -199,10 +200,10 @@
 \renewcommand\theta{\vartheta}
 \let\oldphi=\phi
 \renewcommand\phi{\varphi}
-\newcommand\ohm{\Omega}                                 % for use as an unit
-\newcommand\Ohm{\ohm}                                   % Ohm pro Mirka
-\newcommand\Kc{\textnormal{Kč}}                         % for use as an unit of CZK
-\newcommand\Euro{\textnormal{€}}                        % or use as an unit of EUR
+\newcommand\ohm{\Omega}                         % for use as an unit
+\newcommand\Ohm{\ohm}                           % Ohm pro Mirka
+\newcommand\Kc{\textrm{Kč}}                     % for use as an unit of CZK
+\newcommand\Euro{\text{€}}                      % or use as an unit of EUR
 
 % block equations
 \newcommand\eq[2][s]{%
@@ -241,8 +242,8 @@
 % pohodlne psani cisel a jednotek (napr. $ G = "6.672e-11 N.m^2.kg^{-2}" $)
 \begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
 \mathchardef\mathquote=\mathcode`\"
-\def\jed@A #1 {\begingroup\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers written with dot or comma
-\def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathup{#1}\fi\endgroup}
+\def\jed@A #1 {\begingroup\def~{\,}\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers written with dot or comma
+\def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
 \begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
 \mathcode`\"="8000
 
@@ -262,12 +263,33 @@
 
 \def\fkssug@renglish{%
 % tg can be used: https://en.wikipedia.org/wiki/Trigonometric_functions
+\mathchardef\carka=\mathcode`\,
 
 % decimal point
-\def\jed@A ##1 {\begingroup\mathcode`\.="013A\mathcode`\,="013A \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
+	\def\jed@A ##1 {\begingroup\def~{\carka}\mathcode`\.="013A\mathcode`\,="013A \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
 
 %quotation
 \ifdefined\uv\renewcommand\uv[1]{``##1''}\fi
+
+% konstanta
+\renewcommand\const{\mathrm{const}}
+
+\renewcommand\tg{\mathop\mathrm{tan}\nolimits}	% cesky tangens
+  \renewcommand\tan{\mathop\mathrm{tan}\nolimits}
+\renewcommand\cotg{\mathop\mathrm{cot}\nolimits}	% cesky cotangens
+  \renewcommand\cot{\mathop\mathrm{cot}\nolimits}
+\renewcommand\cosec{\mathop\mathrm{csc}\nolimits}	% cesky kosecans
+  \renewcommand\csc{\mathop\mathrm{csc}\nolimits}
+\renewcommand\arctg{\mathop\mathrm{arctan}\nolimits}	% cesky arcustangens
+  \renewcommand\arctan{\mathop\mathrm{arctan}\nolimits}
+\renewcommand\arccotg{\mathop\mathrm{arccot}\nolimits}	% cesky arcuscotangens
+  \renewcommand\arccot{\mathop\mathrm{arccot}\nolimits}
+\renewcommand\tgh{\mathop\mathrm{tanh}\nolimits}	% cesky hyp. tangens
+  \renewcommand\tanh{\mathop\mathrm{tanh}\nolimits}
+\renewcommand\argtgh{\mathop\mathrm{argtanh}\nolimits}	% cesky inverzni hyp. tangens
+  \renewcommand\argtanh{\mathop\mathrm{argtanh}\nolimits}
+\renewcommand\argcotgh{\mathop\mathrm{argcoth}\nolimits}	% cesky inverzni hyp. sinus
+  \renewcommand\argcoth{\mathop\mathrm{argcoth}\nolimits}	% cesky inverzni hyp. sinus
 }
 
 % == czech typeset ==
@@ -275,10 +297,30 @@
 % tg implicit
 
 % decimal point
-\def\jed@A ##1 {\begingroup\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
+\def\jed@A ##1 {\begingroup\def~{\,}\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 ##1 \jed@B} % numbers written with dot or comma
 
 %quotation
 \ifdefined\uv\renewcommand\uv[1]{„##1“}\fi
+
+% konstanta
+\renewcommand\const{\mathrm{konst}}
+
+\renewcommand\tg{\mathop\mathrm{tg}\nolimits}	% cesky tangens
+  \renewcommand\tan{\mathop\mathrm{tg}\nolimits}
+\renewcommand\cotg{\mathop\mathrm{cotg}\nolimits}	% cesky cotangens
+  \renewcommand\cot{\mathop\mathrm{cotg}\nolimits}
+\renewcommand\cosec{\mathop\mathrm{cosec}\nolimits}	% cesky kosecans
+  \renewcommand\csc{\mathop\mathrm{cosec}\nolimits}
+\renewcommand\arctg{\mathop\mathrm{arctg}\nolimits}	% cesky arcustangens
+  \renewcommand\arctan{\mathop\mathrm{arctg}\nolimits}
+\renewcommand\arccotg{\mathop\mathrm{arccotg}\nolimits}	% cesky arcuscotangens
+  \renewcommand\arccot{\mathop\mathrm{arccotg}\nolimits}
+\renewcommand\tgh{\mathop\mathrm{tgh}\nolimits}		% cesky hyp. tangens
+  \renewcommand\tanh{\mathop\mathrm{tgh}\nolimits}
+\renewcommand\argtgh{\mathop\mathrm{argtgh}\nolimits}	% cesky inverzni hyp. tangens
+  \renewcommand\argtanh{\mathop\mathrm{argtgh}\nolimits}
+\renewcommand\argcotgh{\mathop\mathrm{argcotgh}\nolimits}	% cesky inverzni hyp. sinus
+  \renewcommand\argcoth{\mathop\mathrm{argcotgh}\nolimits}	% cesky inverzni hyp. sinus
 }
 
 % == package options ==
@@ -286,6 +328,9 @@
     \AtBeginDocument{\fkssug@renglish}
 }
 \DeclareOption{czech}{%
+    \AtBeginDocument{\fkssug@rczech}
+}
+\DeclareOption{slovak}{%
     \AtBeginDocument{\fkssug@rczech}
 }
 \DeclareOption*{%
