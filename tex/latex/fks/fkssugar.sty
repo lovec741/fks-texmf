@@ -51,24 +51,24 @@
     {\partial#1}{\partial#2}}
 \newcommand\ppder[2]{\frac%                                 % druhá parcialni derivace
     {\partial^2#1}{\partial#2^2}}
-\DeclareMathOperator\tg{tg}                                 % cesky tangens
-  \let\tan\relax\DeclareMathOperator\tan{tg}
-\DeclareMathOperator\cotg{cotg}                             % cesky cotangens
-  \let\cot\relax\DeclareMathOperator\cot{cotg}
-\DeclareMathOperator\cosec{cosec}                           % cesky kosecans
-  \let\csc\relax\DeclareMathOperator\csc{cosec}
-\DeclareMathOperator\arctg{arctg}                           % cesky arcustangens
-  \let\arctan\relax\DeclareMathOperator\arctan{arctg}
-\DeclareMathOperator\arccotg{arccotg}                       % cesky arcuscotangens
-\DeclareMathOperator\arccot{arccotg}
-\DeclareMathOperator\tgh{tgh}                               % cesky hyp. tangens
-  \let\tanh\relax\DeclareMathOperator\tanh{tgh}
-\DeclareMathOperator\argcosh{argcosh}                       % cesky inverzni hyp. cosinus
-\DeclareMathOperator\argsinh{argsinh}                       % cesky inverzni hyp. sinus
-\DeclareMathOperator\argtgh{argtgh}                         % cesky inverzni hyp. tangens
-  \DeclareMathOperator\argtanh{argtgh}
-\DeclareMathOperator\argcotgh{argcotgh}                     % cesky inverzni hyp. cotangens
-  \DeclareMathOperator\argcoth{argcotgh}
+\newcommand\tg{\mathop\mathup{tg}\nolimits}                 % cesky tangens
+  \renewcommand\tan{\mathop\mathup{tg}\nolimits}
+\newcommand\cotg{\mathop\mathup{cotg}\nolimits}             % cesky cotangens
+  \renewcommand\cot{\mathop\mathup{cotg}\nolimits}
+\newcommand\cosec{\mathop\mathup{cosec}\nolimits}           % cesky kosecans
+  \renewcommand\csc{\mathop\mathup{cosec}\nolimits}
+\newcommand\arctg{\mathop\mathup{arctg}\nolimits}           % cesky arcustangens
+  \renewcommand\arctan{\mathop\mathup{arctg}\nolimits}
+\newcommand\arccotg{\mathop\mathup{arccotg}\nolimits}       % cesky arcuscotangens
+  \newcommand\arccot{\mathop\mathup{arccotg}\nolimits}
+\newcommand\tgh{\mathop\mathup{tgh}\nolimits}               % cesky hyp. tangens
+  \renewcommand\tanh{\mathop\mathup{tgh}\nolimits}
+\newcommand\argcosh{\mathop\mathup{argcosh}\nolimits}       % cesky inverzni hyp. cosinus
+\newcommand\argsinh{\mathop\mathup{argsinh}\nolimits}       % cesky inverzni hyp. sinus
+\newcommand\argtgh{\mathop\mathup{argtgh}\nolimits}         % cesky inverzni hyp. tangens
+  \newcommand\argtanh{\mathop\mathup{argtgh}\nolimits}
+\newcommand\argcotgh{\mathop\mathup{argcotgh}\nolimits}     % cesky inverzni hyp. cotangens
+  \newcommand\argcoth{\mathop\mathup{argcotgh}\nolimits}
 \DeclareMathOperator\tr{Tr}                                 % stopa
 \DeclareMathOperator\sgn{sgn}                               % funkce signum
 \newcommand\Laplace{\Delta}                                 % trojuhelnickovity operator
@@ -243,7 +243,7 @@
 \begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
 \mathchardef\mathquote=\mathcode`\"
 \def\jed@A #1 {\begingroup\def~{\,}\mathcode`\.="013B\mathcode`\,="013B \begingroup \mathcode`\e="8000 #1 \jed@B} % numbers written with dot or comma
-\def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathrm{#1}\fi\endgroup}
+\def\jed@B #1@@{\endgroup\if @#1@\else\,\mathcode`\.="0201 \mathup{#1}\fi\endgroup}
 \begingroup\uccode`~=`"\uppercase{\endgroup\def~}#1"{\jed@A #1 @@}
 \mathcode`\"="8000
 
@@ -272,24 +272,24 @@
 \ifdefined\uv\renewcommand\uv[1]{``##1''}\fi
 
 % konstanta
-\renewcommand\const{\mathrm{const}}
+\renewcommand\const{\mathup{const}}
 
-\renewcommand\tg{\mathop\mathrm{tan}\nolimits}	% cesky tangens
-  \renewcommand\tan{\mathop\mathrm{tan}\nolimits}
-\renewcommand\cotg{\mathop\mathrm{cot}\nolimits}	% cesky cotangens
-  \renewcommand\cot{\mathop\mathrm{cot}\nolimits}
-\renewcommand\cosec{\mathop\mathrm{csc}\nolimits}	% cesky kosecans
-  \renewcommand\csc{\mathop\mathrm{csc}\nolimits}
-\renewcommand\arctg{\mathop\mathrm{arctan}\nolimits}	% cesky arcustangens
-  \renewcommand\arctan{\mathop\mathrm{arctan}\nolimits}
-\renewcommand\arccotg{\mathop\mathrm{arccot}\nolimits}	% cesky arcuscotangens
-  \renewcommand\arccot{\mathop\mathrm{arccot}\nolimits}
-\renewcommand\tgh{\mathop\mathrm{tanh}\nolimits}	% cesky hyp. tangens
-  \renewcommand\tanh{\mathop\mathrm{tanh}\nolimits}
-\renewcommand\argtgh{\mathop\mathrm{argtanh}\nolimits}	% cesky inverzni hyp. tangens
-  \renewcommand\argtanh{\mathop\mathrm{argtanh}\nolimits}
-\renewcommand\argcotgh{\mathop\mathrm{argcoth}\nolimits}	% cesky inverzni hyp. sinus
-  \renewcommand\argcoth{\mathop\mathrm{argcoth}\nolimits}	% cesky inverzni hyp. sinus
+\renewcommand\tg{\mathop\mathup{tan}\nolimits}              % cesky tangens
+  \renewcommand\tan{\mathop\mathup{tan}\nolimits}
+\renewcommand\cotg{\mathop\mathup{cot}\nolimits}            % cesky cotangens
+  \renewcommand\cot{\mathop\mathup{cot}\nolimits}
+\renewcommand\cosec{\mathop\mathup{csc}\nolimits}           % cesky kosecans
+  \renewcommand\csc{\mathop\mathup{csc}\nolimits}
+\renewcommand\arctg{\mathop\mathup{arctan}\nolimits}        % cesky arcustangens
+  \renewcommand\arctan{\mathop\mathup{arctan}\nolimits}
+\renewcommand\arccotg{\mathop\mathup{arccot}\nolimits}      % cesky arcuscotangens
+  \renewcommand\arccot{\mathop\mathup{arccot}\nolimits}
+\renewcommand\tgh{\mathop\mathup{tanh}\nolimits}            % cesky hyp. tangens
+  \renewcommand\tanh{\mathop\mathup{tanh}\nolimits}
+\renewcommand\argtgh{\mathop\mathup{argtanh}\nolimits}      % cesky inverzni hyp. tangens
+  \renewcommand\argtanh{\mathop\mathup{argtanh}\nolimits}
+\renewcommand\argcotgh{\mathop\mathup{argcoth}\nolimits}    % cesky inverzni hyp. cotangens
+  \renewcommand\argcoth{\mathop\mathup{argcoth}\nolimits}
 }
 
 % == czech typeset ==
@@ -303,24 +303,24 @@
 \ifdefined\uv\renewcommand\uv[1]{„##1“}\fi
 
 % konstanta
-\renewcommand\const{\mathrm{konst}}
+\renewcommand\const{\mathup{konst}}
 
-\renewcommand\tg{\mathop\mathrm{tg}\nolimits}	% cesky tangens
-  \renewcommand\tan{\mathop\mathrm{tg}\nolimits}
-\renewcommand\cotg{\mathop\mathrm{cotg}\nolimits}	% cesky cotangens
-  \renewcommand\cot{\mathop\mathrm{cotg}\nolimits}
-\renewcommand\cosec{\mathop\mathrm{cosec}\nolimits}	% cesky kosecans
-  \renewcommand\csc{\mathop\mathrm{cosec}\nolimits}
-\renewcommand\arctg{\mathop\mathrm{arctg}\nolimits}	% cesky arcustangens
-  \renewcommand\arctan{\mathop\mathrm{arctg}\nolimits}
-\renewcommand\arccotg{\mathop\mathrm{arccotg}\nolimits}	% cesky arcuscotangens
-  \renewcommand\arccot{\mathop\mathrm{arccotg}\nolimits}
-\renewcommand\tgh{\mathop\mathrm{tgh}\nolimits}		% cesky hyp. tangens
-  \renewcommand\tanh{\mathop\mathrm{tgh}\nolimits}
-\renewcommand\argtgh{\mathop\mathrm{argtgh}\nolimits}	% cesky inverzni hyp. tangens
-  \renewcommand\argtanh{\mathop\mathrm{argtgh}\nolimits}
-\renewcommand\argcotgh{\mathop\mathrm{argcotgh}\nolimits}	% cesky inverzni hyp. sinus
-  \renewcommand\argcoth{\mathop\mathrm{argcotgh}\nolimits}	% cesky inverzni hyp. sinus
+\renewcommand\tg{\mathop\mathup{tg}\nolimits}               % cesky tangens
+  \renewcommand\tan{\mathop\mathup{tg}\nolimits}
+\renewcommand\cotg{\mathop\mathup{cotg}\nolimits}           % cesky cotangens
+  \renewcommand\cot{\mathop\mathup{cotg}\nolimits}
+\renewcommand\cosec{\mathop\mathup{cosec}\nolimits}         % cesky kosecans
+  \renewcommand\csc{\mathop\mathup{cosec}\nolimits}
+\renewcommand\arctg{\mathop\mathup{arctg}\nolimits}         % cesky arcustangens
+  \renewcommand\arctan{\mathop\mathup{arctg}\nolimits}
+\renewcommand\arccotg{\mathop\mathup{arccotg}\nolimits}     % cesky arcuscotangens
+  \renewcommand\arccot{\mathop\mathup{arccotg}\nolimits}
+\renewcommand\tgh{\mathop\mathup{tgh}\nolimits}             % cesky hyp. tangens
+  \renewcommand\tanh{\mathop\mathup{tgh}\nolimits}
+\renewcommand\argtgh{\mathop\mathup{argtgh}\nolimits}       % cesky inverzni hyp. tangens
+  \renewcommand\argtanh{\mathop\mathup{argtgh}\nolimits}
+\renewcommand\argcotgh{\mathop\mathup{argcotgh}\nolimits}   % cesky inverzni hyp. cotangens
+  \renewcommand\argcoth{\mathop\mathup{argcotgh}\nolimits}
 }
 
 % == package options ==
