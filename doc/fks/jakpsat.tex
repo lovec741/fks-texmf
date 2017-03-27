@@ -137,7 +137,7 @@ a~mít tak možnost si nechat automaticky přeložit celý ročník včetně obr
 soubor \texttt{solution.tex} s~obsahem uvedeným níže. Změňte cestu k~souboru
 úlohy, popř.~název semináře a~ročník a~přeložte příkazem \texttt{xelatex}. Vždy
 překládejte soubor~\texttt{solution.tex}, nikoliv
-soubor~\texttt{problems/problemS-U.tex}\footnote{Používate-li např.~TeXstudio,
+soubor~\texttt{problems/problemS-U.tex}\footnote{Používáte-li např.~TeXstudio,
 	otevřete soubor~\texttt{solution.tex} a~zvolte Volby~→~Prohlásit současný
 	dokument za Hlavní dokument. Poté můžete mít otevřený soubor s~úlohou, ale
 	překládat se vždy bude soubor~\texttt{solution.tex}}. Obrázky nebudou do souboru
@@ -158,12 +158,15 @@ chybějícím obrázkům selhal.
 
 \section{Obecné zásady}
 
-Řešení pište bez chyb! Kdo tam bude mít chyby, bude zmrskán!
+\TeX{}ař bude velice rád, pokud se budete snažit psát co nejvíc dle tohoto manuálu.
+Nicméně hlavní je fyzika, takže se snažte mít řešení po obsahové stránce správně
+a~TeX vám vejde do krve časem. Snažte se ale níže uvedené postupy používat.
+Když nevíte, napište TeXaři, co byste potřebovali.
 
 Všechny texty týkající se FYKOSu jsou psány v~typografickém systému \TeX
 (využívajíce {\LaTeX}ových maker). Řešení úloh pište v~libovolném textovém
 editoru (např.~\texttt{TeXstudio}\footnotei{,}{\url{http://texstudio.sourceforge.net},
-	dostupné pro Windows, Linux i~Mac OS X} které vám s~psaním pomocí různých
+dostupné pro Windows, Linux i~Mac OS X} které vám s~psaním pomocí různých
 klikátek velmi pomůže) do souboru úlohy v~kódování UTF-8.
 
 Výsledný soubor uložte do repozitáře. V~případě nouze nebo nemáte-li do
@@ -314,7 +317,7 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 	\texinline|$\tprod_{i=1}^N$| & $\tprod_{i=1}^N$ &
 		součin v~řádku \\\hline
 	\texinline|$\tint_a^b \d x$| & $\tint_a^b \d x$ &
-		integrál v~řádku, direfenciál \\\hline
+		integrál v~řádku, diferenciál \\\hline
 	\texinline|$\ztoho$| & $\ztoho$ &
 		implikace \\\hline
 	\texinline|$\const$| & $\const$ &
@@ -334,6 +337,8 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		rotace, divergence, gradient\\\hline
 	\texinline|$\op{dup}$| & $\op{dup}$ &
 		vlastní (jinak nedefinovaný) operátor \\\hline
+\end{texexampletab}
+\begin{texexampletab}
 	\texinline|$\prumer$| & $\prumer$ &
 		průměr\\\hline
 	\texinline|$\eqdef,\doteq,\approx,\propto$| & $\eqdef, \doteq, \approx, \propto $ &
@@ -359,8 +364,6 @@ dělení většinou nutné (např.~teorie, měření, nejistoty, diskuse, závě
 		stupně Celsia\\\hline
 	\texinline|$\ohm, \Ohm$| & $\ohm$ &
 		ohm (jednotka)\\\hline
-\end{texexampletab}
-\begin{texexampletab}
 	\texinline|$\Kc, \Euro$| & $\Kc, \Euro$ &
 		CZK a~EUR (jednotka)\\\hline
 \end{texexampletab}
@@ -418,7 +421,7 @@ uvozovkového pomocníka. Ten je citlivý na mezeru před jednotkou. Pokud je
 jednotka součinem několika jiných, píšeme tečku. Čísla do uvozovek píšeme
 s~desetinnou tečkou (snadno pak naformátujeme i~výstup z~Gnuplotu). Exponent
 desítky napíšeme pomocí \texinline|e|. Číslice oddělujeme do skupin po třech
-symbolem vlnky \texinline|~|, která se v~úvozovkovém módu aktivuje podle používaného
+symbolem vlnky \texinline|~|, která se v~uvozovkovém módu aktivuje podle používaného
 jazyka. V~angličtině vysází čárku, v~češtině a~v~nespecifikovaném prostředí úzkou
 mezeru. Chceme-li psát samostatně jednotku, využijeme příkaz
 \texinline|\jd{}|.
@@ -704,4 +707,39 @@ pomocí příkazu \texttt{pdflatex}).
 \end{document}
 \end{texsource}
 
+\newpage
+\section{Angličtina}
+Makra dovolují i anglickou sazbu.
+
+\medskip\noindent
+Ve \texinline|fkssugar.sty| anglická sazba ovlivňuje:
+\begin{compactenum}
+\item Desetinnou tečku / čárku v~uvozovkovém makru,
+\item oddělovač tisíců,
+\item konst vs. const.
+\end{compactenum}
+Soubor \texinline|fksmeta.sty| zavádí:
+\begin{compactenum}
+\item anglickou patičku,
+\item anglickou adresu,
+\item anglické hlavičku zadání/řešení.
+\end{compactenum}
+Potomci \texinline|fksbase.cls| podporují
+\begin{compactenum}
+\item Obr. vs. Fig.
+\end{compactenum}
+
+\medskip\noindent
+Jazyk sazby se nastavuje: {\sl (preferenčně 1, nouzově 2, nedoporučovaně 3. a 4.)}
+\begin{compactenum}
+\item \textbf{globálně:} zadáním nepovinného parametru {\tt czech},
+    {\tt english}, {\tt slovak} do \texinline|\documentclass|
+\item nebo nepovinným parametrem do \texinline|\usepackage{fkssugar}|
+    (pak nefunguje Obr. vs. Fig.),
+\item nebo nepovinným parametrem do \texinline|\usepackage{fksmeta}|
+    (je též ovlivněn pouze tento balík),
+\item \textbf{lokálně v betaverzi:} zavoláním makra \texinline|\fkssug@rczech|
+    resp. \texinline|\fkssug@renglish| se přepne funkcionalita
+    \texinline|fkssugar.sty|. Funguje pouze není-li @ \uv{other}.
+\end{compactenum}
 \end{document}
