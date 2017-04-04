@@ -562,7 +562,7 @@ ISBN \@isbn
 %
 % Misc
 %
-\newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
+\newcommand\mffpress{MatfyzPress}
 
 \AtBeginDocument{%
   \renewcommand\figurename{Obr.}
