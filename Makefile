@@ -11,3 +11,5 @@ install:
 	mkdir -p $(DST)
 	cp -r texmf/* -t $(DST)/
 
+test:
+	make -C tests
