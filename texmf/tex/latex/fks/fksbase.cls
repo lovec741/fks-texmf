@@ -19,6 +19,7 @@
 \RequirePackage{amssymb}
 \RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
 \RequirePackage{xltxtra} % includes xunicode, fontspec
+\RequirePackage{xunicode}
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal ellipsis
 
 \RequirePackage[version=3]{mhchem}
