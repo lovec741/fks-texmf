@@ -29,6 +29,7 @@ Source:
 # TODO check those propagates to binary package too
 BuildRequires:  texlive-cm-unicode
 BuildRequires:  sil-doulos-fonts
+BuildRequires:  texlive-listings
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
