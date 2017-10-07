@@ -1,0 +1,29 @@
+addons:
+  apt:
+    packages:
+      - lmodern
+      - pgf
+      - texlive-base
+      - texlive-science
+      - texlive-fonts-extra
+      - texlive-fonts-recommended
+      - texlive-lang-greek
+      - texlive-lang-czechslovak
+      - texlive-latex-base
+      - texlive-latex-extra
+      - texlive-latex-recommended
+      - texlive-math-extra
+      - texlive-xetex 
+
+
+before_install:
+
+install:
+
+before_script:
+
+script:
+  - make test
+
+after_failure:
+  - echo "Test failed, see respective PNGs"
