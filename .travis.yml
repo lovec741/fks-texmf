@@ -17,12 +17,15 @@ addons:
       - texlive-xetex 
 # for tests
       - latex-beamer
-      - poppler-utils
       - python-matplotlib
       - python-numpy
 
 
 before_install:
+  # we need poppler-utils >= 0.25
+  - sudo add-apt-repository -y ppa:alexis-via/poppler-utils-backport
+  - sudo apt-get update
+  - sudo apt-get install -y poppler-utils
 
 install:
 
