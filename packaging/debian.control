@@ -8,7 +8,7 @@ Homepage: https://github.com/fykosak/fks-texmf
 
 Package: fks-tex-base
 Architecture: all
-Depends: lmodern, pgf,
+Depends: fonts-sil-doulos, lmodern, pgf,
 	texlive-base, texlive-science, texlive-fonts-extra, texlive-fonts-recommended,
 	texlive-lang-greek, texlive-lang-czechslovak,
 	texlive-latex-base, texlive-latex-extra, texlive-latex-recommended (>=2012),

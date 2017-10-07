@@ -1,6 +1,8 @@
 addons:
   apt:
     packages:
+      - fonts-sil-doulos
+      - latex-beamer
       - lmodern
       - pgf
       - texlive-base
