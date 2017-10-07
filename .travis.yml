@@ -2,7 +2,6 @@ addons:
   apt:
     packages:
       - fonts-sil-doulos
-      - latex-beamer
       - lmodern
       - pgf
       - texlive-base
@@ -16,6 +15,11 @@ addons:
       - texlive-latex-recommended
       - texlive-math-extra
       - texlive-xetex 
+# for tests
+      - latex-beamer
+      - poppler-utils
+      - python-matplotlib
+      - python-numpy
 
 
 before_install:
