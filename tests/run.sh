@@ -130,8 +130,11 @@ mkdir "$OUT"
 NUMALL=0
 NUMERR=0
 NUMWARN=0
+declare -A test_args
+
 for file in $TESTSSRC/t*.tex ; do
 	NUMALL=$NUMALL+1
+	parse_test_args $file
 	single_test $file
 	case $? in
 		$RC_FAILEDBUILD|$RC_FAILEDAPPEAR)

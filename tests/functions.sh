@@ -77,3 +77,19 @@ function pdf_to_png {
 		$file $out/$png_stem"
 	$cmd &>$log_file
 }
+
+#
+# Input: TeX filename
+# Output: test_args (variable)
+function parse_test_args {
+	local file=$1
+	local key value
+	unset test_args
+	declare -gA test_args
+
+	while IFS="=" read key value ; do
+		test_args["$key"]="$value"
+	done < <(
+		grep "^%META_TEST" $file | sed 's/^%META_TEST *//'
+	)
+}
