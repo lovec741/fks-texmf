@@ -35,4 +35,5 @@ script:
   - make test
 
 after_failure:
+  - cat ./tests/out/tests/*.log
   - echo "Test failed, see respective PNGs"
