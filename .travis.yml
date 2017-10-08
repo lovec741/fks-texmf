@@ -23,10 +23,11 @@ addons:
 
 
 before_install:
+      # - sudo sed 's/deb /deb [trusted=yes] /' -i /etc/apt/sources.list /etc/apt/sources.list.d/*
   # we need poppler-utils >= 0.25
   - sudo add-apt-repository -y ppa:alexis-via/poppler-utils-backport
-  - sudo apt-get update
-  - sudo apt-get install -y poppler-utils
+  - sudo apt-get update -qy --allow-unauthenticated || true
+  - sudo apt-get install --allow-unauthenticated -y poppler-utils
 
 install:
 
@@ -38,6 +39,6 @@ script:
 after_failure:
   - cat ./tests/out/*.log
   - echo "MARK"
-  - tar cj ./tests/out*-diff.png | base64
+  - tar cj ./tests/out/*-diff.png | base64
   - echo "MARK"
-  - echo "Test failed, `car MARK/MARK | base64 -d | tar xj` to see respective diff PNGs"
+  - echo "Test failed, `cat MARK/MARK | base64 -d | tar xj` to see respective diff PNGs"

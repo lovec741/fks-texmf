@@ -5,9 +5,9 @@ import numpy as np
 
 convolve = False
 
-if len(sys.argv) != 4:
+if len(sys.argv) < 4:
     print sys.argv
-    print "Usage: %s a.png b.png diff.png"
+    print "Usage: %s a.png b.png diff.png [-r XxY,W,H]"
     sys.exit( 1 )
 
 try:
