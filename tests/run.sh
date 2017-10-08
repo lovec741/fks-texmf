@@ -19,6 +19,11 @@ else
 	log_init $LOG_ERROR
 fi
 
+if [ "$1" = "-t" ] ; then
+	TESTSPEC=$2
+	shift 2
+fi
+
 TEXMF="$1"
 TESTS="$2"
 TESTSSRC="$2/source"
@@ -35,7 +40,7 @@ RC_FAILEDAPPEAR=2
 RC_NOPDF=2
 
 function usage {
-	echo "Usage: $0 [-v] <texmf> <testdir> <outdir>"
+	echo "Usage: $0 [-v] [-t <testspec>] <texmf> <testdir> <outdir>"
 	exit 0
 }
 
@@ -136,12 +141,17 @@ mkdir "$OUT"
 NUMALL=0
 NUMERR=0
 NUMWARN=0
+if [ -n "$TESTSPEC" ] ; then
+	tests=$TESTSSRC/t*$TESTSPEC*.tex
+else
+	tests=$TESTSSRC/t*.tex
+fi
 
 # global variables
 declare -A test_args
 declare -g ignore_test
 
-for file in $TESTSSRC/t*.tex ; do
+for file in $tests ; do
 	parse_test_args $file
 	ignore_test="${test_args[ignore]}"
 

@@ -13,7 +13,11 @@ TEXMF_STAMP=out/texmf.stamp
 # Test working copy version
 #
 test:
+ifdef TEST
+	./run.sh -v -t $(TEST) $(TEXMF_TESTED) $(TESTS) $(TESTS_OUT)
+else
 	./run.sh -v $(TEXMF_TESTED) $(TESTS) $(TESTS_OUT)
+endif
 
 #
 # Recreate tests expected results with current working copy
