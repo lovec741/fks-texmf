@@ -21,3 +21,22 @@ To rebuild packages with a fresh pull from the repo call
 
   * Beware that Build-Depends is duplicated both in `*.dsc` and
     `debian.control` file (does not need frequent changes though).
+
+## Tests
+
+  * `tests/source` any `t*.tex` files are compiled with the macros.
+  * `tests/exp-res` here you should put PNG files with expected test results
+    (matching respective source filename).
+    * Simply call `make test-results` to refresh the PNG patterns.
+
+### Metadata
+
+The test files can arbitrary key=value metadata comments
+```
+	%META_TEST foo=bar
+```
+
+Following keys are supported:
+
+  * ...
+
