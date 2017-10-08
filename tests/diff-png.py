@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import matplotlib.image as img
 import numpy as np
@@ -6,7 +7,7 @@ convolve = False
 
 if len(sys.argv) != 4:
     print sys.argv
-    print "Parameters number" + (len(sys.argv)-1) + "!=3"
+    print "Usage: %s a.png b.png diff.png"
     sys.exit( 1 )
 
 try:

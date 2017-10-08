@@ -2,19 +2,18 @@
 
 mkfile_path:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-TESTS=./tests
+TESTS=$(mkfile_path)
 TESTS_RES=$(TESTS)/exp-res
 TESTS_SRC=$(TESTS)/source
-TESTS_OUT=out/tests
-TEXMF_TMP=out/texmf.tmp
+TESTS_OUT=out
+TEXMF_TESTED=$(mkfile_path)/../texmf
 TEXMF_STAMP=out/texmf.stamp
 
 #
 # Test working copy version
 #
 test:
-	./export-wc.sh $(TEXMF_TMP)
-	./run-tests.sh $(TEXMF_TMP)
+	./run.sh -v $(TEXMF_TESTED) $(TESTS) $(TESTS_OUT)
 
 #
 # Recreate tests expected results with current working copy
@@ -28,12 +27,11 @@ test-results: $(test_files)
 
 
 $(TEXMF_STAMP):
-	./export-wc.sh $(TEXMF_TMP)
 	touch $@
 
 # PNG files are created as side-effect of this rule
 $(TESTS_OUT)/%.pdf: $(TESTS_SRC)/%.tex $(TEXMF_STAMP)
 	@rm -f $(TESTS_RES)/$**.png
-	$(TESTS)/make-result.sh $(TEXMF_TMP) $< $(TESTS_RES)
+	./make-result.sh $(TEXMF_TESTED) $< $(TESTS_RES)
 
 
