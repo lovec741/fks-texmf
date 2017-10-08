@@ -43,22 +43,28 @@ function test_pass {
 	local name=$1
 	local phase=$2
 	[ -n "$3" ] && local reason=" ($3)" || local reason=""
-	green "Test $name/$phase passed$reason."
+	local msg="Test $name/$phase passed$reason."
+
+	if [ -n "$ignore_test" ] ; then
+		warn "$msg"
+	else
+		green "$msg"
+	fi
 }
 
 function test_fail {
 	local name=$1
 	local phase=$2
 	[ -n "$3" ] && local reason=" ($3)" || local reason=""
-	err "Test $name/$phase failed$reason."
+	local msg="Test $name/$phase failed$reason."
+	
+	if [ -n "$ignore_test" ] ; then
+		warn "$msg"
+	else
+		err "$msg"
+	fi
 }
 
-function test_skip {
-	local name=$1
-	local phase=$2
-	[ -n "$3" ] && local reason=" ($3)" || local reason=""
-	warn "Test $name/$phase skipped$reason."
-}
 
 function single_test {
 	local file=$1
@@ -70,7 +76,7 @@ function single_test {
 	if test_xelatex "$TEXMF" "$file" "$OUT" ; then
 		test_pass $file "build"
 	else
-		if [ -n "$VERBOSE" ] ; then
+		if [ -n "$VERBOSE" -a -z "$ignore_test" ] ; then
 			log=`basename $file`
 			log=${log%.tex}.log
 			echo "=== $log ==="
@@ -114,7 +120,7 @@ function single_test {
 		return $RC_FAILEDAPPEAR
 	else
 		test_pass $file "appearance"
-		return $RC_OK
+		return $RC_PASS
 	fi
 }
 
@@ -130,21 +136,36 @@ mkdir "$OUT"
 NUMALL=0
 NUMERR=0
 NUMWARN=0
+
+# global variables
 declare -A test_args
+declare -g ignore_test
 
 for file in $TESTSSRC/t*.tex ; do
-	NUMALL=$NUMALL+1
 	parse_test_args $file
+	ignore_test="${test_args[ignore]}"
+
 	single_test $file
 	case $? in
 		$RC_FAILEDBUILD|$RC_FAILEDAPPEAR)
-			NUMERR=$NUMERR+1
+			if [ -n "$ignore_test" ] ; then
+				NUMWARN=$NUMWARN+1
+			else
+				NUMERR=$NUMERR+1
+			fi
 			;;
 		$RC_NOPDF)
 			NUMWARN=$NUMWARN+1
 			;;
+		$RC_PASS)
+			# ignore passing tests are suspicious
+			if [ -n "$ignore_test" ] ; then
+				NUMWARN=$NUMWARN+1
+			fi
+			;;
 
 	esac
+	NUMALL=$NUMALL+1
 done
 
 # print summary

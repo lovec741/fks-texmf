@@ -38,5 +38,5 @@ The test files can arbitrary key=value metadata comments
 
 Following keys are supported:
 
-  * ...
+  * `META_TEST ignore=1` test is run but results are ignored
 
