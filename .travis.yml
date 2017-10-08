@@ -37,4 +37,7 @@ script:
 
 after_failure:
   - cat ./tests/out/*.log
-  - echo "Test failed, see respective PNGs"
+  - echo "MARK"
+  - tar cj ./tests/out*-diff.png | base64
+  - echo "MARK"
+  - echo "Test failed, `car MARK/MARK | base64 -d | tar xj` to see respective diff PNGs"
