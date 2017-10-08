@@ -39,4 +39,5 @@ The test files can arbitrary key=value metadata comments
 Following keys are supported:
 
   * `META_TEST ignore=1` test is run but results are ignored
+  * `META_TEST nopdf=1` test is supposed to produce no PDF output
 

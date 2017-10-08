@@ -50,7 +50,7 @@ function test_pass {
 	[ -n "$3" ] && local reason=" ($3)" || local reason=""
 	local msg="Test $name/$phase passed$reason."
 
-	if [ -n "$ignore_test" ] ; then
+	if [ -n "$m_ignore_test" ] ; then
 		warn "$msg"
 	else
 		green "$msg"
@@ -63,7 +63,7 @@ function test_fail {
 	[ -n "$3" ] && local reason=" ($3)" || local reason=""
 	local msg="Test $name/$phase failed$reason."
 	
-	if [ -n "$ignore_test" ] ; then
+	if [ -n "$m_ignore_test" ] ; then
 		warn "$msg"
 	else
 		err "$msg"
@@ -81,7 +81,7 @@ function single_test {
 	if test_xelatex "$TEXMF" "$file" "$OUT" ; then
 		test_pass $file "build"
 	else
-		if [ -n "$VERBOSE" -a -z "$ignore_test" ] ; then
+		if [ -n "$VERBOSE" -a -z "$m_ignore_test" ] ; then
 			log=`basename $file`
 			log=${log%.tex}.log
 			echo "=== $log ==="
@@ -94,6 +94,10 @@ function single_test {
 
 	pdf_file=$OUT/${bfile%.tex}.pdf
 	if ! [ -f "$pdf_file" ] ; then
+		if [ -n "$m_nopdf" ] ; then
+			return $RC_PASS
+		fi
+		test_fail $file "appearance" "no PDF"
 		return $RC_NOPDF
 	fi
 
@@ -149,16 +153,18 @@ fi
 
 # global variables
 declare -A test_args
-declare -g ignore_test
+declare -g m_ignore_test
+declare -g m_no_pdf
 
 for file in $tests ; do
 	parse_test_args $file
-	ignore_test="${test_args[ignore]}"
+	m_ignore_test="${test_args[ignore]}"
+	m_nopdf="${test_args[nopdf]}"
 
 	single_test $file
 	case $? in
 		$RC_FAILEDBUILD|$RC_FAILEDAPPEAR)
-			if [ -n "$ignore_test" ] ; then
+			if [ -n "$m_ignore_test" ] ; then
 				NUMWARN=$NUMWARN+1
 			else
 				NUMERR=$NUMERR+1
@@ -169,7 +175,7 @@ for file in $tests ; do
 			;;
 		$RC_PASS)
 			# ignore passing tests are suspicious
-			if [ -n "$ignore_test" ] ; then
+			if [ -n "$m_ignore_test" ] ; then
 				NUMWARN=$NUMWARN+1
 			fi
 			;;
