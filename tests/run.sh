@@ -77,6 +77,7 @@ function single_test {
 	local exp_res
 	local has_fail
 	local pdf_file
+	local roi
 
 	if test_xelatex "$TEXMF" "$file" "$OUT" ; then
 		test_pass $file "build"
@@ -106,6 +107,10 @@ function single_test {
 		return $RC_FAILEDBUILD
 	fi
 
+	if [ -n "$m_roi" ] ; then
+		roi="-r $m_roi"
+	fi
+
 	# test appearance page by page
 	has_fail=0
 	for exp_res in $TESTSRES/${bfile%.tex}*.png ; do
@@ -113,7 +118,8 @@ function single_test {
 		app_log=${act_res%.png}.log
 		app_diff=${act_res%.png}-diff.png
 
-		$PNGDIFF $exp_res $act_res $app_diff &>$app_log
+
+		$PNGDIFF $exp_res $act_res $app_diff $roi &>$app_log
 		if [ $? -ne 0 ]; then
 			if [ -n "$VERBOSE" ] ; then
 				echo "=== $app_log ==="
@@ -155,11 +161,13 @@ fi
 declare -A test_args
 declare -g m_ignore_test
 declare -g m_no_pdf
+declare -g m_roi
 
 for file in $tests ; do
 	parse_test_args $file
 	m_ignore_test="${test_args[ignore]}"
 	m_nopdf="${test_args[nopdf]}"
+	m_roi="${test_args[roi]}"
 
 	single_test $file
 	case $? in

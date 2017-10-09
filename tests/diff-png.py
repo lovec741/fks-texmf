@@ -7,7 +7,7 @@ convolve = False
 
 if len(sys.argv) < 4:
     print sys.argv
-    print "Usage: %s a.png b.png diff.png [-r XxY,W,H]"
+    print "Usage: %s a.png b.png diff.png [-r LxT,WxH]"
     sys.exit( 1 )
 
 try:
@@ -24,6 +24,24 @@ except IOError:
 if im_refr.shape != im_test.shape:
     print "Shapes are different. " + str(im_refr.shape) + " " + str(im_test.shape)
     sys.exit( 3 )
+
+lt = (0,0)
+size = (1,1)
+
+if len(sys.argv) >= 6 and sys.argv[4] == "-r":
+    roi = sys.argv[5]
+    roi = roi.split(",")
+    lt = [float(x) for x in roi[0].split("x")]
+    size = [float(x) for x in roi[1].split("x")]
+
+w = im_refr.shape[1]
+h = im_refr.shape[0]
+
+lt = int(w*lt[0]), int(h*lt[1])
+size = int(w*size[0]), int(h*size[1])
+
+im_refr = im_refr[lt[1]:lt[1]+size[1], lt[0]:lt[0]+size[0]]
+im_test = im_test[lt[1]:lt[1]+size[1], lt[0]:lt[0]+size[0]]
 
 error=0
 

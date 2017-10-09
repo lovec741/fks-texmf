@@ -40,4 +40,7 @@ Following keys are supported:
 
   * `META_TEST ignore=1` test is run but results are ignored
   * `META_TEST nopdf=1` test is supposed to produce no PDF output
+  * `META_TEST roi=<l>x<t>,<w>x<h>` left and top coordinate, width and height
+    size (all relative [0,1]) of region of interest that is compared against
+    the pattern
 
