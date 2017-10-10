@@ -7,7 +7,7 @@ convolve = False
 
 if len(sys.argv) < 4:
     print sys.argv
-    print "Usage: %s a.png b.png diff.png [-r LxT,WxH]"
+    print "Usage: %s a.png b.png diff.png [-r LxT,WxH] [-t threshold]" % sys.argv[0]
     sys.exit( 1 )
 
 try:
@@ -25,14 +25,28 @@ if im_refr.shape != im_test.shape:
     print "Shapes are different. " + str(im_refr.shape) + " " + str(im_test.shape)
     sys.exit( 3 )
 
+# Default paramters
 lt = (0,0)
 size = (1,1)
 
-if len(sys.argv) >= 6 and sys.argv[4] == "-r":
-    roi = sys.argv[5]
-    roi = roi.split(",")
-    lt = [float(x) for x in roi[0].split("x")]
-    size = [float(x) for x in roi[1].split("x")]
+threshold_avg = 1e-6
+threshold_cnt = 1e-4
+
+# Simple arguments parsing
+parse_argv = sys.argv[4:]
+
+while len(parse_argv) > 0:
+    if parse_argv[0] == "-r":
+        roi = parse_argv[1]
+        roi = roi.split(",")
+        lt = [float(x) for x in roi[0].split("x")]
+        size = [float(x) for x in roi[1].split("x")]
+        parse_argv = parse_argv[2:]
+    elif parse_argv[0] == "-t":
+        threshold_avg = float(parse_argv[1])
+        threshold_cnt = 100 * threshold_avg
+        parse_argv = parse_argv[2:]
+
 
 w = im_refr.shape[1]
 h = im_refr.shape[0]
@@ -63,7 +77,7 @@ if convolve == True:
     imAbw = signal.convolve2d(imAbw, w, boundary='symm', mode='same')
     imBbw = signal.convolve2d(imBbw, w, boundary='symm', mode='same')
 
-# dalculate difference
+# calculate difference
 diff = imAbw - imBbw
 diff[ np.abs( diff ) < .5 ] = 0
 diff_pts = np.where( diff != 0 )[0]
@@ -73,12 +87,12 @@ diffavg = np.sum( np.abs(diff) ) / black
 diffcnt = np.prod( diff_pts.shape )
 
 # test average difference
-if diffavg > 1e-6:
-    print "Average difference " + str( diffavg ) + " > 1e-6."
+if diffavg > threshold_avg:
+    print "Average difference %g > %g" % (diffavg, threshold_avg,)
     error = -1
 # test number od diferrent points
-if diffcnt > black * 1e-4:
-    print "Number of different pixels " + str( (1.*diffcnt) / black ) + " > 1e-4"
+if diffcnt > black * threshold_cnt:
+    print "Number of different pixels %g > %g" % ((1.*diffcnt)/black, threshold_cnt,)
     error = -2
 
 print "black   =", black
