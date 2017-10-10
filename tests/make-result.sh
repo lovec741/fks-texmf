@@ -4,7 +4,7 @@ pushd `dirname $0` > /dev/null
 SCRIPTPATH=`pwd`
 popd > /dev/null
 
-. $SCRIPTPATH/../functions.sh
+. $SCRIPTPATH/functions.sh
 
 function usage {
 	echo "Usage: $0 [-v] <texmf> <test file> <outdir>"
