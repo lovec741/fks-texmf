@@ -43,4 +43,5 @@ Following keys are supported:
   * `META_TEST roi=<l>x<t>,<w>x<h>` left and top coordinate, width and height
     size (all relative [0,1]) of region of interest that is compared against
     the pattern
+  * `META_TEST threshold=1-e6` maximum average pixel discrepancy to accept the test
 
