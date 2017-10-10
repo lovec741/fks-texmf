@@ -111,6 +111,10 @@ function single_test {
 		roi="-r $m_roi"
 	fi
 
+	if [ -n "$m_threshold" ] ; then
+		threshold="-t $m_threshold"
+	fi
+
 	# test appearance page by page
 	has_fail=0
 	for exp_res in $TESTSRES/${bfile%.tex}*.png ; do
@@ -119,7 +123,7 @@ function single_test {
 		app_diff=${act_res%.png}-diff.png
 
 
-		$PNGDIFF $exp_res $act_res $app_diff $roi &>$app_log
+		$PNGDIFF $exp_res $act_res $app_diff $roi $threshold &>$app_log
 		if [ $? -ne 0 ]; then
 			if [ -n "$VERBOSE" ] ; then
 				echo "=== $app_log ==="
@@ -162,12 +166,14 @@ declare -A test_args
 declare -g m_ignore_test
 declare -g m_no_pdf
 declare -g m_roi
+declare -g m_threshold
 
 for file in $tests ; do
 	parse_test_args $file
 	m_ignore_test="${test_args[ignore]}"
 	m_nopdf="${test_args[nopdf]}"
 	m_roi="${test_args[roi]}"
+	m_threshold="${test_args[threshold]}"
 
 	single_test $file
 	case $? in
