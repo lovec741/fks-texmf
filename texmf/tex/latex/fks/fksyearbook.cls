@@ -43,11 +43,11 @@
 \RequirePackage{fkslang}
 
 \newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
-ItalicFont=[cmunti.ttf],
-BoldFont=[cmunbx.ttf],
-BoldItalicFont=[cmunbi.ttf],
-SlantedFont=[cmunsl.ttf]
-]{[cmunrm.ttf]}
+ItalicFont=[cmunti.otf],
+BoldFont=[cmunbx.otf],
+BoldItalicFont=[cmunbi.otf],
+SlantedFont=[cmunsl.otf]
+]{[cmunrm.otf]}
 
 \widowpenalty 1000 \clubpenalty 1000 \displaywidowpenalty 1000
 
@@ -562,7 +562,7 @@ ISBN \@isbn
 %
 % Misc
 %
-\newcommand\mffpress{\textsf{\textbf{MATFYZ}PRESS}}
+\newcommand\mffpress{MatfyzPress}
 
 \AtBeginDocument{%
   \renewcommand\figurename{Obr.}
