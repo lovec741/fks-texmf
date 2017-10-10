@@ -26,6 +26,7 @@
 %ellipsis
 
 \RequirePackage[version=3]{mhchem}
+\RequirePackage{listings}
 
 \RequirePackage[xetex,
   setpagesize=false,
