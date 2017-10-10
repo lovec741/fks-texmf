@@ -122,6 +122,11 @@ function single_test {
 		app_log=${act_res%.png}.log
 		app_diff=${act_res%.png}-diff.png
 
+		if ! [ -f "$exp_res" ] ; then
+			test_fail $file "appearance" "missing expected result"
+			has_fail=1
+			continue
+		fi
 
 		$PNGDIFF $exp_res $act_res $app_diff $roi $threshold &>$app_log
 		if [ $? -ne 0 ]; then
