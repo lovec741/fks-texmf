@@ -23,6 +23,7 @@
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal ellipsis
 
 \RequirePackage[version=3]{mhchem}
+\RequirePackage{listings}
 
 \RequirePackage[xetex,
   setpagesize=false,
