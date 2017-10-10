@@ -41,7 +41,8 @@
 \newcommand\met@headeryearexpproblems{Zadání experimentálních úloh}
 \newcommand\met@headeryearexpsolutions{Řešení experimentálních úloh}
 \newcommand\met@headeryearseries[1]{Seriál o #1}
-\newcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
+\newcommand\met@headeryearserieschaptername{Kapitola \arabic{serieschapter}}
+\newcommand\met@headeryearserieschapter[1]{\met@headeryearserieschaptername: #1}
 \newcommand\met@headeryearseriessolutionsbasic{Řešení úloh ze seriálu}%bez obrazku pro bookmark
 \newcommand\met@headeryearseriessolutions{\met@headeryearseriessolutionsbasic}
 \newcommand\met@headeryearresults{Pořadí nejlepších řešitelů}
@@ -98,7 +99,7 @@
 \renewcommand\met@headeryearexpproblems{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání experimentálních úloh}}
 \renewcommand\met@headeryearexpsolutions{\centering \includegraphics{logo4.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení experimentálních úloh}}
 \renewcommand\met@headeryearseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{#1}}
-\renewcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
+\renewcommand\met@headeryearserieschapter[1]{\met@headeryearserieschaptername: #1}
 \renewcommand\met@headeryearseriessolutionsbasic{Řešení úloh ze seriálu}%bez obrazku pro bookmark
 \renewcommand\met@headeryearseriessolutions{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{\met@headeryearseriessolutionsbasic}}
 \renewcommand\met@headeryearresults{\centering \includegraphics{logo7.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí nejlepších řešitelů}}
@@ -250,6 +251,13 @@ Pro zobrazení kopie této licence navštivte
 \includegraphics[width=23mm]{kniha.eps}\hspace{20pt}\raisebox{0.6cm}
 {Výfučtení: #1}
 }
+% Autoři Výfučtení
+% \serauthors[1] macro is empty operation for TeX, its only purpose at the moment is to play
+% a role of searchable thing for grep in creating of a yearbook (yearbook/scripts/serauthors.sh).
+\newcommand\autori@vyfucteni{}
+\newcommand\serauthors[1]{
+\renewcommand\autori@vyfucteni{#1}
+}
 % poradie
 % \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
   \renewcommand\met@headerresults{\centering
@@ -263,7 +271,6 @@ Pro zobrazení kopie této licence navštivte
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
 }
 
-  %pro potreby rocenky (TODO seriál->Výfučtení)
 \renewcommand\met@headeryeartoc{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Obsah}}
 \renewcommand\met@headeryearintro{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Předmluva}}
 \renewcommand\met@headeryeartheorproblems{\centering \includegraphics[scale=0.35]{vyfuk_rovnice-pretahovani.eps}\hspace{10pt}\raisebox{0.3cm}{Zadání teoretických úloh}}
@@ -271,7 +278,8 @@ Pro zobrazení kopie této licence navštivte
 \renewcommand\met@headeryearexpproblems{\centering \includegraphics[scale=0.16]{vyfuk_raketa.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání experimentálních úloh}}
 \renewcommand\met@headeryearexpsolutions{\centering \includegraphics[scale=0.16]{vyfuk_raketa.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení experimentálních úloh}}
 \renewcommand\met@headeryearseries[1]{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{Výfučtení}} %parametr z duvodu genericity
-\renewcommand\met@headeryearserieschapter[1]{Kapitola \arabic{serieschapter}: #1}
+\renewcommand\met@headeryearserieschaptername{\arabic{serieschapter}. Výfučtení}
+\renewcommand\met@headeryearserieschapter[1]{\met@headeryearserieschaptername: #1}
 \renewcommand\met@headeryearseriessolutionsbasic{Řešení úloh z Výfučtení}%bez obrazku pro bookmark
 \renewcommand\met@headeryearseriessolutions{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{\met@headeryearseriessolutionsbasic}}
 \renewcommand\met@headeryearresults{\centering \includegraphics[scale=0.5]{vyfuk_vyfuk.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí nejlepších řešitelů}}
@@ -287,8 +295,12 @@ Pro zobrazení kopie této licence navštivte
 }
 
 \renewcommand\met@authorspage{
-% TODO implement ''Autoři Výfučtení'' in accordance with ''Náměty úloh''.
-% That means to update templates, write script for generating requested file.
+\textit{Autoři Výfučtení:}\par
+\hspace{\tmpp@rindent}
+\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} % 3pt is magic
+\input{authors/serauthors}
+\end{minipage}\par
+%
 \textit{Legenda tábora:} \t@bor\par
 \met@ownauthorspage
 \bigskip
