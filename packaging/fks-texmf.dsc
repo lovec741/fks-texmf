@@ -2,7 +2,7 @@ Format: 3.0 (quilt)
 Source: fks-texmf
 Binary: fks-tex-base
 Architecture: all
-Version: 3.0~alpha1-1
+Version: 2.6~beta1-1
 Maintainer: FKS TeX group <tex@fykos.cz>
 Homepage: https://github.com/fykosak/fks-texmf
 Standards-Version: 3.9.6
