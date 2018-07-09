@@ -27,8 +27,34 @@
 
 \let\underscore\_                                           % underscore sign
 \let\xor\^                                                  % xor sign
-\renewcommand\_[1]{\ifmmode _{\textnormal{#1}}\else\underscore#1\fi} %roman subscript
-\renewcommand\^[1]{\ifmmode ^{\textnormal{#1}}\else\xor#1\fi}        %roman superscript
+\newbox\my
+\newcount\sz
+\newcount\bigletter
+\newcount\bigletterdashed
+
+\def\mmbox#1{
+\setbox\my=\hbox{\rm A}
+\bigletter=\ht\my		%all big letters have the same heigh in common fonts (in sp, e.g. number)
+\setbox\my=\hbox{\rm Á}
+\bigletterdashed=\ht\my		%so do dashed big letters (in sp, e.g. number)
+\setbox\my=\hbox{$\rm #1$}
+\sz=\ht\my 			%convert height to scaled point, e.g. number
+}
+
+\renewcommand\_[1]{\ifmmode
+\mmbox{#1}
+\ifnum\sz=\bigletter _{\rm\scriptscriptstyle #1}
+\else \ifnum\sz=\bigletterdashed _{\rm \scriptscriptstyle #1}
+\else _{\rm #1}\fi\fi
+\else\underscore#1\fi} 		%roman subscript
+
+\renewcommand\^[1]{\ifmmode
+\mmbox{#1}
+\ifnum\sz=\bigletter ^{\rm\scriptscriptstyle #1}
+\else \ifnum\sz=\bigletterdashed ^{\rm \scriptscriptstyle #1}
+\else ^{\rm #1}\fi\fi
+\else\xor#1\fi} 		%roman superscript
+
 
 \def\({\left(} \def\){\right)}                              % parentheses
 \newcommand\ztoho{\quad\Rightarrow\quad}                    % implication
