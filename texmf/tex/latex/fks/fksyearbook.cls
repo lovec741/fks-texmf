@@ -403,8 +403,8 @@ A{\bfseries}r}} % sum
 \renewcommand\met@licence{
 \footnotesize
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
-Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK
-a~podporován Ústavem teoretické fyziky\\
+Je zastřešen Oddělením propagace a mediální komunikace MFF~UK
+a~podporován Ústavem teoretické fyziky
 MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \par
 }
