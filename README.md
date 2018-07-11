@@ -44,3 +44,20 @@ Following keys are supported:
     size (all relative [0,1]) of region of interest that is compared against
     the pattern
 
+### Why are my tests failing in Travis?
+
+If you run tests locally, you can read the log and a message will tell you
+which diff PNG image you should look at to figure out the cause of a failing
+test.
+
+Alas, Travis doesn't allow easy saving of test artifacts besides text log.
+Let's exploit that!
+
+```
+cd $DIR_WHERE_I_WANT_TEST_RESULTS
+wget $URL_OF_FULL_TRAVIS_LOG -O log.txt
+sed -n '/echo "MARK/,/echo "MARK/p' log.txt | tail -n +4 | sed '/ /d' | base64 -d -i | tar xj
+```
+
+Voilà, there are the diff PNGs in your local directory.
+
