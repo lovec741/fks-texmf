@@ -8,12 +8,12 @@ Homepage: https://github.com/fykosak/fks-texmf
 
 Package: fks-tex-base
 Architecture: all
-Depends: fonts-sil-doulos, lmodern, pgf,
+Depends: fonts-sil-doulos, lmodern, pgf | texlive-pictures,
 	texlive-base, texlive-science,
 	texlive-fonts-extra, texlive-fonts-recommended, texlive-font-utils,
 	texlive-lang-greek, texlive-lang-czechslovak,
 	texlive-latex-base, texlive-latex-extra, texlive-latex-recommended (>=2012),
-	texlive-math-extra,
+	texlive-math-extra | texlive-science (>=2016),
 	texlive-xetex (>=2012)
 Description: TeX macros for typesetting physics contests
  And metapost pictures and so on.
