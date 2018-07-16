@@ -61,3 +61,10 @@ sed -n '/echo "MARK/,/echo "MARK/p' log.txt | tail -n +4 | sed '/ /d' | base64 -
 
 Voilà, there are the diff PNGs in your local directory.
 
+### Generating new test patterns with Travis
+
+If you want to store not only diff PNG files, but all PNG files in Travis
+logfile, change value of `SHOW_ALL_PNG` to `true` in `.travis.yml` file.
+This feature is useful i.e. if you want to generate new test patterns and your
+local tests are failing (see above). Don't forget to change the value of
+`SHOW_ALL_PNG` back to `false` to reduce log size.
