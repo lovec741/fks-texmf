@@ -16,8 +16,8 @@
 \newcommand\problemsheading{%
 \section[Zadání \Roman{batch}. série]{\met@headerproblems}
 \vspace{-4pt}
-\ifthenelse{\equal{\@deadlineS}{N/A}}{%
-\centerline{\Large\slshape\sffamily Termín doručení: \@deadline}
+\ifthenelse{\equal{\@deadlineS}{}}{%
+\centerline{\Large\slshape\sffamily Termín odeslání: \@deadline}
 }{%
 \centerline{\Large\slshape\sffamily Termín uploadu: \@deadline}
 \centerline{\Large\slshape\sffamily Termín odeslání: \@deadlineS}}
