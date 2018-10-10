@@ -20,6 +20,7 @@
 \RequirePackage{amssymb}
 \RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
 \RequirePackage{xltxtra} % includes xunicode, fontspec
+\RequirePackage{xunicode}
 \RequirePackage{pgffor}
 \RequirePackage{lastpage}
 \UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal
@@ -403,8 +404,8 @@ A{\bfseries}r}} % sum
 \renewcommand\met@licence{
 \footnotesize
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
-Je zastřešen Oddělením pro vnější vztahy a~propagaci MFF~UK
-a~podporován Ústavem teoretické fyziky\\
+Je zastřešen Oddělením propagace a mediální komunikace MFF~UK
+a~podporován Ústavem teoretické fyziky
 MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 \par
 }
