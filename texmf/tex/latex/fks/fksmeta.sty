@@ -104,7 +104,6 @@
 
 % FYKOS
 \DeclareOption{fykos}{%
-  \fykostrue
   \renewcommand\met@headername{Fyzikální korespondenční seminář MFF UK}
   \renewcommand\met@shortname{FYKOS}
   \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
@@ -239,7 +238,6 @@ To view a copy of the license, visit
 
 % --- VÝFUK ---
 \DeclareOption{vyfuk}{%
-  \vyfuktrue
   \newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} }
 \newcommand\type@tag[1]{%
 \ifthenelse{\equal{#1}{hard}}{\ding{72}}{}%
