@@ -479,15 +479,15 @@ Vydal \mffpress\\
 nakladatelství Matematicko-fyzikální fakulty\\
 Univerzity Karlovy\\
 Sokolovská 83, 186\,75 Praha 8\\
-jako svou \cislo@publikace. publikaci
+jako svou \cislo@publikace. publikaci.
 \bigskip
 
 Vytiskl \@tiskarna
 \bigskip
 
-Publikace neprošla recenzním ani lektorským řízením\\
-Nakladatelství neodpovídá za kvalitu a obsah textu\\
-Vydáno pro interní potřebu MFF UK\\
+Publikace neprošla recenzním ani lektorským řízením.\\
+Nakladatelství neodpovídá za kvalitu a obsah textu.\\
+Vydáno pro interní potřebu MFF UK.\\
 Neprodejná publikace
 \bigskip
 
