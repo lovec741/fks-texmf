@@ -45,7 +45,7 @@
 	BoldFont=[cmunbx.otf],
 	BoldItalicFont=[cmunbi.otf],
 	SlantedFont=[cmunsl.otf]
-]{[cmunrm.otf
+]{[cmunrm.otf]}
 
 \widowpenalty 1000 \clubpenalty 1000 \displaywidowpenalty 1000
 
