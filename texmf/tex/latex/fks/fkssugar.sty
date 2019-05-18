@@ -94,9 +94,10 @@
 
 % footnote nad interpunkci
 \newcommand{\footnotei}[2]{%
+\mbox{%
 \setbox0\hbox{#1}%
 \copy0%
-\hspace{-\wd0}%
+\hspace{-\wd0}}%
 \footnote{#2}%
 }
 
