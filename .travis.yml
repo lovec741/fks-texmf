@@ -38,11 +38,11 @@ script:
 
 after_failure:
   # set to true only if you need all PNGs, not only diffs
-  - SHOW_ALL_PNG=false
+  - SHOW_ALL_PNG=true
   # to reduce output size
   - ${SHOW_ALL_PNG} || cat ./tests/out/*.log
   - echo "MARK"
   - ${SHOW_ALL_PNG} || tar cj ./tests/out/*-diff.png | base64
   - ${SHOW_ALL_PNG} && tar cj ./tests/out/*.png | base64
   - echo "MARK"
-  - echo "Test failed, `cat MARK/MARK | base64 -d | tar xj` to see respective diff PNGs"
+  - echo "Test failed, 'cat MARK/MARK | base64 -d | tar xj' to see respective diff PNGs"
