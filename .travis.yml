@@ -45,4 +45,4 @@ after_failure:
   - ${SHOW_ALL_PNG} || tar cj ./tests/out/*-diff.png | base64
   - ${SHOW_ALL_PNG} && tar cj ./tests/out/*.png | base64
   - echo "MARK"
-  - echo "Test failed, `cat MARK/MARK | base64 -d | tar xj` to see respective diff PNGs"
+  - echo "Test failed, 'cat MARK/MARK | base64 -d | tar xj' to see respective diff PNGs"
