@@ -538,7 +538,7 @@ ISBN \@isbn
 {\titlefontsub\@subtitle}
 \vspace{72pt}
 
-\includegraphics[width=40mm]{logo1.eps}
+\includegraphics[width=0.7\textwidth]{logo3.pdf}
 
 
 \end{center}
