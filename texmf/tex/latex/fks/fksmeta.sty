@@ -75,11 +75,11 @@
 \newcommand\met@probheader{1 & 2 & 3 & 4 & 5 & P & E & S} % results table problems header
 \newcommand\met@resultscols{\newcolumntype{T}{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
 ^r^r^r^r^r^r^r^r%points columns
-@{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\itshape}r@{\hspace{8pt}}A{\bfseries}r}} % batch, percent, sum
+@{\hspace{8pt}}A{\bfseries}r@{\hspace{3pt}}A{\itshape}r@{\hspace{3pt}}A{\itshape}r@{\hspace{6pt}}A{\bfseries}r}} % batch, percent, percent total, sum
 
 \newcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & %
 \met@probheader & %
-\Roman{solvedbatch} & \textnormal{\%} & $\Sigma$ \\}
+\Roman{solvedbatch} & \textnormal{\uv{\%}\hglue -0.5em} & \textnormal{\%} & $\Sigma$ \\}
 
 % language selector
 \newif\iffksczech
