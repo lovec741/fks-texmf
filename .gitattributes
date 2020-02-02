@@ -1,4 +1,5 @@
-*.sh export-ignore
+*.sh text eol=lf 
+*.py text eol=lf 
 deb.info export-ignore
 README export-ignore
 .gitattributes export-ignore
