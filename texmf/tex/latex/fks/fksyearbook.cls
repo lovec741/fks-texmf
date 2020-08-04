@@ -275,14 +275,15 @@ A{\bfseries}r}} % sum
 \newchapter[\met@headeryearseriessolutionsbasic]{\met@headeryearseriessolutions}\subpdfbookmark{Úlohy}{book_sersol}}
 
 \newcommand\eventsheading{%
-\newchapter[Akce \met@shortname u]{\met@headeryearevents}}
+\newchapter[Akce \met@shortname u]{\met@headeryearevents}%
+}
 
 \newcommand\summerheading{%
-\newchapter[Zadání prázdninových úloh]{\met@headersummer}%
+\newchapter[Zadání prázdninových úloh]{\met@headersummer}\subpdfbookmark{Úlohy}{book_holiday}%
 }
 
 \newcommand\summersolutionsheading{%
-\newchapter[Řešení prázdninových úloh]{\met@headersummersolutions}%
+\newchapter[Řešení prázdninových úloh]{\met@headersummersolutions}\subpdfbookmark{Úlohy}{book_holidaysol}%
 }
 
 \newcommand\resultsheading{%
