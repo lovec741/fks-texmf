@@ -442,7 +442,7 @@ MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
 
 \met@probthemeauthors
 
-\textit{Autoři řešení úloh:}\par
+\textit{Řešení úloh:}\par
 \hspace{\tmpp@rindent}
 \begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} % 3pt is magic
 \input{authors/solauthors}
