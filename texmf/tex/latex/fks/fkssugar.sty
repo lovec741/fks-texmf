@@ -32,6 +32,7 @@
 \def\smallind{0.8}
 
 \def\({\left(} \def\){\right)}                              % parentheses
+\def\botrule{\bottomrule}                                   % there is \toprule and \midrule, so \bodrule makes sense
 \newcommand\ztoho{\quad\Rightarrow\quad}                    % implication
 \newcommand\frc[2]{\dfrac#1#2}                              % non-reduced fractions [obsolete]
 \newcommand\tsum{\mathop{\textstyle\sum}\limits}            % inline sum, chybne v beamru, \textnormalstyle ???
@@ -217,6 +218,9 @@
 \ifthenelse{\equal{#1}{m}}{%
 \begin{align*}#2\end{align*}%
 }{}%
+\ifthenelse{\equal{#1}{a}}{%
+\begin{alignat*}#2\end{alignat*}%
+}{}%
 \ignorespaces}
 
 \newcommand\lbl[1]{\stepcounter{equation}\tag{\theequation}\label{#1}}
@@ -228,7 +232,7 @@
 \newcommand\popi[2]{{$\dfrac{#1}{\jd{#2}}$}} % labels for graphs/tables
 \DeclareExpandableDocumentCommand{\popit}{O{1}O{c}mm}
   {\multicolumn{#1}{#2}{\popi{#3}{#4}}}% labels for tables
-
+\newcommand\cc[1]{\multicolumn{1}{c}{#1}} % "center cell" - for tabular labels that don't have any unit so we don't have to write \multicolumn{1}{c}{ ... }
 
 % following definition must be loaded after begining of the document
 \AtBeginDocument{
