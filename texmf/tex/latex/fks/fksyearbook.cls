@@ -216,9 +216,10 @@ A{\bfseries}r}} % sum
     {Úloha \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
       {\normalfont\normalsize\problemstats}}%
 	  \label{solution\thebatch-\theproblem}%
-   \renewcommand\labelsuffix{_sol}\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak\renewcommand\labelsuffix{}%
+   \renewcommand\labelsuffix{_sol}\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
 %   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \textsl{\@probtask}
+   \renewcommand\labelsuffix{}
    
    \medskip
    
