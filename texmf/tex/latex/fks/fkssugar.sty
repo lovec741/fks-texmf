@@ -103,6 +103,36 @@
 \footnote{#2}%
 }
 
+% footnote s labelem
+\newcommand\footnotelbl[2]{%
+\refstepcounter{footnote}\addtocounter{footnote}{-1}% VERY UGLY!!!!
+\label{#1}%
+\footnote{#2}%
+}
+
+% footnote s labelem nad interpunkci
+\newcommand{\footnotelbli}[3]{%
+\mbox{%
+\setbox0\hbox{#1}%
+\copy0%
+\hspace{-\wd0}}%
+\footnotelbl{#2}{#3}%
+}
+
+% footnote odkazujici na jiny footnote
+\newcommand\footnoteref[1]{%
+	\textsuperscript{\ref{#1}}
+	}
+
+% footnote nad interpunkci odkazujici na jiny footnote
+\newcommand\footnoterefi[2]{%
+	\mbox{%
+	\setbox0\hbox{#1}%
+	\copy0%
+	\hspace{-\wd0}}%
+	\textsuperscript{\ref{#2}}
+	}
+
 % -- greek letters --
 
 %bold serif italic greek font for vectors (from isomath.sty and fixmath.sty)
