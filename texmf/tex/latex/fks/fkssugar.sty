@@ -282,8 +282,7 @@
 \binoppenalty=10000     % nikde jinde se relace lamat nesmeji
 \relpenalty=10000     % nikde jinde se relace lamat nesmeji
 % jednodussi psani \cdot
-\bgroup\uccode`~=`*\uppercase{\egroup\let~}\cdot
-\mathcode`\*="8000
+\DeclareMathSymbol{*}{\mathbin}{symbols}{"01}
 
 % pohodlne psani cisel a jednotek (napr. $ G = "6.672e-11 N.m^2.kg^{-2}" $)
 \begingroup\uccode`~=`e\uppercase{\endgroup\let~}\E   % aktivni e se chova jako \E
