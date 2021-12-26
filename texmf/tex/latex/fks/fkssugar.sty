@@ -275,10 +275,41 @@
 % following definition must be loaded after begining of the document
 \AtBeginDocument{
 % breaking equations according Czech/Russian typography rules (repeat =)
-\def\neq {\mathrel{\not=}} % no break @ \neq
-\begingroup\lccode`~=`\=\lowercase{\endgroup\newcommand~}{\math@eq\discretionary{}{=}{}}
+% define math characters
 \mathchardef\math@eq=\mathcode`\=
-\mathcode`\=="8000      % = je v matematice aktivni znak
+\mathchardef\math@plus=\mathcode`\+
+\mathchardef\math@minus=\mathcode`\-
+\def\math@doteq{\buildrel\textstyle.\over\math@eq}
+\def\math@neq{\not\math@eq}
+\DeclareMathSymbol{\math@pm}{\mathbin}{symbols}{"06}
+\DeclareMathSymbol{\math@mp}{\mathbin}{symbols}{"07}
+\DeclareMathSymbol{\math@equiv}{\mathrel}{symbols}{"11}
+\DeclareMathSymbol{\math@approx}{\mathrel}{symbols}{"19}
+\DeclareMathSymbol{\math@propto}{\mathrel}{symbols}{"2F}
+\DeclareMathSymbol{\math@sim}{\mathrel}{symbols}{"18}
+\DeclareMathSymbol{\math@simeq}{\mathrel}{symbols}{"27}
+
+% make definitions for symbols
+\begingroup\lccode`~=`\=\lowercase{\endgroup\newcommand~}{\math@eq\discretionary{}{\hbox{\ensuremath{\math@eq}}}{}}
+\begingroup\lccode`~=`\+\lowercase{\endgroup\newcommand~}{\math@plus\discretionary{}{\hbox{\ensuremath{\math@plus}}}{}}
+\begingroup\lccode`~=`\-\lowercase{\endgroup\newcommand~}{\math@minus\discretionary{}{\hbox{\ensuremath{\math@minus}}}{}}
+
+\def\doteq{\math@doteq\discretionary{}{\hbox{\ensuremath{\math@doteq}}}{}}
+\def\neq{\math@neq\discretionary{}{\hbox{\ensuremath{\math@neq}}}{}}
+\let\ne=\neq
+\def\pm{\math@pm\discretionary{}{\hbox{\ensuremath{\math@pm}}}{}}
+\def\mp{\math@mp\discretionary{}{\hbox{\ensuremath{\math@mp}}}{}}
+\def\equiv{\math@equiv\discretionary{}{\hbox{\ensuremath{\math@equiv}}}{}}
+\def\approx{\math@approx\discretionary{}{\hbox{\ensuremath{\math@approx}}}{}}
+\def\propto{\math@propto\discretionary{}{\hbox{\ensuremath{\math@propto}}}{}}
+\def\sim{\math@sim\discretionary{}{\hbox{\ensuremath{\math@sim}}}{}}
+\def\simeq{\math@simeq\discretionary{}{\hbox{\ensuremath{\math@simeq}}}{}}
+
+% make symbols active in math
+\mathcode`\=="8000
+\mathcode`\+="8000
+\mathcode`\-="8000
+
 \binoppenalty=10000     % nikde jinde se relace lamat nesmeji
 \relpenalty=10000     % nikde jinde se relace lamat nesmeji
 % jednodussi psani \cdot
