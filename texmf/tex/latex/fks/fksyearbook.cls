@@ -219,6 +219,7 @@ A{\bfseries}r}} % sum
    \renewcommand\labelsuffix{_sol}\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
 %   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \textsl{\@probtask}
+   \signed{\textit{\@proborigin}}
    \renewcommand\labelsuffix{}
    
    \medskip
