@@ -25,6 +25,7 @@
 \RequirePackage[version=3]{mhchem}
 \RequirePackage{listings}
 
+\RequirePackage[hyphens]{url}
 \RequirePackage[xetex,
   setpagesize=false,
   linkcolor=black,
