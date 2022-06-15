@@ -409,7 +409,8 @@ A{\bfseries}r}} % sum
 Fyzikální korespondenční seminář je organizován studenty MFF~UK.
 Je zastřešen Oddělením propagace a mediální komunikace MFF~UK
 a~podporován Ústavem teoretické fyziky
-MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků.
+MFF~UK, jeho zaměstnanci a~Jednotou českých matematiků a~fyziků. 
+Realizace projektu byla podpořena Ministerstvem školství, mládeže a tělovýchovy.
 \par
 }
 
