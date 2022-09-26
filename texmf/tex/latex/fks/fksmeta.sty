@@ -186,20 +186,22 @@ Pro zobrazení kopie této licence navštivte
   & V Holešovičkách 2\\
   & 180\,00 Praha 8\\
 \noalign{\smallskip}
-  www: & \normalfont\url{fykos.cz}\\
-  e-mail: & \normalfont\mail{fykos@fykos.cz}\\
+  www: & \normalfont\url{https://\met@webdomain}\\
+  e-mail: & \normalfont\mail{fykos@\met@webdomain}\\
 \end{tabular}\ifyearbook\relax\else
 \nopagebreak\smallskip
 
 {
-\raisebox{-0.2\baselineskip}{%
-    \opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
-    \opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
-} \href{https://www.facebook.com/FYKOS}{\bfseries\slshape /FYKOS} \quad
-\raisebox{-0.2\baselineskip}{%
-    \opt{web}{\includegraphics[height=\baselineskip]{color/ig_logo.pdf}}%
-    \opt{print}{\includegraphics[height=\baselineskip]{ig_logo.pdf}}%
-} \href{https://www.instagram.com/fykosak}{\bfseries\slshape @fykosak}
+\href{https://www.facebook.com/FYKOS}{
+	\raisebox{-0.2\baselineskip}{%
+		\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
+		\opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
+	}~\bfseries\slshape /FYKOS} \quad
+\href{https://www.instagram.com/fykosak}{
+	\raisebox{-0.2\baselineskip}{%
+		\opt{web}{\includegraphics[height=\baselineskip]{color/ig_logo.pdf}}%
+		\opt{print}{\includegraphics[height=\baselineskip]{ig_logo.pdf}}%
+	}~\bfseries\slshape @fykosak} 
 } \fi
 
 }
@@ -231,20 +233,22 @@ To view a copy of the license, visit
       & 180\,00 Praha 8\\
       & Czech Republic\\
     \noalign{\smallskip}
-      www: & \normalfont\url{https://fykos.org}\\
-      e-mail: & \normalfont\mail{fykos@fykos.org}\\
+      www: & \normalfont\url{https://\met@webdomain}\\
+      e-mail: & \normalfont\mail{fykos@\met@webdomain}\\
 \end{tabular}
 \nopagebreak\smallskip
 
 {
-\raisebox{-0.2\baselineskip}{%
-    \opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
-    \opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
-}\href{https://www.facebook.com/FYKOS}{\bfseries\slshape @FYKOS} \quad
-\raisebox{-0.2\baselineskip}{%
-    \opt{web}{\includegraphics[height=\baselineskip]{color/ig_logo.pdf}}%
-    \opt{print}{\includegraphics[height=\baselineskip]{ig_logo.pdf}}%
-} \href{https://www.instagram.com/fykosak}{\bfseries\slshape @fykosak} 
+\href{https://www.facebook.com/FYKOS}{
+	\raisebox{-0.2\baselineskip}{%
+		\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
+		\opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
+	}~\bfseries\slshape /FYKOS} \quad
+\href{https://www.instagram.com/fykosak}{
+	\raisebox{-0.2\baselineskip}{%
+		\opt{web}{\includegraphics[height=\baselineskip]{color/ig_logo.pdf}}%
+		\opt{print}{\includegraphics[height=\baselineskip]{ig_logo.pdf}}%
+	}~\bfseries\slshape @fykosak} 
 }
 
 }
@@ -256,19 +260,19 @@ To view a copy of the license, visit
 
 % --- VÝFUK ---
 \DeclareOption{vyfuk}{%
-  \newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} }
+\newcommand\year@tag[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or \ding{187}\or \ding{188}\or \ding{189}\or \ding{190}\else \@ctrerr\fi{} }
 \newcommand\type@tag[1]{%
-\ifthenelse{\equal{#1}{hard}}{\ding{72}}{}%
+	\ifthenelse{\equal{#1}{hard}}{\ding{72}}{}%
 }
-  
-  \newif\ifsummerbatch
-  \newcommand\@seriesname{NA}
-  \newcommand\seriesname[1]{\renewcommand\@seriesname{#1}}
-  \renewcommand\met@headername{Korespondenční seminář MFF UK pro základní školy}
-  \renewcommand\met@shortname{Výfuk}
-  \renewcommand\met@webdomain{vyfuk.mff.cuni.cz}
-  \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or E\or V\else \@ctrerr\fi}
-  \renewcommand\metaprobdata[1]{%
+
+\newif\ifsummerbatch
+\newcommand\@seriesname{NA}
+\newcommand\seriesname[1]{\renewcommand\@seriesname{#1}}
+\renewcommand\met@headername{Korespondenční seminář MFF UK pro základní školy}
+\renewcommand\met@shortname{Výfuk}
+\renewcommand\met@webdomain{vyfuk.mff.cuni.cz}
+\renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or E\or V\else \@ctrerr\fi}
+\renewcommand\metaprobdata[1]{%
 % Tags for study years (default are all)
 {\LARGE
 \ifthenelse{\equal{\@probstudyyears}{{N/A}}}{%
@@ -384,7 +388,7 @@ To view a copy of the license, visit
 }
 
 
-  \fancypagestyle{titlepage}{
+\fancypagestyle{titlepage}{
     \newgeometry{head=0pt,headsep=0pt,margin=0.7cm,includeheadfoot}
     \renewcommand{\headrulewidth}{0pt}
     \lhead{}
@@ -415,35 +419,41 @@ To view a copy of the license, visit
 	\renewcommand{\headrulewidth}{0pt}
 	\chead{\setlength{\parindent}{0pt}
 		\colorbox{black}{
-	     	\begin{minipage}{\textwidth-6pt}
-	      		\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \met@headername{}}
-	      		\hfill \raisebox{-8.5pt}{\bfseries\sffamily \met@volumeid~}}
-	     	\end{minipage}
+			\begin{minipage}{\textwidth-6pt}
+				\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \met@headername{}}
+				\hfill \raisebox{-8.5pt}{\bfseries\sffamily \met@volumeid~}}
+			\end{minipage}
 		}
 	}
 	\setlength{\headsep}{5mm}
 \fi
 
-  \renewcommand\met@address{%
+\renewcommand\met@address{%
 \begin{tabular}{r>{\slshape\bfseries}l}
-  \multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}}
-  & Korespondenční seminář \VYFUK \\
-  & UK, Matematicko-fyzikální fakulta\\
-  & V Holešovičkách 2\\
-  & 180\,00 Praha 8\\
-\noalign{\smallskip}
-  www: & \normalfont\url{https://vyfuk.mff.cuni.cz}\\
-%  \ifnum\theyear<3 e-mail pro řešení: & \normalfont\mail{vyfuk-reseni@fykos.cz}\\\fi
-  e-mail: & \normalfont\mail{vyfuk@vyfuk.mff.cuni.cz}\\
+	\multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}}
+	& Korespondenční seminář \VYFUK \\
+	& UK, Matematicko-fyzikální fakulta\\
+	& V Holešovičkách 2\\
+	& 180\,00 Praha 8\\
+	\noalign{\smallskip}
+	www: & \normalfont\url{https://\met@webdomain}\\
+	e-mail: & \normalfont\mail{vyfuk@\met@webdomain}\\
 \end{tabular}
 \nopagebreak\smallskip
 
-{\sffamily\VYFUK{} je také na Facebooku \raisebox{-0.2\baselineskip}{%
-\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
-\opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
-}\nopagebreak
+{\sffamily
+\href{https://www.facebook.com/ksvyfuk}{
+\raisebox{-0.2\baselineskip}{%
+    \opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
+    \opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
+}~\bfseries\slshape /ksvyfuk} \quad
+\href{https://www.instagram.com/ksvyfuk}{
+\raisebox{-0.2\baselineskip}{%
+    \opt{web}{\includegraphics[height=\baselineskip]{color/ig_logo.pdf}}%
+    \opt{print}{\includegraphics[height=\baselineskip]{ig_logo.pdf}}%
+}~\bfseries\slshape @ksvyfuk}
+}
 
-\href{https://www.facebook.com/ksvyfuk}{\bfseries\slshape https://www.facebook.com/ksvyfuk}}
 }
  
 \renewcommand\met@licence{
