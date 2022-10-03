@@ -104,13 +104,16 @@
 
 % FYKOS
 \DeclareOption{fykos}{%
-  \renewcommand\met@headername{Fyzikální korespondenční seminář MFF UK}
-  \renewcommand\met@shortname{FYKOS}
-  \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
-  \renewcommand\met@headerproblems{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\vglue 1pt}
-  \renewcommand\met@headersolutions{\centering \includegraphics{logo2.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení \Roman{solvedbatch}. série}}
-  \renewcommand\met@headerseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Seriál: #1}}
-  \renewcommand\met@headerresults{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}}
+\renewcommand\met@headername{Fyzikální korespondenční seminář MFF UK}
+\renewcommand\met@shortname{FYKOS}
+\renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
+\renewcommand\met@headerproblems{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\vglue 1pt}
+\renewcommand\met@headersolutions{\centering \includegraphics{logo2.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení \Roman{solvedbatch}. série}}
+\renewcommand\met@headerseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Seriál: #1}}
+\iffksenglish % english variant of series name
+	\renewcommand\met@headerseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Serial: #1}}
+\fi
+\renewcommand\met@headerresults{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}}
 %pro potreby rocenky
 \renewcommand\met@headeryeartoc{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Obsah}}
 \renewcommand\met@headeryearintro{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Předmluva}}
@@ -158,7 +161,7 @@
 \AtBeginDocument{
 \hypersetup{
     pdftitle=\ifyearbook{Ročenka FYKOSu, \Roman{year}. ročník}\else{FYKOS, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % title
-    pdfauthor={Organizátoři FYKOSu <fykos@fykos.cz>},     % author
+    pdfauthor={Organizátoři FYKOSu <fykos@\met@webdomain>},     % author
     pdfsubject={Fyzikální korespondenční seminář MFF UK},   % subject of the document
 }}
 
@@ -286,65 +289,65 @@ To view a copy of the license, visit
 \expandafter\docsvlist\@probtags%
 } % end of problem type tags
 }}
-  \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
-  \renewcommand\met@volumeid{ročník \metayear{year}\ifsummerbatch{\qquad \@seriesname}\else{\qquad číslo \arabic{batch}/7}\fi}
+\renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
+\renewcommand\met@volumeid{ročník \metayear{year}\ifsummerbatch{\qquad \@seriesname}\else{\qquad číslo \arabic{batch}/7}\fi}
 
 %zadania
 %  \renewcommand\met@headerproblems{\centering Zadání \Roman{batch}. série}
-  \renewcommand\met@headerproblems{\centering
-\includegraphics[width=23mm]{tabule2.eps}\hspace{20pt}\raisebox{0.6cm}
-{Zadání \Roman{batch}. série}
-\hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
+\renewcommand\met@headerproblems{\centering
+	\includegraphics[width=23mm]{tabule2.eps}\hspace{20pt}\raisebox{0.6cm}
+	{Zadání \Roman{batch}. série}
+	\hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
 }
 
-  \renewcommand\met@summerheaderproblems{\centering
-\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
-{Zadání \Roman{batch}. části prázdninové série}
-\hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
+\renewcommand\met@summerheaderproblems{\centering
+	\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
+	{Zadání \Roman{batch}. části prázdninové série}
+	\hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
 }
 
-  \renewcommand\met@summerheaderproblemsBonus{\centering
-\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
-{Zadání bonusové prázdninové série}
-\hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
+\renewcommand\met@summerheaderproblemsBonus{\centering
+	\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
+	{Zadání bonusové prázdninové série}
+	\hspace{20pt}\includegraphics[width=23mm]{plazmaL.eps}
 }
 
 % řešení
 %  \renewcommand\met@headersolutions{\centering Řešení \Roman{solvedbatch}. série}
-  \renewcommand\met@headersolutions{\centering
-\includegraphics[width=23mm]{tabule.eps}\hspace{20pt}\raisebox{0.6cm}
-{Řešení \Roman{solvedbatch}. série}
-\hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
+\renewcommand\met@headersolutions{\centering
+	\includegraphics[width=23mm]{tabule.eps}\hspace{20pt}\raisebox{0.6cm}
+	{Řešení \Roman{solvedbatch}. série}
+	\hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
 }
 
-	\renewcommand\met@summerheadersolutions{\centering
-\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
-{Řešení \Roman{solvedbatch}. části prázdninové série}
-\hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
+\renewcommand\met@summerheadersolutions{\centering
+	\includegraphics[width=23mm]{zmrzlina.eps}\hspace{20pt}\raisebox{0.6cm}
+	{Řešení \Roman{solvedbatch}. části prázdninové série}
+	\hspace{20pt}\includegraphics[width=23mm]{zarovkaL.eps}
 }
 % Vyfučtení
 %  \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
-  \renewcommand\met@headerseries[1]{\centering
-\includegraphics[width=23mm]{kniha.eps}\hspace{20pt}\raisebox{0.6cm}
-{Výfučtení: #1}
+\renewcommand\met@headerseries[1]{\centering
+	\includegraphics[width=23mm]{kniha.eps}\hspace{20pt}\raisebox{0.6cm}
+	{Výfučtení: #1}
 }
 % Autoři Výfučtení
 % \serauthors[1] macro is empty operation for TeX, its only purpose at the moment is to play
 % a role of searchable thing for grep in creating of a yearbook (yearbook/scripts/serauthors.sh).
 \newcommand\autori@vyfucteni{}
 \newcommand\serauthors[1]{
-\renewcommand\autori@vyfucteni{#1}
+	\renewcommand\autori@vyfucteni{#1}
 }
 % poradie
 % \renewcommand\met@headerresults{\centering Pořadí řešitelů po \Roman{solvedbatch}. sérii}
-  \renewcommand\met@headerresults{\centering
-\includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
-{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\renewcommand\met@headerresults{\centering
+	\includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
+	{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
 }
-  \renewcommand\met@summerheaderresults{\centering
-\includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
-{Konečné pořadí řešitelů prázdninové série}
+\renewcommand\met@summerheaderresults{\centering
+	\includegraphics[width=23mm]{stupne123.eps}\hspace{20pt}\raisebox{0.6cm}
+	{Konečné pořadí řešitelů prázdninové série}
 %\hspace{20pt}\includegraphics[width=23mm]{zmrzlina.eps}
 }
 
@@ -372,36 +375,38 @@ To view a copy of the license, visit
 }
 
 \renewcommand\met@authorspage{
-\textit{Autoři Výfučtení:}\par
-\hspace{\tmpp@rindent}
-\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} % 3pt is magic
-\input{authors/serauthors}
-\end{minipage}\par
-%
-\textit{Legenda tábora:} \t@bor\par
-\met@ownauthorspage
-\bigskip
+	\textit{Autoři Výfučtení:}\par
+	\hspace{\tmpp@rindent}
+	\begin{minipage}{\dimexpr\textwidth-\tmpp@rindent-3pt\relax} % 3pt is magic
+	\input{authors/serauthors}
+	\end{minipage}\par
+	%
+	\textit{Legenda tábora:} \t@bor\par
+	\met@ownauthorspage
+	\bigskip
 }
 
 
 \fancypagestyle{titlepage}{
-    \newgeometry{head=0pt,headsep=0pt,margin=0.7cm,includeheadfoot}
-    \renewcommand{\headrulewidth}{0pt}
-    \lhead{}
-    \chead{}
-    \rhead{}
-    \cfoot{\includegraphics[height=43pt]{matfyz_nove_logo.eps}}
+	\newgeometry{head=0pt,headsep=0pt,margin=0.7cm,includeheadfoot}
+	\renewcommand{\headrulewidth}{0pt}
+	\lhead{}
+	\chead{}
+	\rhead{}
+	\cfoot{\includegraphics[height=43pt]{matfyz_nove_logo.eps}}
 }
-  \renewcommand\maketitle{%
-    \thispagestyle{titlepage}{\setlength{\parindent}{0pt}
-     \colorbox{black}{
-     \begin{minipage}{\textwidth-6pt}
-		\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \met@headername{}}
-		\hfill \raisebox{-8.5pt}{\bfseries\sffamily \met@volumeid~}}
-     \end{minipage}}}%
-    \vspace{5mm}
-    \includegraphics[width=\textwidth]{vyfuk_hlavicka.eps}%
-    \vspace{8mm}
+\renewcommand\maketitle{%
+	\thispagestyle{titlepage}{%
+		\setlength{\parindent}{0pt}
+		\colorbox{black}{
+		\begin{minipage}{\textwidth-6pt}
+			\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \met@headername{}}
+			\hfill \raisebox{-8.5pt}{\bfseries\sffamily \met@volumeid~}}
+		\end{minipage}}
+	}%
+	\vspace{5mm}
+	\includegraphics[width=\textwidth]{vyfuk_hlavicka.eps}%
+	\vspace{8mm}
 }
 
 % Since yearbook defines its own header and code below in else branch overwrites
@@ -511,9 +516,9 @@ Pro zobrazení kopie této licence navštivte
 \renewcommand\met@probthemeauthors{}
 \fi
 \hypersetup{
-    pdftitle=\ifyearbook{Ročenka Výfuku, \Roman{year}. ročník}\else{Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % tady radši Roman
-    pdfauthor={Organizátoři Výfuku <vyfuk@vyfuk.mff.cuni.cz>},     % author
-    pdfsubject={Fyzikální korespondenční seminář MFF UK pro ZŠ},   % subject of the document
+	pdftitle=\ifyearbook{Ročenka Výfuku, \Roman{year}. ročník}\else{Výfuk, \Roman{year}. ročník, \arabic{batch}. číslo}\fi,    % tady radši Roman
+	pdfauthor={Organizátoři Výfuku <vyfuk@\met@webdomain>},     % author
+	pdfsubject={Fyzikální korespondenční seminář MFF UK pro ZŠ},   % subject of the document
 }}} % end VÝFUK
 
 

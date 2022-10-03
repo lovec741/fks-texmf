@@ -15,15 +15,17 @@
 \fancyhead[L]{\bfseries\small \met@shortname}
 %\fancyhead[R]{\bfseries\small Řešení \Roman{year}.\Roman{solvedbatch}.\metaprobletter{problem}}
 
+\newcommand\met@serieslangvariant{Seriál}
+\lngopt{en}{\renewcommand\met@serieslangvariant{Serial}}
+
 \newcommand\seriesheading[1]{%
 \hypersetup{
-    pdftitle={Seriál \Roman{year}.\Roman{batch} #1, \met@shortname}%
+	pdftitle={%
+		\met@serieslangvariant{} \Roman{year}.\Roman{batch} #1, \met@shortname
+	}%
 }
-\fancyhead[R]{\bfseries\small Seriál \Roman{year}.\Roman{batch} #1}
+\fancyhead[R]{
+	\bfseries\small \met@serieslangvariant{}
+	\Roman{year}.\Roman{batch} #1
+}
 \section[#1]{\met@headerseries{#1}}}
-
-
-
-
-
-
