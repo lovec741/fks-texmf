@@ -21,6 +21,7 @@
 \newcommand\met@address{Contact address}
 \newcommand\met@licence{Licence}
 \newcommand\met@webdomain{Web and mail domain}
+\newcommand\met@seriestitle{Seriál}
 \newcommand\metaprobletter[1]{\expandafter \@metaprobletter \csname c@#1\endcsname}
 \newcommand\metaprobdata[1]{}
 \newcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or P\or E\or S\else \@ctrerr\fi}
@@ -30,7 +31,7 @@
 \newcommand\met@summerheaderproblemsBonus{Zadání \Roman{batch}. části prázdninové série}
 \newcommand\met@headersolutions{Řešení \Roman{solvedbatch}. série}
 \newcommand\met@summerheadersolutions{Řešení \Roman{solvedbatch}. části prázdninové série}
-\newcommand\met@headerseries[1]{Seriál: #1}
+\newcommand\met@headerseries[1]{\met@seriestitle: #1}
 \newcommand\met@headerresults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 \newcommand\met@summerheaderresults{Konečné pořadí řešitelů prázdninové série}
 \renewcommand\maketitle{}
@@ -41,7 +42,7 @@
 \newcommand\met@headeryeartheorsolutions{Řešení teoretických úloh}
 \newcommand\met@headeryearexpproblems{Zadání experimentálních úloh}
 \newcommand\met@headeryearexpsolutions{Řešení experimentálních úloh}
-\newcommand\met@headeryearseries[1]{Seriál o #1}
+\newcommand\met@headeryearseries[1]{\met@seriestitle o #1}
 \newcommand\met@headeryearserieschaptername{Kapitola \arabic{serieschapter}}
 \newcommand\met@headeryearserieschapter[1]{\met@headeryearserieschaptername: #1}
 \newcommand\met@headeryearseriessolutionsbasic{Řešení úloh ze seriálu}%bez obrazku pro bookmark
@@ -106,13 +107,12 @@
 \DeclareOption{fykos}{%
 \renewcommand\met@headername{Fyzikální korespondenční seminář MFF UK}
 \renewcommand\met@shortname{FYKOS}
+\renewcommand\met@webdomain{fykos.cz}
+\renewcommand\met@seriestitle{Seriál}
 \renewcommand\met@volumeid{ročník \metayear{year}\qquad číslo \arabic{batch}/7}
 \renewcommand\met@headerproblems{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání \Roman{batch}. série}\vglue 1pt}
 \renewcommand\met@headersolutions{\centering \includegraphics{logo2.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení \Roman{solvedbatch}. série}}
-\renewcommand\met@headerseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Seriál: #1}}
-\iffksenglish % english variant of series name
-	\renewcommand\met@headerseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{Serial: #1}}
-\fi
+\renewcommand\met@headerseries[1]{\centering \includegraphics{logo3.eps}\hspace{10pt}\raisebox{0.6cm}{\met@seriestitle: #1}}
 \renewcommand\met@headerresults{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Pořadí řešitelů po \Roman{solvedbatch}. sérii}}
 %pro potreby rocenky
 \renewcommand\met@headeryeartoc{\centering \includegraphics{logo1.eps}\hspace{10pt}\raisebox{0.6cm}{Obsah}}
@@ -207,9 +207,10 @@ Pro zobrazení kopie této licence navštivte
 
 }
 
-\renewcommand\met@webdomain{fykos.cz}
 \fi%iffksczech
 \iffksenglish
+\renewcommand\met@seriestitle{Serial}
+\renewcommand\met@webdomain{fykos.org}
 \renewcommand\met@licence{%
 FYKOS is organized by students of Faculty of Mathematics and Physics of Charles University.
 It's part of Media Communications and PR Office
@@ -252,7 +253,6 @@ To view a copy of the license, visit
 
 }
 
-\renewcommand\met@webdomain{fykos.org}
 \fi%iffksenglish
 }% end FYKOS
 
@@ -270,6 +270,7 @@ To view a copy of the license, visit
 \renewcommand\met@headername{Korespondenční seminář MFF UK pro základní školy}
 \renewcommand\met@shortname{Výfuk}
 \renewcommand\met@webdomain{vyfuk.mff.cuni.cz}
+\renewcommand\met@seriestitle{Výfučtení}
 \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or E\or V\else \@ctrerr\fi}
 \renewcommand\metaprobdata[1]{%
 % Tags for study years (default are all)
@@ -329,7 +330,7 @@ To view a copy of the license, visit
 %  \renewcommand\met@headerseries[1]{\centering Výfučtení: #1}
 \renewcommand\met@headerseries[1]{\centering
 	\includegraphics[width=23mm]{kniha.eps}\hspace{20pt}\raisebox{0.6cm}
-	{Výfučtení: #1}
+	{\met@seriestitle: #1}
 }
 % Autoři Výfučtení
 % \serauthors[1] macro is empty operation for TeX, its only purpose at the moment is to play
@@ -357,8 +358,8 @@ To view a copy of the license, visit
 \renewcommand\met@headeryeartheorsolutions{\centering \includegraphics[scale=0.35]{vyfuk_rovnice-pretahovani.eps}\hspace{10pt}\raisebox{0.3cm}{Řešení teoretických úloh}}
 \renewcommand\met@headeryearexpproblems{\centering \includegraphics[scale=0.16]{vyfuk_raketa.eps}\hspace{10pt}\raisebox{0.6cm}{Zadání experimentálních úloh}}
 \renewcommand\met@headeryearexpsolutions{\centering \includegraphics[scale=0.16]{vyfuk_raketa.eps}\hspace{10pt}\raisebox{0.6cm}{Řešení experimentálních úloh}}
-\renewcommand\met@headeryearseries[1]{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{Výfučtení}} %parametr z duvodu genericity
-\renewcommand\met@headeryearserieschaptername{\arabic{serieschapter}. Výfučtení}
+\renewcommand\met@headeryearseries[1]{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{\met@seriestitle}} %parametr z duvodu genericity
+\renewcommand\met@headeryearserieschaptername{\arabic{serieschapter}. \met@seriestitle}
 \renewcommand\met@headeryearserieschapter[1]{\met@headeryearserieschaptername: #1}
 \renewcommand\met@headeryearseriessolutionsbasic{Řešení úloh z Výfučtení}%bez obrazku pro bookmark
 \renewcommand\met@headeryearseriessolutions{\centering \includegraphics[scale=0.07]{vyfuk_kvetinac.pdf}\hspace{10pt}\raisebox{0.6cm}{\met@headeryearseriessolutionsbasic}}
