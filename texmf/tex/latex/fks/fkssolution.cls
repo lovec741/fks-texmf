@@ -12,7 +12,7 @@
 \DeclareOption{fykos}{
 	\fancyhead{}
 	\fancyhead[L]{\bfseries\small \met@headername}
-	\fancyhead[R]{\bfseries\small Řešení \Roman{year}.\problemnum{solvedbatch}{problem}}
+	\fancyhead[R]{\bfseries\small \ifthenelse{\equal{en}{\isolang}}{Solution}{Řešení}~\Roman{year}.\problemnum{solvedbatch}{problem}}
 }
 
 \DeclareOption{vyfuk}{
