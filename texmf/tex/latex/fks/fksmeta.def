@@ -1,0 +1,38 @@
+%
+% @author Adam Krška <adam.krska@fykos.cz>
+%
+% @description Newcommand definitions of metadata commands for fksmeta.sty
+%              meant to be redefined in contest directory and used by packages
+%              for retrieving data about contest.
+%
+
+% generic contest variables
+\newcommand\fksMeta@contestNameFull{Name displayed in the header}
+\newcommand\fksMeta@contestNameShort{Short name of the contest}
+\newcommand\fksMeta@address{Contact address}
+\newcommand\fksMeta@licence{Licence}
+\newcommand\fksMeta@webDomain{Web and mail domain}
+\newcommand\fksMeta@seriesTitle{Title name used for series}
+
+% letters/numbers for problems
+\newcommand\fksMeta@problemLetter[1]{
+	\ifcase #1
+		\relax\or
+		1\else
+		\@ctrerr
+	\fi
+}
+
+% Texts used in sections
+\newcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
+\newcommand\fksMeta@sectionTextProblemTasksSummer{Zadání \Roman{batch}. části prázdninové série}
+\newcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
+\newcommand\fksMeta@sectionTextProblemSolutionsSummer{Řešení \Roman{solvedbatch}. části prázdninové série}
+\newcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
+\newcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\newcommand\fksMeta@sectionTextResultsSummer{Konečné pořadí řešitelů prázdninové série}
+
+% results table parameter
+\newcommand\fksMeta@tableColumnsResults{} % column definitions for name, school, points, sum etc.
+\newcommand\fksMeta@tableHeaderResultsTasks{} % table header for task points
+\newcommand\fksMeta@tableHeaderResults{} % table header

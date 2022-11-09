@@ -1,0 +1,40 @@
+
+%pro potreby rocenky
+\newcommand\met@headeryeartoc{Obsah}
+\newcommand\met@headeryearintro{Předmluva}
+\newcommand\met@headeryeartheorproblems{Zadání teoretických úloh}
+\newcommand\met@headeryeartheorsolutions{Řešení teoretických úloh}
+\newcommand\met@headeryearexpproblems{Zadání experimentálních úloh}
+\newcommand\met@headeryearexpsolutions{Řešení experimentálních úloh}
+\newcommand\met@headeryearseries[1]{\met@seriestitle o #1}
+\newcommand\met@headeryearserieschaptername{Kapitola \arabic{serieschapter}}
+\newcommand\met@headeryearserieschapter[1]{\met@headeryearserieschaptername: #1}
+\newcommand\met@headeryearseriessolutionsbasic{Řešení úloh ze seriálu}%bez obrazku pro bookmark
+\newcommand\met@headeryearseriessolutions{\met@headeryearseriessolutionsbasic}
+\newcommand\met@headeryearresults{Pořadí nejlepších řešitelů}
+\newcommand\met@headeryearresultsall{Pořadí řešitelů}
+\newcommand\met@headeryearevents{Akce semináře}%FYKOSu || VYFUKu
+
+%authors page
+\newcommand\autor@serialu{}
+\newcommand\n@zevserialu{} % přiklad: "Seriál o astrofyzice"
+
+\newcommand\autorserialu[1]{
+\renewcommand\autor@serialu{#1}
+}
+\newcommand\nazevserialu[1]{
+\renewcommand\n@zevserialu{#1}
+}
+
+\newcommand\met@ownauthorspage{}
+\newcommand\ownauthorspage[1]{
+\renewcommand\met@ownauthorspage{#1}
+}
+
+\newcommand\met@authorspage{
+\met@ownauthorspage
+\bigskip
+}
+
+\newcommand\met@probthemeauthors{}
+

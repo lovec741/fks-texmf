@@ -7,45 +7,100 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fksmeta}[2011/09/11 Information about seminars]
 
-\RequirePackage{fkstables}
-\RequirePackage{fkslang}
+\newcommand\metavar[1]{%
+  \expandafter\ifx\csname met@#1\endcsname\relax
+  \PackageWarning{fksmeta}{Undefined variable #1}
+  \else
+  \expandafter\csname met@#1\endcsname\fi
+}
+\newcommand\FYKOS{{FYKOS}}
+\newcommand\VYFUK{{Výfuk}}
+\newcommand\met@headername{Name displayed in the header}
+\newcommand\met@shortname{Short name of the contest}
+\newcommand\met@volumeid{Identification of the volume}
+\newcommand\met@address{Contact address}
+\newcommand\met@licence{Licence}
+\newcommand\met@webdomain{Web and mail domain}
+\newcommand\met@seriestitle{Seriál}
+\newcommand\metaprobletter[1]{\expandafter \@metaprobletter \csname c@#1\endcsname}
+\newcommand\metaprobdata[1]{}
+\newcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or P\or E\or S\else \@ctrerr\fi}
+\newcommand\metayear[1]{\Roman{#1}}
+\newcommand\met@headerproblems{Zadání \Roman{batch}. série}
+\newcommand\met@summerheaderproblems{Zadání \Roman{batch}. části prázdninové série}
+\newcommand\met@summerheaderproblemsBonus{Zadání \Roman{batch}. části prázdninové série}
+\newcommand\met@headersolutions{Řešení \Roman{solvedbatch}. série}
+\newcommand\met@summerheadersolutions{Řešení \Roman{solvedbatch}. části prázdninové série}
+\newcommand\met@headerseries[1]{\met@seriestitle: #1}
+\newcommand\met@headerresults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\newcommand\met@summerheaderresults{Konečné pořadí řešitelů prázdninové série}
+\renewcommand\maketitle{}
+%pro potreby rocenky
+\newcommand\met@headeryeartoc{Obsah}
+\newcommand\met@headeryearintro{Předmluva}
+\newcommand\met@headeryeartheorproblems{Zadání teoretických úloh}
+\newcommand\met@headeryeartheorsolutions{Řešení teoretických úloh}
+\newcommand\met@headeryearexpproblems{Zadání experimentálních úloh}
+\newcommand\met@headeryearexpsolutions{Řešení experimentálních úloh}
+\newcommand\met@headeryearseries[1]{\met@seriestitle o #1}
+\newcommand\met@headeryearserieschaptername{Kapitola \arabic{serieschapter}}
+\newcommand\met@headeryearserieschapter[1]{\met@headeryearserieschaptername: #1}
+\newcommand\met@headeryearseriessolutionsbasic{Řešení úloh ze seriálu}%bez obrazku pro bookmark
+\newcommand\met@headeryearseriessolutions{\met@headeryearseriessolutionsbasic}
+\newcommand\met@headeryearresults{Pořadí nejlepších řešitelů}
+\newcommand\met@headeryearresultsall{Pořadí řešitelů}
+\newcommand\met@headeryearevents{Akce semináře}%FYKOSu || VYFUKu
+%authors page
+\newcommand\autor@serialu{}
+\newcommand\n@zevserialu{} % přiklad: "Seriál o astrofyzice"
 
-%\newcommand\metavar[1]{%
-%  \expandafter\ifx\csname met@#1\endcsname\relax
-%  \PackageWarning{fksmeta}{Undefined variable #1}
-%  \else
-%  \expandafter\csname met@#1\endcsname\fi
-%}
-
-\newcommand\problemLetter[1]{
-	\fksMeta@problemLetter{\value{#1}}
+\newcommand\autorserialu[1]{
+\renewcommand\autor@serialu{#1}
+}
+\newcommand\nazevserialu[1]{
+\renewcommand\n@zevserialu{#1}
 }
 
-\newcommand\problemData[1]{}
-\newcommand\contestYear[1]{\Roman{#1}}
+\newcommand\met@ownauthorspage{}
+\newcommand\ownauthorspage[1]{
+\renewcommand\met@ownauthorspage{#1}
+}
 
-% TODO
-	\renewcommand\metaprobdata[1]{%
-	% Tags for study years (default are all)
-	{\LARGE
-	\ifthenelse{\equal{\@probstudyyears}{{N/A}}}{%
-	\year@tag{6}%
-	\year@tag{7}%
-	\year@tag{8}%
-	\year@tag{9}
-	}{%
-	\let\do\year@tag%
-	\expandafter\docsvlist\@probstudyyears%
-	}% end of study year tags
-	% tags for problem type
-	\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
-	\let\do\type@tag%
-	\expandafter\docsvlist\@probtags%
-	} % end of problem type tags
-	}}
-%
+\newcommand\met@authorspage{
+\met@ownauthorspage
+\bigskip
+}
 
-\renewcommand\maketitle{}
+\newcommand\met@probthemeauthors{}
+
+% results table parameter
+\newcommand\met@probheader{1 & 2 & 3 & 4 & 5 & P & E & S} % results table problems header
+\newcommand\met@resultscols{\newcolumntype{T}{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
+^r^r^r^r^r^r^r^r%points columns
+@{\hspace{8pt}}A{\bfseries}r@{\hspace{3pt}}A{\itshape}r@{\hspace{3pt}}A{\itshape}r@{\hspace{6pt}}A{\bfseries}r}} % batch, percent, percent total, sum
+
+\newcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & %
+\met@probheader & %
+\Roman{solvedbatch} & \textnormal{\uv{\%}\hglue -0.5em} & \textnormal{\%} & $\Sigma$ \\}
+
+% language selector
+\newif\iffksczech
+\fksczechfalse
+\newif\iffksslovak
+\fksslovakfalse
+\newif\iffksenglish
+\fksenglishfalse
+\newif\iffkslang
+\fkslangfalse
+
+% set default language czech
+\DeclareOption{czech}{\fksczechtrue\fkslangtrue}
+\DeclareOption{slovak}{\fksslovaktrue\fkslangtrue}
+\DeclareOption{english}{\fksenglishtrue\fkslangtrue}
+\iffkslang\else%
+\fksczechtrue%
+\PackageWarning{fksmeta}{No language passed, Czech selected.}
+\fi
 
 
 % FYKOS
@@ -217,6 +272,24 @@ To view a copy of the license, visit
 \renewcommand\met@webdomain{vyfuk.mff.cuni.cz}
 \renewcommand\met@seriestitle{Výfučtení}
 \renewcommand\@metaprobletter[1]{\ifcase #1 \or 1\or 2\or 3\or 4\or 5\or E\or V\else \@ctrerr\fi}
+\renewcommand\metaprobdata[1]{%
+% Tags for study years (default are all)
+{\LARGE
+\ifthenelse{\equal{\@probstudyyears}{{N/A}}}{%
+\year@tag{6}%
+\year@tag{7}%
+\year@tag{8}%
+\year@tag{9}
+}{%
+\let\do\year@tag%
+\expandafter\docsvlist\@probstudyyears%
+}% end of study year tags
+% tags for problem type
+\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
+\let\do\type@tag%
+\expandafter\docsvlist\@probtags%
+} % end of problem type tags
+}}
 \renewcommand\metayear[1]{\ifthenelse{\equal{\value{#1}}{1}}{1\textpm1}{\Roman{#1}}}
 \renewcommand\met@volumeid{ročník \metayear{year}\ifsummerbatch{\qquad \@seriesname}\else{\qquad číslo \arabic{batch}/7}\fi}
 
@@ -398,6 +471,18 @@ Attribution-Share Alike 3.0 Unported.\\
 Pro zobrazení kopie této licence navštivte
 \url{https://creativecommons.org/licenses/by-sa/3.0/}.\par
 }
+
+% results table parameter
+\renewcommand\met@probheader{1 & 2 & 3 & 4 & 5 & E & V} % results table problems header
+\renewcommand\met@resultscols{\newcolumntype{T}{x{\bfseries}rA{\itshape}p{0.22\textwidth}^X% order, name, school
+^r^r^r^r^r^r^r%points columns
+@{\hspace{12pt}}A{\bfseries}r@{\hspace{8pt}}A{\bfseries}r}} % batch sum, sum
+
+\renewcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & %
+\met@probheader & %
+\Roman{solvedbatch} & $\Sigma$ \\}
+
+
 
 % to have initialized counters
 \AtBeginDocument{

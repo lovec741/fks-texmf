@@ -44,7 +44,7 @@
 	\begin{center}
 		\small
 		\setlength{\tabcolsep}{2pt}
-		\begin{tabularx}{\textwidth}{T} % batch, percent, sum
+		\begin{tabularx}{\textwidth}{\fksMeta@tableColumnsResults} % batch, percent, sum
 			\rowstyle{\bfseries}
 			\met@resultsheader
 			\ifthenelse{\equal{#1}{0}}{%
@@ -102,7 +102,7 @@
   \ifnum\theRESinit=\theRESendline\else%
     \savebox{\RESbox}{\hbox{%
         \small\setlength{\tabcolsep}{2pt}%
-        \begin{tabularx}{\textwidth}{T}% batch, percent, sum
+        \begin{tabularx}{\textwidth}{\fksMeta@tableColumnsResults}% batch, percent, sum
             \rowstyle{\bfseries}%
             \met@resultsheader%
             \ifthenelse{\equal{#1}{0}}{%

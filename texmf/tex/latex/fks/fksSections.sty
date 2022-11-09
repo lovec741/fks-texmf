@@ -1,0 +1,17 @@
+%
+% @author Adam Krška <adam.krska@fykos.cz>
+%
+% @description Reusable templates for defining new sections.
+%
+
+\newcommand\sectionWithImageLeft[2]{
+	\centering \includegraphics{#1}\hspace{10pt}\raisebox{0.6cm}{#2}
+}
+
+\newcommand\sectionWithImageRight[2]{
+	\centering \raisebox{0.6cm}{#2}\hspace{10pt}\includegraphics{#1}
+}
+
+\newcommand\sectionWithImages[2]{
+	\centering \includegraphics{#1}\hspace{10pt}\raisebox{0.6cm}{#3}\hspace{10pt}\includegraphics{#2}
+}

@@ -1,0 +1,22 @@
+\renewcommand\fksMeta@tableHeaderResults{
+	& {\normalfont\bfseries jméno} % name
+	& škola % school
+	& \met@probheader % points
+	& \Roman{solvedbatch} % batch
+	& \textnormal{\uv{\%}\hglue -0.5em} % percent
+	& \textnormal{\%} % percent total
+	& $\Sigma$\\% sum
+}
+
+\renewcommand\fksMeta@tableHeaderResultsTasks{1 & 2 & 3 & 4 & 5 & P & E & S} % results table problems header
+\renewcommand\fksMeta@tableColumnsResults{
+	x{\bfseries} % set row style to bfseries
+	r % order
+	A{\itshape}p{0.22\textwidth} % contestant name
+	^X % school
+	^r^r^r^r^r^r^r^r%points columns
+	@{\hspace{8pt}}A{\bfseries}r % batch
+	@{\hspace{3pt}}A{\itshape}r % percent
+	@{\hspace{3pt}}A{\itshape}r % percent total
+	@{\hspace{6pt}}A{\bfseries}r % sum
+}
