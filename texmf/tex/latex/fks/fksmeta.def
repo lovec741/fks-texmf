@@ -9,19 +9,16 @@
 % generic contest variables
 \newcommand\fksMeta@contestNameFull{Name displayed in the header}
 \newcommand\fksMeta@contestNameShort{Short name of the contest}
-\newcommand\fksMeta@address{Contact address}
-\newcommand\fksMeta@licence{Licence}
 \newcommand\fksMeta@webDomain{Web and mail domain}
 \newcommand\fksMeta@seriesTitle{Title name used for series}
 
-% letters/numbers for problems
-\newcommand\fksMeta@problemLetter[1]{
-	\ifcase #1
-		\relax\or
-		1\else
-		\@ctrerr
-	\fi
-}
+% text used in headers
+\newcoomand\fksMeta@headerLeft{}
+\newcoomand\fksMeta@headerRight{}
+
+% legal and contact information
+\newcommand\fksMeta@address{Contact address}
+\newcommand\fksMeta@licence{Licence}
 
 % Texts used in sections
 \newcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
@@ -31,6 +28,24 @@
 \newcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
 \newcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 \newcommand\fksMeta@sectionTextResultsSummer{Konečné pořadí řešitelů prázdninové série}
+
+% Styles of sections
+\newcommand\fksMeta@sectionStyleProblemTasks{\fksMeta@sectionTextProblemTasks}
+\newcommand\fksMeta@sectionStyleProblemTasksSummer{\fksMeta@sectionTextProblemTasksSummer}
+\newcommand\fksMeta@sectionStyleProblemSolutions{\fksMeta@sectionTextProblemSolutions}
+\newcommand\fksMeta@sectionStyleProblemSolutionsSummer{\fksMeta@sectionTextProblemSolutionsSummer}
+\newcommand\fksMeta@sectionStyleSeries[1]{\fksMeta@sectionTextSeries{#1}}
+\newcommand\fksMeta@sectionStyleResults{\fksMeta@sectionTextResults}
+\newcommand\fksMeta@sectionStyleResultsSummer{\fksMeta@sectionTextResultsSummer}
+
+% letters/numbers for problems
+\newcommand\fksMeta@problemLetter[1]{
+	\ifcase #1
+		\relax\or
+		1\else
+		\@ctrerr
+	\fi
+}
 
 % results table parameter
 \newcommand\fksMeta@tableColumnsResults{} % column definitions for name, school, points, sum etc.

@@ -1,0 +1,71 @@
+\newif\ifsummerbatch
+
+\renewcommand\fksMeta@contestNameFull{Výpočty fyzikálních úkolů} % Korespondenční seminář MFF UK pro základní školy
+\renewcommand\fksMeta@contestNameShort{FYKOS}
+\renewcommand\fksMeta@webDomain{vyfuk.mff.cuni.cz}
+\renewcommand\fksMeta@seriesTitle{Výfučtení}
+
+\newcoomand\fksMeta@headerLeft{\fksMeta@contestNameShort}
+\renewcommand\fksMeta@headerRight{ročník \formatContestYear{year}\qquad číslo \arabic{batch}/7}
+
+\renewcommand\fksMeta@address{
+	\begin{tabular}{r>{\slshape\bfseries}l}
+		\multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}}
+		&Korespondenční seminář \VYFUK \\
+		&UK, Matematicko-fyzikální fakulta\\
+		&V Holešovičkách 2\\
+		&180\,00 Praha 8\\
+		\noalign{\smallskip}
+		www: & \normalfont\url{https://\met@webdomain}\\
+		e-mail: & \normalfont\mail{vyfuk@\met@webdomain}\\
+	\end{tabular}
+	\nopagebreak\smallskip
+	{\sffamily
+		\raisebox{-0.2\baselineskip}{%
+			\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
+			\opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
+		}~\href{https://www.facebook.com/ksvyfuk}{\bfseries\slshape /ksvyfuk} \quad
+		\raisebox{-0.2\baselineskip}{%
+			\opt{web}{\includegraphics[height=\baselineskip]{color/ig_logo.pdf}}%
+			\opt{print}{\includegraphics[height=\baselineskip]{ig_logo.pdf}}%
+		}~\href{https://www.instagram.com/ksvyfuk}{\bfseries\slshape @ksvyfuk}
+	}
+}
+
+\renewcommand\fksMeta@licence{
+	Korespondenční seminář Výfuk je organizován studenty a přáteli MFF~UK.
+	Je zastřešen Oddělením propagace a~mediální komunikace MFF~UK
+	a~podporován Katedrou didaktiky fyziky
+	MFF~UK, jejími zaměstnanci a~Jednotou českých matematiků a~fyziků.
+	Realizace projektu byla podpořena Ministerstvem školství, mládeže
+	a~tělovýchovy.
+	\nopagebreak\medskip
+
+	\footnotesize Toto dílo je šířeno pod licencí Creative Commons
+	Attribution-Share Alike 3.0 Unported.\\
+	Pro zobrazení kopie této licence navštivte
+	\url{https://creativecommons.org/licenses/by-sa/3.0/}.\par
+}
+
+% Define section texts and styles
+\newcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
+\newcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
+\newcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
+\newcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+
+\newcommand\fksMeta@sectionStyleProblemTasks{
+	\sectionWithImages{tabule2.eps}{plazmaL.eps}{\fksMeta@sectionTextProblemTasks}}
+\newcommand\fksMeta@sectionStyleProblemSolutions{
+	\sectionWithImages{tabule.eps}{zarovkaL.eps}{\fksMeta@sectionTextProblemSolutions}}
+\newcommand\fksMeta@sectionStyleSeries[1]{
+	\sectionWithImageLeft{kniha.eps}{\fksMeta@sectionTextSeries{#1}}}
+\newcommand\fksMeta@sectionStyleResults{
+	\sectionWithImageLeft{stupne123.eps}{\fksMeta@sectionTextResults}}
+
+% define letters for problems
+\newcommand\fksMeta@problemLetter[1]{
+	\ifcase #1
+		\relax\or 1\else 2\else 3\else 4\else 5\else E\else V\else
+		\@ctrerr
+	\fi
+}

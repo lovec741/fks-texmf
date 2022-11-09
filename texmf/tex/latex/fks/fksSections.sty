@@ -4,6 +4,9 @@
 % @description Reusable templates for defining new sections.
 %
 
+\RequirePackage{fksmeta}
+
+% helper styles
 \newcommand\sectionWithImageLeft[2]{
 	\centering \includegraphics{#1}\hspace{10pt}\raisebox{0.6cm}{#2}
 }
@@ -12,6 +15,36 @@
 	\centering \raisebox{0.6cm}{#2}\hspace{10pt}\includegraphics{#1}
 }
 
-\newcommand\sectionWithImages[2]{
+\newcommand\sectionWithImages[3]{
 	\centering \includegraphics{#1}\hspace{10pt}\raisebox{0.6cm}{#3}\hspace{10pt}\includegraphics{#2}
+}
+
+\newcommand\showDeadline{
+	\ifthenelse{\equal{\@deadlineS}{}}{%
+		\centerline{\Large\slshape\sffamily Termín odeslání: \@deadline}
+	}{%
+		\centerline{\Large\slshape\sffamily Termín uploadu: \@deadline}
+		\centerline{\Large\slshape\sffamily Termín odeslání: \@deadlineS}
+	}
+}
+
+\renewcommand\problemsheading{%
+	\section[\fksMeta@sectionTextProblemTasks]{\fksMeta@sectionStyleProblemTasks}
+	\setcounter{problem}{0}
+	\vspace{-4pt}
+	\showDeadline
+	\vspace{1.5ex}
+}
+
+\newcommand\solutionheading{%
+	\section[\fksMeta@sectionTextProblemTasks]{\fksMeta@sectionStyleProblemTasks}
+	\setcounter{problem}{0}%
+}
+
+\newcommand\seriesheading[1]{%
+	\section[\fksMeta@sectionTextSeries]{\fksMet@sectionStyleSeries{#1}}
+}
+
+\newcommand\resultsheading{%
+	\section[\fksMeta@sectionTextResults]{\fksMeta@sectionStyleResults}
 }

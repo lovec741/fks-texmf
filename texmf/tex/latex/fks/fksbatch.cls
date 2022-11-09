@@ -31,8 +31,8 @@
 \centerline{\Large\slshape\sffamily Termín uploadu: \@deadline}
 \centerline{\Large\slshape\sffamily Termín odeslání: \@deadlineS}
 \vspace{1.5ex}
-\setcounter{problem}{0}}
-%}
+\setcounter{problem}{0}
+}
 
 % other
 \let\oldfooter\makefooter

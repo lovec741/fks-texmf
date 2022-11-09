@@ -1,14 +1,82 @@
+\renewcommand\fksMeta@contestNameFull{Fyzikální korespondenční seminář}
+\renewcommand\fksMeta@contestNameShort{FYKOS}
+\renewcommand\fksMeta@webDomain{fykos.cz}
+\renewcommand\fksMeta@seriesTitle{Seriál}
+
+\newcoomand\fksMeta@headerLeft{\fksMeta@contestNameShort}
+\renewcommand\fksMeta@headerRight{ročník \formatContestYear{year}\qquad číslo \arabic{batch}/7}
+
+\renewcommand\fksMeta@address{
+	\begin{tabular}{r>{\slshape\bfseries}l}
+		\multirow{5}{*}{\includegraphics{logo1.eps}} & \fksMeta@contestNameShort \\
+		&UK, Matematicko-fyzikální fakulta\\
+		&Ústav teoretické fyziky\\
+		&V Holešovičkách 2\\
+		&180\,00 Praha 8\\
+		\noalign{\smallskip}
+		www: & \normalfont\url{https://\met@webdomain}\\
+		e-mail: & \normalfont\mail{fykos@\met@webdomain}\\
+	\end{tabular}\ifyearbook\relax\else
+	\nopagebreak\smallskip
+	{
+		\raisebox{-0.2\baselineskip}{%
+			\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
+			\opt{print}{\includegraphics[height=\baselineskip]{fb_logo.eps}}%
+		}~\href{https://www.facebook.com/FYKOS}{\bfseries\slshape /FYKOS} \quad
+		\raisebox{-0.2\baselineskip}{%
+			\opt{web}{\includegraphics[height=\baselineskip]{color/ig_logo.pdf}}%
+			\opt{print}{\includegraphics[height=\baselineskip]{ig_logo.pdf}}%
+		}\href{https://www.instagram.com/fykosak}{~\bfseries\slshape @fykosak} 
+	} \fi
+}
+
+\renewcommand\fksMeta@licence{
+	Fyzikální korespondenční seminář je organizován studenty MFF~UK. Je
+	zastřešen Oddělením propagace a mediální komunikace MFF~UK a~podporován
+	Ústavem teoretické fyziky\\ MFF~UK, jeho zaměstnanci a~Jednotou českých
+	matematiků a~fyziků. Realizace projektu byla podpořena Ministerstvem
+	školství, mládeže a~tělovýchovy. \nopagebreak\medskip
+
+	\footnotesize Toto dílo je šířeno pod licencí Creative Commons
+	Attribution-Share Alike 3.0 Unported.\\ Pro zobrazení kopie této licence
+	navštivte \url{https://creativecommons.org/licenses/by-sa/3.0/}.\par
+}
+
+% Define section texts and styles
+\newcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
+\newcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
+\newcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
+\newcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+
+\newcommand\fksMeta@sectionStyleProblemTasks{
+	\sectionWithImageLeft{logo1.eps}{\fksMeta@sectionTextProblemTasks}}
+\newcommand\fksMeta@sectionStyleProblemSolutions{
+	\sectionWithImageLeft{logo2.eps}{\fksMeta@sectionTextProblemSolutions}}
+\newcommand\fksMeta@sectionStyleSeries[1]{
+	\sectionWithImageLeft{logo3.eps}{\fksMeta@sectionTextSeries{#1}}}
+\newcommand\fksMeta@sectionStyleResults{
+	\sectionWithImageLeft{logo1.eps}{\fksMeta@sectionTextResults}}
+
+% define letters for problems
+\newcommand\fksMeta@problemLetter[1]{
+	\ifcase #1
+		\relax\or 1\else 2\else 3\else 4\else 5\else P\else E\else S\else
+		\@ctrerr
+	\fi
+}
+
+% results tables information
+\renewcommand\fksMeta@tableHeaderResultsTasks{1 & 2 & 3 & 4 & 5 & P & E & S} % results table problems header
 \renewcommand\fksMeta@tableHeaderResults{
 	& {\normalfont\bfseries jméno} % name
 	& škola % school
-	& \met@probheader % points
+	& \fksMeta@tableHeaderResultsTasks % tasks
 	& \Roman{solvedbatch} % batch
 	& \textnormal{\uv{\%}\hglue -0.5em} % percent
 	& \textnormal{\%} % percent total
 	& $\Sigma$\\% sum
 }
 
-\renewcommand\fksMeta@tableHeaderResultsTasks{1 & 2 & 3 & 4 & 5 & P & E & S} % results table problems header
 \renewcommand\fksMeta@tableColumnsResults{
 	x{\bfseries} % set row style to bfseries
 	r % order
@@ -20,3 +88,4 @@
 	@{\hspace{3pt}}A{\itshape}r % percent total
 	@{\hspace{6pt}}A{\bfseries}r % sum
 }
+
