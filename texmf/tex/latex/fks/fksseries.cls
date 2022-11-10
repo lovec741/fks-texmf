@@ -11,18 +11,20 @@
 \ProcessOptions
 \LoadClass{fksbase}
 
-\fancyhead{}
-\fancyhead[L]{\bfseries\small \met@shortname}
-%\fancyhead[R]{\bfseries\small Řešení \Roman{year}.\Roman{solvedbatch}.\metaprobletter{problem}}
+\RequirePackage{fksmeta}
+\RequirePackage{fkssections}
 
-\newcommand\seriesheading[1]{%
+\leftheader{\fksMeta@contestNameShort}
+\rightheader{
+	\fksMeta@serialTitle
+	\fksMeta@formatContestYear{year}.\Roman{batch}
+	\fksSections@serialName
+}
+
 \hypersetup{
 	pdftitle={%
-		\met@seriestitle{} \Roman{year}.\Roman{batch} #1, \met@shortname
+		\fksMeta@serialTitle
+		\fksMeta@formatContestYear{year}.\Roman{batch} #1,
+		\fksMeta@contestNameShort
 	}%
 }
-\fancyhead[R]{
-	\bfseries\small \met@seriestitle{}
-	\Roman{year}.\Roman{batch} #1
-}
-\section[#1]{\met@headerseries{#1}}}

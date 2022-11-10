@@ -1,9 +1,8 @@
-\newif\ifsummerbatch
-
 \renewcommand\fksMeta@contestNameFull{Výpočty fyzikálních úkolů} % Korespondenční seminář MFF UK pro základní školy
 \renewcommand\fksMeta@contestNameShort{Výfuk}
 \renewcommand\fksMeta@webDomain{vyfuk.mff.cuni.cz}
-\renewcommand\fksMeta@seriesTitle{Výfučtení}
+\renewcommand\fksMeta@serialTitle{Výfučtení}
+\newcommand\fksMeta@problemSolutionTitle{Řešení}
 
 \newcoomand\fksMeta@headerLeft{\fksMeta@contestNameFull}
 \renewcommand\fksMeta@headerRight{ročník \formatContestYear{year}\qquad číslo \arabic{batch}/7}
@@ -16,8 +15,8 @@
 		&V Holešovičkách 2\\
 		&180\,00 Praha 8\\
 		\noalign{\smallskip}
-		www: & \normalfont\url{https://\met@webdomain}\\
-		e-mail: & \normalfont\mail{vyfuk@\met@webdomain}\\
+		www: & \normalfont\url{https://\fksMeta@webDomain}\\
+		e-mail: & \normalfont\mail{vyfuk@\fksMeta@webDomain}\\
 	\end{tabular}
 	\nopagebreak\smallskip
 	{\sffamily
@@ -50,7 +49,7 @@
 % Define section texts and styles
 \renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
 \renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série
-\renewcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
+\renewcommand\fksMeta@sectionTextSeries[1]{\fksMeta@serialTitle: #1}
 \renewcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 
 \renewcommand\fksMeta@sectionStyleProblemTasks{
@@ -71,14 +70,38 @@
 	\fi
 }
 
-\ifsummerbatch
-\renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. prázdninové série}
-\renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. prázdninové série}
-\renewcommand\fksMeta@sectionTextResults{Řešení \Roman{solvedbatch}. prázdninové série}
-\renewcommand\fksMeta@sectionStyleProblemTasks{
-	\sectionWithImages{zmrzlina.eps}{plazmaL.eps}{\fksMeta@sectionTextProblemTasks}}
-\renewcommand\fksMeta@sectionStyleProblemSolutions{
-	\sectionWithImages{zmrzlina.eps}{zarovkaL.eps}{\fksMeta@sectionTextProblemSolutions}}
+% results tables information
+\renewcommand\fksMeta@tableHeaderResultsTasks{1 & 2 & 3 & 4 & 5 & P & V} % results table problems header
+\renewcommand\fksMeta@tableHeaderResults{
+	& {\normalfont\bfseries jméno} % name
+	& škola % school
+	& \fksMeta@tableHeaderResultsTasks % tasks
+	& \Roman{solvedbatch} % batch
+	& $\Sigma$\\% sum
+}
+
+\renewcommand\fksMeta@tableColumnsResults{
+	\newcolumntype{T}{
+		x{\bfseries} % set row style to bfseries
+		r % order
+		A{\itshape}p{0.22\textwidth} % contestant name
+		^X % school
+		^r^r^r^r^r^r^r%points columns
+		@{\hspace{12pt}}A{\bfseries}r % batch
+		@{\hspace{8pt}}A{\bfseries}r % sum
+	}
+}
+
+% define summer batch
+\newif\ifsummerbatch
+	\ifsummerbatch
+	\renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. prázdninové série}
+	\renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. prázdninové série}
+	\renewcommand\fksMeta@sectionTextResults{Řešení \Roman{solvedbatch}. prázdninové série}
+	\renewcommand\fksMeta@sectionStyleProblemTasks{
+		\sectionWithImages{zmrzlina.eps}{plazmaL.eps}{\fksMeta@sectionTextProblemTasks}}
+	\renewcommand\fksMeta@sectionStyleProblemSolutions{
+		\sectionWithImages{zmrzlina.eps}{zarovkaL.eps}{\fksMeta@sectionTextProblemSolutions}}
 \fi
 
 % change styles
@@ -109,7 +132,7 @@
 		\setlength{\parindent}{0pt}
 		\colorbox{black}{
 		\begin{minipage}{\textwidth-6pt}
-			\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \fksMeta@headerLeft{}}
+			\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \fksMeta@headerLeft}
 			\hfill \raisebox{-8.5pt}{\bfseries\sffamily \fksMeta@headerRight}}
 		\end{minipage}}
 	}%

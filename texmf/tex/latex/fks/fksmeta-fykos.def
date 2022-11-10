@@ -1,7 +1,8 @@
 \renewcommand\fksMeta@contestNameFull{Fyzikální korespondenční seminář}
 \renewcommand\fksMeta@contestNameShort{FYKOS}
 \renewcommand\fksMeta@webDomain{fykos.cz}
-\renewcommand\fksMeta@seriesTitle{Seriál}
+\renewcommand\fksMeta@serialTitle{Seriál}
+\newcommand\fksMeta@problemSolutionTitle{Řešení}
 
 \renewcommand\fksMeta@headerLeft{\fksMeta@contestNameShort}
 \renewcommand\fksMeta@headerRight{ročník \formatContestYear{year}\qquad číslo \arabic{batch}/7}
@@ -14,8 +15,8 @@
 		&V Holešovičkách 2\\
 		&180\,00 Praha 8\\
 		\noalign{\smallskip}
-		www: & \normalfont\url{https://\met@webdomain}\\
-		e-mail: & \normalfont\mail{fykos@\met@webdomain}\\
+		www: & \normalfont\url{https://\fksMeta@webDomain}\\
+		e-mail: & \normalfont\mail{fykos@\fksMeta@webDomain}\\
 	\end{tabular}\ifyearbook\relax\else
 	\nopagebreak\smallskip
 	{
@@ -45,7 +46,7 @@
 % Define section texts and styles
 \renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
 \renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
-\renewcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
+\renewcommand\fksMeta@sectionTextSeries[1]{\fksMeta@serialTitle: #1}
 \renewcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 
 \renewcommand\fksMeta@sectionStyleProblemTasks{
@@ -79,14 +80,16 @@
 }
 
 \renewcommand\fksMeta@tableColumnsResults{
-	x{\bfseries} % set row style to bfseries
-	r % order
-	A{\itshape}p{0.22\textwidth} % contestant name
-	^X % school
-	^r^r^r^r^r^r^r^r%points columns
-	@{\hspace{8pt}}A{\bfseries}r % batch
-	@{\hspace{3pt}}A{\itshape}r % percent
-	@{\hspace{3pt}}A{\itshape}r % percent total
-	@{\hspace{6pt}}A{\bfseries}r % sum
+	\newcolumntype{T}{
+		x{\bfseries} % set row style to bfseries
+		r % order
+		A{\itshape}p{0.22\textwidth} % contestant name
+		^X % school
+		^r^r^r^r^r^r^r^r%points columns
+		@{\hspace{8pt}}A{\bfseries}r % batch
+		@{\hspace{3pt}}A{\itshape}r % percent
+		@{\hspace{3pt}}A{\itshape}r % percent total
+		@{\hspace{6pt}}A{\bfseries}r % sum
+	}
 }
 

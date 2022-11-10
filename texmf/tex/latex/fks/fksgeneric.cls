@@ -12,19 +12,8 @@
 \ProcessOptions
 \LoadClass{fksbase}
 
-\newcommand{\leftheader}[1]{%
-\renewcommand\met@headername{#1}%
-\AtBeginDocument{\hypersetup{pdftitle={#1}}}}
-\newcommand{\rightheader}[1]{\renewcommand\met@volumeid{#1}}
+\RequirePackage{fksmeta}
 
-
-\renewcommand\makefooter{%
-\vspace*{\fill}
-\noindent\begin{minipage}{\textwidth}
-\hrule
-\smallskip
-\begin{center}
-\met@licence
-\end{center}
-\end{minipage}
+\AtBeginDocument{
+	\hypersetup{pdftitle={\fksMeta@headerLeft}}
 }

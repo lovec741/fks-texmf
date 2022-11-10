@@ -14,6 +14,8 @@
 \RequirePackage{rotating}
 \RequirePackage{longtable}
 
+\RequirePackage{fksmeta}
+
 % used to style whole rows or rows and columns combined
 % example header: \begin{tabular}{x{\bfseries}rA{\itshape}l^l^r^r^r^r^r^r^r^rA{\bfseries}rA{\itshape}rA{\bfseries}r}
 %                 to highlight row use \rowstyle{<style>}
@@ -28,7 +30,7 @@
 % for decimal numbers
 \newcolumntype{d}[1]{D{.}{,}{#1}}
 
-\met@resultscols % this defines new column type as in fksmeta
+\fksMeta@tableColumnsResults % this defines new column type as in fksmeta
 
 
 \newcounter{RESendline}%
@@ -44,9 +46,9 @@
 	\begin{center}
 		\small
 		\setlength{\tabcolsep}{2pt}
-		\begin{tabularx}{\textwidth}{\fksMeta@tableColumnsResults} % batch, percent, sum
+		\begin{tabularx}{\textwidth}{T} % batch, percent, sum
 			\rowstyle{\bfseries}
-			\met@resultsheader
+			\fksMeta@tableHeaderResults%
 			\ifthenelse{\equal{#1}{0}}{%
 				\input{results/#2.tex} %TODO path
 			}{
@@ -102,9 +104,9 @@
   \ifnum\theRESinit=\theRESendline\else%
     \savebox{\RESbox}{\hbox{%
         \small\setlength{\tabcolsep}{2pt}%
-        \begin{tabularx}{\textwidth}{\fksMeta@tableColumnsResults}% batch, percent, sum
+        \begin{tabularx}{\textwidth}{T}% batch, percent, sum
             \rowstyle{\bfseries}%
-            \met@resultsheader%
+            \fksMeta@tableHeaderResults%
             \ifthenelse{\equal{#1}{0}}{%
                 \input{results/#2.tex}%TODO path
             }{%

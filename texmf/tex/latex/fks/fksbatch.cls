@@ -11,38 +11,15 @@
 \ProcessOptions
 \LoadClass{fksbase}
 
-
-
-\newcommand\problemsheadingsummer[3]{%
-\setcounter{batch}{#1}
-\deadline{#2}\deadlineS{#3}
-\section[Zadání \Roman{batch}. série]{\met@summerheaderproblems}
-\vspace{-4pt}
-\centerline{\Large\slshape\sffamily Termín uploadu: \@deadline}
-\centerline{\Large\slshape\sffamily Termín odeslání: \@deadlineS}
-\vspace{1.5ex}
-\setcounter{problem}{0}}
-
-\newcommand\problemsheadingsummerBonus[3]{%
-\setcounter{batch}{#1}
-\deadline{#2}\deadlineS{#3}
-\section[Zadání bonusové série]{\met@summerheaderproblemsBonus}
-\vspace{-4pt}
-\centerline{\Large\slshape\sffamily Termín uploadu: \@deadline}
-\centerline{\Large\slshape\sffamily Termín odeslání: \@deadlineS}
-\vspace{1.5ex}
-\setcounter{problem}{0}
-}
-
 % other
 \let\oldfooter\makefooter
 \renewcommand\makefooter{%
 \null
 \vfill
 \begin{center}
-  \met@address
+	\fksMeta@address
 \end{center}
-  \oldfooter
+	\oldfooter
 }
 
 \newcommand\@deadline{NENÍ ZADÁNO} % upload/receive

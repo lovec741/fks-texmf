@@ -1,7 +1,8 @@
 \renewcommand\fksMeta@contestNameFull{FYKOS}
 \renewcommand\fksMeta@contestNameShort{FYKOS}
 \renewcommand\fksMeta@webDomain{fykos.org}
-\renewcommand\fksMeta@seriesTitle{Serial}
+\renewcommand\fksMeta@serialTitle{Serial}
+\newcommand\fksMeta@problemSolutionTitle{Solution}
 
 \renewcommand\fksMeta@headerRight{year \formatContestYear{year}\qquad number \arabic{batch}/7}
 
@@ -14,8 +15,8 @@
 			&180\,00 Praha 8\\
 			&Czech Republic\\
 			\noalign{\smallskip}
-			www: & \normalfont\url{https://\met@webdomain}\\
-			e-mail: & \normalfont\mail{fykos@\met@webdomain}\\
+			www: & \normalfont\url{https://\fksMeta@webDomain}\\
+			e-mail: & \normalfont\mail{fykos@\fksMeta@webDomain}\\
 	\end{tabular}
 	\nopagebreak\smallskip
 	{

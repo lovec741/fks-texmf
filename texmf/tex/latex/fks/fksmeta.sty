@@ -18,7 +18,22 @@
 	\expandafter\ifx\csname fksMeta@#1\endcsname\relax
 	\PackageWarning{fksmeta}{Undefined variable #1}
 	\else
-	\expandafter\csname met@#1\endcsname\fi
+	\expandafter\csname fksMeta@#1\endcsname\fi
+}
+
+% ----------------------
+% Helper macros for section titles with images
+% ----------------------
+\newcommand\sectionWithImageLeft[2]{
+	\centering \includegraphics{#1}\hspace{10pt}\raisebox{0.6cm}{#2}
+}
+
+\newcommand\sectionWithImageRight[2]{
+	\centering \raisebox{0.6cm}{#2}\hspace{10pt}\includegraphics{#1}
+}
+
+\newcommand\sectionWithImages[3]{
+	\centering \includegraphics{#1}\hspace{10pt}\raisebox{0.6cm}{#3}\hspace{10pt}\includegraphics{#2}
 }
 
 % ----------------------
@@ -32,12 +47,19 @@
 \newcommand\fksMeta@contestNameFull{Name displayed in the header}
 \newcommand\fksMeta@contestNameShort{Short name of the contest}
 \newcommand\fksMeta@webDomain{Web and mail domain}
-\newcommand\fksMeta@seriesTitle{Title name used for series}
+\newcommand\fksMeta@serialTitle{Title name used for series}
+\newcommand\fksMeta@problemSolutionTitle{Title name used for solutions}
 \newcommand\fksMeta@formatContestYear[1]{\Roman{#1}}
 
 % text used in headers
 \newcoomand\fksMeta@headerLeft{}
 \newcoomand\fksMeta@headerRight{}
+
+% external redefinition of headers
+\newcommand\leftheader[1]{
+	\renewcommand\fksMeta@headerLeft{#1}}
+\newcommand\rightheader[1]{
+	\renewcommand\fksMeta@headerRight{#1}}
 
 % legal and contact information
 \newcommand\fksMeta@address{Contact address}
@@ -48,7 +70,7 @@
 \newcommand\fksMeta@sectionTextProblemTasksSummer{Zadání \Roman{batch}. části prázdninové série}
 \newcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
 \newcommand\fksMeta@sectionTextProblemSolutionsSummer{Řešení \Roman{solvedbatch}. části prázdninové série}
-\newcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
+\newcommand\fksMeta@sectionTextSeries[1]{\fksMeta@serialTitle: #1}
 \newcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 \newcommand\fksMeta@sectionTextResultsSummer{Konečné pořadí řešitelů prázdninové série}
 
@@ -72,6 +94,7 @@
 }
 
 % results table parameter
+\RequirePackage{array} % provide newcolumntype macro
 \newcommand\fksMeta@tableColumnsResults{} % column definitions for name, school, points, sum etc.
 \newcommand\fksMeta@tableHeaderResultsTasks{} % table header for task points
 \newcommand\fksMeta@tableHeaderResults{} % table header

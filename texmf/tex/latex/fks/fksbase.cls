@@ -62,8 +62,8 @@
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[L]{\bfseries\small \met@headername}
-\fancyhead[R]{\bfseries\small \met@volumeid}
+\fancyhead[L]{\bfseries\small \fksMeta@headerLeft}
+\fancyhead[R]{\bfseries\small \fksMeta@headerRight}
 
 % options
 \fancyfoot{}
@@ -125,19 +125,19 @@
 \signaturesfile{../signatures.tex}
 
 \newcommand\makefooter{%
-\vspace*{\fill}
-\noindent\begin{minipage}{\textwidth}
-\hrule
-\smallskip
-\begin{center}
-\met@licence
-\end{center}
-\end{minipage}
+	\vspace*{\fill}
+	\noindent\begin{minipage}{\textwidth}
+		\hrule
+		\smallskip
+		\begin{center}
+			\fksMeta@licence
+		\end{center}
+	\end{minipage}
 }
 
 \AtBeginDocument{%
-  \renewcommand\figurename{\lngopt{cs}{Obr.}\lngopt{en}{Fig.}}
-  \renewcommand\tablename{Tab.}
+	\renewcommand\figurename{\lngopt{cs}{Obr.}\lngopt{en}{Fig.}}
+	\renewcommand\tablename{Tab.}
 }
 
 
