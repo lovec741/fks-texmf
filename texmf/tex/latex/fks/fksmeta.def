@@ -11,6 +11,7 @@
 \newcommand\fksMeta@contestNameShort{Short name of the contest}
 \newcommand\fksMeta@webDomain{Web and mail domain}
 \newcommand\fksMeta@seriesTitle{Title name used for series}
+\newcommand\fksMeta@formatContestYear[1]{\Roman{#1}}
 
 % text used in headers
 \newcoomand\fksMeta@headerLeft{}
@@ -38,7 +39,8 @@
 \newcommand\fksMeta@sectionStyleResults{\fksMeta@sectionTextResults}
 \newcommand\fksMeta@sectionStyleResultsSummer{\fksMeta@sectionTextResultsSummer}
 
-% letters/numbers for problems
+% data used by problems
+\newcommand\fksMeta@problemDefaultStudyYears{}
 \newcommand\fksMeta@problemLetter[1]{
 	\ifcase #1
 		\relax\or

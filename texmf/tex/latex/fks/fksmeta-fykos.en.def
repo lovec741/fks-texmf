@@ -54,6 +54,6 @@
 }
 
 % Define section texts and styles
-\newcommand\fksMeta@sectionTextProblemTasks{Tasks of the \Roman{batch} series}
-\newcommand\fksMeta@sectionTextProblemSolutions{Solutions of the \Roman{solvedbatch} series}
-\newcommand\fksMeta@sectionTextResults{Results after the \Roman{solvedbatch} series}
+\renewcommand\fksMeta@sectionTextProblemTasks{Tasks of the \Roman{batch} series}
+\renewcommand\fksMeta@sectionTextProblemSolutions{Solutions of the \Roman{solvedbatch} series}
+\renewcommand\fksMeta@sectionTextResults{Results after the \Roman{solvedbatch} series}

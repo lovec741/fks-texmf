@@ -1,0 +1,8 @@
+% Serial authors
+% \serauthors[1] macro is empty operation for TeX, its only purpose at the
+% moment is to play a role of searchable thing for grep in creating of a
+% yearbook (yearbook/scripts/serauthors.sh).
+\newcommand\fksSeries@authors{}
+\newcommand\serauthors[1]{
+	\renewcommand\fksSeries@authors{#1}
+}

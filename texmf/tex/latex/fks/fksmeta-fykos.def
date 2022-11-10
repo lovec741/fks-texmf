@@ -3,7 +3,7 @@
 \renewcommand\fksMeta@webDomain{fykos.cz}
 \renewcommand\fksMeta@seriesTitle{Seriál}
 
-\newcoomand\fksMeta@headerLeft{\fksMeta@contestNameShort}
+\renewcommand\fksMeta@headerLeft{\fksMeta@contestNameShort}
 \renewcommand\fksMeta@headerRight{ročník \formatContestYear{year}\qquad číslo \arabic{batch}/7}
 
 \renewcommand\fksMeta@address{
@@ -43,22 +43,23 @@
 }
 
 % Define section texts and styles
-\newcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
-\newcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
-\newcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
-\newcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
+\renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
+\renewcommand\fksMeta@sectionTextSeries[1]{\fksMeta@seriesTitle: #1}
+\renewcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 
-\newcommand\fksMeta@sectionStyleProblemTasks{
+\renewcommand\fksMeta@sectionStyleProblemTasks{
 	\sectionWithImageLeft{logo1.eps}{\fksMeta@sectionTextProblemTasks}}
-\newcommand\fksMeta@sectionStyleProblemSolutions{
+\renewcommand\fksMeta@sectionStyleProblemSolutions{
 	\sectionWithImageLeft{logo2.eps}{\fksMeta@sectionTextProblemSolutions}}
-\newcommand\fksMeta@sectionStyleSeries[1]{
+\renewcommand\fksMeta@sectionStyleSeries[1]{
 	\sectionWithImageLeft{logo3.eps}{\fksMeta@sectionTextSeries{#1}}}
-\newcommand\fksMeta@sectionStyleResults{
+\renewcommand\fksMeta@sectionStyleResults{
 	\sectionWithImageLeft{logo1.eps}{\fksMeta@sectionTextResults}}
 
-% define letters for problems
-\newcommand\fksMeta@problemLetter[1]{
+% data used by problems
+\newcommand\fksMeta@problemDefaultStudyYears{}
+\renewcommand\fksMeta@problemLetter[1]{
 	\ifcase #1
 		\relax\or 1\else 2\else 3\else 4\else 5\else P\else E\else S\else
 		\@ctrerr

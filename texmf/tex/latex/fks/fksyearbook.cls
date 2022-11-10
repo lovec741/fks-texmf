@@ -64,6 +64,16 @@ SlantedFont=[cmunsl.otf]
   \raggedbottom % twoside layout causes expanding vertical space around environments
 \fi
 
+% Some packages rely on this condition
+\newif\ifyearbook
+\yearbooktrue
+
+% FYKOS packages
+\RequirePackage{fksmeta}
+\RequirePackage{fkssugar}
+%\RequirePackage{fkslegacy}
+\RequirePackage{fksfigures}
+
 \newcommand\chapternamehdr{}%obsahuje jmeno aktualni casti
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
@@ -86,16 +96,6 @@ SlantedFont=[cmunsl.otf]
 \else
   \fancyfoot[C]{\bfseries \thepage}
 \fi
-
-% Some packages rely on this condition
-\newif\ifyearbook
-\yearbooktrue
-
-% FYKOS packages
-\RequirePackage{fksmeta}
-\RequirePackage{fkssugar}
-%\RequirePackage{fkslegacy}
-\RequirePackage{fksfigures}
 
 % tabulky řešitelů (musí být před fkstables)
 \renewcommand\met@resultsheader{& {\normalfont\bfseries jméno} & škola & $\Sigma$ \\}
@@ -529,23 +529,22 @@ ISBN \@isbn
 \newcommand\titlefontsub{\fontsize{20pt}{20pt}\selectfont\bfseries}
 
 \renewcommand\maketitle{%
-\thispagestyle{empty}
+	\thispagestyle{empty}
 
-\begin{center}
-\null\vspace{12pt}
-{\titlefontsc\@authors}
-\vspace{36pt}
+	\begin{center}
+	\null\vspace{12pt}
+	{\titlefontsc\@authors}
+	\vspace{36pt}
 
-{\titlefontmain\@title}
-\vspace{36pt}
+	{\titlefontmain\@title}
+	\vspace{36pt}
 
-{\titlefontsub\@subtitle}
-\vspace{72pt}
+	{\titlefontsub\@subtitle}
+	\vspace{72pt}
 
-\includegraphics[width=0.7\textwidth]{logo3.pdf}
+	\includegraphics[width=0.7\textwidth]{logo3.pdf}
 
-
-\end{center}
+	\end{center}
 }
 
 \newcommand\copyrightpage{%

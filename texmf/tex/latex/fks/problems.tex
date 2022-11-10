@@ -40,7 +40,7 @@
   \tasktrue\solutionfalse\solutionsinglefalse%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-      \problem[\metaprobletter{problem}: \@probname]{\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{batch}{problem} \,\ldots{} \@probname{} \metaprobdata{problem} \hfill {\normalfont\normalsize\problempoints}}%
+      \problem[\metaprobletter{problem}: \@probname]{\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{batch}{problem} \,\ldots{} \@probname{} \problemData{problem} \hfill {\normalfont\normalsize\problempoints}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
   }
@@ -88,6 +88,37 @@
    \nopagebreak\vspace{6pt}\nopagebreak\expandafter\signature\@probsolauthors\par % email on the end solution
 }
 
+% year tag characters from pifont
+\newcommand\year@tag[1]{
+	\ifcase #1 \or 
+		\ding{182}\or \ding{183}\or \ding{184}\or \ding{185}\or \ding{186}\or
+		\ding{187}\or\ding{188}\or \ding{189}\or \ding{190}\else
+		\@ctrerr
+	\fi
+}
+\newcommand\type@tag[1]{%
+	\ifthenelse{\equal{#1}{hard}}{\ding{72}}{}%
+}
+
+\renewcommand\problemData[1]{%
+	% Tags for study years (defaults defined in fksmeta)
+	{ % keep \LARGE on for tags
+		\LARGE
+		\let\do\year@tag%
+			\expandafter\docsvlist\@probstudyyears%
+		% tags for problem type
+		\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
+			\let\do\type@tag%
+				\expandafter\docsvlist\@probtags%
+		} % end of problem type tags
+	}
+}
+
+% getter for problem letters
+\newcommand\problemLetter[1]{
+	\fksMeta@problemLetter{\value{#1}}
+}
+
 % problem info fields macros
 \newcommand\problemnum[2]{\Roman{#1}.\metaprobletter{#2}}
 
@@ -121,7 +152,7 @@ průměr~\@probavg;
 \newcommand\@probtopics{N/A}
 \newcommand\@probexpectedprecision{N/A}
 \newcommand\@probmachineresult{N/A}
-\newcommand\@probstudyyears{N/A}
+\newcommand\@probstudyyears{\fksMeta@problemDefaultStudyYears}
 
 \newcommand\@probname{N/A}
 \newcommand\@probdbname{N/A}
