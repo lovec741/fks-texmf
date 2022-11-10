@@ -28,23 +28,27 @@
 % returns iso code for actual lang name
 % when no argument given return current language code
 \newcommand\langCode[1][\languagename]{%
-	\expandafter\ifx\csname @langCode\languagename\endcsname\relax
+	\expandafter\ifx\csname @langCode#1\endcsname\relax
 		\PackageWarning{fkslang}{Undefined language #1}%
 		null%
 	\else
-		\expandafter\csname @langCode\languagename\endcsname
+		\expandafter\csname @langCode#1\endcsname
 	\fi
 }
 
 % returns ilang name for iso code
 % when no argument given return current language name
-\newcommand\langName[1][\langCode{\languagename}]{%
-	\expandafter\ifx\csname @langName#1\endcsname\relax
-		\PackageWarning{fkslang}{Undefined language code #1}%
-		null%
-	\else
-		\expandafter\csname isol@ng#1\endcsname
-	\fi
+\newcommand\langName[1][]{%
+	\ifthenelse{\equal{#1}{}}{
+		\languagename
+	}{
+		\expandafter\ifx\csname @langName#1\endcsname\relax
+			\PackageWarning{fkslang}{Undefined language code #1}%
+			null%
+		\else
+			\expandafter\csname @langName#1\endcsname
+		\fi
+	}
 }
 
 % language optional
