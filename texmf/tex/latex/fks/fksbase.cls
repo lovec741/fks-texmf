@@ -118,6 +118,8 @@
 
 \setcounter{secnumdepth}{-1} % do not number headings
 
+\RequirePackage{fkssections} % TODO temporary
+
 % other
 \input{problems}
 \problemsdir{../problems}
