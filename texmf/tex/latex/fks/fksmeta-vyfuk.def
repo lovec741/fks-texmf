@@ -2,10 +2,10 @@
 \renewcommand\fksMeta@contestNameShort{Výfuk}
 \renewcommand\fksMeta@webDomain{vyfuk.mff.cuni.cz}
 \renewcommand\fksMeta@serialTitle{Výfučtení}
-\newcommand\fksMeta@problemSolutionTitle{Řešení}
+\renewcommand\fksMeta@problemSolutionTitle{Řešení}
 
-\newcoomand\fksMeta@headerLeft{\fksMeta@contestNameFull}
-\renewcommand\fksMeta@headerRight{ročník \formatContestYear{year}\qquad číslo \arabic{batch}/7}
+\renewcommand\fksMeta@headerLeft{\fksMeta@contestNameFull}
+\renewcommand\fksMeta@headerRight{ročník \fksMeta@formatContestYear{year}\qquad číslo \arabic{batch}/7}
 
 \renewcommand\fksMeta@address{
 	\begin{tabular}{r>{\slshape\bfseries}l}
@@ -48,7 +48,7 @@
 
 % Define section texts and styles
 \renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
-\renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série
+\renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
 \renewcommand\fksMeta@sectionTextSeries[1]{\fksMeta@serialTitle: #1}
 \renewcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
 
@@ -62,8 +62,8 @@
 	\sectionWithImageLeft{stupne123.eps}{\fksMeta@sectionTextResults}}
 
 % define letters for problems
-\newcommand\fksMeta@problemDefaultStudyYears{6,7,8,9}
-\newcommand\fksMeta@problemLetter[1]{
+\renewcommand\fksMeta@problemDefaultStudyYears{6,7,8,9}
+\renewcommand\fksMeta@problemLetter[1]{
 	\ifcase #1
 		\relax\or 1\else 2\else 3\else 4\else 5\else E\else V\else
 		\@ctrerr
@@ -94,7 +94,7 @@
 
 % define summer batch
 \newif\ifsummerbatch
-	\ifsummerbatch
+\ifsummerbatch
 	\renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. prázdninové série}
 	\renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. prázdninové série}
 	\renewcommand\fksMeta@sectionTextResults{Řešení \Roman{solvedbatch}. prázdninové série}

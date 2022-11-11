@@ -18,7 +18,7 @@
 	}
 }
 
-\renewcommand\problemsheading{%
+\newcommand\problemsheading{%
 	\section[\fksMeta@sectionTextProblemTasks]{\fksMeta@sectionStyleProblemTasks}
 	\setcounter{problem}{0}
 	\vspace{-4pt}
@@ -35,7 +35,7 @@
 
 \newcommand\seriesheading[1]{%
 	\renewcommand\fksSections@serialName{#1}
-	\section[\fksMeta@sectionTextSeries]{\fksMet@sectionStyleSeries{#1}}
+	\section[\fksMeta@sectionTextSeries{#1}]{\fksMeta@sectionStyleSeries{#1}}
 }
 
 \newcommand\resultsheading{%

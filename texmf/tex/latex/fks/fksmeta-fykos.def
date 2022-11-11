@@ -5,7 +5,7 @@
 \newcommand\fksMeta@problemSolutionTitle{Řešení}
 
 \renewcommand\fksMeta@headerLeft{\fksMeta@contestNameShort}
-\renewcommand\fksMeta@headerRight{ročník \formatContestYear{year}\qquad číslo \arabic{batch}/7}
+\renewcommand\fksMeta@headerRight{ročník \fksMeta@formatContestYear{year}\qquad číslo \arabic{batch}/7}
 
 \renewcommand\fksMeta@address{
 	\begin{tabular}{r>{\slshape\bfseries}l}

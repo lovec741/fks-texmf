@@ -25,15 +25,15 @@
 % Helper macros for section titles with images
 % ----------------------
 \newcommand\sectionWithImageLeft[2]{
-	\centering \includegraphics{#1}\hspace{10pt}\raisebox{0.6cm}{#2}
+	\centering \includegraphics[height=20mm]{#1}\hspace{10pt}\raisebox{0.6cm}{#2}
 }
 
 \newcommand\sectionWithImageRight[2]{
-	\centering \raisebox{0.6cm}{#2}\hspace{10pt}\includegraphics{#1}
+	\centering \raisebox{0.6cm}{#2}\hspace{10pt}\includegraphics[height=20mm]{#1}
 }
 
 \newcommand\sectionWithImages[3]{
-	\centering \includegraphics{#1}\hspace{10pt}\raisebox{0.6cm}{#3}\hspace{10pt}\includegraphics{#2}
+	\centering \includegraphics[height=20mm]{#1}\hspace{10pt}\raisebox{0.6cm}{#3}\hspace{10pt}\includegraphics[height=20mm]{#2}
 }
 
 % ----------------------
@@ -52,8 +52,8 @@
 \newcommand\fksMeta@formatContestYear[1]{\Roman{#1}}
 
 % text used in headers
-\newcoomand\fksMeta@headerLeft{}
-\newcoomand\fksMeta@headerRight{}
+\newcommand\fksMeta@headerLeft{}
+\newcommand\fksMeta@headerRight{}
 
 % external redefinition of headers
 \newcommand\leftheader[1]{
@@ -107,11 +107,11 @@
 	\input{fksmeta.def}
 }{
 	\PackageError{fksmeta}{
-		Config file fksmeta.def not found.
+		Config file fksmeta.def not found%
 	}{
 		Check if fksmeta.def is created and TeX can reach it (file must be in
 		the same directory as tex is run from or you need to specify TEXINPUTS
-		variable so tex knows, where to search for it).
+		variable so tex knows, where to search for it).%
 	}
 }
 

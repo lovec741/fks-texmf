@@ -4,7 +4,7 @@
 \renewcommand\fksMeta@serialTitle{Serial}
 \newcommand\fksMeta@problemSolutionTitle{Solution}
 
-\renewcommand\fksMeta@headerRight{year \formatContestYear{year}\qquad number \arabic{batch}/7}
+\renewcommand\fksMeta@headerRight{year \fksMeta@formatContestYear{year}\qquad number \arabic{batch}/7}
 
 \renewcommand\fksMeta@address{
 	\begin{tabular}{r>{\slshape\bfseries}l}
