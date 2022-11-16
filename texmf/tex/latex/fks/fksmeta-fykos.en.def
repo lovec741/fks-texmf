@@ -19,6 +19,7 @@
 			e-mail: & \normalfont\mail{fykos@\fksMeta@webDomain}\\
 	\end{tabular}
 	\nopagebreak\smallskip
+
 	{
 		\raisebox{-0.2\baselineskip}{%
 			\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%

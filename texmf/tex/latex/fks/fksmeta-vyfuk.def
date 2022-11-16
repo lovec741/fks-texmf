@@ -10,7 +10,7 @@
 \renewcommand\fksMeta@address{
 	\begin{tabular}{r>{\slshape\bfseries}l}
 		\multirow{5}{*}{\includegraphics[width=2cm]{NB.eps}}
-		&Korespondenční seminář \VYFUK \\
+		&Korespondenční seminář Výfuk \\
 		&UK, Matematicko-fyzikální fakulta\\
 		&V Holešovičkách 2\\
 		&180\,00 Praha 8\\
@@ -19,6 +19,7 @@
 		e-mail: & \normalfont\mail{vyfuk@\fksMeta@webDomain}\\
 	\end{tabular}
 	\nopagebreak\smallskip
+
 	{\sffamily
 		\raisebox{-0.2\baselineskip}{%
 			\opt{web}{\includegraphics[height=\baselineskip]{color/fb_logo.eps}}%
@@ -63,11 +64,11 @@
 
 % define letters for problems
 \renewcommand\fksMeta@problemDefaultStudyYears{6,7,8,9}
-\renewcommand\fksMeta@problemLetter[1]{
-	\ifcase #1
-		\relax\or 1\else 2\else 3\else 4\else 5\else E\else V\else
-		\@ctrerr
-	\fi
+\renewcommand\fksMeta@problemLetter[1]{%
+	\ifcase #1%
+		\relax\or 1\or 2\or 3\or 4\or 5\or E\or V\else%
+		\@ctrerr%
+	\fi%
 }
 
 % results tables information
@@ -128,14 +129,7 @@
 }
 
 \renewcommand\maketitle{%
-	\thispagestyle{titlepage}{%
-		\setlength{\parindent}{0pt}
-		\colorbox{black}{
-		\begin{minipage}{\textwidth-6pt}
-			\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily \fksMeta@headerLeft}
-			\hfill \raisebox{-8.5pt}{\bfseries\sffamily \fksMeta@headerRight}}
-		\end{minipage}}
-	}%
+	\thispagestyle{titlepage}
 
 	\vspace{-\parskip}\vspace{5mm}
 	{\centering\includegraphics[width=\textwidth]{vyfuk_hlavicka.eps}}%

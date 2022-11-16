@@ -6,6 +6,7 @@
 %
 
 \RequirePackage{polyglossia}
+\RequirePackage{ifthen}
 
 \newif\iffksLangSelected
 \fksLangSelectedfalse
@@ -27,28 +28,28 @@
 
 % returns iso code for actual lang name
 % when no argument given return current language code
-\newcommand\langCode[1][\languagename]{%
-	\expandafter\ifx\csname @langCode#1\endcsname\relax
-		\PackageWarning{fkslang}{Undefined language #1}%
+\newcommand\langCode{%
+	\expandafter\ifx\csname @langCode\languagename\endcsname\relax
+		\PackageWarning{fkslang}{Undefined language \languagename}%
 		null%
 	\else
-		\expandafter\csname @langCode#1\endcsname
+		\expandafter\csname @langCode\languagename\endcsname
 	\fi
 }
 
 % returns ilang name for iso code
 % when no argument given return current language name
 \newcommand\langName[1][]{%
-	\ifthenelse{\equal{#1}{}}{
-		\languagename
+	\ifthenelse{\equal{#1}{}}{%
+		\languagename{}%
 	}{
 		\expandafter\ifx\csname @langName#1\endcsname\relax
 			\PackageWarning{fkslang}{Undefined language code #1}%
 			null%
-		\else
-			\expandafter\csname @langName#1\endcsname
+		\else%
+			\expandafter\csname @langName#1\endcsname%
 		\fi
-	}
+	}%
 }
 
 % language optional

@@ -25,10 +25,10 @@
     \probbatch{N/A}\probno{N/A}\probpoints{N/A}\probsolauthors{N/A}%
     \probauthors{N/A}\probsolvers{N/A}\probavg{N/A}\probtags{N/A}%
     \probsource{N/A}\proborigintruth{N/A}\probtopics{N/A}%
-    \probexpectedprecision{N/A}\probmachineresult{N/A}\probstudyyears{N/A}%
-    \probname[\isolang]{N/A}\probdbname[\isolang]{N/A}\proborigin[\isolang]{N/A}%
-    \probtask[\isolang]{N/A}\probsolution[\isolang]{N/A}\probfig[\isolang]{N/A}%
-    \probwebfig[\isolang]{N/A}{N/A}\probhumanresult[\isolang]{N/A}%
+    \probexpectedprecision{N/A}\probmachineresult{N/A}\probstudyyears{\fksMeta@problemDefaultStudyYears}%
+    \probname[\langCode]{N/A}\probdbname[\langCode]{N/A}\proborigin[\langCode]{N/A}%
+    \probtask[\langCode]{N/A}\probsolution[\langCode]{N/A}\probfig[\langCode]{N/A}%
+    \probwebfig[\langCode]{N/A}{N/A}\probhumanresult[\langCode]{N/A}%
   \IfFileExists{\@tmpfilename}{
   \input{\@tmpfilename}%
   \ClassInfo{fksserie}{Loaded \@tmpfilename}
@@ -40,7 +40,7 @@
   \tasktrue\solutionfalse\solutionsinglefalse%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-      \problem[\metaprobletter{problem}: \@probname]{\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{batch}{problem} \,\ldots{} \@probname{} \problemData{problem} \hfill {\normalfont\normalsize\problempoints}}%
+      \problem[\problemLetter{problem}: \@probname]{\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{batch}{problem} \,\ldots{} \@probname{} \problemData{problem} \@probstudyyears \hfill {\normalfont\normalsize\problempoints}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
   }
@@ -75,7 +75,7 @@
 
 
 \newcommand\pr@blemsolution{%
-   \problem[\metaprobletter{problem}: \@probname]%
+   \problem[\problemLetter{problem}: \@probname]%
    {\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
       {\normalfont\normalsize\problemstats}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
@@ -105,22 +105,22 @@
 	{ % keep \LARGE on for tags
 		\LARGE
 		\let\do\year@tag%
-			\expandafter\docsvlist\@probstudyyears%
+		\expandafter\docsvlist\@probstudyyears%
 		% tags for problem type
 		\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
 			\let\do\type@tag%
-				\expandafter\docsvlist\@probtags%
+			\expandafter\docsvlist{\@probtags}%
 		} % end of problem type tags
 	}
 }
 
 % getter for problem letters
-\newcommand\problemLetter[1]{
-	\fksMeta@problemLetter{\value{#1}}
+\newcommand\problemLetter[1]{%
+	\fksMeta@problemLetter{\value{#1}}%
 }
 
 % problem info fields macros
-\newcommand\problemnum[2]{\Roman{#1}.\metaprobletter{#2}}
+\newcommand\problemnum[2]{\Roman{#1}.\problemLetter{#2}}
 
 \newcommand\problemstats{\problempoints;
 \ifthenelse{\equal\@probavg{N/A}}{(chybí statistiky)\PackageWarning{fks problems}{Missing stats for problem \Roman{solvedbatch}.\theproblem.}}{%
@@ -152,7 +152,7 @@ průměr~\@probavg;
 \newcommand\@probtopics{N/A}
 \newcommand\@probexpectedprecision{N/A}
 \newcommand\@probmachineresult{N/A}
-\newcommand\@probstudyyears{\fksMeta@problemDefaultStudyYears}
+\newcommand\@probstudyyears{N/A}
 
 \newcommand\@probname{N/A}
 \newcommand\@probdbname{N/A}
@@ -180,12 +180,12 @@ průměr~\@probavg;
 \newcommand\probmachineresult[1]{\renewcommand\@probmachineresult{\unexpanded{#1}}}
 
 % setters for per language attributes
-\newcommand\probname[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probname{#2}}{}}
-\newcommand\probdbname[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probdbname{#2}}{}}
-\newcommand\proborigin[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@proborigin{#2}}{}}
-\newcommand\probfig[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probfig{#2}}{}}
-\newcommand\probwebfig[3][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probwebfig{FIGURE#1CAPTION#2LANG\isolang EFIGURE}}{}}
-\newcommand\probhumanresult[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probhumanresult{#2}}{}}
-\newcommand\probsolution[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probsolution{#2}}{}}
-\newcommand\probtask[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probtask{#2}}{}}
+\newcommand\probname[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probname{#2}}{}}
+\newcommand\probdbname[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probdbname{#2}}{}}
+\newcommand\proborigin[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@proborigin{#2}}{}}
+\newcommand\probfig[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probfig{#2}}{}}
+\newcommand\probwebfig[3][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probwebfig{FIGURE#1CAPTION#2LANG\langCode EFIGURE}}{}}
+\newcommand\probhumanresult[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probhumanresult{#2}}{}}
+\newcommand\probsolution[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probsolution{#2}}{}}
+\newcommand\probtask[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probtask{#2}}{}}
 

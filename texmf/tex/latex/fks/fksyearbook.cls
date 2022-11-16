@@ -204,7 +204,7 @@ A{\bfseries}r}} % sum
   \tasktrue\solutionfalse\solutionsinglefalse%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-   \problem[\metaprobletter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
+   \problem[\fksMeta@problemLetter{problem}: \@probname]{Úloha \problemnum{batch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problempoints}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
    \signed{\textit{(řešení str. \pageref{\solutionref\thecountx-\thecounty})}}
@@ -212,7 +212,7 @@ A{\bfseries}r}} % sum
 }
 % bez autora námětu a vzoráku (jsou vzadu), suffixování labelů u obrázků v zadání (kolize se skutečným zadáním)
 \renewcommand\pr@blemsolution{%
-   \varproblem[\metaprobletter{problem}: \@probname]%
+   \varproblem[\fksMeta@problemLetter{problem}: \@probname]%
     {Úloha \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
       {\normalfont\normalsize\problemstats}}%
 	  \label{solution\thebatch-\theproblem}%

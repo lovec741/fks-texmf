@@ -85,12 +85,12 @@
 
 % data used by problems
 \newcommand\fksMeta@problemDefaultStudyYears{}
-\newcommand\fksMeta@problemLetter[1]{
-	\ifcase #1
-		\relax\or
-		1\else
-		\@ctrerr
-	\fi
+\newcommand\fksMeta@problemLetter[1]{%
+	\ifcase #1%
+		\relax\or%
+		1\else%
+		\@ctrerr%
+	\fi%
 }
 
 % results table parameter
@@ -118,20 +118,20 @@
 \RequirePackage{fkslang}
 
 % define language variant of config file
-% \landCode from fkslang cannot be used due to macro expanding, so the language
-% code is explicitly retrieved from @landCode macro
-\newcommand\fksMeta@configFilename{
-	fksmeta.\csname @langCode\languagename\endcsname.def
+% \langCode from fkslang cannot be used due to macro expanding, so the language
+% code is explicitly retrieved from @langCode macro
+\newcommand\fksMeta@configFilename{%
+	fksmeta.\langCode.def
 }
 
 \IfFileExists{\fksMeta@configFilename}{
 	\input{\fksMeta@configFilename}
 	\PackageInfo{fksmeta}{
-		Language config file found, importing.
+		Language config file \fksMeta@configFilename found, importing
 	}
 }{
 	\PackageInfo{fksmeta}{
-		Language config file not found, skipping.
+		Language config file \fksMeta@configFilename not found, skipping
 	}
 }
 

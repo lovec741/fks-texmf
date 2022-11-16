@@ -45,10 +45,10 @@
 }
 \newcommand\tmp{}
 
-\renewcommand\probtask[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probtask{\unexpanded{#2}}}{}}
-\renewcommand\proborigin[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@proborigin{\unexpanded{#2}}}{}{}}
-\renewcommand\probfig[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probfig{\unexpanded{#2}}}{}{}}
-\renewcommand\probwebfig[3][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\isolang}}{\renewcommand\@probwebfig{FIGURE\unexpanded{#2}CAPTION\unexpanded{#3}EFIGURE}}{}{}}
+\renewcommand\probtask[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probtask{\unexpanded{#2}}}{}}
+\renewcommand\proborigin[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@proborigin{\unexpanded{#2}}}{}{}}
+\renewcommand\probfig[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probfig{\unexpanded{#2}}}{}{}}
+\renewcommand\probwebfig[3][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probwebfig{FIGURE\unexpanded{#2}CAPTION\unexpanded{#3}EFIGURE}}{}{}}
 
 \begin{document}
 
@@ -75,7 +75,7 @@
     \stepcounter{problem}
     \immediate\write\tempfile{<problem>}
     \immediate\write\tempfile{<number>\theproblem</number>}
-    \immediate\write\tempfile{<label>\metaprobletter{problem}</label>}
+    \immediate\write\tempfile{<label>\fksMeta@problemLetter{problem}</label>}
     % name
     \foreach \lng in {cs,en}{
         \begin{\langiso{\lng}}

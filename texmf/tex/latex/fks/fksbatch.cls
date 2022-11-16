@@ -11,6 +11,8 @@
 \ProcessOptions
 \LoadClass{fksbase}
 
+\RequirePackage{fksserial}
+
 % other
 \let\oldfooter\makefooter
 \renewcommand\makefooter{%
