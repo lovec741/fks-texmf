@@ -25,7 +25,7 @@
     \probbatch{N/A}\probno{N/A}\probpoints{N/A}\probsolauthors{N/A}%
     \probauthors{N/A}\probsolvers{N/A}\probavg{N/A}\probtags{N/A}%
     \probsource{N/A}\proborigintruth{N/A}\probtopics{N/A}%
-    \probexpectedprecision{N/A}\probmachineresult{N/A}\probstudyyears{\fksMeta@problemDefaultStudyYears}%
+    \probexpectedprecision{N/A}\probmachineresult{N/A}\probstudyyears{N/A}%
     \probname[\langCode]{N/A}\probdbname[\langCode]{N/A}\proborigin[\langCode]{N/A}%
     \probtask[\langCode]{N/A}\probsolution[\langCode]{N/A}\probfig[\langCode]{N/A}%
     \probwebfig[\langCode]{N/A}{N/A}\probhumanresult[\langCode]{N/A}%
@@ -40,7 +40,7 @@
   \tasktrue\solutionfalse\solutionsinglefalse%
   \stepcounter{problem}%
   \@LoadProblem{\thebatch}{\theproblem}{%
-      \problem[\problemLetter{problem}: \@probname]{\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{batch}{problem} \,\ldots{} \@probname{} \problemData{problem} \@probstudyyears \hfill {\normalfont\normalsize\problempoints}}%
+      \problem[\problemLetter{problem}: \@probname]{\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{batch}{problem} \,\ldots{} \@probname{} \problemData \hfill {\normalfont\normalsize\problempoints}}%
    \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
    \@probtask%
   }
@@ -89,29 +89,31 @@
 }
 
 % year tag characters from pifont
-\newcommand\year@tag[1]{
-	\ifcase #1 \or 
-		\ding{182}\or \ding{183}\or \ding{184}\or \ding{185}\or \ding{186}\or
-		\ding{187}\or\ding{188}\or \ding{189}\or \ding{190}\else
-		\@ctrerr
-	\fi
+\newcommand\year@tag[1]{%
+	\ifcase #1 \or%
+		\ding{182}\or \ding{183}\or \ding{184}\or \ding{185}\or \ding{186}\or%
+		\ding{187}\or\ding{188}\or \ding{189}\or \ding{190}\else%
+		\@ctrerr%
+	\fi\,%
 }
 \newcommand\type@tag[1]{%
 	\ifthenelse{\equal{#1}{hard}}{\ding{72}}{}%
 }
 
-\newcommand\problemData[1]{%
+\newcommand\problemData{%
 	% Tags for study years (defaults defined in fksmeta)
-	{ % keep \LARGE on for tags
-		\LARGE
-		\let\do\year@tag%
-		\expandafter\docsvlist\@probstudyyears%
+	{% keep \LARGE on for tags
+		\Large%
+		\ifthenelse{\equal{\@probstudyyears}{{N/A}}}{%
+			\expandafter\forcsvlist\expandafter\year@tag\expandafter{\fksMeta@problemDefaultStudyYears}%
+		}{%
+			\expandafter\forcsvlist\expandafter\year@tag\@probstudyyears%
+		}%
 		% tags for problem type
 		\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
-			\let\do\type@tag%
-			\expandafter\docsvlist{\@probtags}%
-		} % end of problem type tags
-	}
+			\expandafter\forcsvlist\expandafter\type@tag\expandafter{\@probtags}%
+		}% end of problem type tags
+	}%
 }
 
 % getter for problem letters
