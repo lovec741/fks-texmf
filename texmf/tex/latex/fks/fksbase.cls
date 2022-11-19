@@ -121,7 +121,7 @@
 \RequirePackage{fkssections} % TODO temporary
 
 % other
-\input{problems}
+\RequirePackage{fksproblems}
 \problemsdir{../problems}
 \input{fkssignature}
 \signaturesfile{../signatures.tex}

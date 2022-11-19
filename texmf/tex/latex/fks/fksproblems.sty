@@ -5,6 +5,9 @@
 %              and formatting its output.
 %
 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fksproblems}[2022/11/18 Functions for problems tasks and solutions]
+
 \RequirePackage{ifthen}
 % cooperation with fksfigures input@path change
 \ifx\@problemsdir\@undefined
@@ -47,18 +50,13 @@
 }
 
 \newcommand\problemsolution{%
-  \taskfalse\solutiontrue\solutionsinglefalse%
-  \stepcounter{problem}%
-  \@LoadProblem{\thesolvedbatch}{\theproblem}{%
-  \pr@blemsolution
-}}
-
-
-\newcommand\myprint[1]{pdfauthor=#1}
-\def\expandargument#1#2{%
-    \edef\temp{#2}%
-    \expandafter#1\expandafter{\temp}%
+	\taskfalse\solutiontrue\solutionsinglefalse%
+	\stepcounter{problem}%
+	\@LoadProblem{\thesolvedbatch}{\theproblem}{%
+		\pr@blemsolution%
+	}%
 }
+
 
 \newcommand\problemsolutionsingle{%
   \taskfalse\solutiontrue\solutionsingletrue%

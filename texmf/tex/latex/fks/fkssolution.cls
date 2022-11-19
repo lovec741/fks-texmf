@@ -10,7 +10,7 @@
 \LoadClass{fksbase}
 
 \RequirePackage{fksmeta}
-\rightheader{\fksMeta@problemSolutionTitle~\fksMeta@formatContestYear.\problemnum{solvedbatch}{problem}}
+\rightheader{\fksMeta@problemSolutionTitle~\fksMeta@formatContestYear{year}.\problemnum{solvedbatch}{problem}}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{fksbase}}
 \ProcessOptions\relax
