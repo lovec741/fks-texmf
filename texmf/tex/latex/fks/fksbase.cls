@@ -81,7 +81,6 @@
 % FYKOS packages
 \RequirePackage{fksmeta}
 \RequirePackage{fkssugar}
-%\RequirePackage{fkslegacy}
 \RequirePackage{fksfigures}
 \RequirePackage{fkstables}
 \RequirePackage{fksmisc}

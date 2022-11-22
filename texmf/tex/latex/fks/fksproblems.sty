@@ -9,134 +9,181 @@
 \ProvidesPackage{fksproblems}[2022/11/18 Functions for problems tasks and solutions]
 
 \RequirePackage{ifthen}
-% cooperation with fksfigures input@path change
-\ifx\@problemsdir\@undefined
-\def\@problemsdir{.}
-\fi
-\renewcommand\@problemsdir{.}
-\newcommand\problemsdir[1]{\renewcommand\@problemsdir{#1}}
+\RequirePackage{fksfigures}
+\RequirePackage{fkslang}
+\RequirePackage{fksmeta}
+%\RequirePackage{fkssignature}
 
-% problems
-\newcommand\problemsfileprefix{} % possibility to override standard filename (for inter-year import)
-\newcommand\suppressprobfig{\renewcommand\probfig[1]{\renewcommand\@probfig{N/A}}} % when rendering figure manually
-\newcommand\revertprobfig{\renewcommand\probfig[1]{\renewcommand\@probfig{##1}}} % when rendering figure manually
+% ----------------
+% Loading problems
+% ----------------
 
-\newcommand\@tmpfilename{}
-\newcommand\@LoadProblem[3]{ % batch number, problem number, expansion code
-  \renewcommand\@tmpfilename{\@problemsdir/\problemsfileprefix problem#1-#2.tex}%
-% reset optional parameters
-    \probbatch{N/A}\probno{N/A}\probpoints{N/A}\probsolauthors{N/A}%
-    \probauthors{N/A}\probsolvers{N/A}\probavg{N/A}\probtags{N/A}%
-    \probsource{N/A}\proborigintruth{N/A}\probtopics{N/A}%
-    \probexpectedprecision{N/A}\probmachineresult{N/A}\probstudyyears{N/A}%
-    \probname[\langCode]{N/A}\probdbname[\langCode]{N/A}\proborigin[\langCode]{N/A}%
-    \probtask[\langCode]{N/A}\probsolution[\langCode]{N/A}\probfig[\langCode]{N/A}%
-    \probwebfig[\langCode]{N/A}{N/A}\probhumanresult[\langCode]{N/A}%
-  \IfFileExists{\@tmpfilename}{
-  \input{\@tmpfilename}%
-  \ClassInfo{fksserie}{Loaded \@tmpfilename}
-  #3
-  }{\ClassWarning{fksserie}{Problem file \@tmpfilename not found.}}
+% define problems input folder
+\newcommand\fksProb@inputDir{.}
+\newcommand\problemsdir[1]{\renewcommand\fksProb@inputDir{#1}}
+
+% add graphics problems dir to path
+\addgraphicsdir{\fksProb@inputDir/graphics/}
+
+% possibility to override standard filename (for inter-year import)
+\newcommand\fksProb@filePrefix{problem}
+
+\newcommand\fksProb@tmpFilename{}
+\newcommand\fksProb@loadProblem[3]{ % batch number, problem number, expansion code
+	\renewcommand\fksProb@tmpFilename{\fksProb@inputDir/\fksProb@filePrefix#1-#2.tex}%
+	% reset optional parameters
+	\probbatch{N/A}\probno{N/A}\probpoints{N/A}\probsolauthors{N/A}%
+	\probauthors{N/A}\probsolvers{N/A}\probavg{N/A}\probtags{N/A}%
+	\probsource{N/A}\proborigintruth{N/A}\probtopics{N/A}%
+	\probexpectedprecision{N/A}\probmachineresult{N/A}\probstudyyears{N/A}%
+	\probname[\langCode]{N/A}\probdbname[\langCode]{N/A}\proborigin[\langCode]{N/A}%
+	\probtask[\langCode]{N/A}\probsolution[\langCode]{N/A}\probfig[\langCode]{N/A}%
+	\probwebfig[\langCode]{N/A}{N/A}\probhumanresult[\langCode]{N/A}%
+	\IfFileExists{\fksProb@tmpFilename}{%
+		\input{\fksProb@tmpFilename}%
+		\ClassInfo{fksproblems}{Loaded \fksProb@tmpFilename}%
+		#3
+	}{
+		\ClassWarning{fksproblems}{Problem file \fksProb@tmpFilename not found.}
+	}
 }
 
-\newcommand\problemtask{%
-  \tasktrue\solutionfalse\solutionsinglefalse%
-  \stepcounter{problem}%
-  \@LoadProblem{\thebatch}{\theproblem}{%
-      \problem[\problemLetter{problem}: \@probname]{\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{batch}{problem} \,\ldots{} \@probname{} \problemData \hfill {\normalfont\normalsize\problempoints}}%
-   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
-   \@probtask%
-  }
-}
+% ----------------
+% Content commands
+% ----------------
+%
+% comands specifing content in format commands
+% can be redefined for easy changes
 
-\newcommand\problemsolution{%
-	\taskfalse\solutiontrue\solutionsinglefalse%
-	\stepcounter{problem}%
-	\@LoadProblem{\thesolvedbatch}{\theproblem}{%
-		\pr@blemsolution%
-	}%
-}
+% define dictionary words
+\newcommand\fksProb@dictLabel{Úloha}
+\newcommand\fksProb@dictAverage{průměr}
+\newcommand\fksProb@dictSolved{\plural{\@probsolvers}{řešil}{řešili}{řešilo}}
+\newcommand\fksProb@dictSolvers{\plural{\@probsolvers}{student}{studenti}{studentů}}
+\newcommand\fksProb@dictPoints{\plural{\@probpoints}{bod}{body}{bodů}}
 
+% define content for problem headings
+\newcommand\fksProb@headingBookmarkTask{\problemLetter{problem}: \@probname}
+\newcommand\fksProb@headingBookmarkSolution{\problemLetter{problem}: \@probname}
+\newcommand\fksProb@headingContentTask{\fksProb@dictLabel{} \problemNum{batch}{problem} \,\ldots{} \@probname{} {\Large \problemTagsYears \problemTagsTypes} \hfill {\normalfont\normalsize\problemPoints}}
+\newcommand\fksProb@headingContentSolution{\fksProb@dictLabel{} \problemNum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problemPoints; \problemStats}}
 
-\newcommand\problemsolutionsingle{%
-  \taskfalse\solutiontrue\solutionsingletrue%
-  \setcounter{solvedbatch}{\@probbatch}
-  \setcounter{problem}{\@probno}
-  % only simple macros can be used inside pdftitle (e.g. stepcounter doesn't work)
-  \hypersetup{
-    pdftitle={\fksMeta@contestNameShort, \Roman{year}.\Roman{solvedbatch}.\arabic{problem} \@probname},
-    pdfauthor={\@probsolauthors},
-  }
-
-  \pr@blemsolution
-}
-
-
-\newcommand\pr@blemsolution{%
-   \problem[\problemLetter{problem}: \@probname]%
-   {\lngopt{cs}{Úloha}\lngopt{en}{Problem} \problemnum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill
-      {\normalfont\normalsize\problemstats}}%
-   \nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
-   \textsl{\@probtask}
-   \signed{\textit{\@proborigin}}
-
-   \medskip
-   
-   \noindent \@probsolution\par
-   \nopagebreak\vspace{6pt}\nopagebreak\expandafter\signature\@probsolauthors\par % email on the end solution
-}
+% definitions of problem headings for reusability and redefinitions
+\newcommand\problemHeadingTask{\problem[\fksProb@headingBookmarkTask]{\fksProb@headingContentTask}}
+\newcommand\problemHeadingSolution{\problem[\fksProb@headingBookmarkSolution]{\fksProb@headingContentSolution}}
 
 % year tag characters from pifont
-\newcommand\year@tag[1]{%
+\newcommand\fksProb@getTagYear[1]{%
 	\ifcase #1 \or%
 		\ding{182}\or \ding{183}\or \ding{184}\or \ding{185}\or \ding{186}\or%
 		\ding{187}\or\ding{188}\or \ding{189}\or \ding{190}\else%
 		\@ctrerr%
 	\fi\,%
 }
-\newcommand\type@tag[1]{%
+
+% type tags
+\newcommand\fksProb@getTagType[1]{%
 	\ifthenelse{\equal{#1}{hard}}{\ding{72}}{}%
 }
 
-\newcommand\problemData{%
-	% Tags for study years (defaults defined in fksmeta)
-	{% keep \LARGE on for tags
-		\Large%
-		\ifthenelse{\equal{\@probstudyyears}{{N/A}}}{%
-			\expandafter\forcsvlist\expandafter\year@tag\expandafter{\fksMeta@problemDefaultStudyYears}%
-		}{%
-			\expandafter\forcsvlist\expandafter\year@tag\@probstudyyears%
-		}%
-		% tags for problem type
-		\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
-			\expandafter\forcsvlist\expandafter\type@tag\expandafter{\@probtags}%
-		}% end of problem type tags
+% formats of task and solution
+\newcommand\fksProb@formatTask{
+	\problemHeadingTask
+	\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
+	\@probtask\par%
+}
+
+\newcommand\fksProb@formatSolution{%
+	\problemHeadingSolution
+	\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
+	\textsl{\@probtask}
+	\signed{\textit{\@proborigin}}
+
+	\medskip
+
+	\noindent \@probsolution\par
+	\nopagebreak\vspace{6pt}\nopagebreak\expandafter\signature\@probsolauthors\par % email on the end solution
+}
+
+% ----------------
+% Utility commands
+% ----------------
+
+% commands for configuring, loading and printing problem tasks and solutions
+% generally used in batches, leaflets and other
+\newcommand\problemtask[1][\fksProb@formatTask]{%
+	\tasktrue\solutionfalse\solutionsinglefalse%
+	\stepcounter{problem}%
+	\fksProb@loadProblem{\thebatch}{\theproblem}{#1}
+}
+
+\newcommand\problemsolution[1][\fksProb@formatSolution]{%
+	\taskfalse\solutiontrue\solutionsinglefalse%
+	\stepcounter{problem}%
+	\fksProb@loadProblem{\thesolvedbatch}{\theproblem}{\fksProb@formatSolution}
+}
+
+\newcommand\problemsolutionsingle{%
+	\taskfalse\solutiontrue\solutionsingletrue%
+	\setcounter{solvedbatch}{\@probbatch}
+	\setcounter{problem}{\@probno}
+	% only simple macros can be used inside pdftitle (e.g. stepcounter doesn't work)
+	\hypersetup{
+		pdftitle={\fksMeta@contestNameShort, \fksMeta@formatContestYear{year}.\problemNum{solvedbatch}{problem} \@probname},
+		pdfauthor={\@probsolauthors}
+	}
+
+	\fksProb@formatSolution
+}
+
+% -------
+% Getters
+% -------
+
+% tags for study years (defaults defined in fksmeta)
+\newcommand\problemTagsYears{%
+	\ifthenelse{\equal{\@probstudyyears}{{N/A}}}{%
+		\expandafter\forcsvlist\expandafter\fksProb@getTagYear\expandafter{\fksMeta@problemDefaultStudyYears}%
+	}{%
+		\expandafter\forcsvlist\expandafter\fksProb@getTagYear\@probstudyyears%
 	}%
 }
 
-% getter for problem letters
+% tags for problem types
+\newcommand\problemTagsTypes{%
+	\ifthenelse{\equal{\@probtags}{{N/A}}}{}{%
+		\expandafter\forcsvlist\expandafter\fksProb@getTagType\expandafter{\@probtags}%
+	}
+}
+
+% problem letters
 \newcommand\problemLetter[1]{%
 	\fksMeta@problemLetter{\value{#1}}%
 }
 
-% problem info fields macros
-\newcommand\problemnum[2]{\Roman{#1}.\problemLetter{#2}}
+% problem number label
+\newcommand\problemNum[2]{\Roman{#1}.\problemLetter{#2}}
 
-\newcommand\problemstats{\problempoints;
-\ifthenelse{\equal\@probavg{N/A}}{(chybí statistiky)\PackageWarning{fks problems}{Missing stats for problem \Roman{solvedbatch}.\theproblem.}}{%
-průměr~\@probavg;
-\plural{\@probsolvers}{řešil}{řešili}{řešilo}{}~\@probsolvers{}~\plural{\@probsolvers}{student}{studenti}{studentů}}}
-
-\newcommand\problempoints{\@probpoints~%
-  \lngopt{cs}{\plural{\@probpoints}{bod}{body}{bodů}}%
-  \lngopt{en}{\plural{\@probpoints}{point}{points}{points}}%
+\newcommand\problemStats{%
+	\ifthenelse{\equal\@probavg{N/A}}{%
+		(chybí statistiky)%
+		\PackageWarning{fks problems}{Missing stats for problem \problemNum{solvedbatch}{problem}.}%
+	}{%
+		průměr~\@probavg; %
+		\fksProb@dictSolved~\@probsolvers~\fksProb@dictSolvers%
+	}%
 }
+
+\newcommand\problemPoints{\@probpoints~\fksProb@dictPoints}
+
+% ----------------
+% Problem commands
+% ----------------
 
 % ifs for customizing problems layout
 \newif\iftask
 \newif\ifsolution
 \newif\ifsolutionsingle % solutionsingle implies solution
-
 
 % problem attributes
 \newcommand\@probbatch{N/A}
@@ -189,3 +236,4 @@ průměr~\@probavg;
 \newcommand\probsolution[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probsolution{#2}}{}}
 \newcommand\probtask[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probtask{#2}}{}}
 
+% TODO add config loading

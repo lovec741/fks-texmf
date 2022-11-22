@@ -22,27 +22,35 @@
 \RequirePackage{xargs}
 \RequirePackage{tikz}
 
-\newcommand\centercaption{%
-  \captionsetup{format=plain,labelsep=newline,justification=centering}}
-% paths to graphics
-\newcommand{\@myinputpath}[1]{
-\ifx\input@path\@undefined
-\def\input@path{#1}
-\else
-\g@addto@macro{\input@path}{#1}
-\fi
-\graphicspath{#1}}
-
-% @problemsdir must be somehow defined also here not to damage input@path functionality
-\ifx\@problemsdir\@undefined
-\def\@problemsdir{.}
-\fi
-
-\opt{web}{%
- \@myinputpath{{./graphics/color/}{\@problemsdir/graphics/color/}{./graphics/}{\@problemsdir/graphics/}}
-}\opt{print}{%
- \@myinputpath{{./graphics/}{\@problemsdir/graphics/}}
+% add directory to path
+% if web option specified, add color subfolder first
+\newcommand\addgraphicsdir[1]{
+	\ifx\input@path\@undefined
+		\def\input@path{}
+	\fi
+	\opt{web}{
+		\g@addto@macro{\input@path}{{#1color/}}
+	}
+	\g@addto@macro{\input@path}{{#1}}
+	\expandafter\graphicspath\expandafter{\input@path}
 }
+
+% for specifying default path in config
+\newcommand\fksFig@defaultPath{}
+
+% TODO move to config
+\renewcommand\fksFig@defaultPath{./graphics/}
+
+% set path to defaults
+\newcommand\fksFig@resetPath{
+	\def\input@path{}
+	\graphicspath{}
+	\addgraphicsdir{\fksFig@defaultPath}
+}
+\fksFig@resetPath
+
+\newcommand\centercaption{%
+	\captionsetup{format=plain,labelsep=newline,justification=centering}}
 
 % to avoid label name collision in yearbook, figures inserted in
 \newcommand\labelsuffix{}
@@ -114,16 +122,18 @@
 
 \newcommand\illfig[5][o]{\illfigi[#1]{#2}{#3}{#4}{#5}{0.28}}
 
+
 % plot figures are listed down, in yearbook they have to be narrower
 \AtBeginDocument{
-  \ifyearbook
-  \newwrite\plotsfile
-  \immediate\openout\plotsfile=plots.txt
-  \else\relax\fi
+	\PackageWarning{fksfigures}{Input path: \input@path}
+	\ifyearbook
+	\newwrite\plotsfile
+	\immediate\openout\plotsfile=plots.txt
+	\else\relax\fi
 }
 \AtEndDocument{
-  \ifyearbook
-  \newwrite\plotsfile
-    \immediate\closeout\plotsfile
-  \else\relax\fi
+	\ifyearbook
+	\newwrite\plotsfile
+	\immediate\closeout\plotsfile
+	\else\relax\fi
 }
