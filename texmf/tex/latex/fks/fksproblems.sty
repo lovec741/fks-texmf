@@ -236,4 +236,28 @@
 \newcommand\probsolution[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probsolution{#2}}{}}
 \newcommand\probtask[2][1]{\ifthenelse{\equal{#1}{1} \OR \equal{#1}{\langCode}}{\renewcommand\@probtask{#2}}{}}
 
-% TODO add config loading
+% ----------------
+% Package config
+% ----------------
+%
+% Can be used to change command in "Content commands" section
+% Automatically load if present
+
+\RequirePackage{fkslang}
+
+% generic config
+\IfFileExists{fksproblems.def}{
+	\input{fksproblems.def}
+}{}
+
+% language specific config
+\newcommand\fksProb@configFilename{%
+	fksproblems.\langCode.def
+}
+
+\IfFileExists{\fksProb@configFilename}{
+	\input{\fksProb@configFilename}
+	\PackageInfo{fksproblems}{
+		Language config file \fksProb@configFilename found, importing
+	}
+}{}

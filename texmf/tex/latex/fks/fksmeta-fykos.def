@@ -2,7 +2,7 @@
 \renewcommand\fksMeta@contestNameShort{FYKOS}
 \renewcommand\fksMeta@webDomain{fykos.cz}
 \renewcommand\fksMeta@serialTitle{Seriál}
-\newcommand\fksMeta@problemSolutionTitle{Řešení}
+\renewcommand\fksMeta@problemSolutionTitle{Řešení}
 
 \renewcommand\fksMeta@headerLeft{\fksMeta@contestNameShort}
 \renewcommand\fksMeta@headerRight{ročník \fksMeta@formatContestYear{year}\qquad číslo \arabic{batch}/7}
@@ -60,7 +60,7 @@
 	\sectionWithImageLeft{logo1.eps}{\fksMeta@sectionTextResults}}
 
 % data used by problems
-\newcommand\fksMeta@problemDefaultStudyYears{}
+\renewcommand\fksMeta@problemDefaultStudyYears{}
 \renewcommand\fksMeta@problemLetter[1]{%
 	\ifcase #1%
 		\relax\or 1\or 2\or 3\or 4\or 5\or P\or E\or S\else%

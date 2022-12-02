@@ -2,7 +2,7 @@
 \renewcommand\fksMeta@contestNameShort{FYKOS}
 \renewcommand\fksMeta@webDomain{fykos.org}
 \renewcommand\fksMeta@serialTitle{Serial}
-\newcommand\fksMeta@problemSolutionTitle{Solution}
+\renewcommand\fksMeta@problemSolutionTitle{Solution}
 
 \renewcommand\fksMeta@headerRight{year \fksMeta@formatContestYear{year}\qquad number \arabic{batch}/7}
 
