@@ -127,12 +127,6 @@
 	\taskfalse\solutiontrue\solutionsingletrue%
 	\setcounter{solvedbatch}{\@probbatch}
 	\setcounter{problem}{\@probno}
-	% only simple macros can be used inside pdftitle (e.g. stepcounter doesn't work)
-	\hypersetup{
-		pdftitle={\fksMeta@contestNameShort, \fksMeta@formatContestYear{year}.\problemNum{solvedbatch}{problem} \@probname},
-		pdfauthor={\@probsolauthors}
-	}
-
 	\fksProb@formatSolution
 }
 

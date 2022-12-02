@@ -22,8 +22,9 @@
 	\fksSections@serialName
 }
 
-% TODO not working, save serial name to aux
-% https://tex.stackexchange.com/questions/313472/why-does-a-new-page-disrupt-hypersetup-and-is-there-a-workaround
-\hypersetup{
-	pdftitle={\fksMeta@serialTitle{} \fksMeta@formatContestYear{year}.\Roman{batch} \fksSections@serialName, \fksMeta@contestNameShort}%
+% TODO move serial name into fksserial.sty
+\AtBeginDocument{
+	\hypersetup{
+		pdftitle={\fksMeta@serialTitle{} \fksMeta@formatContestYear{year}.\Roman{batch} \fksSections@serialName, \fksMeta@contestNameShort}%
+	}
 }

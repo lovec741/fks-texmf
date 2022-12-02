@@ -32,9 +32,16 @@
 }
 
 \newcommand\fksSections@serialName{} % save serial name for later use
+\newcommand\fksSections@saveSerialName[1]{
+	\AtEndDocument{\immediate\write\@auxout{\string\fksSections@setSerialName{#1}}}
+}
+\newcommand\fksSections@setSerialName[1]{
+	\protected@xdef\fksSections@serialName{#1}
+}
 
 \newcommand\seriesheading[1]{%
 	\renewcommand\fksSections@serialName{#1}
+	\fksSections@saveSerialName{#1}
 	\section[\fksMeta@sectionTextSeries{#1}]{\fksMeta@sectionStyleSeries{#1}}
 }
 

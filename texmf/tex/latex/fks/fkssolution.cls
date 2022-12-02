@@ -14,5 +14,10 @@
 
 \rightheader{\fksMeta@problemSolutionTitle~\fksMeta@formatContestYear{year}.\problemNum{solvedbatch}{problem}}
 
+\hypersetup{
+	pdftitle={\fksMeta@contestNameShort, \fksMeta@formatContestYear{year}.\problemNum{solvedbatch}{problem} \@probname},
+	pdfauthor={\@probsolauthors} % TODO get authors full name
+}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{fksbase}}
 \ProcessOptions\relax
