@@ -9,6 +9,21 @@
 
 \RequirePackage{fksmeta}
 
+% ----------------------
+% Helper macros for section titles with images
+% ----------------------
+\newcommand\sectionWithImageLeft[2]{
+	\centering \includegraphics[height=15mm]{#1}\hspace{10pt}\raisebox{0.6cm}{#2}
+}
+
+\newcommand\sectionWithImageRight[2]{
+	\centering \raisebox{0.6cm}{#2}\hspace{10pt}\includegraphics[height=15mm]{#1}
+}
+
+\newcommand\sectionWithImages[3]{
+	\centering \includegraphics[height=15mm]{#1}\hspace{10pt}\raisebox{0.6cm}{#3}\hspace{10pt}\includegraphics[height=20mm]{#2}
+}
+
 \newcommand\showDeadline{
 	\ifthenelse{\equal{\@deadlineS}{}}{%
 		\centerline{\Large\slshape\sffamily Termín odeslání: \@deadline}
@@ -18,8 +33,32 @@
 	}
 }
 
+% ----------------------
+% Variables for configuring sections
+% ----------------------
+% Texts used in sections
+\newcommand\fksSec@textProblemTasks{Zadání \Roman{batch}. série}
+\newcommand\fksSec@textProblemTasksSummer{Zadání \Roman{batch}. části prázdninové série}
+\newcommand\fksSec@textProblemSolutions{Řešení \Roman{solvedbatch}. série}
+\newcommand\fksSec@textProblemSolutionsSummer{Řešení \Roman{solvedbatch}. části prázdninové série}
+\newcommand\fksSec@textSeries[1]{\fksMeta@serialTitle: #1}
+\newcommand\fksSec@textResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
+\newcommand\fksSec@textResultsSummer{Konečné pořadí řešitelů prázdninové série}
+
+% Styles of sections
+\newcommand\fksSec@styleProblemTasks{\fksSec@textProblemTasks}
+\newcommand\fksSec@styleProblemTasksSummer{\fksSec@textProblemTasksSummer}
+\newcommand\fksSec@styleProblemSolutions{\fksSec@textProblemSolutions}
+\newcommand\fksSec@styleProblemSolutionsSummer{\fksSec@textProblemSolutionsSummer}
+\newcommand\fksSec@styleSeries[1]{\fksSec@textSeries{#1}}
+\newcommand\fksSec@styleResults{\fksSec@textResults}
+\newcommand\fksSec@styleResultsSummer{\fksSec@textResultsSummer}
+
+% ----------------------
+% Section command definitions
+% ----------------------
 \newcommand\problemsheading{%
-	\section[\fksMeta@sectionTextProblemTasks]{\fksMeta@sectionStyleProblemTasks}
+	\section[\fksSec@textProblemTasks]{\fksSec@styleProblemTasks}
 	\setcounter{problem}{0}
 	\vspace{-4pt}
 	\showDeadline
@@ -27,24 +66,46 @@
 }
 
 \newcommand\solutionheading{%
-	\section[\fksMeta@sectionTextProblemTasks]{\fksMeta@sectionStyleProblemTasks}
+	\section[\fksSec@textProblemTasks]{\fksSec@styleProblemTasks}
 	\setcounter{problem}{0}%
 }
 
-\newcommand\fksSections@serialName{} % save serial name for later use
-\newcommand\fksSections@saveSerialName[1]{
-	\AtEndDocument{\immediate\write\@auxout{\string\fksSections@setSerialName{#1}}}
-}
-\newcommand\fksSections@setSerialName[1]{
-	\protected@xdef\fksSections@serialName{#1}
-}
-
-\newcommand\seriesheading[1]{%
-	\renewcommand\fksSections@serialName{#1}
-	\fksSections@saveSerialName{#1}
-	\section[\fksMeta@sectionTextSeries{#1}]{\fksMeta@sectionStyleSeries{#1}}
-}
 
 \newcommand\resultsheading{%
-	\section[\fksMeta@sectionTextResults]{\fksMeta@sectionStyleResults}
+	\section[\fksSec@textResults]{\fksSec@styleResults}
 }
+
+% ----------------------
+% Load config files
+% ----------------------
+\IfFileExists{fkssections.def}{
+	\input{fkssections.def}
+}{
+	\PackageError{fkssections}{
+		Config file fkssections.def not found%
+	}{
+		Check if fkssections.def is created and TeX can reach it (file must be in
+		the same directory as tex is run from or you need to specify TEXINPUTS
+		variable so tex knows, where to search for it).%
+	}
+}
+
+\RequirePackage{fkslang}
+
+% define language variant of config file
+\newcommand\fksSec@configFilename{%
+	fkssections.\langCode.def
+}
+
+\IfFileExists{\fksSec@configFilename}{
+	\input{\fksSec@configFilename}
+	\PackageInfo{fkssections}{
+		Language config file \fksSec@configFilename found, importing
+	}
+}{
+	\PackageInfo{fkssections}{
+		Language config file \fksSec@configFilename not found, skipping
+	}
+}
+
+\ProcessOptions\relax

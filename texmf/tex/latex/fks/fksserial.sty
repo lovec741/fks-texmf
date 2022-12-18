@@ -2,7 +2,27 @@
 % \serauthors[1] macro is empty operation for TeX, its only purpose at the
 % moment is to play a role of searchable thing for grep in creating of a
 % yearbook (yearbook/scripts/serauthors.sh).
-\newcommand\fksSeries@authors{}
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fksserial}[2022/12/18 Commands for seminar serials]
+
+\RequirePackage{fkssections}
+
+\newcommand\fksSer@serialName{} % save serial name for later use using aux file
+\newcommand\fksSer@saveSerialName[1]{
+	\AtEndDocument{\immediate\write\@auxout{\string\fksSer@setSerialName{#1}}}
+}
+\newcommand\fksSer@setSerialName[1]{
+	\protected@xdef\fksSec@serialName{#1}
+}
+
+\newcommand\seriesheading[1]{%
+	\renewcommand\fksSer@serialName{#1}
+	\fksSer@saveSerialName{#1}
+	\section[\fksSec@textSeries{#1}]{\fksSec@styleSeries{#1}}
+}
+
+\newcommand\fksSer@authors{}
 \newcommand\serauthors[1]{
-	\renewcommand\fksSeries@authors{#1}
+	\renewcommand\fksSer@authors{#1}
 }

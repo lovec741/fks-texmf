@@ -19,12 +19,11 @@
 \rightheader{
 	\fksMeta@serialTitle{}
 	\fksMeta@formatContestYear{year}.\Roman{batch}
-	\fksSections@serialName
+	\fksSer@serialName
 }
 
-% TODO move serial name into fksserial.sty
 \AtBeginDocument{
 	\hypersetup{
-		pdftitle={\fksMeta@serialTitle{} \fksMeta@formatContestYear{year}.\Roman{batch} \fksSections@serialName, \fksMeta@contestNameShort}%
+		pdftitle={\fksMeta@serialTitle{} \fksMeta@formatContestYear{year}.\Roman{batch} \fksSer@serialName, \fksMeta@contestNameShort}%
 	}
 }

@@ -22,21 +22,6 @@
 }
 
 % ----------------------
-% Helper macros for section titles with images
-% ----------------------
-\newcommand\sectionWithImageLeft[2]{
-	\centering \includegraphics[height=15mm]{#1}\hspace{10pt}\raisebox{0.6cm}{#2}
-}
-
-\newcommand\sectionWithImageRight[2]{
-	\centering \raisebox{0.6cm}{#2}\hspace{10pt}\includegraphics[height=15mm]{#1}
-}
-
-\newcommand\sectionWithImages[3]{
-	\centering \includegraphics[height=15mm]{#1}\hspace{10pt}\raisebox{0.6cm}{#3}\hspace{10pt}\includegraphics[height=20mm]{#2}
-}
-
-% ----------------------
 % Command initialization
 % ----------------------
 
@@ -64,24 +49,6 @@
 % legal and contact information
 \newcommand\fksMeta@address{Contact address}
 \newcommand\fksMeta@licence{Licence}
-
-% Texts used in sections
-\newcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
-\newcommand\fksMeta@sectionTextProblemTasksSummer{Zadání \Roman{batch}. části prázdninové série}
-\newcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
-\newcommand\fksMeta@sectionTextProblemSolutionsSummer{Řešení \Roman{solvedbatch}. části prázdninové série}
-\newcommand\fksMeta@sectionTextSeries[1]{\fksMeta@serialTitle: #1}
-\newcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
-\newcommand\fksMeta@sectionTextResultsSummer{Konečné pořadí řešitelů prázdninové série}
-
-% Styles of sections
-\newcommand\fksMeta@sectionStyleProblemTasks{\fksMeta@sectionTextProblemTasks}
-\newcommand\fksMeta@sectionStyleProblemTasksSummer{\fksMeta@sectionTextProblemTasksSummer}
-\newcommand\fksMeta@sectionStyleProblemSolutions{\fksMeta@sectionTextProblemSolutions}
-\newcommand\fksMeta@sectionStyleProblemSolutionsSummer{\fksMeta@sectionTextProblemSolutionsSummer}
-\newcommand\fksMeta@sectionStyleSeries[1]{\fksMeta@sectionTextSeries{#1}}
-\newcommand\fksMeta@sectionStyleResults{\fksMeta@sectionTextResults}
-\newcommand\fksMeta@sectionStyleResultsSummer{\fksMeta@sectionTextResultsSummer}
 
 % data used by problems
 \newcommand\fksMeta@problemDefaultStudyYears{}

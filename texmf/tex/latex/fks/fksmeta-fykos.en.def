@@ -54,8 +54,3 @@
 	& \textnormal{\%} % percent total
 	& $\Sigma$\\% sum
 }
-
-% Define section texts and styles
-\renewcommand\fksMeta@sectionTextProblemTasks{Tasks of the \Roman{batch} series}
-\renewcommand\fksMeta@sectionTextProblemSolutions{Solutions of the \Roman{solvedbatch} series}
-\renewcommand\fksMeta@sectionTextResults{Results after the \Roman{solvedbatch} series}

@@ -47,21 +47,6 @@
 	\url{https://creativecommons.org/licenses/by-sa/3.0/}.\par
 }
 
-% Define section texts and styles
-\renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. série}
-\renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. série}
-\renewcommand\fksMeta@sectionTextSeries[1]{\fksMeta@serialTitle: #1}
-\renewcommand\fksMeta@sectionTextResults{Pořadí řešitelů po \Roman{solvedbatch}. sérii}
-
-\renewcommand\fksMeta@sectionStyleProblemTasks{
-	\sectionWithImages{tabule2.eps}{plazmaL.eps}{\fksMeta@sectionTextProblemTasks}}
-\renewcommand\fksMeta@sectionStyleProblemSolutions{
-	\sectionWithImages{tabule.eps}{zarovkaL.eps}{\fksMeta@sectionTextProblemSolutions}}
-\renewcommand\fksMeta@sectionStyleSeries[1]{
-	\sectionWithImageLeft{kniha.eps}{\fksMeta@sectionTextSeries{#1}}}
-\renewcommand\fksMeta@sectionStyleResults{
-	\sectionWithImageLeft{stupne123.eps}{\fksMeta@sectionTextResults}}
-
 % define letters for problems
 \renewcommand\fksMeta@problemDefaultStudyYears{6,7,8,9}
 \renewcommand\fksMeta@problemLetter[1]{%
@@ -92,18 +77,6 @@
 		@{\hspace{8pt}}A{\bfseries}r % sum
 	}
 }
-
-% define summer batch
-\newif\ifsummerbatch
-\ifsummerbatch
-	\renewcommand\fksMeta@sectionTextProblemTasks{Zadání \Roman{batch}. prázdninové série}
-	\renewcommand\fksMeta@sectionTextProblemSolutions{Řešení \Roman{solvedbatch}. prázdninové série}
-	\renewcommand\fksMeta@sectionTextResults{Řešení \Roman{solvedbatch}. prázdninové série}
-	\renewcommand\fksMeta@sectionStyleProblemTasks{
-		\sectionWithImages{zmrzlina.eps}{plazmaL.eps}{\fksMeta@sectionTextProblemTasks}}
-	\renewcommand\fksMeta@sectionStyleProblemSolutions{
-		\sectionWithImages{zmrzlina.eps}{zarovkaL.eps}{\fksMeta@sectionTextProblemSolutions}}
-\fi
 
 % change styles
 \fancypagestyle{black}[fancy]{
