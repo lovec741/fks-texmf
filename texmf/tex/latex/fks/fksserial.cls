@@ -24,6 +24,9 @@
 
 \AtBeginDocument{
 	\hypersetup{
-		pdftitle={\fksMeta@serialTitle{} \fksMeta@formatContestYear{year}.\Roman{batch} \fksSer@serialName, \fksMeta@contestNameShort}%
+		pdftitle={\fksMeta@serialTitle{}
+		\fksMeta@formatContestYear{year}.\Roman{batch} \fksSer@serialName,
+		\fksMeta@contestNameShort},%
+		pdfauthor=\expandafter\forcsvlist\expandafter\sign@tureraw\expandafter{\fksSer@authors}
 	}
 }

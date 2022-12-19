@@ -8,12 +8,13 @@
 
 \RequirePackage{fkssections}
 
-\newcommand\fksSer@serialName{} % save serial name for later use using aux file
+ % save serial name for later use using aux file
+\newcommand\fksSer@serialName{}
 \newcommand\fksSer@saveSerialName[1]{
 	\AtEndDocument{\immediate\write\@auxout{\string\fksSer@setSerialName{#1}}}
 }
 \newcommand\fksSer@setSerialName[1]{
-	\protected@xdef\fksSec@serialName{#1}
+	\protected@xdef\fksSer@serialName{#1}
 }
 
 \newcommand\seriesheading[1]{%
@@ -22,7 +23,15 @@
 	\section[\fksSec@textSeries{#1}]{\fksSec@styleSeries{#1}}
 }
 
+% save serial authors
 \newcommand\fksSer@authors{}
+\newcommand\fksSer@saveAuthors[1]{
+	\AtEndDocument{\immediate\write\@auxout{\string\fksSer@setAuthors{#1}}}
+}
+\newcommand\fksSer@setAuthors[1]{
+	\protected@xdef\fksSer@authors{#1}
+}
+
 \newcommand\serauthors[1]{
-	\renewcommand\fksSer@authors{#1}
+	\fksSer@saveAuthors{#1}
 }
