@@ -66,38 +66,7 @@
 \newcommand\fksMeta@tableHeaderResultsTasks{} % table header for task points
 \newcommand\fksMeta@tableHeaderResults{} % table header
 
-% ----------------------
 % Load config files
-% ----------------------
-
-\IfFileExists{fksmeta.def}{
-	\input{fksmeta.def}
-}{
-	\PackageError{fksmeta}{
-		Config file fksmeta.def not found%
-	}{
-		Check if fksmeta.def is created and TeX can reach it (file must be in
-		the same directory as tex is run from or you need to specify TEXINPUTS
-		variable so tex knows, where to search for it).%
-	}
-}
-
-\RequirePackage{fkslang}
-
-% define language variant of config file
-\newcommand\fksMeta@configFilename{%
-	fksmeta.\langCode.def
-}
-
-\IfFileExists{\fksMeta@configFilename}{
-	\input{\fksMeta@configFilename}
-	\PackageInfo{fksmeta}{
-		Language config file \fksMeta@configFilename found, importing
-	}
-}{
-	\PackageInfo{fksmeta}{
-		Language config file \fksMeta@configFilename not found, skipping
-	}
-}
-
-\ProcessOptions\relax
+\RequirePackage{fksconf}
+\fksConf@register{fksmeta}
+\fksConf@loadConfig{fksmeta}

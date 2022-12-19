@@ -86,7 +86,7 @@
 	\chead{
 		\setlength{\parindent}{0pt}
 		\colorbox{black}{
-			\begin{minipage}{\textwidth-6pt}
+			\begin{minipage}{\textwidth-12pt}
 				\textcolor{white}{\raisebox{-8.5pt}{\bfseries\sffamily\fksMeta@headerLeft{}}
 				\hfill \raisebox{-8.5pt}{\bfseries\sffamily\fksMeta@headerRight}}
 			\end{minipage}

@@ -122,8 +122,8 @@
 % other
 \RequirePackage{fksproblems}
 \problemsdir{../problems}
-\input{fkssignature}
-\signaturesfile{../signatures.tex}
+\RequirePackage{fkssignature}
+\signaturefile{../signatures.tex}
 
 \newcommand\makefooter{%
 	\vspace*{\fill}

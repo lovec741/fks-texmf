@@ -75,37 +75,7 @@
 	\section[\fksSec@textResults]{\fksSec@styleResults}
 }
 
-% ----------------------
 % Load config files
-% ----------------------
-\IfFileExists{fkssections.def}{
-	\input{fkssections.def}
-}{
-	\PackageError{fkssections}{
-		Config file fkssections.def not found%
-	}{
-		Check if fkssections.def is created and TeX can reach it (file must be in
-		the same directory as tex is run from or you need to specify TEXINPUTS
-		variable so tex knows, where to search for it).%
-	}
-}
-
-\RequirePackage{fkslang}
-
-% define language variant of config file
-\newcommand\fksSec@configFilename{%
-	fkssections.\langCode.def
-}
-
-\IfFileExists{\fksSec@configFilename}{
-	\input{\fksSec@configFilename}
-	\PackageInfo{fkssections}{
-		Language config file \fksSec@configFilename found, importing
-	}
-}{
-	\PackageInfo{fkssections}{
-		Language config file \fksSec@configFilename not found, skipping
-	}
-}
-
-\ProcessOptions\relax
+\RequirePackage{fksconf}
+\fksConf@register{fkssections}
+\fksConf@loadConfig{fkssections}
