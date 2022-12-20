@@ -50,6 +50,18 @@
 \newcommand\fksMeta@address{Contact address}
 \newcommand\fksMeta@licence{Licence}
 
+\newcommand\makeaddress{
+	\begin{center}
+		\fksMeta@address
+	\end{center}
+}
+
+\newcommand\makelicence{
+	\begin{center}
+		\fksMeta@licence
+	\end{center}
+}
+
 % data used by problems
 \newcommand\fksMeta@problemDefaultStudyYears{}
 \newcommand\fksMeta@problemLetter[1]{%
@@ -59,6 +71,11 @@
 		\@ctrerr%
 	\fi%
 }
+
+% create counter for tracting the year, batch and solvedbatch number
+\newcounter{year}
+\newcounter{batch}[year]
+\newcounter{solvedbatch}
 
 % results table parameter
 \RequirePackage{array} % provide newcolumntype macro

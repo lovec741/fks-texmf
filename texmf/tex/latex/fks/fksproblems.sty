@@ -11,12 +11,16 @@
 \RequirePackage{ifthen}
 \RequirePackage{fksfigures}
 \RequirePackage{fkslang}
-\RequirePackage{fksmeta}
-%\RequirePackage{fkssignature}
+\RequirePackage{fksmeta} % studyyears and problem letters
+\RequirePackage{fkssignature} % signature under solution
+\RequirePackage{pifont} % dings
 
 % ----------------
 % Loading problems
 % ----------------
+
+% store problem number
+\newcounter{problem}[batch]
 
 % define problems input folder
 \newcommand\fksProb@inputDir{.}
@@ -48,6 +52,13 @@
 	}
 }
 
+% problem heading
+\newcommand\problem{\@startsection{\fksProb@headingLevel}{1}{\z@}%
+	{\fksProb@headingBeforeSkip}%
+	{\fksProb@headingAfterSkip}%
+	{\fksProb@headingStyle}%
+}
+
 % ----------------
 % Content commands
 % ----------------
@@ -67,6 +78,12 @@
 \newcommand\fksProb@headingBookmarkSolution{\problemLetter{problem}: \@probname}
 \newcommand\fksProb@headingContentTask{\fksProb@dictLabel{} \problemNum{batch}{problem} \,\ldots{} \@probname{} {\Large \problemTagsYears \problemTagsTypes} \hfill {\normalfont\normalsize\problemPoints}}
 \newcommand\fksProb@headingContentSolution{\fksProb@dictLabel{} \problemNum{solvedbatch}{problem} \,\ldots{} \@probname{} \hfill {\normalfont\normalsize\problemPoints; \problemStats}}
+
+% problem heading style
+\newcommand\fksProb@headingLevel{subsection}
+\newcommand\fksProb@headingBeforeSkip{-3.5ex \@plus -1ex \@minus -.2ex}
+\newcommand\fksProb@headingAfterSkip{1.0ex \@plus.2ex}
+\newcommand\fksProb@headingStyle{\normalfont\large\bfseries}
 
 % definitions of problem headings for reusability and redefinitions
 \newcommand\problemHeadingTask{\problem[\fksProb@headingBookmarkTask]{\fksProb@headingContentTask}}
@@ -103,6 +120,18 @@
 
 	\noindent \@probsolution\par
 	\nopagebreak\vspace{6pt}\nopagebreak\expandafter\signature\@probsolauthors\par % email on the end solution
+}
+
+% headings
+\@ifundefined{ifyearbook}{\newif\ifyearbook\yearbookfalse}{} % ensure ifyearbook exists
+\newcommand\solutionnote[1]{%
+	\ifyearbook\else%
+		\subsubsection{Poznámky k došlým řešením}#1%
+	\fi
+}
+
+\newcommand\taskhint[2]{
+	\par\noindent\emph{#1}\quad{#2}
 }
 
 % ----------------
@@ -233,11 +262,10 @@
 % ----------------
 % Package config
 % ----------------
-%
+
 % Can be used to change commands in the "Content commands" section
 % Automatically load if present
 
 \RequirePackage{fksconf}
 \fksConf@register{fksproblems}
-\fksConf@setConfigError{fksproblems}{}
 \fksConf@loadConfig{fksproblems}

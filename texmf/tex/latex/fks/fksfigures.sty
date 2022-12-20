@@ -23,7 +23,7 @@
 \RequirePackage{tikz}
 
 % setup captions
-\RequirePackage{caption}
+\RequirePackage[justification=centering]{caption}
 \captionsetup[wrapfigure]{}
 \captionsetup[wraptable]{}
 
@@ -143,7 +143,36 @@
 
 \newcommand\illfig[5][o]{\illfigi[#1]{#2}{#3}{#4}{#5}{0.28}}
 
+% -----------------------------
+% Graphics and tables captions
+% -----------------------------
+
+% setter of figurename
+% usage: \setfigurename{<language>}{<figure name>}
+\newcommand{\setfigurename}[2]{
+	\expandafter\addto\csname captions#1\endcsname{
+		\renewcommand{\figurename}{#2}
+	}
+}
+
+% setter of tablename
+% usage: \settablename{<language>}{<figure name>}
+\newcommand{\settablename}[2]{
+	\expandafter\addto\csname captions#1\endcsname{
+		\renewcommand{\tablename}{#2}
+	}
+}
+
+% default values
+\setfigurename{czech}{Obr.}
+\setfigurename{slovak}{Obr.}
+\setfigurename{english}{Fig.}
+\settablename{czech}{Tab.}
+\settablename{slovak}{Tab.}
+\settablename{english}{Tab.}
+
 % plot figures are listed down, in yearbook they have to be narrower
+\@ifundefined{ifyearbook}{\newif\ifyearbook\yearbookfalse}{} % ensure ifyearbook exists
 \AtBeginDocument{
 	\ifyearbook
 	\newwrite\plotsfile

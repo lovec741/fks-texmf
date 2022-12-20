@@ -7,6 +7,7 @@
 \renewcommand\fksMeta@headerLeft{\fksMeta@contestNameShort}
 \renewcommand\fksMeta@headerRight{ročník \fksMeta@formatContestYear{year}\qquad číslo \arabic{batch}/7}
 
+\@ifundefined{ifyearbook}{\newif\ifyearbook\yearbookfalse}{} % ensure ifyearbook exists
 \renewcommand\fksMeta@address{
 	\begin{tabular}{r>{\slshape\bfseries}l}
 		\multirow{5}{*}{\includegraphics{logo1.eps}} & \fksMeta@contestNameShort \\

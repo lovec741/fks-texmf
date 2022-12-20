@@ -16,16 +16,8 @@
 % other
 \let\oldfooter\makefooter
 \renewcommand\makefooter{%
-\null
-\vfill
-\begin{center}
-	\fksMeta@address
-\end{center}
+	\null
+	\vfill
+	\makeaddress
 	\oldfooter
 }
-
-\newcommand\@deadline{NENÍ ZADÁNO} % upload/receive
-\newcommand\deadline[1]{\renewcommand\@deadline{#1}}
-
-\newcommand\@deadlineS{N/A} % send
-\newcommand\deadlineS[1]{\renewcommand\@deadlineS{#1}}

@@ -2,3 +2,6 @@
 \renewcommand\fksSec@textProblemTasks{Tasks of the \Roman{batch} series}
 \renewcommand\fksSec@textProblemSolutions{Solutions of the \Roman{solvedbatch} series}
 \renewcommand\fksSec@textResults{Results after the \Roman{solvedbatch} series}
+
+\renewcommand\fksSec@textDeadlineUpload{Upload deadline: }
+\renewcommand\fksSec@textDeadlinePost{Send via post deadline: }

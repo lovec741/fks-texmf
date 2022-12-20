@@ -8,56 +8,58 @@
 
 % inherit from article class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
-\ProcessOptions
-\LoadClass[9pt]{extarticle}
-
+\ProcessOptions\relax
+\LoadClass[9pt,a5paper]{extarticle}
 
 % packages
 \@ifundefined{UseOption}{\def\UseOption{web}}{} % when no option set, we use web settings
-
 \RequirePackage{optional} % ought be first
-\RequirePackage{amssymb}
+
+% font packages
 \RequirePackage[no-math]{fontspec} % no-math is because of mathrm(Omega)
-\RequirePackage{xltxtra} % includes xunicode, fontspec
 \RequirePackage{xunicode}
-\UndeclareUTFcharacter[\UTFencname]{x2026}{\textellipsis} % we want normal ellipsis
+\RequirePackage{microtype}
 
-\RequirePackage[version=3]{mhchem}
-\RequirePackage{listings}
-
-\RequirePackage[hyphens]{url}
-\RequirePackage[xetex,
-  setpagesize=false,
-  linkcolor=black,
-  anchorcolor=black,
-  citecolor=black,
-  filecolor=black,
-  urlcolor=black,
-  bookmarks=true,
-]{hyperref}
-\opt{web}{\hypersetup{colorlinks=false}}
-\opt{print}{\hypersetup{colorlinks=true}}
-\RequirePackage{xkeyval}
-\RequirePackage{fkslang}
-\RequirePackage{pifont}
-
-\newfontfamily\cyrillicfont[Ligatures=TeX, % recommended
+\newfontfamily\cyrillicfont[
+	Ligatures=TeX, % recommended
+	Script=Cyrillic,
 	ItalicFont=[cmunti.otf],
 	BoldFont=[cmunbx.otf],
 	BoldItalicFont=[cmunbi.otf],
 	SlantedFont=[cmunsl.otf]
 ]{[cmunrm.otf]}
 
-\widowpenalty 1000 \clubpenalty 1000 \displaywidowpenalty 1000
+% science packages
+\RequirePackage[version=4]{mhchem}
+\RequirePackage{amssymb}
+\RequirePackage{listings} % for code listings
+\RequirePackage{fkssugar}
+
+% links
+\RequirePackage[hyphens]{url}
+\RequirePackage[xetex,
+	setpagesize=false,
+	linkcolor=black,
+	anchorcolor=black,
+	citecolor=black,
+	filecolor=black,
+	urlcolor=black,
+	bookmarks=true,
+]{hyperref}
+\opt{web}{\hypersetup{colorlinks=false}}
+\opt{print}{\hypersetup{colorlinks=true}}
 
 % layout settings
-\RequirePackage[includeheadfoot,
-  a5paper,
-  margin=0.7cm,
-  headsep=0.2cm]{geometry}
+\RequirePackage[
+	includeheadfoot,
+	margin=0.7cm,
+	headsep=0.2cm
+]{geometry}
 \if@twoside
-  \raggedbottom % twoside layout causes expanding vertical space around environments
+	\raggedbottom % twoside layout causes expanding vertical space around environments
 \fi
+
+\widowpenalty 1000 \clubpenalty 1000 \displaywidowpenalty 1000
 
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
@@ -68,62 +70,28 @@
 % options
 \fancyfoot{}
 \if@twoside
-  \fancyfoot[EL]{\bfseries \thepage}
-  \fancyfoot[OR]{\bfseries \thepage}
+	\fancyfoot[EL]{\bfseries \thepage}
+	\fancyfoot[OR]{\bfseries \thepage}
 \else
-  \fancyfoot[C]{\bfseries \thepage}
+	\fancyfoot[C]{\bfseries \thepage}
 \fi
-
-% Some packages rely on this condition
-\newif\ifyearbook
-\yearbookfalse
 
 % FYKOS packages
 \RequirePackage{fksmeta}
-\RequirePackage{fkssugar}
 \RequirePackage{fksfigures}
 \RequirePackage{fkstables}
 \RequirePackage{fksmisc}
-
-% counters
-\newcounter{year}
-\newcounter{batch}[year]
-\newcounter{problem}[batch]
-\newcounter{solvedbatch}
-
-% headings
-\newcommand\solutionnote[1]{%
-  \ifyearbook\else%
-  \subsubsection{Poznámky k došlým řešením}#1%
-  \fi}
-
-\newcommand\taskhint[2]{\par\noindent\emph{#1}\quad{#2}}
+\RequirePackage{fksproblems}
+\RequirePackage{fksserial}
+\RequirePackage{fkssections}
 
 \setcounter{secnumdepth}{-1} % do not number headings
-
-\RequirePackage{fkssections} % TODO temporary
-
-% other
-\RequirePackage{fksproblems}
-\problemsdir{../problems}
-\RequirePackage{fkssignature}
-\signaturefile{../signatures.tex}
 
 \newcommand\makefooter{%
 	\vspace*{\fill}
 	\noindent\begin{minipage}{\textwidth}
 		\hrule
 		\smallskip
-		\begin{center}
-			\fksMeta@licence
-		\end{center}
+		\makelicence
 	\end{minipage}
 }
-
-\AtBeginDocument{%
-	\renewcommand\figurename{\lngopt{cs}{Obr.}\lngopt{en}{Fig.}}
-	\renewcommand\tablename{Tab.}
-}
-
-
-
