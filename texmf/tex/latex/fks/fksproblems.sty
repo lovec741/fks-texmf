@@ -89,7 +89,7 @@
 % formats of task and solution
 \newcommand\fksProb@formatTask{
 	\problemHeadingTask
-	\nopagebreak\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}\nopagebreak%
+	\ifthenelse{\equal{\@probfig}{N/A}}{}{\@probfig}%
 	\@probtask\par%
 }
 

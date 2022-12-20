@@ -8,6 +8,22 @@
 \ProvidesPackage{fkssections}[2022/11/11 Reusable headings]
 
 \RequirePackage{fksmeta}
+\RequirePackage[nobottomtitles]{titlesec}
+\renewcommand{\bottomtitlespace}{0.05\textheight}
+%\renewcommand{\bottomtitlespace}{0pt}
+
+% ----------------------
+% Generic title and sections style
+% ----------------------
+\titleformat*{\section}{\normalfont\sffamily\slshape\huge}
+\titleformat*{\subsection}{\normalfont\sffamily\slshape\Large}
+\titleformat*{\subsubsection}{\normalfont\sffamily\slshape\normalsize}
+
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.0ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.0ex plus .2ex}
+
+\newcommand\problem[2][]{\subsection[#1]{\normalfont\bfseries\large#2}}
 
 % ----------------------
 % Helper macros for section titles with images

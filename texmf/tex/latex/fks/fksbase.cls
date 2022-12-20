@@ -92,22 +92,6 @@
 \newcounter{solvedbatch}
 
 % headings
-\renewcommand\section{\@startsection {section}{1}{\z@}%
-  {-3.5ex \@plus -1ex \@minus -.2ex}%
-  {1.5ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\huge}}
-\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\Large}}
-\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\sffamily\slshape\normalsize}}
-\newcommand\problem{\@startsection {subsection}{2}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {1.0ex \@plus.2ex}%
-  {\normalfont\bfseries\large}}
 \newcommand\solutionnote[1]{%
   \ifyearbook\else%
   \subsubsection{Poznámky k došlým řešením}#1%

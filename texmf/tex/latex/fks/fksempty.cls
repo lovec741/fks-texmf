@@ -20,9 +20,3 @@
   a5paper,
   margin=0.7cm,
   headsep=0.2cm}
-
-
-
-
-
-
