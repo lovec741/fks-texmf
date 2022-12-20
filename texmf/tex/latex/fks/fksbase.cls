@@ -29,11 +29,27 @@
 	SlantedFont=[cmunsl.otf]
 ]{[cmunrm.otf]}
 
-% science packages
+% IPA font (usage: \textIPA{<unicode string>})
+% Note: font is visually different from Latin Modern,
+%       however, `tipa` package is only for LaTeX (8b encoding).
+\newfontfamily\doulos{Doulos SIL}
+\DeclareTextFontCommand{\textIPA}{\doulos}
+
+% useful packages
 \RequirePackage[version=4]{mhchem}
 \RequirePackage{amssymb}
-\RequirePackage{listings} % for code listings
 \RequirePackage{fkssugar}
+\RequirePackage{paralist}
+
+\RequirePackage{listings} % for code listings
+\lstset{%
+	basicstyle=\footnotesize\ttfamily,%
+	columns=fixed,%
+	showstringspaces=false,%
+	showspaces=false,%
+	frame=single,%
+	breaklines=true%
+}
 
 % links
 \RequirePackage[hyphens]{url}
@@ -81,9 +97,6 @@
 \RequirePackage{fksfigures}
 \RequirePackage{fkstables}
 \RequirePackage{fksmisc}
-\RequirePackage{fksproblems}
-\RequirePackage{fksserial}
-\RequirePackage{fkssections}
 
 \setcounter{secnumdepth}{-1} % do not number headings
 

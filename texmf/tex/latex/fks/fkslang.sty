@@ -52,9 +52,16 @@
 	}%
 }
 
-% language optional
+% language optional -- if language selected
 \newcommand\lngopt[2]{%
 	\ifthenelse{\equal{#1}{\langCode}}{#2}{}%
+}
+
+% useful macro for selecting correct plural form in czech
+\newcommand\plural[4]{%
+	\ifcase#1%
+		#4\or#2\or#3\or#3\or#3\else#4
+	\fi
 }
 
 % language without options

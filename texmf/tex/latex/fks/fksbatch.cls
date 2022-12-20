@@ -12,6 +12,9 @@
 \LoadClass{fksbase}
 
 \RequirePackage{fksserial}
+\RequirePackage{fksproblems}
+\RequirePackage{fksserial}
+\RequirePackage{fkssections}
 
 % other
 \let\oldfooter\makefooter

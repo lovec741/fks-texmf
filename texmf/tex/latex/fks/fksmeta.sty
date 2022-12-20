@@ -10,6 +10,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fksmeta}[2011/09/11 Information about seminars]
 
+\RequirePackage{hyperref}
+
 % ----------------------
 % Generic data getter
 % ----------------------
@@ -20,6 +22,21 @@
 	\else
 	\expandafter\csname fksMeta@#1\endcsname\fi
 }
+
+\newcommand\makeaddress{
+	\begin{center}
+		\fksMeta@address
+	\end{center}
+}
+
+\newcommand\makelicence{
+	\begin{center}
+		\fksMeta@licence
+	\end{center}
+}
+
+% useful macro used for emails
+\newcommand\mail[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
 % ----------------------
 % Command initialization
@@ -49,18 +66,6 @@
 % legal and contact information
 \newcommand\fksMeta@address{Contact address}
 \newcommand\fksMeta@licence{Licence}
-
-\newcommand\makeaddress{
-	\begin{center}
-		\fksMeta@address
-	\end{center}
-}
-
-\newcommand\makelicence{
-	\begin{center}
-		\fksMeta@licence
-	\end{center}
-}
 
 % data used by problems
 \newcommand\fksMeta@problemDefaultStudyYears{}

@@ -14,7 +14,7 @@
 	\sectionWithImageLeft{stupne123.eps}{\fksSec@textResults}}
 
 % define summer batch
-\newif\ifsummerbatch
+\@ifundefined{ifsummerbatch}{\newif\ifsummerbatch\summerbatchfalse}{} % ensure ifyearbook exists
 \ifsummerbatch
 	\renewcommand\fksSec@textProblemTasks{Zadání \Roman{batch}. prázdninové série}
 	\renewcommand\fksSec@textProblemSolutions{Řešení \Roman{solvedbatch}. prázdninové série}

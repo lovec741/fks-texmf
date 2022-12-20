@@ -13,6 +13,10 @@
 \LoadClass{fksbase}
 
 \RequirePackage{fksmeta}
+\RequirePackage{fksserial}
+\RequirePackage{fksproblems}
+\RequirePackage{fksserial}
+\RequirePackage{fkssections}
 
 \AtBeginDocument{
 	\hypersetup{pdftitle={\fksMeta@headerLeft}}
