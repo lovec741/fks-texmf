@@ -38,7 +38,6 @@
 % useful packages
 \RequirePackage[version=4]{mhchem}
 \RequirePackage{amssymb}
-\RequirePackage{fkssugar}
 \RequirePackage{paralist}
 
 \RequirePackage{listings} % for code listings
@@ -93,6 +92,7 @@
 \fi
 
 % FYKOS packages
+\RequirePackage{fkssugar} % needs to be loaded after hyperref due to \C redefinition
 \RequirePackage{fksmeta}
 \RequirePackage{fksfigures}
 \RequirePackage{fkstables}

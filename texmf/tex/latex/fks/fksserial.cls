@@ -27,6 +27,6 @@
 		pdftitle={\fksMeta@serialTitle{}
 		\fksMeta@formatContestYear{year}.\Roman{batch} \fksSer@serialName,
 		\fksMeta@contestNameShort},%
-		pdfauthor=\expandafter\forcsvlist\expandafter\sign@tureraw\expandafter{\fksSer@authors}
+		pdfauthor=\expandafter\forcsvlist\expandafter\fksSig@signatureRaw\expandafter{\fksSer@authors}
 	}
 }
