@@ -26,8 +26,7 @@
 	}
 }%
 
-% returns iso code for actual lang name
-% when no argument given return current language code
+% returns iso code for currently selected language
 \newcommand\langCode{%
 	\expandafter\ifx\csname @langCode\languagename\endcsname\relax
 		\PackageWarning{fkslang}{Undefined language \languagename}%

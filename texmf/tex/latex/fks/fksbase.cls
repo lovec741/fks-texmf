@@ -96,7 +96,6 @@
 \RequirePackage{fksmeta}
 \RequirePackage{fksfigures}
 \RequirePackage{fkstables}
-\RequirePackage{fksmisc}
 
 \setcounter{secnumdepth}{-1} % do not number headings
 
