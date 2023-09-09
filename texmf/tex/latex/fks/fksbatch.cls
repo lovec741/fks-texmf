@@ -11,7 +11,8 @@
 \ProcessOptions
 \LoadClass{fksbase}
 
-
+% enable creation of qrcodes for results
+\usepackage[hyperlinks]{qrcode}
 
 \newcommand\problemsheading{%
 \section[Zadání \Roman{batch}. série]{\met@headerproblems}
