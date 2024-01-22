@@ -178,6 +178,12 @@
 \DeclareMathSymbol{\fkschi}{\mathalpha}{letters}{31}
 \DeclareMathSymbol{\fkspsi}{\mathalpha}{letters}{32}
 \DeclareMathSymbol{\fksomega}{\mathalpha}{letters}{33}
+\DeclareMathSymbol{\fksvarepsilon}{\mathalpha}{letters}{34}
+\DeclareMathSymbol{\fksvartheta}{\mathalpha}{letters}{35}
+\DeclareMathSymbol{\fksvarpi}{\mathalpha}{letters}{36}
+\DeclareMathSymbol{\fksvarrho}{\mathalpha}{letters}{37}
+\DeclareMathSymbol{\fksvarsigma}{\mathalpha}{letters}{38}
+\DeclareMathSymbol{\fksvarphi}{\mathalpha}{letters}{39}
 
 
 \DeclareMathAlphabet{\vectalpha}{OT1}{cmr}{bx}{n}   % latin vectors alphabet
@@ -201,7 +207,7 @@
   \def\beta{#1\fksbeta}
   \def\gamma{#1\fksgamma}
   \def\delta{#1\fksdelta}
-  \def\epsilon{#1\fksepsilon}
+  \def\epsilon{#1\fksvarepsilon}
   \def\zeta{#1\fkszeta}
   \def\eta{#1\fkseta}
   \def\theta{#1\fkstheta}
@@ -216,16 +222,23 @@
   \def\sigma{#1\fkssigma}
   \def\tau{#1\fkstau}
   \def\upsilon{#1\fksupsilon}
-  \def\phi{#1\fksphi}
+  \def\phi{#1\fksvarphi}
   \def\chi{#1\fkschi}
   \def\psi{#1\fkspsi}
   \def\omega{#1\fksomega}
+  \def\oldepsilon{#1\fksepsilon}
+  \def\vartheta{#1\fksvartheta}
+  \def\oldvarpi{#1\fksvarpi}
+  \def\varrho{#1\fksvarrho}
+  \def\varsigma{#1\fksvarsigma}
+  \def\oldphi{#1\fksphi}
 }%
 % swap definitions only for vect macro.
 \newcommand\vect[1]{\bgroup\sw@pgreekletters\vectgralpha\vectalpha#1\egroup}
 \newcommand\vectgr\vect % only for compatibility reasons
 
 %special for upright pi
+\let\oldvarpi\varpi
 \let\varpi\pi
 \IfFileExists{lgrenc.def}{      % part of babel package
 \input{lgrenc.def}
