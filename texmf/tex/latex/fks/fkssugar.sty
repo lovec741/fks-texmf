@@ -39,9 +39,9 @@
 \newcommand\tprod{\mathop{\textstyle\prod}\limits}          % inline product, chybne v beameru
 \newcommand\tint{\mathop{\textstyle\int}\nolimits}          % inline integral, chybne v beameru
 \newcommand\const{\textnormal{konst}}                       % konstanta
-\newcommand\dg{^\circ}                                      % stupen
+\newcommand\dg{\null^\circ}                                 % stupen
 %\newcommand\C{^\circ\mskip-2mu\mathrm{C}}                  % Celsiuv stupen
-\def\C{^\circ\mskip-2mu\mathup{C}}                          % Celsiuv stupen (ugly fix for Win/Linux compatibility), beamer
+\def\C{\null^\circ\mskip-2mu\mathup{C}}                     % Celsiuv stupen (ugly fix for Win/Linux compatibility), beamer
 \let\Re\relax\DeclareMathOperator\Re{Re}                    % realna cast
 \let\Im\relax\DeclareMathOperator\Im{Im}                    % imaginarni cast
 \newcommand\eu{\mathup{e}}                                  % Eulerovo cislo
@@ -262,6 +262,8 @@
 \newcommand\Euro{\text{€}}                      % or use as an unit of EUR
 
 % block equations
+% s - single line; m - multiline; a - alian at
+% *n - numbered
 \newcommand\eq[2][s]{%
 \ifthenelse{\equal{#1}{s}}{%
 \begin{equation*}#2\end{equation*}%
@@ -271,6 +273,15 @@
 }{}%
 \ifthenelse{\equal{#1}{a}}{%
 \begin{alignat*}#2\end{alignat*}%
+}{}%
+\ifthenelse{\equal{#1}{sn}}{%
+\begin{equation}#2\end{equation}%
+}{}%
+\ifthenelse{\equal{#1}{mn}}{%
+\begin{align}#2\end{align}%
+}{}%
+\ifthenelse{\equal{#1}{an}}{%
+\begin{alignat}#2\end{alignat}%
 }{}%
 \ignorespaces}
 
